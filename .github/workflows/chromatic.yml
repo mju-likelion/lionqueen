@@ -17,5 +17,5 @@ jobs:
       - uses: chromaui/action@v1
         # options required to the GitHub chromatic action
         with:
-          projectToken: c9eab7b018cc
+          projectToken: 0aefef65099b
           token: ${{ secrets.TOKEN }}
