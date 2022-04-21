@@ -43,5 +43,6 @@ Small.args = {
 export const Medium = Template.bind({});
 Medium.args = {
   size: "medium",
-  label: "Button",
+  label: "버튼변경",
+  backgroundColor: "green",
 };
