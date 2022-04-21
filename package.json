@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "chromatic": "npx chromatic --project-token=0aefef65099b --force-rebuild"
   },
   "dependencies": {
     "next": "12.1.5",
