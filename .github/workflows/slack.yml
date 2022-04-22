@@ -15,7 +15,7 @@ jobs:
 
         with:
           status: custom
-          fields: workflow,job,commit,repo,ref,author,took
+          fields: workflow,job,commit,repo,author,pullRequest
           custom_payload: |
             {
               attachments: [{
