@@ -1,10 +1,6 @@
 name: slack
 
-on:
-  pull_request:
-    branches:
-      - main
-    types: [review_requested]
+on: push
 
 jobs:
   build:
