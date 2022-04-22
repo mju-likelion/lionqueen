@@ -20,7 +20,7 @@ jobs:
             {
               attachments: [{
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-                text: `${process.env.AS_REPO} 레포지토리에 ${process.env.AS_AUTHOR} 님이 PR을 올렸습니다 승인하러 ㄱㄱ ${process.env.AS_PULL_REQUEST}`,
+                text: `${process.env.AS_REPO} repo에 ${process.env.AS_AUTHOR} 님이 PR을 올렸습니다\n 승인하러 ㄱㄱ ${process.env.AS_PULL_REQUEST}`,
               }]
             }
         env:
