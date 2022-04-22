@@ -12,6 +12,7 @@ jobs:
         with:
           status: ${{ job.status }}
           fields: repo,commit,message,author # action,eventName,ref,workflow,job,took 추가할 수 있음
+          text: PR이 올라왔습니다! PR리뷰 해주세요!!
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
         if: always() # Pick up events even if the job fails or is canceled.
