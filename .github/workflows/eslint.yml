@@ -46,10 +46,10 @@ jobs:
       - name: Install ESLint
         run: |
           yarn add eslint@8.10.0
-          npm add @microsoft/eslint-formatter-sarif@2.1.7
+          yarn add @microsoft/eslint-formatter-sarif@2.1.7
 
       - name: Run ESLint
-        run: yarn eslint .
+        run: npx eslint .
           --config .eslintrc.js
           --ext .js,.jsx,.ts,.tsx
           --format @microsoft/eslint-formatter-sarif 
