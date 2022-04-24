@@ -1,4 +1,3 @@
-import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import Button from "./Button";
@@ -13,11 +12,21 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
-export const Primary = Template.bind({});
+export const Orange = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
+Orange.args = {
   type: "button",
   size: "small",
+  variant: "filled",
   color: "primary-orange",
+  children: "버튼",
+};
+
+export const Green = Template.bind({});
+Green.args = {
+  type: "button",
+  size: "small",
+  variant: "filled",
+  color: "primary-green",
   children: "버튼",
 };

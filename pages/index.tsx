@@ -23,16 +23,29 @@ const Home: NextPage = () => {
         <h1 className="text-placeholder">text-placeholder</h1>
 
         <Button
-          type="button"
           color="primary-orange"
-          size="large"
-          className="border-2 w-full text-green-700"
+          size="medium"
+          variant="outlined"
+          onClick={(e) => {
+            console.log(e);
+            console.log("123");
+          }}
         >
           버튼
         </Button>
-        <button className="w-[400px] border-primary-orange border-2">
+        <Button
+          color="primary-orange"
+          size="medium"
+          variant="filled"
+          className="text-purple-500 bg-red-200"
+          onClick={(e) => {
+            console.log(e);
+            console.log("123");
+          }}
+        >
           버튼
-        </button>
+        </Button>
+        <button className="bg-primary-orange">asdf</button>
       </main>
     </div>
   );

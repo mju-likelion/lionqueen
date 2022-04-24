@@ -1,15 +1,14 @@
-import type { PropsWithChildren } from "react";
+import type { ComponentPropsWithoutRef, PropsWithChildren } from "react";
+import React from "react";
 import { cls } from "../../lib/utils";
 
-interface ButtonProps {
-  type: "button" | "submit" | "reset";
+type ButtonProps = {
   variant?: "outlined" | "filled";
   size?: "small" | "medium" | "large";
   className?: string;
   color: string;
-  backgroundColor?: string;
   fullWidth?: boolean;
-}
+} & ComponentPropsWithoutRef<"button">;
 
 const getSize = (size: string) => {
   switch (size) {
@@ -23,38 +22,38 @@ const getSize = (size: string) => {
 };
 
 const getClassNames = (className: string) =>
-  className
-    .split(" ")
-    .map((a) => `${a} !important`)
-    .join(" ");
+  className !== ""
+    ? className
+        .split(" ")
+        .map((a) => `${a} !important`)
+        .join(" ")
+    : "";
 
-const Button = (props: PropsWithChildren<ButtonProps>) => {
+const Button = (props: ButtonProps) => {
   const {
-    type = "button",
     size = "medium",
     variant = "outlined",
     className = "",
     color = "primary-orange",
-    backgroundColor = "bg-white",
     fullWidth = false,
     children,
     ...restProps
   } = props;
 
-  className;
-
   const styles = cls(
-    variant === "filled"
-      ? `${backgroundColor} text-white`
-      : `border-2 border-${color} text-${color} hover:bg-${color} hover:text-white`,
     fullWidth ? "w-full" : getSize(size)!,
+    `${variant}-${color}`,
     getClassNames(className)
   );
+
+  const VARIANT = {
+    outlined: "",
+  };
 
   console.log(styles);
 
   return (
-    <button type={type} className={styles} {...restProps}>
+    <button className={styles} {...restProps}>
       {children}
     </button>
   );

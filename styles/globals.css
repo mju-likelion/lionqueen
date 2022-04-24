@@ -2,6 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
+.outlined-primary-orange {
+  @apply border-2 border-primary-orange text-primary-orange hover:bg-primary-orange hover:text-white;
+}
+
+.filled-primary-orange {
+  @apply bg-primary-orange text-white;
+}
+
+.outlined-primary-green {
+  @apply border-2 border-primary-green text-primary-green hover:bg-primary-green hover:text-white;
+}
+
+.filled-primary-green {
+  @apply bg-primary-green text-white;
+}
+
+.outlined-primary-brown {
+  @apply border-2 border-primary-brown text-primary-brown hover:bg-primary-brown hover:text-white;
+}
+
+.filled-primary-brown {
+  @apply bg-primary-brown text-white;
+}
+
+.outlined-primary-yellow {
+  @apply border-2 border-primary-yellow text-primary-yellow hover:bg-primary-yellow hover:text-white;
+}
+
+.filled-primary-yellow {
+  @apply bg-primary-yellow text-white;
+}
+
+.outlined-primary-lightgreen {
+  @apply border-2 border-primary-lightgreen text-primary-lightgreen hover:bg-primary-lightgreen hover:text-white;
+}
+
+.filled-primary-lightgreen {
+  @apply bg-primary-lightgreen text-white;
+}
+
+.outlined-primary-skyblue {
+  @apply border-2 border-primary-skyblue text-primary-skyblue hover:bg-primary-skyblue hover:text-white;
+}
+
+.filled-primary-skyblue {
+  @apply bg-primary-skyblue text-white;
+}
+
 html,
 body {
   padding: 0;
