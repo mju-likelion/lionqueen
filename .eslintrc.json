@@ -1,0 +1,71 @@
+{
+  "env": {
+    "es2021": true,
+    "browser": true
+  },
+  "extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended", "airbnb-base"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.json", 
+    "tsconfigRootDir": "__dirname",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint/eslint-plugin", "import"],
+  "root":true,
+  "rules": {
+    "@typescript-eslint/interface-name-prefix": "off", // TypeScript는 인터페이스에 "I"를 접두사로 사용하지 말 것을 제안합니다.
+    "@typescript-eslint/explicit-function-return-type": "off", // 이 규칙은 함수에서 반환된 값이 예상 유형인지 확인하는 것을 목표로 합니다.
+    "@typescript-eslint/explicit-module-boundary-types": "off", // 이 규칙은 모듈에서 반환된 값이 예상 유형인지 확인하는 것을 목표로 합니다.
+    "@typescript-eslint/no-explicit-any": "off", // any유형 의 사용을 허용하지 않습니다 .
+    "@typescript-eslint/no-unused-vars": ["error", { "args": "none" }], // 사용하지 않는 변수를 허용하지 않습니다.
+    "camelcase": "error", // 낙타 케이스 명명 규칙을 적용합니다.
+    "comma-dangle": ["error", "always-multiline"], // 후행 쉼표를 요구하거나 허용하지 않습니다.
+    "class-methods-use-this": "off", // this 사용하지 않는 클래스 메소드를 가질 수 있습니다 .
+    "no-console": ["error", { "allow": ["warn", "error"] }], // console의 사용을 허용하지 않습니다.
+    "no-constant-condition": ["error", { "checkLoops": true }], // 조건에서 상수 표현식을 허용하지 않습니다.
+    "no-empty-function": "off", // 빈 함수를 허용합니다. nest와 충돌나는거같아서 없엠
+    "no-restricted-syntax": [ // 지정된 구문을 허용하지 않습니다.
+      "error",
+      {
+        "selector": "ForOfStatement",
+        "message":
+          "iterators/generators require regenerator-runtime, which is too heavyweight for this guide to allow them. Separately, loops should be avoided in favor of array iterations.",
+      },
+      {
+        "selector": "LabeledStatement",
+        "message":
+          "Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.",
+      },
+      {
+        "selector": "WithStatement",
+        "message":
+          "`with` is disallowed in strict mode because it makes code impossible to predict and optimize.",
+      },
+    ],
+    "no-use-before-define": ["error", { "functions": false }], // 변수가 정의되기 전에 사용을 허용하지 않습니다.
+    "no-useless-constructor": "off", // 불필요한 생성자를 허용합니다. nest와 충돌나는거같아서 없엠
+    "no-unused-expressions": ["error", { "allowTaggedTemplates": true }], // 사용하지 않는 표현식을 허용하지 않습니다.
+    "prefer-const": ["error", { "destructuring": "all" }], // 변수가 재할당되지 않으면 const선언을 사용하는 것이 좋습니다.
+    "prefer-destructuring": [ // 배열 및/또는 개체에서 구조 분해가 필요합니다.
+      "error",
+      { "array": true, "object": true },
+      { "enforceForRenamedProperties": true }
+    ],
+    "spaced-comment": ["error", "always"], // //또는 /*주석 뒤에 일정한 간격을 적용합니다 .
+    "import/extensions": ["error", "always"], // string "always"인 경우 규칙은 모든 import 문에 확장 사용을 적용
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }], // 선언되지 않은 외부 모듈의 가져오기를 금지합니다.
+    "import/no-unresolved": "off", // 가져온 모듈이 표준 노드 require.resolve동작에 정의된 대로 로컬 파일 시스템의 모듈로 해석될 수 있는지 확인합니다
+    "import/order": [ // 모듈 내에서 정렬된 가져오기 선언을 적용합니다.
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": false,
+        },
+      },
+    ],
+    "import/prefer-default-export": "off",
+  }
+}
