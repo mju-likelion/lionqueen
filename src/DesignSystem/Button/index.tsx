@@ -3,7 +3,6 @@ import React from "react";
 import { cls } from "~lib/utils";
 
 type ButtonProps = {
-  variant?: "outlined" | "filled";
   size?: "small" | "medium" | "large";
   className?: string;
   color: string;
@@ -13,7 +12,7 @@ type ButtonProps = {
 const getSize = (size: string) => {
   switch (size) {
     case "small":
-      return "w-52";
+      return "w-36";
     case "medium":
       return "w-80";
     case "large":
@@ -32,7 +31,6 @@ const getClassNames = (className: string) =>
 const Button = (props: ButtonProps) => {
   const {
     size = "medium",
-    variant = "outlined",
     className = "",
     color = "primary-orange",
     fullWidth = false,
@@ -42,15 +40,9 @@ const Button = (props: ButtonProps) => {
 
   const styles = cls(
     fullWidth ? "w-full" : getSize(size)!,
-    `${variant}-${color}`,
+    `button-${color}`,
     getClassNames(className)
   );
-
-  const VARIANT = {
-    outlined: "",
-  };
-
-  console.log(styles);
 
   return (
     <button className={styles} {...restProps}>
