@@ -17,7 +17,6 @@ export const Orange = Template.bind({});
 Orange.args = {
   type: "button",
   size: "small",
-  variant: "filled",
   color: "primary-orange",
   children: "버튼",
 };

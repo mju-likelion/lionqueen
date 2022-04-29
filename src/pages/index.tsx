@@ -24,7 +24,6 @@ const Home: NextPage = () => {
         <Button
           color="primary-orange"
           size="medium"
-          variant="outlined"
           onClick={(e) => {
             console.log(e);
             console.log("123");
@@ -35,7 +34,6 @@ const Home: NextPage = () => {
         <Button
           color="primary-orange"
           size="medium"
-          variant="filled"
           className="text-purple-500 bg-red-200"
           onClick={(e) => {
             console.log(e);
