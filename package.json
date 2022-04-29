@@ -16,6 +16,9 @@
     "react": "18.0.0",
     "react-dom": "18.0.0"
   },
+  "resolutions": {
+    "webpack": "5"
+  },
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@commitlint/cli": "^16.2.3",

@@ -19,7 +19,7 @@
       "~page/*": ["pages/*"],
       "~lib/*": ["lib/*"],
       "~DesignSystem/*": ["DesignSystem/*"],
-      "~/*": ["src/*"]
+      "~/*": ["./*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
