@@ -9,7 +9,7 @@
     "lint": "next lint",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "npx chromatic --project-token=0aefef65099b --force-rebuild"
+    "chromatic": "npx chromatic --project-token=0aefef65099b"
   },
   "dependencies": {
     "next": "12.1.5",
