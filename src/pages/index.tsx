@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Button from "../DesignSystem/Button";
+import Button from "~DesignSystem/Button";
 
 const Home: NextPage = () => {
   return (
