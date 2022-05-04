@@ -1,6 +1,6 @@
-import type { ComponentPropsWithoutRef, PropsWithChildren } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 import React from "react";
-import { cls } from "~lib/utils";
+import { cls, getClassNames } from "~lib/utils";
 
 type ButtonProps = {
   size?: "small" | "medium" | "large";
@@ -19,14 +19,6 @@ const getSize = (size: string) => {
       return "w-60 h-12 text-2xl";
   }
 };
-
-const getClassNames = (className: string) =>
-  className !== ""
-    ? className
-        .split(" ")
-        .map((a) => `${a} !important`)
-        .join(" ")
-    : "";
 
 const Button = (props: ButtonProps) => {
   const {

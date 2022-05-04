@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import InputGroup from "~DesignSystem/InputGroup";
 import Button from "../DesignSystem/Button";
 
 const Home: NextPage = () => {
@@ -43,6 +44,29 @@ const Home: NextPage = () => {
           버튼
         </Button>
         <button className="bg-primary-orange">asdf</button>
+        <InputGroup
+          id="input"
+          label="이름"
+          value={undefined}
+          placeholder="placeholder"
+          labelPos="up"
+          labelDist={12}
+        />
+        <InputGroup
+          id="input"
+          label="이름"
+          value={undefined}
+          placeholder="placeholder"
+          labelPos="left"
+          labelDist={26}
+        />
+        <InputGroup
+          id="input"
+          label="이름"
+          value={undefined}
+          placeholder="placeholder"
+          labelPos="left"
+        />
       </main>
     </div>
   );
