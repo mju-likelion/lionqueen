@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .button-primary-orange {
-  @apply border-2 bg-primary-orange shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] text-text rounded-2xl hover:shadow-inner;
+  @apply border-2 bg-primary-orange shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] text-text rounded-md hover:shadow-inner;
 
   border-color: #fff38b;
 }
