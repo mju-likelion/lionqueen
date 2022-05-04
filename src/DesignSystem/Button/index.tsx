@@ -12,11 +12,11 @@ type ButtonProps = {
 const getSize = (size: string) => {
   switch (size) {
     case "small":
-      return "w-36";
+      return "w-28 h-7 text-[18px]";
     case "medium":
-      return "w-80";
+      return "w-40 h-[42px] text-[22px]";
     case "large":
-      return "w-[400px]";
+      return "w-60 h-12 text-2xl";
   }
 };
 
