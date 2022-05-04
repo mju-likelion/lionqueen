@@ -16,6 +16,7 @@ module.exports = {
           orange: "#ffbb17",
           green: "#458d10",
           lightgreen: "#92cd00",
+          error: "#FF7C9C",
         },
       },
     },
