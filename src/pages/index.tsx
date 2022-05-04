@@ -58,7 +58,14 @@ const Home: NextPage = () => {
           value={undefined}
           placeholder="placeholder"
           labelPos="left"
-          labelDist={24}
+          labelDist={26}
+        />
+        <InputGroup
+          id="input"
+          label="이름"
+          value={undefined}
+          placeholder="placeholder"
+          labelPos="left"
         />
       </main>
     </div>

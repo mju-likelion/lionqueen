@@ -59,5 +59,5 @@ withLabelDist.args = {
   value: "inputValue",
   placeholder: "어쩌구저쩌구",
   labelPos: "left",
-  labelDist: 20,
+  labelDist: 30,
 };

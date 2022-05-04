@@ -12,11 +12,14 @@ type Props = {
   inputClassName?: string;
   errorClassName?: string;
   fullWidth?: boolean;
-  labelPos: "up" | "left";
-  labelDist: number;
+  labelPos?: "up" | "left";
+  labelDist?: number;
 } & ComponentPropsWithoutRef<"input">;
 
-function getlabelDist(pos: Props[keyof Pick<Props, "labelPos">], dist: number) {
+function getlabelDist(
+  pos: Props[keyof Pick<Props, "labelPos">],
+  dist: Props[keyof Pick<Props, "labelDist">]
+) {
   return pos === "up"
     ? { marginTop: `${dist}px` }
     : { marginLeft: `${dist}px` };
