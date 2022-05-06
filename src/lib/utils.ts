@@ -1,12 +1,12 @@
 export function cls(...classnames: string[]) {
-  return classnames.join(" ");
+  return classnames.join(' ');
 }
 
 export function getClassNames(className: string) {
-  return className !== ""
+  return className !== ''
     ? className
-        .split(" ")
-        .map((a) => `${a} !important`)
-        .join(" ")
-    : "";
+        .split(' ')
+        .map(a => `${a} !important`)
+        .join(' ')
+    : '';
 }
