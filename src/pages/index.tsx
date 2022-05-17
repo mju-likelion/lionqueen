@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import InputGroup from "~DesignSystem/InputGroup";
 import Button from "../DesignSystem/Button";
-
+import NavBar from "~/components/NavBar";
 const Home: NextPage = () => {
   return (
     <div className="p-20">
@@ -12,6 +12,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+      <NavBar />
         <h1 className="text-primary-skyblue">text-primary-skyblue</h1>
         <h1 className="text-primary-brown">text-primary-brown</h1>
         <h1 className="text-primary-yellow">text-primary-yellow</h1>
