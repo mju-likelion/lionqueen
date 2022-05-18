@@ -1,8 +1,9 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import InputGroup from "~DesignSystem/InputGroup";
-import Button from "../DesignSystem/Button";
-import NavBar from "~/components/NavBar";
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import InputGroup from '~DesignSystem/InputGroup';
+import Button from '../DesignSystem/Button';
+import NavBar from '~/components/NavBar';
+
 const Home: NextPage = () => {
   return (
     <div className="p-20">
@@ -12,7 +13,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-      <NavBar />
+        <NavBar />
         <h1 className="text-primary-skyblue">text-primary-skyblue</h1>
         <h1 className="text-primary-brown">text-primary-brown</h1>
         <h1 className="text-primary-yellow">text-primary-yellow</h1>
@@ -23,28 +24,15 @@ const Home: NextPage = () => {
         <h1 className="text-text">text-text</h1>
         <h1 className="text-placeholder">text-placeholder</h1>
         asdasdasd
-        <Button
-          color="primary-orange"
-          size="medium"
-          onClick={(e) => {
-            console.log(e);
-            console.log("123");
-          }}
-        >
+        <Button color="primary-orange" size="medium">
           버튼
         </Button>
-        <Button
-          color="primary-orange"
-          size="medium"
-          className="text-purple-500 bg-red-200"
-          onClick={(e) => {
-            console.log(e);
-            console.log("123");
-          }}
-        >
+        <Button color="primary-orange" size="medium" className="text-purple-500 bg-red-200">
           버튼
         </Button>
-        <button className="bg-primary-orange">asdf</button>
+        <button type="button" className="bg-primary-orange">
+          asdf
+        </button>
         <InputGroup
           id="input"
           label="이름"
