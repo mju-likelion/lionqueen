@@ -7,6 +7,7 @@
   src: url('../../public/fonts/MaplestoryLight.otf') format('otf');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -14,6 +15,7 @@
   src: url('../../public/fonts/MaplestoryBold.otf') format('otf');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 .button-primary-orange {
