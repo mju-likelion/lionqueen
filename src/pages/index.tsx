@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import InputGroup from '~DesignSystem/InputGroup';
 import Button from '../DesignSystem/Button';
+import BackgroundMain from '~DesignSystem/BackgroundMain';
 
 const Home: NextPage = () => {
   return (
@@ -54,6 +55,7 @@ const Home: NextPage = () => {
           placeholder="placeholder"
           labelPos="left"
         />
+        <BackgroundMain>여기에 내용이 들어가요</BackgroundMain>
       </main>
     </div>
   );
