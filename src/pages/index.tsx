@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
+import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
 import Button from '../DesignSystem/Button';
 // import NavBar from '~/components/NavBar';
@@ -55,6 +56,9 @@ const Home: NextPage = () => {
           placeholder="placeholder"
           labelPos="left"
         />
+        <BackgroundMain>
+          안녕하세요! 여기는 게시판 영역입니다! 내부 콘텐츠 스탕일링은 각자 해야합니다!
+        </BackgroundMain>
       </main>
     </div>
   );
