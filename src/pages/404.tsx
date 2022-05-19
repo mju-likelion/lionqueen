@@ -7,6 +7,7 @@ const Custom404 = () => {
   const handleRoutePush = (path: string) => {
     router.push(path);
   };
+
   const heartButton = [
     {
       name: '연빈',
@@ -106,7 +107,7 @@ const Custom404 = () => {
       <div>
         <button
           type="button"
-          className="mt-16 text-red-600 text-3xl"
+          className="mt-16 text-red-600 text-3xl cursor-pointer"
           onClick={() => router.push('/')}
         >
           당신은 혼자가 아닙니다...
