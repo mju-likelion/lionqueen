@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import InputGroup from '~DesignSystem/InputGroup';
 import Button from '../DesignSystem/Button';
+// import NavBar from '~/components/NavBar';
 
 const Home: NextPage = () => {
   return (
