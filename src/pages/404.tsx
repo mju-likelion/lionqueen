@@ -84,7 +84,7 @@ const Custom404 = () => {
               key={name}
               onClick={() => handleRoutePush(path)}
               aria-hidden
-              className="cursor-pointer"
+              className="cursor-pointer hover:animate-ping"
             >
               <Heart className="mr-11 text-4xl" fill={color} />
               <p className="mr-11 text-4xl">{name}</p>
@@ -95,7 +95,7 @@ const Custom404 = () => {
               key={name}
               onClick={() => handleRoutePush(path)}
               aria-hidden
-              className="cursor-pointer"
+              className="cursor-pointer hover:animate-ping"
             >
               <Heart className="mr-11 text-4xl" fill={color} />
               <p className="mr-11 text-4xl">{name}</p>
