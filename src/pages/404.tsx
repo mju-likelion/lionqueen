@@ -5,7 +5,7 @@ import Heart from '../../public/image/heart.svg';
 const Custom404 = () => {
   const router = useRouter();
   const handleRoutePush = (path: string) => {
-    router.push(path);
+    window.open(path, '_blank');
   };
 
   const heartButton = [
@@ -65,7 +65,7 @@ const Custom404 = () => {
     {
       name: '유라',
       color: '#ADFF2F',
-      path: 'https://terms.naver.com/entry.naver?docId=1636873&cid=49022&categoryId=49022',
+      path: 'https://movie.naver.com/movie/bi/mi/basic.naver?code=130850',
     },
   ];
   return (
