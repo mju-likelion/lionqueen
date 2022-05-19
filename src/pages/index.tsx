@@ -55,7 +55,9 @@ const Home: NextPage = () => {
           placeholder="placeholder"
           labelPos="left"
         />
-        <BackgroundMain>ㅎㅇㅎㅇ</BackgroundMain>
+        <BackgroundMain>
+          안녕하세요! 여기는 게시판 영역입니다! 내부 콘텐츠 스탕일링은 각자 해야합니다!
+        </BackgroundMain>
       </main>
     </div>
   );
