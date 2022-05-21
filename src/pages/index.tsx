@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
+import MyPage from '~/MyPage';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
 import Button from '../DesignSystem/Button';
@@ -14,6 +15,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <MyPage />
         <h1 className="text-primary-skyblue">text-primary-skyblue</h1>
         <h1 className="text-primary-brown">text-primary-brown</h1>
         <h1 className="text-primary-yellow">text-primary-yellow</h1>
