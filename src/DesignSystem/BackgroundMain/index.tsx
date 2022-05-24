@@ -1,4 +1,3 @@
-/* eslint-disable react/style-prop-object */
 import type { ComponentPropsWithoutRef } from 'react';
 import { cls, getClassNames } from '~lib/utils';
 import Wallpaper from '../../../public/image/wallpaper.svg';
