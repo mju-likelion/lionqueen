@@ -1,5 +1,4 @@
 import type { ComponentPropsWithoutRef } from 'react';
-import React from 'react';
 import { cls, getClassNames } from '~lib/utils';
 
 type BackgroundProps = {
@@ -10,15 +9,37 @@ type BackgroundProps = {
 const BackgroundMain = (props: BackgroundProps) => {
   const { className = '', children, ...restProps } = props;
 
-  const styles = cls(
+  const pageContainer = cls('min-h-screen', 'bg-primary-skyblue', 'flex', 'items-center');
+  const background = cls('min-h-[1024px]', 'min-w-full', 'relative', 'flex', 'items-center');
+
+  const backgroundImage = cls(
+    'absolute',
+    'left-[50%]',
+    'top-[50%]',
+    'translate-x-[-50%]',
+    'translate-y-[-50%]',
+  );
+
+  const tree = cls(
+    'absolute',
+    'left-[50%]',
+    'top-[115%]',
+    'translate-x-[-50%]',
+    'translate-y-[-115%]',
+  );
+
+  const board = cls(
     'w-[1014px]',
     'h-[708px]',
     'bg-primary-yellow',
     'border-[10px]',
     'border-[#ffbb54]',
     'rounded-[30px]',
-    'relative',
-    getClassNames(className),
+    'absolute',
+    'left-[50%]',
+    'top-[30%]',
+    'translate-x-[-50%]',
+    'translate-y-[-30%]',
   );
 
   const lineContainer = cls(
@@ -30,16 +51,10 @@ const BackgroundMain = (props: BackgroundProps) => {
     'right-[25%]',
     'mx-auto',
     'justify-between',
-    getClassNames(className),
   );
-  const lineStyles = cls(
-    'w-[16px]',
-    'h-[118px]',
-    'rounded-[10px]',
-    'bg-[#cd853f]',
-    'pb-[10px]',
-    getClassNames(className),
-  );
+
+  const lineStyles = cls('w-[16px]', 'h-[118px]', 'rounded-[10px]', 'bg-[#cd853f]', 'pb-[10px]');
+
   const contentContainer = cls(
     'w-[912px]',
     'h-[542px]',
@@ -51,12 +66,20 @@ const BackgroundMain = (props: BackgroundProps) => {
   );
 
   return (
-    <div className={styles} {...restProps}>
-      <div className={lineContainer}>
-        <div className={lineStyles} />
-        <div className={lineStyles} />
+    <div className={pageContainer}>
+      <div className={background}>
+        <img src="/image/wallpaper.svg" className={backgroundImage} alt="배경" />
+        <div className={board}>
+          <div className={lineContainer}>
+            <div className={lineStyles} />
+            <div className={lineStyles} />
+          </div>
+          <div className={contentContainer} {...restProps}>
+            {children}
+          </div>
+          <img src="/image/trees.svg" className={tree} alt="나무" />
+        </div>
       </div>
-      <div className={contentContainer}>{children}</div>
     </div>
   );
 };
