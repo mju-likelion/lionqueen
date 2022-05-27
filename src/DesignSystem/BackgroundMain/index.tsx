@@ -1,87 +1,89 @@
+/* eslint-disable react/require-default-props */
 import type { ComponentPropsWithoutRef } from 'react';
-import { cls, getClassNames } from '~lib/utils';
+import styled, { ThemeProvider } from 'styled-components';
+import { theme } from '../../styles/theme';
 
 type BackgroundProps = {
-  // eslint-disable-next-line react/require-default-props
   className?: string;
 } & ComponentPropsWithoutRef<'div'>;
 
 const BackgroundMain = (props: BackgroundProps) => {
-  const { className = '', children, ...restProps } = props;
-
-  const pageContainer = cls('min-h-screen', 'bg-primary-skyblue', 'flex', 'items-center');
-  const background = cls('min-h-[1024px]', 'min-w-full', 'relative', 'flex', 'items-center');
-
-  const backgroundImage = cls(
-    'absolute',
-    'left-[50%]',
-    'top-[50%]',
-    'translate-x-[-50%]',
-    'translate-y-[-50%]',
-  );
-
-  const tree = cls(
-    'absolute',
-    'left-[50%]',
-    'top-[115%]',
-    'translate-x-[-50%]',
-    'translate-y-[-115%]',
-  );
-
-  const board = cls(
-    'w-[1014px]',
-    'h-[708px]',
-    'bg-primary-yellow',
-    'border-[10px]',
-    'border-[#ffbb54]',
-    'rounded-[30px]',
-    'absolute',
-    'left-[50%]',
-    'top-[30%]',
-    'translate-x-[-50%]',
-    'translate-y-[-30%]',
-  );
-
-  const lineContainer = cls(
-    'w-[440px]',
-    'absolute',
-    'flex',
-    'top-[-15px]',
-    'left-[25%]',
-    'right-[25%]',
-    'mx-auto',
-    'justify-between',
-  );
-
-  const lineStyles = cls('w-[16px]', 'h-[118px]', 'rounded-[10px]', 'bg-[#cd853f]', 'pb-[10px]');
-
-  const contentContainer = cls(
-    'w-[912px]',
-    'h-[542px]',
-    'mx-auto',
-    'rounded-[15px]',
-    'bg-[#ffffffcc]',
-    'mt-[102px]',
-    getClassNames(className),
-  );
+  const { children, ...restProps } = props;
 
   return (
-    <div className={pageContainer}>
-      <div className={background}>
-        <img src="/image/wallpaper.svg" className={backgroundImage} alt="배경" />
-        <div className={board}>
-          <div className={lineContainer}>
-            <div className={lineStyles} />
-            <div className={lineStyles} />
-          </div>
-          <div className={contentContainer} {...restProps}>
-            {children}
-          </div>
-          <img src="/image/trees.svg" className={tree} alt="나무" />
-        </div>
-      </div>
-    </div>
+    <ThemeProvider theme={theme}>
+      <PageContainer>
+        <BackgroundBox>
+          <Board>
+            <LineContainer>
+              <LineStyles />
+              <LineStyles />
+            </LineContainer>
+            <ContentContainer {...restProps}>{children}</ContentContainer>
+            <img src="/image/trees.svg" alt="나무" />
+          </Board>
+        </BackgroundBox>
+      </PageContainer>
+    </ThemeProvider>
   );
 };
+
+const PageContainer = styled.div`
+  min-height: 100vh;
+  background-color: ${({ theme }) => theme.colors.primary.skyblue};
+  display: flex;
+  justify-items: center;
+`;
+
+const BackgroundBox = styled.div`
+  min-height: 1024px;
+  min-width: 100%;
+  position: relative;
+  display: flex;
+  justify-items: center;
+  background-image: url('/image/wallpaper.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+`;
+
+const Board = styled.div`
+  width: 1014px;
+  height: 708px;
+  background-color: ${({ theme }) => theme.colors.primary.yellow};
+  border-width: 10px;
+  border-color: #ffbb54;
+  border-radius: 30px;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -30%);
+`;
+
+const LineContainer = styled.div`
+  width: 440px;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: -15px;
+  left: 25%;
+  right: 25%;
+  margin: 0 auto;
+`;
+
+const LineStyles = styled.div`
+  width: 16px;
+  height: 118px;
+  border-radius: 10px;
+  background-color: #cd853f;
+  /* padding-bottom: 10px; */
+`;
+
+const ContentContainer = styled.div`
+  width: 912px;
+  height: 542px;
+  margin: 102px auto auto auto;
+  border-radius: 15px;
+  background-color: #ffffffcc;
+`;
 
 export default BackgroundMain;
