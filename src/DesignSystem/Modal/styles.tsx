@@ -59,5 +59,3 @@ export const Body = styled.div`
 
   margin-top: 6px;
 `;
-
-export const Action = styled.footer``;
