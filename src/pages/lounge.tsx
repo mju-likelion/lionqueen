@@ -12,12 +12,23 @@ const LoungeBg = styled.div`
   background-color: #c5e5ff;
 `;
 
-const DoorList = styled.div`
+const LoungeList = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   width: 1024px;
   height: 100%;
   /* background-color: yellowgreen; */
+`;
+
+const LoungeFloor = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  .doorContainer {
+    display: flex;
+    justify-content: space-around;
+  }
 `;
 
 const LoungeDoor = styled.div`
@@ -58,19 +69,34 @@ const LoungeDoor = styled.div`
   }
 `;
 
+const DoorLine = styled.div`
+  width: 1024px;
+  height: 20px;
+  background-color: #8d8255;
+`;
+
+const TestDoor = [1, 2, 3, 4];
+
 const Lounge = () => {
   return (
     <LoungeBg>
-      <DoorList>
-        <LoungeDoor>
-          <div className="nameSpace">
-            <p>유저이름</p>
+      <LoungeList>
+        <LoungeFloor>
+          <div className="doorContainer">
+            {TestDoor.map(item => (
+              <LoungeDoor key={item}>
+                <div className="nameSpace">
+                  <p>유저이름</p>
+                </div>
+                <div className="knobContainer">
+                  <div className="doorKnob" />
+                </div>
+              </LoungeDoor>
+            ))}
           </div>
-          <div className="knobContainer">
-            <div className="doorKnob" />
-          </div>
-        </LoungeDoor>
-      </DoorList>
+          <DoorLine />
+        </LoungeFloor>
+      </LoungeList>
       <DoorBottom />
     </LoungeBg>
   );
