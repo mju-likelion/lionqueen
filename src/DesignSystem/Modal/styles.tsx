@@ -12,7 +12,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  background-color: lightgray;
+  background: rgba(0, 0, 0, 0.4);
 `;
 
 export const Title = styled.header`
