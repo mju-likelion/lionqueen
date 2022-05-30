@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+
 import styled from 'styled-components';
 import Button from '~DesignSystem/Button';
 import Modal from '~DesignSystem/Modal';
@@ -5,17 +7,24 @@ import Modal from '~DesignSystem/Modal';
 type Props = {
   children: React.ReactNode;
   title: string;
+  isSingle?: boolean;
   onConfirm: () => void;
-  onClose: () => void;
+  onClose?: () => void;
 };
 
-const ConfirmModal = ({ children, title = '제목', onConfirm, onClose }: Props) => {
+const ConfirmModal = ({
+  children,
+  title = '제목',
+  isSingle = false,
+  onConfirm,
+  onClose = () => {},
+}: Props) => {
   return (
     <Modal title={title} onClose={onClose}>
       {children}
       <Actions>
         <Button onClick={onConfirm}>확인</Button>
-        <Button onClick={onClose}>취소</Button>
+        {!isSingle && <Button onClick={onClose}>취소</Button>}
       </Actions>
     </Modal>
   );
@@ -24,6 +33,7 @@ const ConfirmModal = ({ children, title = '제목', onConfirm, onClose }: Props)
 const Actions = styled.footer`
   width: 100%;
   display: flex;
+  justify-content: center;
   gap: 20px;
 
   margin-top: 14px;

@@ -3,6 +3,7 @@ import ConfirmModal from '~/components/ConfirmModal';
 const ModalTest = () => {
   return (
     <ConfirmModal
+      isSingle
       title="대충 확인"
       onClose={() => {
         console.log('취소');
