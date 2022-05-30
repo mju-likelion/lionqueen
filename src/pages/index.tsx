@@ -18,6 +18,7 @@ const Home: NextPage = () => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main>
+          {/* 글자 theme 예시 */}
           <H1Skyblue>text-primary-skyblue</H1Skyblue>
           <H1Brown>text-primary-brown</H1Brown>
           <H1Yellow>text-primary-yellow</H1Yellow>
@@ -26,13 +27,14 @@ const Home: NextPage = () => {
           <H1Lightgreen>text-primary-lightgreen</H1Lightgreen>
           <H1DefaultText>text-text</H1DefaultText>
           <H1Placeholder>text-placeholder</H1Placeholder>
-          asdasdasd
-          <Button color="primary-orange" size="medium">
+
+          {/* 버튼 스타일링 예시 */}
+          <Button size="medium">버튼</Button>
+          <Button size="large" fontColor="#fff">
             버튼
           </Button>
-          <Button color="primary-orange" size="medium" className="text-purple-500 bg-red-200">
-            버튼
-          </Button>
+
+          {/* input 스타일링 예시 */}
           <InputGroup
             id="input"
             label="이름"
