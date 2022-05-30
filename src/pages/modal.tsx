@@ -4,6 +4,7 @@ const ModalTest = () => {
   return (
     <ConfirmModal
       isSingle
+      size="medium"
       title="대충 확인"
       onClose={() => {
         console.log('취소');
@@ -12,7 +13,7 @@ const ModalTest = () => {
         console.log('확인');
       }}
     >
-      진짜입니까?
+      asd
     </ConfirmModal>
   );
 };
