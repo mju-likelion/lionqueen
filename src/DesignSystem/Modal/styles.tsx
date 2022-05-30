@@ -16,6 +16,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.header`
+  width: 100%;
   font-style: normal;
   font-weight: 300;
   font-size: 24px;
@@ -23,6 +24,7 @@ export const Title = styled.header`
 `;
 
 export const Content = styled.div<{ size?: 'medium' | 'large' }>`
+  width: 100%;
   ${props =>
     props.size === 'large' &&
     css`
@@ -36,8 +38,9 @@ export const Content = styled.div<{ size?: 'medium' | 'large' }>`
       height: 192px;
     `}
 
+  position: relative;
 
-    display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -52,7 +55,14 @@ export const Content = styled.div<{ size?: 'medium' | 'large' }>`
   border-radius: 30px;
 `;
 
+export const XIconWrapper = styled.span`
+  position: absolute;
+  right: 35px;
+  top: 30px;
+`;
+
 export const Body = styled.div`
+  width: 100%;
   font-weight: 300;
   font-size: 16px;
   line-height: 22px;

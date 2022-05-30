@@ -5,7 +5,7 @@ import { cls, getClassNames } from '~lib/utils';
 type ButtonProps = {
   size?: 'small' | 'medium' | 'large';
   className?: string;
-  color: string;
+  color?: string;
   fullWidth?: boolean;
 } & ComponentPropsWithoutRef<'button'>;
 
