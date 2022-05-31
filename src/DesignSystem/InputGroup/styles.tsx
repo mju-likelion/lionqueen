@@ -13,8 +13,9 @@ export const Container = styled.div<{ fullWidth?: boolean; labelPos?: 'up' | 'le
     `}
 `;
 
-export const LabelBox = styled.label`
+export const LabelBox = styled.label<{ error?: string }>`
   width: max-content;
+  margin-bottom: ${props => props.error && '16px'};
 `;
 
 export const InputBox = styled.div<{ pos?: 'up' | 'left'; dist?: number }>`
@@ -24,8 +25,8 @@ export const InputBox = styled.div<{ pos?: 'up' | 'left'; dist?: number }>`
 export const Input = styled.input`
   border-width: 3px;
   border-color: ${({ theme }) => theme.colors.primary.orange};
-  border-radius: 0.375rem;
-  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  padding: 4px 8px;
   box-shadow: 4px;
   :focus {
     /* 색상 임의 선택, 확인 필요 */
@@ -35,6 +36,6 @@ export const Input = styled.input`
 
 export const ErrorBox = styled.div`
   color: ${({ theme }) => theme.colors.primary.error};
-  font-size: 0.75rem;
-  line-height: 1rem;
+  font-size: 12px;
+  line-height: 16px;
 `;

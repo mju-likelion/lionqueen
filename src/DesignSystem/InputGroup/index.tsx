@@ -35,7 +35,7 @@ function InputGroup({
   return (
     <ThemeProvider theme={theme}>
       <Style.Container className={className} fullWidth={fullWidth} labelPos={labelPos}>
-        <Style.LabelBox htmlFor={id} className={labelClassName}>
+        <Style.LabelBox htmlFor={id} className={labelClassName} error={error}>
           {label}
         </Style.LabelBox>
         <Style.InputBox pos={labelPos} dist={labelDist}>

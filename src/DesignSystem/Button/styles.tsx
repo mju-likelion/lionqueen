@@ -5,24 +5,24 @@ export const Btn = styled.button<{ size?: 'small' | 'medium' | 'large'; fontColo
   ${props =>
     props.size === 'small' &&
     css`
-      width: 7rem;
-      height: 1.75rem;
+      width: 112px;
+      height: 28px;
       font-size: 18px;
     `}
   ${props =>
     props.size === 'medium' &&
     css`
-      width: 10rem;
+      width: 160px;
       height: 42px;
       font-size: 22px;
     `}
       ${props =>
     props.size === 'large' &&
     css`
-      width: 15rem;
-      height: 3rem;
-      font-size: 1.5rem;
-      line-height: 1.75rem;
+      width: 240px;
+      height: 48px;
+      font-size: 24px;
+      line-height: 28px;
     `};
 
   background-color: ${({ theme }) => theme.colors.primary.orange};
