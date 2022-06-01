@@ -57,6 +57,7 @@ const Home: NextPage = () => {
             value={undefined}
             placeholder="placeholder"
             labelPos="left"
+            error="에러 발생!"
           />
           <BackgroundMain>
             안녕하세요! 여기는 게시판 영역입니다! 내부 콘텐츠 스탕일링은 각자 해야합니다!
