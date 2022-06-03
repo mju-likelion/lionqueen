@@ -16,33 +16,39 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.header`
+  width: 100%;
   font-style: normal;
   font-weight: 300;
   font-size: 24px;
   line-height: 36px;
 `;
 
-export const Content = styled.div<{ size?: 'medium' | 'large' }>`
+export const Content = styled.div<{ size: 'medium' | 'large' }>`
+  width: 100%;
+  height: 100%;
   ${props =>
     props.size === 'large' &&
     css`
       width: 384px;
       height: 384px;
+      padding: 33px 43px;
     `}
   ${props =>
     props.size === 'medium' &&
     css`
       width: 320px;
-      height: 192px;
+      height: 196px;
+      padding: 40px 30px;
     `}
 
+  position: relative;
 
-    display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
-  padding: 40px 30px;
+  padding: 30px 20px;
 
   text-align: center;
 
@@ -52,10 +58,33 @@ export const Content = styled.div<{ size?: 'medium' | 'large' }>`
   border-radius: 30px;
 `;
 
+export const XIconWrapper = styled.span`
+  position: absolute;
+  right: 35px;
+  top: 30px;
+`;
+
 export const Body = styled.div`
+  width: 100%;
   font-weight: 300;
   font-size: 16px;
   line-height: 22px;
 
   margin-top: 6px;
+`;
+
+export const Footer = styled.footer`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 6px;
+
+  button {
+    width: 112px !important;
+    height: 38px !important;
+
+    font-weight: 300;
+    font-size: 18px !important;
+  }
 `;
