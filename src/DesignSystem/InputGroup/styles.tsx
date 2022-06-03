@@ -33,7 +33,6 @@ export const Content = styled.div`
 
 export const InputBox = styled.div<{ pos?: 'up' | 'left'; dist?: number }>`
   width: 100%;
-  height: 100%;
 
   > input {
     width: 100%;
