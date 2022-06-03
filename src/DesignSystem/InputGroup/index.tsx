@@ -1,5 +1,7 @@
 import type { ComponentPropsWithoutRef } from 'react';
-import { cls, getClassNames } from '~lib/utils';
+import { ThemeProvider } from 'styled-components';
+import * as Style from './styles';
+import { theme } from '../../styles/theme';
 
 type Props = {
   id?: string;
@@ -16,13 +18,6 @@ type Props = {
   labelDist?: number;
 } & ComponentPropsWithoutRef<'input'>;
 
-function getlabelDist(
-  pos: Props[keyof Pick<Props, 'labelPos'>],
-  dist: Props[keyof Pick<Props, 'labelDist'>],
-) {
-  return pos === 'up' ? { marginTop: `${dist}px` } : { marginLeft: `${dist}px` };
-}
-
 function InputGroup({
   id,
   label,
@@ -37,31 +32,23 @@ function InputGroup({
   labelDist,
   fullWidth,
 }: Props) {
-  const styles = cls(
-    'flex',
-    fullWidth ? 'w-full' : 'w-fit',
-    labelPos === 'up' ? 'flex-col' : 'items-center',
-    getClassNames(className),
-  );
-
   return (
-    <div className={styles}>
-      <label htmlFor={id} className={cls('w-max', labelClassName)}>
-        {label}
-      </label>
-      <div style={{ ...getlabelDist(labelPos, labelDist) }} className="space-y-1">
-        <input
-          name={id}
-          value={value}
-          placeholder={placeholder}
-          className={cls(
-            'border-[3px] border-primary-orange rounded-md px-2 py-1 placeholder:text-placeholder ',
-            inputClassName,
-          )}
-        />
-        <div className={cls('text-primary-error text-xs', errorClassName)}>{error}</div>
-      </div>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Style.Container className={className} fullWidth={fullWidth} labelPos={labelPos}>
+        <Style.LabelBox htmlFor={id} className={labelClassName} error={error}>
+          {label}
+        </Style.LabelBox>
+        <Style.InputBox pos={labelPos} dist={labelDist}>
+          <Style.Input
+            name={id}
+            value={value}
+            placeholder={placeholder}
+            className={inputClassName}
+          />
+          <Style.ErrorBox className={errorClassName}>{error}</Style.ErrorBox>
+        </Style.InputBox>
+      </Style.Container>
+    </ThemeProvider>
   );
 }
 

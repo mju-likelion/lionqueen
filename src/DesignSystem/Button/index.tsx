@@ -1,45 +1,31 @@
 import type { ComponentPropsWithoutRef } from 'react';
 import React from 'react';
-import { cls, getClassNames } from '~lib/utils';
+import { ThemeProvider } from 'styled-components';
+import { theme } from '../../styles/theme';
+import * as Style from './styles';
 
 type ButtonProps = {
   size?: 'small' | 'medium' | 'large';
   className?: string;
-  color?: string;
-  fullWidth?: boolean;
+  fontColor?: string;
 } & ComponentPropsWithoutRef<'button'>;
 
-const getSize = (size: string) => {
-  switch (size) {
-    case 'small':
-      return 'w-28 h-7 text-[18px]';
-    case 'medium':
-      return 'w-40 h-[42px] text-[22px]';
-    case 'large':
-      return 'w-60 h-12 text-2xl';
-  }
-};
-
 const Button = (props: ButtonProps) => {
-  const {
-    size = 'medium',
-    className = '',
-    color = 'primary-orange',
-    fullWidth = false,
-    children,
-    ...restProps
-  } = props;
-
-  const styles = cls(
-    fullWidth ? 'w-full' : getSize(size)!,
-    `button-${color}`,
-    getClassNames(className),
-  );
+  const { size = 'medium', className = '', fontColor = '', children, ...restProps } = props;
 
   return (
-    <button type="button" className={styles} {...restProps}>
-      {children}
-    </button>
+    <ThemeProvider theme={theme}>
+      <Style.Btn
+        type="button"
+        size={size}
+        fontColor={fontColor}
+        className={className}
+        {...restProps}
+      >
+        {children}
+      </Style.Btn>
+    </ThemeProvider>
   );
 };
+
 export default Button;
