@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect } from 'react';
 import XIcon from '~/components/icons/XIcon';
-import Portal from '~/Portal';
+import Portal from '~DesignSystem/Portal';
 import * as S from './styles';
 
 type Props = {
