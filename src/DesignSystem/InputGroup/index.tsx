@@ -4,49 +4,36 @@ import * as Style from './styles';
 import { theme } from '../../styles/theme';
 
 type Props = {
+  children: React.ReactNode;
   id?: string;
   label?: React.ReactNode;
   error?: string;
-  value: string | undefined;
-  placeholder: string;
-  className?: string;
-  labelClassName?: string;
-  inputClassName?: string;
-  errorClassName?: string;
   fullWidth?: boolean;
   labelPos?: 'up' | 'left';
   labelDist?: number;
 } & ComponentPropsWithoutRef<'input'>;
 
 function InputGroup({
+  children,
   id,
   label,
-  error,
-  value,
-  placeholder,
-  className = '',
-  labelClassName = '',
-  inputClassName = '',
-  errorClassName = '',
-  labelPos,
-  labelDist,
+  error = '',
+  labelPos = 'up',
+  labelDist = 0,
   fullWidth,
 }: Props) {
   return (
     <ThemeProvider theme={theme}>
-      <Style.Container className={className} fullWidth={fullWidth} labelPos={labelPos}>
-        <Style.LabelBox htmlFor={id} className={labelClassName} error={error}>
+      <Style.Container fullWidth={fullWidth} labelPos={labelPos} dist={labelDist}>
+        <Style.LabelBox htmlFor={id} error={error}>
           {label}
         </Style.LabelBox>
-        <Style.InputBox pos={labelPos} dist={labelDist}>
-          <Style.Input
-            name={id}
-            value={value}
-            placeholder={placeholder}
-            className={inputClassName}
-          />
-          <Style.ErrorBox className={errorClassName}>{error}</Style.ErrorBox>
-        </Style.InputBox>
+        <Style.Content>
+          <Style.InputBox pos={labelPos} dist={labelDist}>
+            {children}
+          </Style.InputBox>
+          {error !== '' && <Style.ErrorBox>{error}</Style.ErrorBox>}
+        </Style.Content>
       </Style.Container>
     </ThemeProvider>
   );
