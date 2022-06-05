@@ -19,14 +19,11 @@ jobs:
       - run: yarn install --frozen-lockfile
 
       - name: serverless deploy
-        uses: serverless/github-action@v3.1
+        uses: suprgames/serverless-github-action@v1.77
         with:
-          args: deploy
+          command: deploy
+          args: -v
         env:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
-
-      - name: Deploy Next.js app
-        run: |
-          yarn run deploy
