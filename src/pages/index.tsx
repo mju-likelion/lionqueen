@@ -18,6 +18,8 @@ const Home: NextPage = () => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main>
+          <h2>자동배포가되면 여기가 바뀜123123123131313sadadasdasdadasd</h2>
+          <h2>자동배포가되면 여기가 바뀜123123123131313sadadasdasdadasd</h2>
           {/* 글자 theme 예시 */}
           <H1Skyblue>text-primary-skyblue</H1Skyblue>
           <H1Brown>text-primary-brown</H1Brown>
