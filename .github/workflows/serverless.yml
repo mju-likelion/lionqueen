@@ -30,5 +30,4 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: Deploy Next.js app
-        run: |
-          yarn run deploy
+        run: npx serverless
