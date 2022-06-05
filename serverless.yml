@@ -14,5 +14,4 @@ lionqueen:
     bucketName: 2tniuol-9w6h6n
     cloudfront:
       distributionId: "E14O1TZRJQ1PSA",
-      comment: |
-        yarn run deploy
+      comment: 'next deploy'
