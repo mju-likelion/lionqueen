@@ -11,6 +11,7 @@ import Button from '../DesignSystem/Button';
 const Home: NextPage = () => {
   return (
     <ThemeProvider theme={theme}>
+      <h2>자동배포가되면 여기가 바뀜</h2>
       <div>
         <Head>
           <title>Create Next App</title>
