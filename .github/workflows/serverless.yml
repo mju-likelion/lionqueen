@@ -18,12 +18,17 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn install --frozen-lockfile
 
-      - name: serverless deploy
-        uses: suprgames/serverless-github-action@v1.77
+      - name: Install Dependencies
+        run: |
+          yarn install
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          command: deploy
-          args: -v
-        env:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
+
+      - name: Deploy Next.js app
+        run: |
+          npm run deploy
