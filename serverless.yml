@@ -1,0 +1,11 @@
+lionqueen:
+  component: '@sls-next/serverless-component@latest'
+  inputs:
+    name:
+      defaultLambda: lionqueenDefaultLambda
+      imageLambda: lionqueenImageLambda
+    bucketRegion: 'ap-northeast-2'
+    bucketName: 'lionqueen'
+    cloudfront:
+      distributionId: 'E1NJ74B5TVJMZJ',
+      comment: 'next deploy'
