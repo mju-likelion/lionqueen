@@ -1,17 +1,17 @@
 lionqueen:
   component: '@sls-next/serverless-component@latest'
   inputs:
-    domain: "mju-liontown.today"
+    domain: 'mju-liontown.today'
     domainRedirects:
       www.mju-liontown.today: https://mju-liontown.today
     name:
       defaultLambda: lionqueenDefaultLambda
       imageLambda: lionqueenImageLambda
     runtime:
-      defaultLambda: "nodejs16.x"
-    roleArn: "arn:aws:iam::885412598977:role/serverless-deploy-role"
-    bucketRegion: "ap-northeast-2"
+      defaultLambda: 'nodejs16.x'
+    roleArn: 'arn:aws:iam::885412598977:role/serverless-deploy-role'
+    bucketRegion: 'ap-northeast-2'
     bucketName: 2tniuol-9w6h6n
     cloudfront:
-      distributionId: "E14O1TZRJQ1PSA",
+      distributionId: E14O1TZRJQ1PSA
       comment: 'next deploy'
