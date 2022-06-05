@@ -19,6 +19,7 @@ jobs:
           custom_payload: |
             {
               attachments: [{
+                color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
                 fields: [
                   {
                     title: 'PR 제목',
