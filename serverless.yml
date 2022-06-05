@@ -7,8 +7,9 @@ lionqueen:
     name:
       defaultLambda: lionqueenDefaultLambda
       imageLambda: lionqueenImageLambda
-    bucketRegion: 'ap-northeast-2'
-    bucketName: 2tniuol-9w6h6n
+    roleArn: "arn:aws:iam::885412598977:role/serverless-deploy-role"
+    bucketRegion: "ap-northeast-2"
+    bucketName: "2tniuol-9w6h6n"
     cloudfront:
-      distributionId: 'E14O1TZRJQ1PSA',
+      distributionId: "E14O1TZRJQ1PSA",
       comment: 'next deploy'
