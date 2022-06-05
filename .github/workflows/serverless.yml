@@ -11,12 +11,10 @@ jobs:
       matrix:
         node-version: [16.x]
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Checkout source code.
+        uses: actions/checkout@v3
         with:
-          node-version: ${{ matrix.node-version }}
-      - run: yarn install --frozen-lockfile
+          ref: main
 
       - name: Install Dependencies
         run: |
