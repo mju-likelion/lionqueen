@@ -4,8 +4,7 @@ lionqueen:
     name:
       defaultLambda: lionqueenDefaultLambda
       imageLambda: lionqueenImageLambda
-    bucketRegion: ap-northeast-2
-    bucketName: 2tniuol-9w6h6n
+    bucketRegion: 'ap-northeast-2'
+    bucketName: '2tniuol-9w6h6n'
     cloudfront:
-      distributionId: 'EFB8IBTEC6P6J',
       comment: 'next deploy'
