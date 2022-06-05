@@ -27,5 +27,3 @@ jobs:
       - name: Deploy Next.js app
         run: |
           yarn run deploy
-  lionqueen:
-    component: '@sls-next/serverless-component@latest'
