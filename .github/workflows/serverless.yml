@@ -10,25 +10,19 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
-
     steps:
-      - name: Checkout source code.
-        uses: actions/checkout@v3
-        with:
-          ref: main
-
+      - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: 'https://npm.pkg.github.com'
+      - run: yarn install --frozen-lockfile
 
-      - name: Install Dependencies
-        run: yarn install
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: serverless deploy
+        uses: serverless/github-action@v3.1
         with:
+          args: deploy
+        env:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
