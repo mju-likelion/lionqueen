@@ -7,4 +7,5 @@ lionqueen:
     bucketRegion: 'ap-northeast-2'
     bucketName: '2tniuol-9w6h6n'
     cloudfront:
+      distributionId: 'E14O1TZRJQ1PSA',
       comment: 'next deploy'
