@@ -1,14 +1,17 @@
 /* eslint-disable no-shadow */
 import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import styled, { ThemeProvider } from 'styled-components';
 import { theme } from '../styles/theme';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
 import Button from '../DesignSystem/Button';
+
 // import NavBar from '~/components/NavBar';
 
 const Home: NextPage = () => {
+  const router = useRouter();
   return (
     <ThemeProvider theme={theme}>
       <div>
@@ -32,7 +35,13 @@ const Home: NextPage = () => {
 
           {/* 버튼 스타일링 예시 */}
           <Button size="medium">버튼</Button>
-          <Button size="large" fontColor="#fff">
+          <Button
+            size="large"
+            fontColor="#fff"
+            onClick={() => {
+              router.push('/counter');
+            }}
+          >
             버튼
           </Button>
 
