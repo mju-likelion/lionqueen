@@ -38,9 +38,8 @@ jobs:
           status: custom
           custom_payload: |
             {
-              text: "Custom Field Check",
               attachments: [{
-                "author_name": "8398a7@action-slack", // json
+                author_name: 배포에 성공을 했을까요?,
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
                 title: '자동 배포 결과',
                 text: '${{ job.status }}' === 'success' ? '성공\nhttps://mju-liontown.today' : '${{ job.status }}' === 'failure' ? '실패' : '애매합니다',
