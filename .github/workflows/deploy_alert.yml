@@ -15,9 +15,17 @@ jobs:
         uses: 8398a7/action-slack@v3
 
         with:
-          status: ${{ job.status }}
-          author_name: Github Action Test # default: 8398a7@action-slack
-          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+          status: custom
+          custom_payload: |
+            {
+              text: "Custom Field Check",
+              attachments: [{
+                "author_name": "8398a7@action-slack", // json
+                color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+                title: '자동 배포 결과',
+                text: '${{ job.status }}' === 'success' ? '성공\nhttps://mju-liontown.today' : '${{ job.status }}' === 'failure' ? '실패' : '애매합니다',
+              }]
+            }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DEPLOY_ALERT_URL }} # required
           if: always() # Pi
