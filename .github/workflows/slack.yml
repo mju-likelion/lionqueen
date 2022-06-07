@@ -28,7 +28,7 @@ jobs:
                   },
                   {
                     title: '작성자',
-                    value: '${{ github.event.pull_request.user.login }}',
+                    value: `${process.env.AS_AUTHOR}`,
                     short: false
                   }
                 ],

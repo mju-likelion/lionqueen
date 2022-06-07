@@ -26,3 +26,25 @@ jobs:
       - name: Deploy Next.js app
         run: |
           yarn run deploy
+  notify:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: action-slack
+        uses: 8398a7/action-slack@v3
+
+        with:
+          status: custom
+          custom_payload: |
+            {
+              attachments: [{
+                author_name: "배포에 성공을 했을까요?",
+                color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+                title: '그 결과는?????',
+                text: '${{ job.status }}' === 'success' ? '성공\nhttps://mju-liontown.today 확인해주세요' : '${{ job.status }}' === 'failure' ? '실패ㅠㅠ' : '애매합니다',
+              }]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DEPLOY_ALERT_URL }} # required
+          if: always() # Pi
