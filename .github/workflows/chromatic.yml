@@ -1,7 +1,7 @@
 # .github/workflows/chromatic.yml
 
 # name of our action
-name: "Chromatic"
+name: 'Chromatic'
 # the event that will trigger the action
 on: push
 
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     # the list of steps that the action will go through
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - run: yarn
       - uses: chromaui/action@v1
         # options required to the GitHub chromatic action

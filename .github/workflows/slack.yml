@@ -20,7 +20,25 @@ jobs:
             {
               attachments: [{
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+<<<<<<< Updated upstream
                 text: `${process.env.AS_REPO} repo에 ${process.env.AS_AUTHOR} 님이 PR을 올렸습니다\n 승인하러 ㄱㄱ ${process.env.AS_PULL_REQUEST}`,
+=======
+                fields: [
+                  {
+                    title: 'PR 제목',
+                    value: `[${{ github.event.repository.name }}] ${{ github.event.pull_request.title }}`,
+                    short: false
+                  },
+                  {
+                    title: '작성자',
+                    value: `${process.env.AS_AUTHOR}`,
+                    short: false
+                  }
+                ],
+                title: '>>> 리뷰하러 가기 >>>',
+                title_link: '${{ github.event.pull_request.html_url }}',
+                thumb_url: '${{ github.event.pull_request.user.avatar_url }}',
+>>>>>>> Stashed changes
               }]
             }
         env:
