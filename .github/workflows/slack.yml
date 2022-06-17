@@ -39,7 +39,7 @@ jobs:
                 ],
                 title: '>>> 리뷰하러 가기 >>>',
                 title_link: '${{ github.event.pull_request.html_url }}',
-                thumb_url: 'https://img.theqoo.net/img/NjNaI.jpg',
+                thumb_url: 'https://mblogthumb-phinf.pstatic.net/MjAyMDA4MjZfMTI0/MDAxNTk4NDI4MzE2MTMw.bQRTP8zdlbiPtSlMUPC0mOrzWqC4xfvJiS4DN0a914gg.CxOINy89crnAjuKk02qZGY-BNB3VaMZDff7ilABqRlYg.GIF.123goodgood/1598428313308.gif?type=w800',
               }]
             }
         env:
