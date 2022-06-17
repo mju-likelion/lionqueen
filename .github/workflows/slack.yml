@@ -22,8 +22,13 @@ jobs:
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
                 fields: [
                   {
+                    title: '레포지토리',
+                    value: `${{ github.event.repository.name }}`,
+                    short: false
+                  },
+                  {
                     title: 'PR 제목',
-                    value: `[${{ github.event.repository.name }}] ${{ github.event.pull_request.title }}`,
+                    value: `${{ github.event.pull_request.title }}`,
                     short: false
                   },
                   {
