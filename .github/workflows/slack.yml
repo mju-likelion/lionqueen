@@ -39,7 +39,7 @@ jobs:
                 ],
                 title: '>>> 리뷰하러 가기 >>>',
                 title_link: '${{ github.event.pull_request.html_url }}',
-                image_url: 'https://mblogthumb-phinf.pstatic.net/MjAxOTA4MjVfMTI3/MDAxNTY2NzM1NDY4MTA1.t0982t3b6O-vFPkCw-zhBRxqfj5qjDqepEXJAkk2F6Eg.BLPXzCBLMFarJ9QGQ6KU2pAXBnhhURkBwihBaW_rNn8g.JPEG.ondo_h/SE-2eb6c828-cc8b-4e51-a2f1-148593277123.jpg?type=w800',
+                image_url: 'https://t1.daumcdn.net/cfile/tistory/9985703B5F44A12D0F',
               }]
             }
         env:
