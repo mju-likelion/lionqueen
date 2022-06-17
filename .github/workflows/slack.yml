@@ -39,7 +39,7 @@ jobs:
                 ],
                 title: '>>> 리뷰하러 가기 >>>',
                 title_link: '${{ github.event.pull_request.html_url }}',
-                thumb_url: '${{ github.event.pull_request.user.avatar_url }}',
+                thumb_url: 'https://img.theqoo.net/img/NjNaI.jpg',
               }]
             }
         env:
