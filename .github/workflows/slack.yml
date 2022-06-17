@@ -39,7 +39,7 @@ jobs:
                 ],
                 title: '>>> 리뷰하러 가기 >>>',
                 title_link: '${{ github.event.pull_request.html_url }}',
-                thumb_url: 'https://t1.daumcdn.net/news/202105/25/sbsnoriter/20210525072504037nilq.jpg',
+                thumb_url: 'https://files.slack.com/files-pri/T037UPKE59R-F03LJHW4P4H/image.png',
               }]
             }
         env:
