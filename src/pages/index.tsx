@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import styled, { ThemeProvider } from 'styled-components';
-import MyPage from '~/MyPage';
+import MyPage from '~page/MyPage';
 import { theme } from '../styles/theme';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
