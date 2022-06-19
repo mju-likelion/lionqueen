@@ -11,51 +11,67 @@ export default {
 } as ComponentMeta<typeof InputGroup>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof InputGroup> = args => <InputGroup {...args} />;
-export const withPlaceholder = Template.bind({});
+const Template: ComponentStory<typeof InputGroup> = args => (
+  <InputGroup {...args}>
+    <input placeholder="asdasd" name="input" id="input" />
+  </InputGroup>
+);
+export const commonLeft = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-withPlaceholder.args = {
+commonLeft.args = {
   id: 'input',
   label: '라벨',
-  placeholder: '어쩌구저쩌구',
+  labelPos: 'left',
 };
 
-export const withValue = Template.bind({});
+export const commonUp = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-withValue.args = {
+commonUp.args = {
   id: 'input',
   label: '라벨',
-  value: 'inputValue',
-  placeholder: '어쩌구저쩌구',
-};
-
-export const withError = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-withError.args = {
-  id: 'input',
-  label: '라벨',
-  error: '에러메시지',
-  value: 'inputValue',
-  placeholder: '어쩌구저쩌구',
   labelPos: 'up',
 };
 
-export const customLabel = Template.bind({});
+export const leftError = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-customLabel.args = {
-  id: 'input',
-  label: <h1 className="text-2xl">라벨</h1>,
-  value: 'inputValue',
-  placeholder: '어쩌구저쩌구',
-};
-
-export const withLabelDist = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-withLabelDist.args = {
+leftError.args = {
   id: 'input',
   label: '라벨',
-  value: 'inputValue',
-  placeholder: '어쩌구저쩌구',
   labelPos: 'left',
-  labelDist: 30,
+  error: '에러메시지',
 };
+
+export const upError = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+upError.args = {
+  id: 'input',
+  label: '라벨',
+  error: '에러메시지',
+};
+
+export const leftDist = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+leftDist.args = {
+  id: 'input',
+  label: '라벨',
+  labelPos: 'left',
+  labelDist: 12,
+};
+
+export const upDist = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+upDist.args = {
+  id: 'input',
+  label: '라벨',
+  labelPos: 'up',
+  labelDist: 12,
+};
+
+export const fullWidth = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+fullWidth.args = {
+  id: 'input',
+  label: '라벨',
+  fullWidth: true,
+};
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
