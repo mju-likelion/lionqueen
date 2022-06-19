@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import DoorBottom from '../../public/image/DoorBottom.svg';
 import LoungeDoor from '~DesignSystem/LoungeDoor';
 import FloorButton from '~DesignSystem/FloorButton';
+import LoungeNameBoard from '~DesignSystem/LoungeNameBoard';
 
 const LoungeBg = styled.div`
   display: flex;
@@ -11,6 +12,7 @@ const LoungeBg = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
+  z-index: -2;
   background-color: #c5e5ff;
   position: relative;
 `;
@@ -29,6 +31,11 @@ const FloorBtnWrap = styled.div`
   position: absolute;
   bottom: 2%;
   left: 20%;
+`;
+
+const BoardWrap = styled.div`
+  position: absolute;
+  top: -90px;
 `;
 
 // const LoungeFloor = styled.div`
@@ -94,6 +101,9 @@ const Lounge = () => {
       <LoungeList>
         <LoungeDoor />
       </LoungeList>
+      <BoardWrap>
+        <LoungeNameBoard />
+      </BoardWrap>
       <FloorBtnWrap>
         <FloorButton />
       </FloorBtnWrap>
