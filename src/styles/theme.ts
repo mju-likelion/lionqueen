@@ -1,6 +1,6 @@
-import { DefaultTheme } from 'styled-components';
+import { customThemeDto } from '../dto/theme.dto';
 
-export const theme: DefaultTheme = {
+export const theme: customThemeDto = {
   colors: {
     text: '#2e2e2e',
     placeholder: '#646464',
