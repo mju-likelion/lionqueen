@@ -5,7 +5,7 @@ import { theme } from '../../styles/theme';
 import DoorBottom from '../../../public/image/DoorBottom.svg';
 import Gear from '../../../public/image/Gear.svg';
 import FloorButton from './FloorButton';
-// import NameBoard from './NameBoard';
+import NameBoard from './NameBoard';
 import LoungeDoor from './LoungeDoor';
 
 const LoungeBg = styled.div`
@@ -56,10 +56,10 @@ const TestFloor: string[] = ['10F', '9F', '8F', '7F', '6F', '5F', '4F', '3F', '2
 const LoungeHome = () => {
   return (
     <LoungeBg>
-      {/* <NameBoard /> */}
+      <NameBoard />
       <LoungeList>
         {TestFloor.map(floor => (
-          <FloorContainer>
+          <FloorContainer key={floor}>
             <LoungeDoor />
             <FloorNum>{floor}</FloorNum>
           </FloorContainer>
