@@ -1,6 +1,6 @@
 import BackgroundMain from '../../DesignSystem/BackgroundMain';
 
-const loungeSelect = () => {
+const LoungeSelect = () => {
   return (
     <BackgroundMain>
       <p>라운지 선택</p>
@@ -8,4 +8,4 @@ const loungeSelect = () => {
   );
 };
 
-export default loungeSelect;
+export default LoungeSelect;
