@@ -12,14 +12,16 @@ const SignIn = () => {
   const onSubmit = e => {
     e.preventDefault();
     if (userId === 'lionid' && userPassword === 'lionpassword') {
-      setErrorMessage(errorMessage => '');
+      setErrorMessage('');
+      setUserId('');
+      setUserPassword('');
       console.log('Login success!');
     } else {
       setErrorMessage(
         errorMessage =>
           '아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.',
       );
-      console.log('Login Failed');
+      console.log('Login Failed..');
     }
   };
   return (
