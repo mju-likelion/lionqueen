@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
@@ -47,28 +47,69 @@ const TextDiv = styled(OverLap)`
 `;
 
 const SignIn = () => {
+  const [userId, setUserId] = useState('');
+  const [userPassword, setUserPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const onSubmit = e => {
+    e.preventDefault();
+    if (userId === 'lionid' && userPassword === 'lionpassword') {
+      setErrorMessage(errorMessage => '');
+      console.log('Login success!');
+    } else {
+      setErrorMessage(
+        errorMessage =>
+          '아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.',
+      );
+      console.log('Login Failed');
+    }
+  };
   return (
     <BackgroundMain>
       <MainText>Lion Town</MainText>
       <CrossLine />
-      <InputDiv>
-        <InputGroup id="id" label="아이디" labelPos="left" labelDist={20}>
-          <input
-            placeholder="아이디를 입력해주세요"
-            name="input"
-            id="id"
-            style={{ marginLeft: '12px' }}
-          />
-        </InputGroup>
-      </InputDiv>
-      <InputDiv>
-        <InputGroup id="password" label="비밀번호" labelPos="left" labelDist={20}>
-          <input placeholder="비밀번호를 입력해주세요" name="input" id="password" />
-        </InputGroup>
-      </InputDiv>
-      <LoginDiv>
-        <Button size="medium">로그인</Button>
-      </LoginDiv>
+      <div>
+        <form onSubmit={onSubmit}>
+          <InputDiv>
+            <InputGroup id="id" label="아이디" labelPos="left" labelDist={20}>
+              <input
+                placeholder="아이디를 입력해주세요"
+                name="input"
+                id="id"
+                maxLength={25}
+                value={userId}
+                onChange={e => setUserId(e.target.value)}
+                style={{ marginLeft: '12px' }}
+              />
+            </InputGroup>
+          </InputDiv>
+          <InputDiv>
+            <InputGroup
+              id="password"
+              label="비밀번호"
+              labelPos="left"
+              labelDist={20}
+              error={errorMessage}
+              fullWidth
+            >
+              <input
+                placeholder="비밀번호를 입력해주세요"
+                name="input"
+                id="password"
+                maxLength={25}
+                value={userPassword}
+                onChange={e => setUserPassword(e.target.value)}
+                type="password"
+              />
+            </InputGroup>
+          </InputDiv>
+          <LoginDiv>
+            <Button size="medium" type="submit">
+              로그인
+            </Button>
+          </LoginDiv>
+        </form>
+      </div>
       <TextDiv>아이디 찾기 | 비밀번호 찾기 | 회원가입</TextDiv>
     </BackgroundMain>
   );
