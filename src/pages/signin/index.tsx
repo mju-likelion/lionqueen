@@ -27,7 +27,6 @@ const InputDiv = styled(OverLap)`
   width: 374px;
   height: 40px;
   margin-top: 61px; //피그마에서 홀수 처리된 부분
-
   input {
     width: 306px;
   }
@@ -47,7 +46,7 @@ const TextDiv = styled(OverLap)`
   width: 310px;
 `;
 
-const signIn = () => {
+const SignIn = () => {
   return (
     <BackgroundMain>
       <MainText>Lion Town</MainText>
@@ -74,4 +73,4 @@ const signIn = () => {
     </BackgroundMain>
   );
 };
-export default signIn;
+export default SignIn;
