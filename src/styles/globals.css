@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: 'Maplestory';
-  src: url('../../public/fonts/MaplestoryLight.otf') format('otf');
+  src: url('../../public/fonts/MaplestoryLight.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -12,8 +12,8 @@
 
 @font-face {
   font-family: 'Maplestory';
-  src: url('../../public/fonts/MaplestoryBold.otf') format('otf');
-  font-weight: normal;
+  src: url('../../public/fonts/MaplestoryBold.otf') format('opentype');
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
