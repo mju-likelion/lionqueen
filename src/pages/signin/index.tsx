@@ -4,48 +4,6 @@ import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
 import Button from '../../DesignSystem/Button';
 
-const OverLap = styled.div`
-  display: flex;
-  margin: 0 auto;
-  font-family: 'Maplestory OTF';
-`;
-
-const MainText = styled(OverLap)`
-  width: 278px;
-  padding-top: 70px;
-  font-size: 55px;
-`;
-
-const CrossLine = styled(OverLap)`
-  width: 716px;
-  border: 0;
-  border-top: 2px solid black;
-  margin-top: 32px;
-`;
-
-const InputDiv = styled(OverLap)`
-  width: 374px;
-  height: 40px;
-  margin-top: 61px; //피그마에서 홀수 처리된 부분
-  input {
-    width: 306px;
-  }
-  & + & {
-    margin-top: 41px; // 피그마에서 홀수 처리된 부분
-  }
-`;
-
-const LoginDiv = styled(OverLap)`
-  width: 160px;
-  margin-top: 39px;
-`;
-
-const TextDiv = styled(OverLap)`
-  margin-top: 37px;
-  font-size: 20px;
-  width: 310px;
-`;
-
 const SignIn = () => {
   const [userId, setUserId] = useState('');
   const [userPassword, setUserPassword] = useState('');
@@ -115,3 +73,45 @@ const SignIn = () => {
   );
 };
 export default SignIn;
+
+const OverLap = styled.div`
+  display: flex;
+  margin: 0 auto;
+  font-family: 'Maplestory OTF';
+`;
+
+const MainText = styled(OverLap)`
+  width: 278px;
+  padding-top: 70px;
+  font-size: 55px;
+`;
+
+const CrossLine = styled(OverLap)`
+  width: 716px;
+  border: 0;
+  border-top: 2px solid black;
+  margin-top: 32px;
+`;
+
+const InputDiv = styled(OverLap)`
+  width: 374px;
+  height: 40px;
+  margin-top: 61px; //피그마에서 홀수 처리된 부분
+  input {
+    width: 306px;
+  }
+  & + & {
+    margin-top: 41px; // 피그마에서 홀수 처리된 부분
+  }
+`;
+
+const LoginDiv = styled(OverLap)`
+  width: 160px;
+  margin-top: 39px;
+`;
+
+const TextDiv = styled(OverLap)`
+  margin-top: 37px;
+  font-size: 20px;
+  width: 310px;
+`;
