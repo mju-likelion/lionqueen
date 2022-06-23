@@ -10,30 +10,11 @@ const SignUp = () => {
       <SignUpContainer>
         <Title>회원가입</Title>
         <Line /> <br />
-        <FormContainer labelName="이름" placeholder="이름을 입력해주세요." name="name" id="name" />
         <FormContainer
-          labelName="아이디"
-          placeholder="영문과 숫자를 조합하여 4-8자를 써주세요."
-          name="id"
-          id="id"
-        />
-        <FormContainer
-          labelName="비밀번호"
-          placeholder="영문과 숫자를 조합해 6-10자를 써주세요."
-          name="password"
-          id="password"
-        />
-        <FormContainer
-          placeholder="비밀번호 확인은 비밀번호와 일치해야 합니다."
-          labelName="비밀번호 확인"
-          name="confirm_password"
-          id="confirm_password"
-        />
-        <FormContainer
-          placeholder="mju@likelion.org"
-          labelName="이메일"
-          name="email"
-          id="email"
+          labelName="아이디(이메일)"
+          placeholder="이메일 주소를 입력하세요."
+          name="name"
+          id="name"
           btnTitle="이메일 전송"
         />
         <FormContainer
@@ -42,11 +23,30 @@ const SignUp = () => {
           id="code"
           btnTitle="인증 코드 확인"
         />
+        <FormContainer
+          labelName="비밀번호"
+          placeholder="영문과 숫자를 조합해 6-10자를 써주세요."
+          name="password"
+          id="password"
+        />
+        <FormContainer
+          placeholder="비밀번호를 한번 더 입력하세요."
+          labelName="비밀번호 확인"
+          name="confirm_password"
+          id="confirm_password"
+        />
+        <FormContainer placeholder="한글로 입력하세요." labelName="이름" name="name" id="name" />
+        <FormContainer
+          placeholder="'-'구분 없이 입력하세요."
+          labelName="휴대폰 번호"
+          name="name"
+          id="name"
+        />
         <Privacy>
           <input type="checkbox" />
           (필수) 본인은 만 14세 이상이며 이메일 주소 수집에 동의합니다.
-          <StyledButton size="medium">가입하기</StyledButton>
         </Privacy>
+        <StyledButton size="medium">가입하기</StyledButton>
       </SignUpContainer>
     </BackgroundMain>
   );
@@ -69,13 +69,13 @@ const Line = styled.div`
 `;
 
 const Privacy = styled.div`
+  margin: 20px;
+  color: #838383;
   input {
     margin-right: 10px;
   }
 `;
 
-const StyledButton = styled(Button)`
-  margin-left: 70px;
-`;
+const StyledButton = styled(Button)``;
 
 export default SignUp;
