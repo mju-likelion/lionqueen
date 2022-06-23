@@ -19,9 +19,7 @@ const Change = () => {
     if (!e.target.value || passwordRegex.test(e.target.value)) {
       setChangeError(changeError => '');
     } else {
-      setChangeError(
-        changeError => `${space}8~20자 내에서 하나의 문자, 숫자, 특수 문자를 포함해주세요`,
-      );
+      setChangeError(changeError => `6~20자 내에서 영문, 숫자를 조합해서 입력하세요`);
     }
   };
 
@@ -57,6 +55,7 @@ const Change = () => {
               style={{ marginLeft: '40px' }}
               type="password"
               value={changePassword}
+              placeholder="6~10자의 영문, 숫자를 조합해서 입력하세요"
               onChange={e => setChangePassword(e.target.value)}
               onBlur={isChange}
             />
@@ -78,6 +77,7 @@ const Change = () => {
               type="password"
               value={checkPassword}
               onChange={e => setCheckPassword(e.target.value)}
+              placeholder="비밀번호를 한 번 더 입력하세요"
             />
           </InputGroup>
         </InputDiv>
@@ -116,10 +116,18 @@ const InputDiv = styled(OverLap)`
   font-size: 20px;
   input {
     width: 352px;
+    height: 38px;
     border-radius: 10px;
   }
+  input[placeholder='6~10자의 영문, 숫자를 조합해서 입력하세요'] {
+    font-size: 14px;
+  }
+  input[placeholder='비밀번호를 한 번 더 입력하세요'] {
+    font-size: 14px;
+  }
+
   & + & {
-    margin-top: 36px; // 피그마에서 홀수 처리된 부분
+    margin-top: 37px; // 피그마에서 홀수 처리된 부분
   }
 `;
 const ButtonDiv = styled(OverLap)`

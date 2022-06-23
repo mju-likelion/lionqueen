@@ -128,8 +128,15 @@ const InputDiv = styled(OverLap)`
   margin-left: 244px;
   font-size: 20px;
   input {
-    width: 340px;
+    width: 306px;
+    height: 38px;
     border-radius: 10px;
+  }
+  input[placeholder='이름을 입력하세요'] {
+    font-size: 14px;
+  }
+  input[placeholder='이메일 주소를 입력하세요'] {
+    font-size: 14px;
   }
   & + & {
     margin-top: 13px; // 피그마에서 홀수 처리된 부분
