@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Router from 'next/router';
 import styled from 'styled-components';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
@@ -10,6 +10,8 @@ const Change = () => {
   const [checkPassword, setCheckPassword] = useState('');
   const [changeError, setChangeError] = useState('');
   const [checkError, setCheckError] = useState('');
+
+  const checkInput = useRef();
 
   const isChange = (e: any) => {
     const space = '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0';
@@ -25,8 +27,7 @@ const Change = () => {
 
   const isCheck = e => {
     e.preventDefault();
-    if (changePassword === checkPassword) {
-      alert('비밀번호가 변경되었습니다.');
+    if (changeError === '' && changePassword === checkPassword) {
       Router.push({
         pathname: '/password-find/confirm',
         query: { backtoLogin: '비밀번호가 성공적으로 변경되었습니다' },
@@ -67,6 +68,7 @@ const Change = () => {
             label="변경 패스워드 확인"
             labelPos="left"
             labelDist={20}
+            ref={checkInput}
             error={checkError}
             fullWidth
           >
@@ -96,12 +98,12 @@ const OverLap = styled.div`
 
 const MainText = styled(OverLap)`
   width: 256px;
-  padding-top: 122px;
+  padding-top: 44px;
   font-size: 45px;
 `;
 
 const CrossLine = styled(OverLap)`
-  width: 580px;
+  width: 600px;
   border: 0;
   border-top: 2px solid black;
   margin-top: 12px;
@@ -110,7 +112,7 @@ const CrossLine = styled(OverLap)`
 const InputDiv = styled(OverLap)`
   width: 546px;
   height: 36px;
-  margin-top: 52px;
+  margin-top: 72px;
   font-size: 20px;
   input {
     width: 352px;
@@ -121,7 +123,7 @@ const InputDiv = styled(OverLap)`
   }
 `;
 const ButtonDiv = styled(OverLap)`
-  margin-top: 54px;
+  margin-top: 63px;
   width: 240px;
 `;
 

@@ -59,7 +59,7 @@ const Find = () => {
         <InputDiv>
           <InputGroup id="id" label="이름" labelPos="left" labelDist={20}>
             <input
-              placeholder="이름을 입력해주세요"
+              placeholder="이름을 입력하세요"
               name="input"
               id="id"
               value={userName}
@@ -75,10 +75,10 @@ const Find = () => {
             labelPos="left"
             labelDist={20}
             error={errorMessage}
-            fullwidth
+            fullWidth
           >
             <input
-              placeholder="이메일주소를 입력해주세요"
+              placeholder="이메일 주소를 입력하세요"
               name="input"
               id="password"
               value={userEmail}
@@ -88,7 +88,7 @@ const Find = () => {
         </InputDiv>
         <ButtonDiv>
           <Button size="medium" type="submit">
-            메일 발송
+            비밀번호 찾기
           </Button>
         </ButtonDiv>
       </form>
@@ -104,12 +104,12 @@ const OverLap = styled.div`
 
 const MainText = styled(OverLap)`
   width: 256px;
-  padding-top: 122px;
+  padding-top: 44px;
   font-size: 45px;
 `;
 
 const CrossLine = styled(OverLap)`
-  width: 580px;
+  width: 600px;
   border: 0;
   border-top: 2px solid black;
   margin-top: 12px;
@@ -118,26 +118,27 @@ const CrossLine = styled(OverLap)`
 const InfoDiv = styled(OverLap)`
   flex-direction: column;
   width: 546px;
-  margin-top: 34px;
+  margin-top: 28px;
 `;
 
 const InputDiv = styled(OverLap)`
   width: 546px;
   height: 36px;
-  margin-top: 16px;
+  margin-top: 41px;
+  margin-left: 244px;
   font-size: 20px;
   input {
     width: 340px;
     border-radius: 10px;
   }
   & + & {
-    margin-top: 16px; // 피그마에서 홀수 처리된 부분
+    margin-top: 13px; // 피그마에서 홀수 처리된 부분
   }
 `;
 const ButtonDiv = styled(OverLap)`
-  width: 112px;
-  margin-top: -35px;
-  margin-right: 156px;
+  width: 160px;
+  height: 40px;
+  margin-top: 48px;
 `;
 
 export default Find;
