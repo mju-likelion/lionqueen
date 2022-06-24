@@ -32,6 +32,9 @@ const Home: NextPage = () => {
           <h2>자동배포가되면 여기가 바뀜123123123131313sadadasdasdadasd</h2>
           <h2>자동배포가되면 여기가 바뀜123123123131313sadadasdasdadasd</h2>
           <h2>과연 배포에 성공할까요?</h2>
+          <button type="button" onClick={() => setIsShow(true)}>
+            show
+          </button>
           <LoadingPage />
           {/* 글자 theme 예시 */}
           <H1Skyblue>text-primary-skyblue</H1Skyblue>
@@ -62,6 +65,9 @@ const Home: NextPage = () => {
           <InputGroup id="test" label="이름" labelPos="up" labelDist={10}>
             <input placeholder="asdasd" name="input" id="test" />
           </InputGroup>
+          <button type="button" onClick={() => setIsShow(true)}>
+            show
+          </button>
           <InputGroup id="test2" label="이름" labelPos="left" labelDist={20}>
             <input placeholder="asdasd" name="input" id="test2" />
           </InputGroup>
