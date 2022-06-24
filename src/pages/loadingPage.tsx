@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import BackgroundMain from '../DesignSystem/BackgroundMain';
 
@@ -42,7 +42,23 @@ const MessageBox = styled.div`
   line-height: 22px;
   color: #2e2e2e;
 `;
+
 const loadingPage = () => {
+  // console.log(getRandomMessage);
+  // useEffect(() => {});
+
+  const changeMessage = [
+    '사자가 달리고 있어요!',
+    '띵동~ 사자 배달 왔습니다!',
+    '영차- 영차 조금만 기다려주세요!',
+    '라이언타운으로 하고 싶은 말을 전해보세요!',
+    '어흥 어흥! 가는 중이라구요!',
+  ];
+
+  const getRandomMessage = (length: number) => {
+    return changeMessage[Math.floor(Math.random() * length)];
+  };
+
   return (
     <BackgroundMain>
       <LoadingWrapper>
@@ -60,9 +76,7 @@ const loadingPage = () => {
           <LoadingSquare />
           <LoadingSquare />
         </LoadingBox>
-        <MessageBox>
-          <p>사자가 달리고 있어요!</p>
-        </MessageBox>
+        <MessageBox>{getRandomMessage(changeMessage.length)}</MessageBox>
       </LoadingWrapper>
     </BackgroundMain>
   );
