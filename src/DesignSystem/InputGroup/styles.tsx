@@ -1,36 +1,51 @@
 import styled, { css } from 'styled-components';
 
-export const Container = styled.div<{ fullWidth?: boolean; labelPos?: 'up' | 'left' }>`
+export const Container = styled.div<{ fullWidth?: boolean; labelPos: 'up' | 'left'; dist: number }>`
   display: flex;
   /* 기본 width 설정 시 여기(fullWidth 위)에 추가 필요 */
   width: ${props => (props.fullWidth ? '100%' : 'fit-content')};
-  align-items: center;
+  align-items: flex-start;
   ${props =>
     props.labelPos === 'up' &&
     css`
+      gap: ${props.dist}px;
       flex-direction: column;
-      align-items: flex-start;
+    `}
+  ${props =>
+    props.labelPos === 'left' &&
+    css`
+      gap: ${props.dist}px;
+      flex-direction: row;
+
+      > label {
+        margin-top: 7px;
+      }
     `}
 `;
 
 export const LabelBox = styled.label<{ error?: string }>`
-  width: max-content;
-  margin-bottom: ${props => props.error && '16px'};
+  min-width: fit-content;
+`;
+
+export const Content = styled.div`
+  width: 100%;
 `;
 
 export const InputBox = styled.div<{ pos?: 'up' | 'left'; dist?: number }>`
-  /* margin-top: ${props => props.pos === 'up' && `${props.dist}px`}; */
-`;
+  width: 100%;
 
-export const Input = styled.input`
-  border-width: 3px;
-  border-color: ${({ theme }) => theme.colors.primary.orange};
-  border-radius: 6px;
-  padding: 4px 8px;
-  box-shadow: 4px;
-  :focus {
-    /* 색상 임의 선택, 확인 필요 */
-    outline: 2px solid #ff9400;
+  > input {
+    width: 100%;
+    border-width: 3px;
+    border-color: ${({ theme }) => theme.colors.primary.orange};
+    border-radius: 6px;
+    padding: 4px 8px;
+    box-shadow: 4px;
+
+    &:focus {
+      /* 색상 임의 선택, 확인 필요 */
+      outline: 2px solid #ff9400;
+    }
   }
 `;
 
@@ -38,4 +53,5 @@ export const ErrorBox = styled.div`
   color: ${({ theme }) => theme.colors.primary.error};
   font-size: 12px;
   line-height: 16px;
+  margin-top: 5px;
 `;
