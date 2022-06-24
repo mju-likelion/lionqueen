@@ -4,10 +4,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import MyPage from '~page/MyPage';
-
 import { theme } from '../styles/theme';
-
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
 import Button from '../DesignSystem/Button';
@@ -23,7 +20,6 @@ const Home: NextPage = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <MyPage />
       <div>
         <Head>
           <title>Create Next App</title>
