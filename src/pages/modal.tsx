@@ -4,8 +4,8 @@ const ModalTest = () => {
   return (
     <ConfirmModal
       isSingle
-      size="medium"
-      title="대충 확인"
+      size="large"
+      title="모달 제목"
       onClose={() => {
         console.log('취소');
       }}
@@ -13,9 +13,9 @@ const ModalTest = () => {
         console.log('확인');
       }}
     >
-      asd
+      여기는 내용이 들어옵니다. 여기는 내용이 들어옵니다. 여기는 내용이 들어옵니다. 여기는 내용이
+      들어옵니다. 여기는 내용이 들어옵니다.
     </ConfirmModal>
   );
 };
-
 export default ModalTest;
