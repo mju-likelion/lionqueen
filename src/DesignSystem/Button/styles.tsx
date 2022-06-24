@@ -6,7 +6,7 @@ export const Btn = styled.button<{ size?: 'small' | 'medium' | 'large'; fontColo
     props.size === 'small' &&
     css`
       width: 112px;
-      height: 28px;
+      height: 34px;
       font-size: 18px;
     `}
   ${props =>
