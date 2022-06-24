@@ -8,13 +8,15 @@ import FloorButton from './FloorButton';
 import NameBoard from './NameBoard';
 import LoungeDoor from './LoungeDoor';
 
+const FloorNumber: string[] = ['10F', '9F', '8F', '7F', '6F', '5F', '4F', '3F', '2F', '1F'];
+
 const LoungeHome = () => {
   return (
     <LoungeBg>
       <NameBoard />
       <ListBottomContainer>
         <LoungeList>
-          {TestFloor.map(floor => (
+          {FloorNumber.map(floor => (
             <FloorContainer key={floor}>
               <LoungeDoor />
               <FloorNum>{floor}</FloorNum>
@@ -85,7 +87,5 @@ const FloorNum = styled.p`
   font-weight: 700;
   text-align: center;
 `;
-
-const TestFloor: string[] = ['10F', '9F', '8F', '7F', '6F', '5F', '4F', '3F', '2F', '1F'];
 
 export default LoungeHome;
