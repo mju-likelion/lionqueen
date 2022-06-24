@@ -23,7 +23,6 @@ const LoungeDoor = () => {
 const LoungeFloor = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 7% 0 0 0;
 `;
 
@@ -43,7 +42,6 @@ const LoungeDoors = styled.div`
   display: grid;
   grid-template-rows: repeat(2, 1fr);
   width: 15%;
-  /* width: 154px; */
   height: 220px;
   border-radius: 15px 15px 0 0;
   box-shadow: 8px 0 5px #7f7f7fb3;
@@ -59,9 +57,7 @@ const NameSpace = styled.div`
 
 const RoomName = styled.p`
   width: 80%;
-  /* width: 122px; */
   height: 38%;
-  /* height: 42px; */
   margin: 0;
   padding: 6px 0 0 0;
   box-sizing: border-box;

@@ -12,13 +12,15 @@ const LoungeHome = () => {
   return (
     <LoungeBg>
       <NameBoard />
-      <LoungeList>
-        {TestFloor.map(floor => (
-          <FloorContainer key={floor}>
-            <LoungeDoor />
-            <FloorNum>{floor}</FloorNum>
-          </FloorContainer>
-        ))}
+      <ListBottomContainer>
+        <LoungeList>
+          {TestFloor.map(floor => (
+            <FloorContainer key={floor}>
+              <LoungeDoor />
+              <FloorNum>{floor}</FloorNum>
+            </FloorContainer>
+          ))}
+        </LoungeList>
         <BottomContainer>
           <FloorButton />
           <DoorBottom />
@@ -26,7 +28,7 @@ const LoungeHome = () => {
             <Gear />
           </GearWrap>
         </BottomContainer>
-      </LoungeList>
+      </ListBottomContainer>
     </LoungeBg>
   );
 };
@@ -35,10 +37,19 @@ const LoungeBg = styled.div`
   display: flex;
   position: relative;
   justify-content: center;
+  position: relative;
   width: 100%;
   height: 100vh;
   overflow-y: hidden;
   background-color: ${theme.colors.primary.skyblue};
+`;
+
+const ListBottomContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 80px 0 0 0;
 `;
 
 const LoungeList = styled.div`
@@ -46,14 +57,15 @@ const LoungeList = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  width: 1024px;
-  height: 100%;
+  height: 624px;
+  overflow: hidden;
 `;
 
 const BottomContainer = styled.div`
   display: grid;
   grid-template-columns: 200px 340px 340px;
   margin: 0 0 -10px 0;
+  height: 23%;
 `;
 
 const GearWrap = styled.div`
