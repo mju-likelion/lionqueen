@@ -4,9 +4,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-
 import { theme } from '../styles/theme';
-
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
 import Button from '../DesignSystem/Button';
@@ -126,7 +124,6 @@ const Home: NextPage = () => {
     </ThemeProvider>
   );
 };
-
 const H1Orange = styled.h1`
   color: ${({ theme }) => theme.colors.primary.orange};
 `;
