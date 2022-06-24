@@ -18,7 +18,7 @@ const loadingPage = () => {
   const [randomWord, setRandomWord] = useState('');
   useEffect(() => {
     setRandomWord(getRandomMessage(changeMessage.length));
-  });
+  }, []);
 
   return (
     <BackgroundMain>
