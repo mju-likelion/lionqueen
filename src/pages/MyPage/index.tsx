@@ -25,25 +25,23 @@ const MyPage = () => {
         <TitleStyle>마이페이지</TitleStyle>
 
         <ButtonStyle>
-          {/* <Link href="/MyPage"> 이중모달 생성되면 추가 예정 */}
+          {/* <Link href="/MyPage/AccountWithdrawalModal"> */}
           <Button color="primary-orange" size="large">
             나의 정보
           </Button>
           {/* </Link> */}
         </ButtonStyle>
         <ButtonStyle>
-          {/* <Link href="/MyPage/AccountWithdrawalModal"> */}
+          {/* mvp 제외 기능 */}
           <Button color="primary-orange" size="large">
             라운지 설정
           </Button>
-          {/* </Link> */}
         </ButtonStyle>
         <ButtonStyle>
-          {/* <Link href="/MyPage/LoungeLeavingModal"> */}
+          {/* mvp 제외 기능 */}
           <Button color="primary-orange" size="large">
             라운지 검색 / 추천
           </Button>
-          {/* </Link> */}
         </ButtonStyle>
       </MypageBg>
     </BackgroundMain>
