@@ -6,32 +6,41 @@ import InputGroup from '~DesignSystem/InputGroup';
 import Button from '../../DesignSystem/Button';
 
 const Change = () => {
-  const [changePassword, setChangePassword] = useState([]);
+  const [changePassword, setChangePassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
   const [changeError, setChangeError] = useState('');
   const [checkError, setCheckError] = useState('');
-
-  const checkInput = useRef();
+  const [disabled, setDisabled] = useState(true);
 
   const isChange = (e: any) => {
-    const space = '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0';
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/;
+    const space =
+      '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0';
+    const passwordRegex = /^[a-zA-Z0-9]{6,10}$/;
     if (!e.target.value || passwordRegex.test(e.target.value)) {
       setChangeError(changeError => '');
     } else {
-      setChangeError(changeError => `6~20자 내에서 영문, 숫자를 조합해서 입력하세요`);
+      setChangeError(changeError => `${space}6~20자 내에서 영문, 숫자를 조합해서 입력하세요`);
     }
   };
 
-  const isCheck = e => {
-    e.preventDefault();
+  const isCheck = (e: any) => {
+    const space = '\u00a0\u00a0';
     if (changeError === '' && changePassword === checkPassword) {
+      setCheckError(checkError => '');
+      setDisabled(false);
+    } else {
+      setCheckError(checkError => `${space}비밀번호가 일치하지 않습니다. 다시 시도해주세요`);
+    }
+  };
+
+  const onClick = e => {
+    console.log('click');
+    e.preventDefault();
+    if (changeError === '' && checkError === '') {
       Router.push({
         pathname: '/password-find/confirm',
         query: { backtoLogin: '비밀번호가 성공적으로 변경되었습니다' },
       });
-    } else {
-      setCheckError(checkError => '비밀번호가 일치하지 않습니다. 다시 시도해주세요');
     }
   };
 
@@ -39,7 +48,7 @@ const Change = () => {
     <BackgroundMain>
       <MainText>비밀번호 변경</MainText>
       <CrossLine />
-      <form onSubmit={isCheck}>
+      <form>
         <InputDiv>
           <InputGroup
             id="id"
@@ -67,7 +76,6 @@ const Change = () => {
             label="변경 패스워드 확인"
             labelPos="left"
             labelDist={20}
-            ref={checkInput}
             error={checkError}
             fullWidth
           >
@@ -76,13 +84,14 @@ const Change = () => {
               id="change-confirm"
               type="password"
               value={checkPassword}
-              onChange={e => setCheckPassword(e.target.value)}
               placeholder="비밀번호를 한 번 더 입력하세요"
+              onChange={e => setCheckPassword(e.target.value)}
+              onBlur={isCheck}
             />
           </InputGroup>
         </InputDiv>
         <ButtonDiv>
-          <Button size="large" type="submit">
+          <Button size="large" onClick={onClick} disabled={disabled}>
             비밀번호 변경
           </Button>
         </ButtonDiv>

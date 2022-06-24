@@ -6,17 +6,20 @@ import InputGroup from '~DesignSystem/InputGroup';
 import Button from '../../DesignSystem/Button';
 
 const user = [
+  // 임의로 작성한 로그인 가능한 계정들
   { name: '김멋사', email: 'lion1@likelion.org' },
   { name: '이멋사', email: 'lion2@likelion.org' },
   { name: '박멋사', email: 'lion3@likelion.org' },
 ];
 
 const Find = () => {
+  // 유저의 이름과 이메일, 에러메시지는 useState로 관리
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const onSubmit = e => {
+  // 제출할 때 
+  const onClick = e => {
     e.preventDefault();
     const isUser = user.find(findUser);
     if (isUser?.name === userName && isUser?.email === userEmail) {
@@ -55,7 +58,6 @@ const Find = () => {
           본인확인 이메일 주소와 입력한 이메일 주소가 같아야 인증번호를 받을 수 있습니다.
         </p>
       </InfoDiv>
-      <form onSubmit={onSubmit}>
         <InputDiv>
           <InputGroup id="id" label="이름" labelPos="left" labelDist={20}>
             <input
@@ -87,11 +89,10 @@ const Find = () => {
           </InputGroup>
         </InputDiv>
         <ButtonDiv>
-          <Button size="medium" type="submit">
+          <Button size="medium" onClick={onClick}>
             비밀번호 찾기
           </Button>
         </ButtonDiv>
-      </form>
     </BackgroundMain>
   );
 };
@@ -117,7 +118,7 @@ const CrossLine = styled(OverLap)`
 
 const InfoDiv = styled(OverLap)`
   flex-direction: column;
-  width: 546px;
+  width: 514px;
   margin-top: 28px;
 `;
 
