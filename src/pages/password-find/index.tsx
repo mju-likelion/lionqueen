@@ -20,7 +20,7 @@ const Find = () => {
 
   // 배열의 요소에서 name과 email이 userName과 userEmail과 일치한다면
   // { name: element.name, email: element.email }을 반환합니다.
-  const findUser = element => {
+  const findUser = (element: { name: string; email: string }) => {
     if (element.name === userName && element.email === userEmail) {
       return element;
     }

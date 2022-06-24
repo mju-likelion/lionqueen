@@ -13,7 +13,7 @@ const Confirm = () => {
       <InfoDiv>
         {/* query로 내용을 받아왔기 때문에 route에 맞추어 다양한 문구를 보여줄 수 있습니다. 
         받아온 query가 없다면 에러페이지라는 문구를 띄워주도록 하였습니다. */}
-        <p>{infoText ? infoText : '요청하신 페이지를 찾을 수 없습니다.'}</p>
+        <p>{infoText || '요청하신 페이지를 찾을 수 없습니다.'}</p>
       </InfoDiv>
       <ButtonDiv>
         <Button size="large">로그인으로 돌아가기</Button>
