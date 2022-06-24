@@ -19,23 +19,34 @@ export const Title = styled.header`
   line-height: 36px;
   margin-bottom: 5px;
 `;
-export const Content = styled.div<{ size: 'medium' | 'large' }>`
+export const Content = styled.div<{ size: 'large' | 'medium' | 'small' }>`
   width: 100%;
   height: 100%;
+
   ${props =>
     props.size === 'large' &&
     css`
-      width: 450px;
-      height: auto;
+      width: 520px;
+      height: 478px;
       padding: 33px 43px;
     `}
+
   ${props =>
     props.size === 'medium' &&
+    css`
+      width: 450px;
+      height: auto;
+      padding: 40px 30px;
+    `}
+
+    ${props =>
+    props.size === 'small' &&
     css`
       width: 400px;
       height: auto;
       padding: 40px 30px;
     `}
+
   position: relative;
   display: flex;
   flex-direction: column;
@@ -48,7 +59,7 @@ export const Content = styled.div<{ size: 'medium' | 'large' }>`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
 `;
-export const XIconWrapper = styled.span`
+export const XIconWrapper = styled.button`
   position: absolute;
   right: 35px;
   top: 30px;
