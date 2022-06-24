@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import BackgroundMain from '../BackgroundMain';
 
 const changeMessage = [
@@ -42,12 +42,12 @@ const loadingPage = () => {
     </BackgroundMain>
   );
 };
-
 const LoadingWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  user-select: none;
 `;
 
 const LoadingTitle = styled.p`
@@ -55,6 +55,7 @@ const LoadingTitle = styled.p`
   font-size: 50px;
   line-height: 56px;
   margin-top: 44px;
+  margin-left: 15px;
 `;
 
 const HrStyle = styled.hr`
@@ -69,19 +70,34 @@ const LoadingBox = styled.div`
 `;
 
 const LoadingSquare = styled.div`
-  width: 26px;
+  width: 28px;
   height: 47px;
-  background: #ffd213;
-  border-radius: 5px;
+  border-radius: 13px;
   margin-right: 26px;
+
+  animation-name: loading;
+  animation-duration: 1.7s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+
+  @keyframes loading {
+    from {
+      width: 30px;
+      margin-left: 10%;
+      background: ${({ theme }) => theme.colors.primary.skyblue};
+    }
+    to {
+      background: ${({ theme }) => theme.colors.primary.yellow};
+    }
+  }
 `;
 
 const MessageBox = styled.div`
   margin-top: 94px;
   font-weight: 300;
-  font-size: 20px;
+  font-size: 23px;
   line-height: 22px;
-  color: #2e2e2e;
+  color: ${({ theme }) => theme.colors.primary.black};
 `;
 
 export default loadingPage;
