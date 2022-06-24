@@ -6,7 +6,7 @@ function LoungeLeavingModal() {
   return (
     <ConfirmModal
       isSingle={false}
-      size="medium"
+      size="large"
       title="소속 라운지 탈퇴"
       onClose={() => {
         console.log('취소');

@@ -5,7 +5,7 @@ function AccountWithdrawalModal() {
   return (
     <ConfirmModal
       isSingle={false}
-      size="medium"
+      size="large"
       title="계정 삭제"
       onClose={() => {
         console.log('취소');
