@@ -2,6 +2,18 @@ import styled from 'styled-components';
 
 import { theme } from '../../styles/theme';
 
+type TestDoorType = {
+  userNum: number;
+  userName: string;
+};
+
+const TestDoor: TestDoorType[] = [
+  { userNum: 1, userName: '수정' },
+  { userNum: 2, userName: '유라' },
+  { userNum: 3, userName: '소연' },
+  { userNum: 4, userName: '수진' },
+];
+
 const LoungeDoor = () => {
   return (
     <LoungeFloor>
@@ -77,17 +89,5 @@ const Knob = styled.div`
   box-shadow: 0 4px 5px #7f7f7f99;
   background-color: #7f7f7f;
 `;
-
-type TestDoorType = {
-  userNum: number;
-  userName: string;
-}[];
-
-const TestDoor: TestDoorType = [
-  { userNum: 1, userName: '수정' },
-  { userNum: 2, userName: '유라' },
-  { userNum: 3, userName: '소연' },
-  { userNum: 4, userName: '수진' },
-];
 
 export default LoungeDoor;
