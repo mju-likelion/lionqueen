@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import Button from '~DesignSystem/Button';
-import { FormContainer } from '../../components/sign-up';
+import { FormContainer } from '../../components/SignUp';
 
 const SignUp = () => {
   return (
@@ -46,7 +46,7 @@ const SignUp = () => {
           <input type="checkbox" />
           (필수) 본인은 만 14세 이상이며 이메일 주소 수집에 동의합니다.
         </Privacy>
-        <StyledButton size="medium">가입하기</StyledButton>
+        <Button size="medium">가입하기</Button>
       </SignUpContainer>
     </BackgroundMain>
   );
@@ -55,7 +55,7 @@ const SignUp = () => {
 const SignUpContainer = styled.div`
   width: 675px;
   margin: 0 auto;
-  padding: 50px 0;
+  padding: 20px 0;
   text-align: center;
 `;
 
@@ -71,11 +71,10 @@ const Line = styled.div`
 const Privacy = styled.div`
   margin: 20px;
   color: #838383;
+
   input {
     margin-right: 10px;
   }
 `;
-
-const StyledButton = styled(Button)``;
 
 export default SignUp;
