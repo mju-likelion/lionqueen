@@ -10,6 +10,7 @@ const Confirm = () => {
       <MainText>비밀번호 변경</MainText>
       <CrossLine />
       <InfoDiv>
+        {/* query로 내용을 받아왔기 때문에 route에 맞추어 다양한 문구를 보여줄 수 있습니다. */}
         <p>{router.query.backtoLogin}</p>
       </InfoDiv>
       <ButtonDiv>

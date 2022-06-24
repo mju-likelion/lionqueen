@@ -6,25 +6,41 @@ import InputGroup from '~DesignSystem/InputGroup';
 import Button from '../../DesignSystem/Button';
 
 const Change = () => {
+  // 변경 패스워드를 useState로 관리하였습니다.
   const [changePassword, setChangePassword] = useState('');
+
+  // 변경 패스워드 확인을 useState로 관리하였습니다.
   const [checkPassword, setCheckPassword] = useState('');
+
+  // 변경 패스워드 에러메시지를 useState로 관리하였습니다.
   const [changeError, setChangeError] = useState('');
+
+  // 변경 패스워드 확인 에러메시지를 useState로 관리하였습니다.
   const [checkError, setCheckError] = useState('');
+
+  // 버튼 비활성화 기능을 useState로 관리하였습니다.
   const [disabled, setDisabled] = useState(true);
 
-  const isChange = (e: any) => {
+  //변경 패스워드에서 실행되는 함수입니다.
+  const isChange = e => {
+    // 디자인시스템에서 가져오는 버튼에서 텍스트, 인풋창, 에러메시지가 한 번에 묶여있어
+    // 우선은 에러메시지를 정렬하기 위해서 space를 사용했습니다.
     const space =
       '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0';
+    // 정규 표현식으로 6~10자의 영문, 숫자를 포함해야합니다.
     const passwordRegex = /^[a-zA-Z0-9]{6,10}$/;
-    if (!e.target.value || passwordRegex.test(e.target.value)) {
+    // 정규 표현식을 통과하면 에러메시지는 빈칸, 통과하지 못하면 아래의 에러메시지를 띄웁니다.
+    if (passwordRegex.test(e.target.value) === true) {
       setChangeError(changeError => '');
     } else {
-      setChangeError(changeError => `${space}6~20자 내에서 영문, 숫자를 조합해서 입력하세요`);
+      setChangeError(changeError => `${space}6~10자 내에서 영문, 숫자를 조합해서 입력하세요`);
     }
   };
 
-  const isCheck = (e: any) => {
+  // 변경 패스워드 확인에서 실행되는 함수입니다.
+  const isCheck = e => {
     const space = '\u00a0\u00a0';
+    // 정규표현식을 통과하고 패스워드가 일치한다면 에러메시지를 비우고 버튼을 활성화합니다.
     if (changeError === '' && changePassword === checkPassword) {
       setCheckError(checkError => '');
       setDisabled(false);
@@ -33,9 +49,12 @@ const Change = () => {
     }
   };
 
+  // 버튼을 클릭할 때 실행되는 함수입니다.
   const onClick = e => {
+    // 버튼 비활성화가 풀렸는지 확인할 수 있도록 넣어놨습니다.
     console.log('click');
-    e.preventDefault();
+    // 에러를 모두 해결했다면 확인 페이지로 이동합니다.
+    // query를 줌으로써 confirm.tsx는 다양한 텍스트를 띄울 수 있게 되었습니다.
     if (changeError === '' && checkError === '') {
       Router.push({
         pathname: '/password-find/confirm',
@@ -123,20 +142,22 @@ const InputDiv = styled(OverLap)`
   height: 36px;
   margin-top: 72px;
   font-size: 20px;
+  // InputDiv 안의 input에 대한 css 속성입니다.
   input {
     width: 352px;
     height: 38px;
     border-radius: 10px;
   }
+  // placeholder에 css 속성을 주기 위해 css 속성선택자를 사용하였습니다.
   input[placeholder='6~10자의 영문, 숫자를 조합해서 입력하세요'] {
     font-size: 14px;
   }
   input[placeholder='비밀번호를 한 번 더 입력하세요'] {
     font-size: 14px;
   }
-
+  // 같은 요소가 겹칠 경우 간격 사이에 margin-top을 줍니다.
   & + & {
-    margin-top: 37px; // 피그마에서 홀수 처리된 부분
+    margin-top: 37px;
   }
 `;
 const ButtonDiv = styled(OverLap)`
