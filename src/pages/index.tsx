@@ -2,17 +2,25 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import MyPage from '~page/MyPage';
+
 import { theme } from '../styles/theme';
+
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
 import Button from '../DesignSystem/Button';
+import LoadingPage from '../DesignSystem/Loading';
+import ConfirmModal from '~/components/ConfirmModal';
 
 // import NavBar from '~/components/NavBar';
 
 const Home: NextPage = () => {
   const router = useRouter();
+  const [isShow, setIsShow] = useState(false);
+  const [secondShow, setSecondShow] = useState(false);
+
   return (
     <ThemeProvider theme={theme}>
       <MyPage />
@@ -26,6 +34,10 @@ const Home: NextPage = () => {
           <h2>자동배포가되면 여기가 바뀜123123123131313sadadasdasdadasd</h2>
           <h2>자동배포가되면 여기가 바뀜123123123131313sadadasdasdadasd</h2>
           <h2>과연 배포에 성공할까요?</h2>
+          <button type="button" onClick={() => setIsShow(true)}>
+            show
+          </button>
+          <LoadingPage />
           {/* 글자 theme 예시 */}
           <H1Skyblue>text-primary-skyblue</H1Skyblue>
           <H1Brown>text-primary-brown</H1Brown>
@@ -55,6 +67,9 @@ const Home: NextPage = () => {
           <InputGroup id="test" label="이름" labelPos="up" labelDist={10}>
             <input placeholder="asdasd" name="input" id="test" />
           </InputGroup>
+          <button type="button" onClick={() => setIsShow(true)}>
+            show
+          </button>
           <InputGroup id="test2" label="이름" labelPos="left" labelDist={20}>
             <input placeholder="asdasd" name="input" id="test2" />
           </InputGroup>
@@ -74,6 +89,40 @@ const Home: NextPage = () => {
           <BackgroundMain>
             안녕하세요! 여기는 게시판 영역입니다! 내부 콘텐츠 스탕일링은 각자 해야합니다!
           </BackgroundMain>
+          <button type="button" onClick={() => setIsShow(true)}>
+            show
+          </button>
+          {isShow && (
+            <ConfirmModal
+              isSingle
+              size="large"
+              title="모달 제목"
+              onClose={() => {
+                setIsShow(false);
+              }}
+              onConfirm={() => {
+                setSecondShow(true);
+              }}
+            >
+              여기는 내용이 들어옵니다. 여기는 내용이 들어옵니다. 여기는 내용이 들어옵니다. 여기는
+              내용이 들어옵니다. 여기는 내용이 들어옵니다.
+            </ConfirmModal>
+          )}
+          {secondShow && (
+            <ConfirmModal
+              isSingle
+              size="medium"
+              title="모달 제목"
+              onClose={() => {
+                setSecondShow(false);
+              }}
+              onConfirm={() => {
+                setSecondShow(false);
+              }}
+            >
+              2번째 모달
+            </ConfirmModal>
+          )}
         </main>
       </div>
     </ThemeProvider>
