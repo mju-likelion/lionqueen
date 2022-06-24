@@ -149,7 +149,7 @@ const InputDiv = styled(OverLap)`
   input::placeholder {
     font-size: 14px;
   }
-  
+
   // 같은 요소가 겹칠 경우 간격 사이에 margin-top을 줍니다.
   & + & {
     margin-top: 37px;
