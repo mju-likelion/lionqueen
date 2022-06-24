@@ -63,7 +63,7 @@ const RoomName = styled.p`
   box-sizing: border-box;
   border-radius: 10px;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 500;
   text-align: center;
   background-color: #fff;
   color: ${theme.colors.text};
