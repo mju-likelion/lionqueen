@@ -10,6 +10,7 @@ import InputGroup from '~DesignSystem/InputGroup';
 import Button from '../DesignSystem/Button';
 import LoadingPage from '../DesignSystem/Loading';
 import ConfirmModal from '~/components/ConfirmModal';
+import NavBar from '~/components/NavBar';
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -31,7 +32,8 @@ const Home: NextPage = () => {
           <button type="button" onClick={() => setIsShow(true)}>
             show
           </button>
-          <LoadingPage />
+
+          {/* <LoadingPage /> */}
           {/* 글자 theme 예시 */}
           <H1Skyblue>text-primary-skyblue</H1Skyblue>
           <H1Brown>text-primary-brown</H1Brown>
@@ -53,6 +55,7 @@ const Home: NextPage = () => {
           >
             버튼
           </Button>
+          <NavBar />
 
           {/* input 스타일링 예시 */}
           <InputGroup id="input" label="이름" labelPos="up" labelDist={10} fullWidth>
