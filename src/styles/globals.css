@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: 'Maplestory';
-  src: url('../../public/fonts/MaplestoryLight.otf') format('otf');
+  src: url('../../public/fonts/MaplestoryLight.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -12,20 +12,10 @@
 
 @font-face {
   font-family: 'Maplestory';
-  src: url('../../public/fonts/MaplestoryBold.otf') format('otf');
-  font-weight: normal;
+  src: url('../../public/fonts/MaplestoryBold.otf') format('opentype');
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
-}
-
-.button-primary-orange {
-  @apply border-2 bg-primary-orange shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] text-text rounded-md hover:shadow-inner;
-
-  border-color: #fff38b;
-}
-
-.button-primary-orange:hover {
-  background: linear-gradient(180deg, #f2b112 0%, #f3ca67 100%);
 }
 
 html,
