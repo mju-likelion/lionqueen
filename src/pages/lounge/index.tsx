@@ -8,6 +8,29 @@ import FloorButton from './FloorButton';
 import NameBoard from './NameBoard';
 import LoungeDoor from './LoungeDoor';
 
+const LoungeHome = () => {
+  return (
+    <LoungeBg>
+      <NameBoard />
+      <LoungeList>
+        {TestFloor.map(floor => (
+          <FloorContainer key={floor}>
+            <LoungeDoor />
+            <FloorNum>{floor}</FloorNum>
+          </FloorContainer>
+        ))}
+        <BottomContainer>
+          <FloorButton />
+          <DoorBottom />
+          <GearWrap>
+            <Gear />
+          </GearWrap>
+        </BottomContainer>
+      </LoungeList>
+    </LoungeBg>
+  );
+};
+
 const LoungeBg = styled.div`
   display: flex;
   position: relative;
@@ -52,28 +75,5 @@ const FloorNum = styled.p`
 `;
 
 const TestFloor: string[] = ['10F', '9F', '8F', '7F', '6F', '5F', '4F', '3F', '2F', '1F'];
-
-const LoungeHome = () => {
-  return (
-    <LoungeBg>
-      <NameBoard />
-      <LoungeList>
-        {TestFloor.map(floor => (
-          <FloorContainer key={floor}>
-            <LoungeDoor />
-            <FloorNum>{floor}</FloorNum>
-          </FloorContainer>
-        ))}
-        <BottomContainer>
-          <FloorButton />
-          <DoorBottom />
-          <GearWrap>
-            <Gear />
-          </GearWrap>
-        </BottomContainer>
-      </LoungeList>
-    </LoungeBg>
-  );
-};
 
 export default LoungeHome;

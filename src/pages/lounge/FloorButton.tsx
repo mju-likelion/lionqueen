@@ -2,6 +2,21 @@ import styled from 'styled-components';
 
 import { theme } from '../../styles/theme';
 
+const FloorButton = () => {
+  return (
+    <BtnContainer theme={theme}>
+      <EachBtnWrap>
+        <EachBtn>
+          <BtnTop />
+        </EachBtn>
+        <EachBtn downBtn>
+          <BtnTop />
+        </EachBtn>
+      </EachBtnWrap>
+    </BtnContainer>
+  );
+};
+
 const BtnContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -46,20 +61,5 @@ const BtnTop = styled.div`
   background-color: ${theme.colors.primary.orange};
   cursor: pointer;
 `;
-
-const FloorButton = () => {
-  return (
-    <BtnContainer theme={theme}>
-      <EachBtnWrap>
-        <EachBtn>
-          <BtnTop />
-        </EachBtn>
-        <EachBtn downBtn>
-          <BtnTop />
-        </EachBtn>
-      </EachBtnWrap>
-    </BtnContainer>
-  );
-};
 
 export default FloorButton;

@@ -2,6 +2,20 @@ import styled from 'styled-components';
 
 import { theme } from '../../styles/theme';
 
+const NameBoard = () => {
+  return (
+    <BoardContainer>
+      <StickContainer>
+        <BoardStick />
+        <BoardStick />
+      </StickContainer>
+      <GroupBoard>
+        <GroupName>그룹 이름</GroupName>
+      </GroupBoard>
+    </BoardContainer>
+  );
+};
+
 const BoardContainer = styled.div`
   width: 608px;
   height: 300px;
@@ -41,19 +55,5 @@ const GroupName = styled.p`
   text-align: center;
   color: #fff;
 `;
-
-const NameBoard = () => {
-  return (
-    <BoardContainer>
-      <StickContainer>
-        <BoardStick />
-        <BoardStick />
-      </StickContainer>
-      <GroupBoard>
-        <GroupName>그룹 이름</GroupName>
-      </GroupBoard>
-    </BoardContainer>
-  );
-};
 
 export default NameBoard;

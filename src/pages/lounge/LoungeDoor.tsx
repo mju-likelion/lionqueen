@@ -2,6 +2,24 @@ import styled from 'styled-components';
 
 import { theme } from '../../styles/theme';
 
+const LoungeDoor = () => {
+  return (
+    <LoungeFloor>
+      <DoorsContainer>
+        {TestDoor.map(item => (
+          <LoungeDoors key={item.userNum}>
+            <NameSpace>
+              <RoomName>{item.userName}</RoomName>
+            </NameSpace>
+            <Knob />
+          </LoungeDoors>
+        ))}
+      </DoorsContainer>
+      <FloorLine />
+    </LoungeFloor>
+  );
+};
+
 const LoungeFloor = styled.div`
   display: flex;
   flex-direction: column;
@@ -75,23 +93,5 @@ const TestDoor: TestDoorType = [
   { userNum: 3, userName: '소연' },
   { userNum: 4, userName: '수진' },
 ];
-
-const LoungeDoor = () => {
-  return (
-    <LoungeFloor>
-      <DoorsContainer>
-        {TestDoor.map(item => (
-          <LoungeDoors key={item.userNum}>
-            <NameSpace>
-              <RoomName>{item.userName}</RoomName>
-            </NameSpace>
-            <Knob />
-          </LoungeDoors>
-        ))}
-      </DoorsContainer>
-      <FloorLine />
-    </LoungeFloor>
-  );
-};
 
 export default LoungeDoor;
