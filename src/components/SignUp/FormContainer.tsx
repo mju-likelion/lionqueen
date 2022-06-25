@@ -3,25 +3,38 @@ import styled from 'styled-components';
 import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
 
-interface formContainerProps {
+interface FormContainerProps {
   labelName?: string;
   placeholder: string;
-  name?: string;
-  id?: string;
+  name: string;
+  id: string;
   btnTitle?: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  value: string;
+  type?: React.HTMLInputTypeAttribute;
 }
 
-const FormContainer: React.FC<formContainerProps> = ({
+const FormContainer: React.FC<FormContainerProps> = ({
+  onChange,
+  value,
   labelName,
   placeholder,
   name,
   id,
   btnTitle,
+  type,
 }) => {
   return (
     <FormWrapper>
       <InputGroup id={id} label={labelName} labelPos="left" labelDist={20} fullWidth>
-        <input placeholder={placeholder} name={name} id={id} />
+        <input
+          type={type}
+          onChange={onChange}
+          value={value}
+          placeholder={placeholder}
+          name={name}
+          id={id}
+        />
       </InputGroup>
       <StyledButton>{btnTitle ? <Button size="small">{btnTitle}</Button> : ''}</StyledButton>
     </FormWrapper>
