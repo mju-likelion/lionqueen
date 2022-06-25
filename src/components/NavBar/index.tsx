@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 import Button from '~DesignSystem/Button';
 import LionLogo from '../icons/LionLogo';
 
@@ -8,7 +9,9 @@ function NavBar() {
     <NavBarWrapper>
       <NavBarBox>
         <TextTitle>메뉴</TextTitle>
-        <ButtonStyle>마이페이지</ButtonStyle>
+        <Link href="/MyPage">
+          <ButtonStyle>마이페이지</ButtonStyle>
+        </Link>
         <ButtonStyle>그룹 전환</ButtonStyle>
         <ButtonStyle2>로그아웃</ButtonStyle2>
         <LionLogoContainer />
