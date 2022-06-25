@@ -33,7 +33,7 @@ const LoungeDoor = () => {
 const LoungeFloor = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 7% 0 0 0;
+  padding-top: 73px;
 `;
 
 const DoorsContainer = styled.div`
@@ -69,8 +69,7 @@ const RoomName = styled.p`
   width: 80%;
   height: 38%;
   margin: 0;
-  padding: 6px 0 0 0;
-  box-sizing: border-box;
+  padding: 10px 0 10px 0;
   border-radius: 10px;
   font-size: 20px;
   font-weight: 500;
@@ -82,7 +81,7 @@ const RoomName = styled.p`
 const Knob = styled.div`
   width: 18px;
   height: 18px;
-  margin: 0 0 0 10px;
+  margin-left: 10px;
   border-radius: 100%;
   box-shadow: 0 4px 5px #7f7f7f99;
   background-color: #7f7f7f;

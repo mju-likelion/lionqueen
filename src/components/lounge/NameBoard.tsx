@@ -41,7 +41,7 @@ const GroupBoard = styled.div`
   justify-content: center;
   width: 500px;
   height: 80px;
-  margin: -18px 0 0 0;
+  margin-top: -18px;
   border-radius: 10px;
   box-shadow: 0 7px 5px #7f7f7f99;
   background-color: ${({ theme }) => theme.colors.primary.brown};

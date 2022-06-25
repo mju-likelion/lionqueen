@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
+import FloorNumber from '~components/lounge/FloorData';
 import DoorBottom from '~components/icons/DoorBottom.svg';
 import Gear from '~components/icons/Gear.svg';
 import FloorButton from '~components/lounge/FloorButton';
 import NameBoard from '~components/lounge/NameBoard';
 import LoungeDoor from '~components/lounge/LoungeDoor';
-
-const FloorNumber: string[] = ['10F', '9F', '8F', '7F', '6F', '5F', '4F', '3F', '2F', '1F'];
 
 const LoungeHome = () => {
   return (
@@ -49,7 +48,7 @@ const ListBottomContainer = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  margin: 80px 0 0 0;
+  margin-top: 80px;
 `;
 
 const LoungeList = styled.div`
@@ -64,7 +63,7 @@ const LoungeList = styled.div`
 const BottomContainer = styled.div`
   display: grid;
   grid-template-columns: 200px 340px 340px;
-  margin: 0 0 -10px 0;
+  margin-bottom: -10px;
   height: 23%;
 `;
 

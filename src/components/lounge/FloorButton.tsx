@@ -21,7 +21,7 @@ const BtnContainer = styled.div`
   align-items: center;
   width: 122px;
   height: 122px;
-  margin: 23px 0 0 0;
+  margin-top: 23px;
   border-radius: 100%;
   background-color: ${({ theme }) => theme.colors.primary.yellow};
 `;
@@ -33,7 +33,7 @@ const EachBtnWrap = styled.div`
   justify-content: center;
   width: 80%;
   height: 90%;
-  margin: 6px 0 0 0;
+  margin-top: 6px;
 `;
 
 const EachBtn = styled.div`
