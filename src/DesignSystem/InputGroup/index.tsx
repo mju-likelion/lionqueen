@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef } from 'react';
 import { ThemeProvider } from 'styled-components';
 import * as Style from './styles';
-import { theme } from '../../styles/theme';
+import { theme } from '~/styles/theme';
 
 type Props = {
   children: React.ReactNode;

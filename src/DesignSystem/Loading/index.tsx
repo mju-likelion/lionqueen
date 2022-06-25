@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { theme } from '~/styles/theme';
 import BackgroundMain from '../BackgroundMain';
 
 const changeMessage = [
@@ -42,6 +43,18 @@ const loadingPage = () => {
     </BackgroundMain>
   );
 };
+
+const loading = keyframes`
+  from {
+    width: 30px;
+    margin-left: 10%;
+    background-color: ${theme.colors.primary.skyblue};
+  }
+  to {
+    background-color: ${theme.colors.primary.yellow};
+  }
+`;
+
 const LoadingWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -75,21 +88,10 @@ const LoadingSquare = styled.div`
   border-radius: 13px;
   margin-right: 26px;
 
-  animation-name: loading;
+  animation-name: ${loading};
   animation-duration: 1.7s;
   animation-iteration-count: infinite;
   animation-direction: alternate-reverse;
-
-  @keyframes loading {
-    from {
-      width: 30px;
-      margin-left: 10%;
-      background: ${({ theme }) => theme.colors.primary.skyblue};
-    }
-    to {
-      background: ${({ theme }) => theme.colors.primary.yellow};
-    }
-  }
 `;
 
 const MessageBox = styled.div`
