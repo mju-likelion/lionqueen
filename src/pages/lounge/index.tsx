@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import DoorBottom from '~/components/icons/DoorBottom.svg';
-import Gear from '~/components/icons/Gear.svg';
-import FloorButton from '~/components/lounge/FloorButton';
-import NameBoard from '~/components/lounge/NameBoard';
-import LoungeDoor from '~/components/lounge/LoungeDoor';
+import DoorBottom from '~components/icons/DoorBottom.svg';
+import Gear from '~components/icons/Gear.svg';
+import FloorButton from '~components/lounge/FloorButton';
+import NameBoard from '~components/lounge/NameBoard';
+import LoungeDoor from '~components/lounge/LoungeDoor';
 
 const FloorNumber: string[] = ['10F', '9F', '8F', '7F', '6F', '5F', '4F', '3F', '2F', '1F'];
 
