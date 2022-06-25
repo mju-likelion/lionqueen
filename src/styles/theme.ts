@@ -5,7 +5,7 @@ export const theme: customThemeDto = {
     text: '#2e2e2e',
     placeholder: '#646464',
     primary: {
-      black: '2E2E2E',
+      black: '#2E2E2E',
       skyblue: '#c5e5ff',
       brown: '#8d8255',
       yellow: '#ffe161',

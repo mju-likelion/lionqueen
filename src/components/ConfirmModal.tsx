@@ -7,7 +7,7 @@ type Props = {
   children: React.ReactNode;
   title: string;
   isSingle?: boolean;
-  size?: 'medium' | 'large';
+  size?: 'large' | 'medium' | 'small';
   onConfirm: () => void;
   onClose?: () => void;
 };
