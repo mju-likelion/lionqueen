@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { theme } from '~/styles/theme';
 
 export const Container = styled.div<{ fullWidth?: boolean; labelPos: 'up' | 'left'; dist: number }>`
   display: flex;
@@ -38,7 +37,7 @@ export const InputBox = styled.div<{ pos?: 'up' | 'left'; dist?: number }>`
   > input {
     width: 100%;
     height: 38px;
-    border: 2px solid ${theme.colors.primary.orange};
+    border: 2px solid ${({ theme }) => theme.colors.primary.orange};
     border-radius: 10px;
     padding: 4px 8px;
 
