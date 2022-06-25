@@ -5,11 +5,11 @@ import Head from 'next/head';
 import { useState } from 'react';
 import styled from 'styled-components';
 
+import ConfirmModal from '~components/ConfirmModal';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
-import Button from '../DesignSystem/Button';
-import LoadingPage from '../DesignSystem/Loading';
-import ConfirmModal from '~/components/ConfirmModal';
+import Button from '~DesignSystem/Button';
+import LoadingPage from '~DesignSystem/Loading';
 
 // import NavBar from '~/components/NavBar';
 
@@ -122,7 +122,6 @@ const Home: NextPage = () => {
     </div>
   );
 };
-
 const H1Orange = styled.h1`
   color: ${({ theme }) => theme.colors.primary.orange};
 `;
