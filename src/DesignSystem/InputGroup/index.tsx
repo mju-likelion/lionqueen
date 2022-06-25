@@ -1,7 +1,5 @@
 import type { ComponentPropsWithoutRef } from 'react';
-import { ThemeProvider } from 'styled-components';
 import * as Style from './styles';
-import { theme } from '~/styles/theme';
 
 type Props = {
   children: React.ReactNode;
@@ -23,19 +21,17 @@ function InputGroup({
   fullWidth,
 }: Props) {
   return (
-    <ThemeProvider theme={theme}>
-      <Style.Container fullWidth={fullWidth} labelPos={labelPos} dist={labelDist}>
-        <Style.LabelBox htmlFor={id} error={error}>
-          {label}
-        </Style.LabelBox>
-        <Style.Content>
-          <Style.InputBox pos={labelPos} dist={labelDist}>
-            {children}
-          </Style.InputBox>
-          {error !== '' && <Style.ErrorBox>{error}</Style.ErrorBox>}
-        </Style.Content>
-      </Style.Container>
-    </ThemeProvider>
+    <Style.Container fullWidth={fullWidth} labelPos={labelPos} dist={labelDist}>
+      <Style.LabelBox htmlFor={id} error={error}>
+        {label}
+      </Style.LabelBox>
+      <Style.Content>
+        <Style.InputBox pos={labelPos} dist={labelDist}>
+          {children}
+        </Style.InputBox>
+        {error !== '' && <Style.ErrorBox>{error}</Style.ErrorBox>}
+      </Style.Content>
+    </Style.Container>
   );
 }
 

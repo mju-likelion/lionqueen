@@ -1,4 +1,3 @@
-/* eslint-disable react/require-default-props */
 import type { ComponentPropsWithoutRef } from 'react';
 import styled from 'styled-components';
 
@@ -6,7 +5,7 @@ type BackgroundProps = {
   className?: string;
 } & ComponentPropsWithoutRef<'div'>;
 
-const BackgroundMain = (props: BackgroundProps) => {
+function BackgroundMain(props: BackgroundProps) {
   const { children, ...restProps } = props;
 
   return (
@@ -23,7 +22,7 @@ const BackgroundMain = (props: BackgroundProps) => {
       </BackgroundBox>
     </PageContainer>
   );
-};
+}
 
 const PageContainer = styled.div`
   min-height: 100vh;
