@@ -1,8 +1,6 @@
 // 물방울 버튼
 import styled from 'styled-components';
 
-import { theme } from '../../styles/theme';
-
 import Bubble from '../../../public/image/Bubble.svg';
 import Left from '../../../public/image/leftarrow.svg';
 import Right from '../../../public/image/rightarrow.svg';

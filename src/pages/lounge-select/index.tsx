@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { theme } from '../../styles/theme';
-
 import BackgroundMain from '../../DesignSystem/BackgroundMain';
 import Button from './Button';
 import Plus from '../../../public/image/plus.svg';
