@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import DoorBottom from '../../../public/image/DoorBottom.svg';
-import Gear from '../../../public/image/Gear.svg';
+import DoorBottom from '~/components/icons/DoorBottom.svg';
+import Gear from '~/components/icons/Gear.svg';
 import FloorButton from './FloorButton';
 import NameBoard from './NameBoard';
 import LoungeDoor from './LoungeDoor';
