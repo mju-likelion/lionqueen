@@ -4,11 +4,11 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { theme } from '../styles/theme';
+import { theme } from '~/styles/theme';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
-import Button from '../DesignSystem/Button';
-import LoadingPage from '../DesignSystem/Loading';
+import Button from '~/DesignSystem/Button';
+import LoadingPage from '~/DesignSystem/Loading';
 import ConfirmModal from '~/components/ConfirmModal';
 import NavBar from '~/components/NavBar';
 
