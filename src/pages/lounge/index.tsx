@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { theme } from '../../styles/theme';
-
 import DoorBottom from '../../../public/image/DoorBottom.svg';
 import Gear from '../../../public/image/Gear.svg';
 import FloorButton from './FloorButton';
@@ -43,7 +41,7 @@ const LoungeBg = styled.div`
   width: 100%;
   height: 100vh;
   overflow-y: hidden;
-  background-color: ${theme.colors.primary.skyblue};
+  background-color: ${({ theme }) => theme.colors.primary.skyblue};
 `;
 
 const ListBottomContainer = styled.div`

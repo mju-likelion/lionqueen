@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { theme } from '../../styles/theme';
-
 type TestDoorType = {
   userNum: number;
   userName: string;
@@ -47,7 +45,7 @@ const DoorsContainer = styled.div`
 const FloorLine = styled.div`
   width: 1024px;
   height: 20px;
-  background-color: ${theme.colors.primary.brown};
+  background-color: ${({ theme }) => theme.colors.primary.brown};
 `;
 
 const LoungeDoors = styled.div`
@@ -57,7 +55,7 @@ const LoungeDoors = styled.div`
   height: 220px;
   border-radius: 15px 15px 0 0;
   box-shadow: 8px 0 5px #7f7f7fb3;
-  background-color: ${theme.colors.primary.yellow};
+  background-color: ${({ theme }) => theme.colors.primary.yellow};
   cursor: pointer;
 `;
 
@@ -78,7 +76,7 @@ const RoomName = styled.p`
   font-weight: 500;
   text-align: center;
   background-color: #fff;
-  color: ${theme.colors.text};
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 const Knob = styled.div`

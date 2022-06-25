@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
-import { theme } from '../../styles/theme';
-
 const FloorButton = () => {
   return (
-    <BtnContainer theme={theme}>
+    <BtnContainer>
       <EachBtnWrap>
         <EachBtn>
           <BtnTop />
@@ -25,7 +23,7 @@ const BtnContainer = styled.div`
   height: 122px;
   margin: 23px 0 0 0;
   border-radius: 100%;
-  background-color: ${theme.colors.primary.yellow};
+  background-color: ${({ theme }) => theme.colors.primary.yellow};
 `;
 
 const EachBtnWrap = styled.div`
@@ -45,7 +43,7 @@ const EachBtn = styled.div`
   border-radius: 0.5rem;
   margin: 8% 0 15% 0;
   transform: ${props => props.downBtn && 'rotate(180deg)'};
-  background-color: ${theme.colors.primary.orange};
+  background-color: ${({ theme }) => theme.colors.primary.orange};
   cursor: pointer;
 `;
 
@@ -58,7 +56,7 @@ const BtnTop = styled.div`
   border-radius: 0.5rem;
   clip-path: polygon(0% 0%, 100% 100%, 100% 0%);
   transform: rotate(315deg);
-  background-color: ${theme.colors.primary.orange};
+  background-color: ${({ theme }) => theme.colors.primary.orange};
   cursor: pointer;
 `;
 

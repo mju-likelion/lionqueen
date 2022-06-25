@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { theme } from '../../styles/theme';
-
 const NameBoard = () => {
   return (
     <BoardContainer>
@@ -46,7 +44,7 @@ const GroupBoard = styled.div`
   margin: -18px 0 0 0;
   border-radius: 10px;
   box-shadow: 0 7px 5px #7f7f7f99;
-  background-color: ${theme.colors.primary.brown};
+  background-color: ${({ theme }) => theme.colors.primary.brown};
 `;
 
 const GroupName = styled.p`
