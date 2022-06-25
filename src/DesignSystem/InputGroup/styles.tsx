@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { theme } from '~/styles/theme';
 
 export const Container = styled.div<{ fullWidth?: boolean; labelPos: 'up' | 'left'; dist: number }>`
   display: flex;
@@ -36,11 +37,10 @@ export const InputBox = styled.div<{ pos?: 'up' | 'left'; dist?: number }>`
 
   > input {
     width: 100%;
-    border-width: 3px;
-    border-color: ${({ theme }) => theme.colors.primary.orange};
-    border-radius: 6px;
+    height: 38px;
+    border: 2px solid ${theme.colors.primary.orange};
+    border-radius: 10px;
     padding: 4px 8px;
-    box-shadow: 4px;
 
     &:focus {
       /* 색상 임의 선택, 확인 필요 */
