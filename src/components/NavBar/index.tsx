@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from '~DesignSystem/Button';
-import ImgBox from '../../../public/image/lion.svg';
+import LionLogo from '../icons/LionLogo';
 
 function NavBar() {
   return (
@@ -10,21 +10,12 @@ function NavBar() {
         <TextTitle>메뉴</TextTitle>
         <ButtonStyle>마이페이지</ButtonStyle>
         <ButtonStyle>그룹 전환</ButtonStyle>
-        <ButtonStyle>로그아웃</ButtonStyle>
-        <ImgContainer />
+        <ButtonStyle2>로그아웃</ButtonStyle2>
+        <LionLogoContainer />
       </NavBarBox>
     </NavBarWrapper>
   );
 }
-
-const TextTitle = styled.p`
-  font-weight: 300;
-  line-height: 80px;
-  margin-bottom: 71px;
-  margin-top: 32px;
-  font-size: 72px;
-  text-align: center;
-`;
 
 const NavBarWrapper = styled.div`
   z-index: 1;
@@ -43,14 +34,25 @@ const NavBarBox = styled.div`
   align-items: center;
 `;
 
-const ImgContainer = styled(ImgBox)`
+const TextTitle = styled.p`
+  font-weight: 300;
+  line-height: 80px;
+  margin-bottom: 71px;
+  margin-top: 32px;
+  font-size: 72px;
+  text-align: center;
+`;
+
+const LionLogoContainer = styled(LionLogo)`
   width: 159px;
   height: 154px;
-  margin-top: 233px;
 `;
 
 const ButtonStyle = styled(Button)`
   margin-bottom: 54px;
 `;
 
+const ButtonStyle2 = styled(Button)`
+  margin-bottom: 287px;
+`;
 export default NavBar;
