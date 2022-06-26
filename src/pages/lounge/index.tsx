@@ -82,8 +82,8 @@ const FloorNum = styled.p`
   margin: 230px 0 0 -50px;
   padding: 20px 0 10px 0;
   font-family: NanumBarunGothic;
-  font-size: 40px;
-  font-weight: 700;
+  font-size: 35px;
+  font-weight: 800;
   text-align: center;
 `;
 
