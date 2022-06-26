@@ -3,14 +3,14 @@ import styled from 'styled-components';
 const FloorButton = () => {
   return (
     <BtnContainer>
-      <EachBtnWrap>
-        <EachBtn>
+      <FloorBtnWrap>
+        <FloorBtn type="up">
           <BtnTop />
-        </EachBtn>
-        <EachBtn downBtn>
+        </FloorBtn>
+        <FloorBtn type="down">
           <BtnTop />
-        </EachBtn>
-      </EachBtnWrap>
+        </FloorBtn>
+      </FloorBtnWrap>
     </BtnContainer>
   );
 };
@@ -26,7 +26,7 @@ const BtnContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.primary.yellow};
 `;
 
-const EachBtnWrap = styled.div`
+const FloorBtnWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,13 +36,13 @@ const EachBtnWrap = styled.div`
   margin-top: 6px;
 `;
 
-const EachBtn = styled.div`
+const FloorBtn = styled.div<{ type: 'up' | 'down' }>`
   position: relative;
   width: 66px;
   height: 10px;
   border-radius: 0.5rem;
   margin: 8% 0 15% 0;
-  transform: ${props => props.downBtn && 'rotate(180deg)'};
+  transform: ${props => props.type === 'down' && 'rotate(180deg)'};
   background-color: ${({ theme }) => theme.colors.primary.orange};
   cursor: pointer;
 `;
