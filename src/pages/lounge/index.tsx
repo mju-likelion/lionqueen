@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import FloorNumber from '~components/lounge/FloorData';
+import FloorNumber from '~components/lounge/FloorDemoData';
 import DoorBottom from '~components/icons/DoorBottom.svg';
 import Gear from '~components/icons/Gear.svg';
 import FloorButton from '~components/lounge/FloorButton';
