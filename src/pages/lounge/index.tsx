@@ -80,7 +80,8 @@ const FloorNum = styled.p`
   width: 65px;
   height: 67px;
   margin: 230px 0 0 -50px;
-  font-family: BlinkMacSystemFont;
+  padding: 20px 0 10px 0;
+  font-family: NanumBarunGothic;
   font-size: 40px;
   font-weight: 700;
   text-align: center;
