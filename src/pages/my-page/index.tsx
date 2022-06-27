@@ -1,53 +1,23 @@
-import Link from 'next/link';
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import BackgroundMain from '~/DesignSystem/BackgroundMain';
 import Button from '~/DesignSystem/Button';
-import ConfirmModal from '~/components/ConfirmModal';
+import MyInfoModal from '~/components/MyPage/MyInfoModal';
+import LoungeList from '~/components/MyPage/LoungeList';
 
 const MyPage = () => {
-  const [isShow, setIsShow] = useState(true);
+  const [isShow, setIsShow] = useState(false);
   const [secondShow, setSecondShow] = useState(false);
 
-  const loungeList = [
-    {
-      id: 1,
-      name: '멋사 명지대',
-    },
-    {
-      id: 2,
-      name: '이건열글자이건열글자',
-    },
-    {
-      id: 3,
-      name: '할수있다할수있다있뮤',
-    },
-    {
-      id: 4,
-      name: 'aaaabbbbccccdd', // 영문 14글자
-    },
-    {
-      id: 5,
-      name: '다섯',
-    },
-    // { 스크롤 구현 예정
-    //   id: 6,
-    //   name: '여섯',
-    // },
-    // {
-    //   id: 7,
-    //   name: '일곱',
-    // },
-  ];
   return (
     <BackgroundMain>
       <MypageBg>
         <Title>마이페이지</Title>
 
         <MyPageButton>
-          <Link href="/my-page/MyInfo">
-            <ButtonMargin size="large">나의 정보</ButtonMargin>
-          </Link>
+          <ButtonMargin size="large" onClick={() => setIsShow(true)}>
+            나의 정보
+          </ButtonMargin>
           {/* mvp 제외 기능 */}
           <ButtonMargin size="large">라운지 설정</ButtonMargin>
           {/* mvp 제외 기능 */}
@@ -55,15 +25,12 @@ const MyPage = () => {
         </MyPageButton>
 
         {isShow && (
-          <ConfirmModal
+          <MyInfoModal
             isSingle
             size="large"
             title=""
             onClose={() => {
               setIsShow(false);
-            }}
-            onConfirm={() => {
-              setSecondShow(true);
             }}
           >
             <InfoBox>
@@ -78,7 +45,7 @@ const MyPage = () => {
               <LoungeBox>
                 <LoungeTitle>소속 라운지</LoungeTitle>
                 <LoungeInfo>
-                  {loungeList.map(lounge => (
+                  {LoungeList.map(lounge => (
                     <LoungeRow>
                       <LoungeName>{lounge.name}</LoungeName>
                       <LoungeOutButton>탈퇴</LoungeOutButton>
@@ -88,7 +55,7 @@ const MyPage = () => {
               </LoungeBox>
               <WithdrawalButton>계정삭제</WithdrawalButton>
             </InfoBox>
-          </ConfirmModal>
+          </MyInfoModal>
         )}
       </MypageBg>
     </BackgroundMain>
