@@ -1,10 +1,10 @@
 type Props = {
-  width?: string;
-  height?: string;
+  width?: number;
+  height?: number;
   color?: string;
 };
 
-const LionLogo = ({ height = '154', width = '159', color = '#E67A18' }: Props) => {
+const LionLogo = ({ height = 154, width = 159, color = '#E67A18' }: Props) => {
   return (
     <svg
       height={height}

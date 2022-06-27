@@ -10,10 +10,10 @@ function NavBar() {
       <NavBarBox>
         <TextTitle>메뉴</TextTitle>
         <Link href="/MyPage">
-          <ButtonStyle>마이페이지</ButtonStyle>
+          <StyledPrimaryButton>마이페이지</StyledPrimaryButton>
         </Link>
-        <ButtonStyle>그룹 전환</ButtonStyle>
-        <ButtonStyle2>로그아웃</ButtonStyle2>
+        <StyledPrimaryButton>그룹 전환</StyledPrimaryButton>
+        <StyledSecondaryButton>로그아웃</StyledSecondaryButton>
         <LionLogoContainer />
       </NavBarBox>
     </NavBarWrapper>
@@ -51,11 +51,11 @@ const LionLogoContainer = styled(LionLogo)`
   height: 154px;
 `;
 
-const ButtonStyle = styled(Button)`
+const StyledPrimaryButton = styled(Button)`
   margin-bottom: 54px;
 `;
 
-const ButtonStyle2 = styled(Button)`
+const StyledSecondaryButton = styled(Button)`
   margin-bottom: 287px;
 `;
 export default NavBar;
