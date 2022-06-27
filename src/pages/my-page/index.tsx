@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 import React, { useState } from 'react';
-import BackgroundMain from '../../DesignSystem/BackgroundMain';
-import Button from '../../DesignSystem/Button';
+import BackgroundMain from '~/DesignSystem/BackgroundMain';
+import Button from '~/DesignSystem/Button';
 import ConfirmModal from '~/components/ConfirmModal';
 
 const MyPage = () => {
   const [isShow, setIsShow] = useState(true);
+  const [secondShow, setSecondShow] = useState(false);
   return (
     <BackgroundMain>
       <MypageBg>
@@ -38,27 +39,23 @@ const MyPage = () => {
               <MyInfoTitle>내 정보</MyInfoTitle>
               <NameBox>
                 <NameTitle>이름</NameTitle>
-                <NamePrintDiv>
+                <NameInfo>
                   <NameText>여기는 이름이 들어옴</NameText>
                   <NameSaveButton>저장</NameSaveButton>
-                </NamePrintDiv>
+                </NameInfo>
               </NameBox>
               <LoungeBox>
                 <LoungeTitle>소속 라운지</LoungeTitle>
-                <LoungePrintDiv>
+                <LoungeInfo>
                   <LoungeRow>
-                    <LoungeInfo>멋쟁이사자처럼 명지대</LoungeInfo>
+                    <LoungeName>멋쟁이사자처럼 명지대</LoungeName>
                     <LoungeOutButton>탈퇴</LoungeOutButton>
                   </LoungeRow>
                   <LoungeRow>
-                    <LoungeInfo>멋쟁이사자처럼 명지대</LoungeInfo>
+                    <LoungeName>멋쟁이사자처럼 명지대</LoungeName>
                     <LoungeOutButton>탈퇴</LoungeOutButton>
                   </LoungeRow>
-                  <LoungeRow>
-                    <LoungeInfo>멋쟁이사자처럼 명지대</LoungeInfo>
-                    <LoungeOutButton>탈퇴</LoungeOutButton>
-                  </LoungeRow>
-                </LoungePrintDiv>
+                </LoungeInfo>
               </LoungeBox>
               <WithdrawalButton>계정삭제</WithdrawalButton>
             </InfoBox>
@@ -120,10 +117,10 @@ const NameTitle = styled.p`
   font-weight: 300;
   margin-left: 12px;
 `;
-const NamePrintDiv = styled.div`
+const NameInfo = styled.div`
   width: 307px;
   height: 36px;
-  border: 1px solid #2e2e2e;
+  border: 1px solid;
   border-radius: 15px;
   flex-direction: row;
   display: flex;
@@ -159,14 +156,14 @@ const LoungeTitle = styled.p`
   margin-left: 12px;
 `;
 
-const LoungePrintDiv = styled.div`
+const LoungeInfo = styled.div`
   width: 308px;
   height: 192px;
-  border: 1px solid #2e2e2e;
+  border: 1px solid;
   border-radius: 15px;
 `;
 
-const LoungeInfo = styled.div`
+const LoungeName = styled.div`
   font-weight: 300;
   font-size: 12px;
   margin: 8px 0 3px 13px;
