@@ -42,9 +42,9 @@ const MyPage = () => {
   return (
     <BackgroundMain>
       <MypageBg>
-        <TitleStyle>마이페이지</TitleStyle>
+        <Title>마이페이지</Title>
 
-        <ButtonStyle>
+        <MyPageButton>
           <Link href="/my-page/MyInfo">
             <ButtonMargin size="large">나의 정보</ButtonMargin>
           </Link>
@@ -52,7 +52,7 @@ const MyPage = () => {
           <ButtonMargin size="large">라운지 설정</ButtonMargin>
           {/* mvp 제외 기능 */}
           <ButtonMargin size="large">라운지 검색 / 추천</ButtonMargin>
-        </ButtonStyle>
+        </MyPageButton>
 
         {isShow && (
           <ConfirmModal
@@ -102,13 +102,13 @@ const MypageBg = styled.div`
   width: 100%;
 `;
 
-const TitleStyle = styled.button`
+const Title = styled.button`
   font-size: 45px;
   margin-top: 70px;
   margin-bottom: 23px;
 `;
 
-const ButtonStyle = styled.p`
+const MyPageButton = styled.p`
   margin-top: 28px;
   display: flex;
   flex-direction: column;
@@ -118,6 +118,7 @@ const ButtonStyle = styled.p`
 const ButtonMargin = styled(Button)`
   margin-bottom: 28px;
 `;
+
 // 모달UI
 const MyInfoTitle = styled.p`
   font-size: 30px;
@@ -131,6 +132,7 @@ const InfoBox = styled.div`
   align-items: center;
   flex-direction: column;
 `;
+
 // 이름 정보
 const NameBox = styled.div`
   display: flex;
@@ -146,6 +148,7 @@ const NameTitle = styled.p`
   font-weight: 300;
   margin-left: 12px;
 `;
+
 const NameInfo = styled.div`
   width: 307px;
   height: 36px;
@@ -210,10 +213,12 @@ const LoungeOutButton = styled.button`
   font-size: 12px;
   margin: 8px 12px 3px 0;
 `;
+
 // 회원 탈퇴 버튼
 const WithdrawalButton = styled.button`
   color: #bd2517;
   font-size: 15px;
   margin: 14px 0 8px 220px;
 `;
+
 export default MyPage;
