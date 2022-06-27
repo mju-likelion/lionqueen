@@ -1,32 +1,28 @@
-/* eslint-disable react/require-default-props */
 import type { ComponentPropsWithoutRef } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { theme } from '../../styles/theme';
+import styled from 'styled-components';
 
 type BackgroundProps = {
   className?: string;
 } & ComponentPropsWithoutRef<'div'>;
 
-const BackgroundMain = (props: BackgroundProps) => {
+function BackgroundMain(props: BackgroundProps) {
   const { children, ...restProps } = props;
 
   return (
-    <ThemeProvider theme={theme}>
-      <PageContainer>
-        <BackgroundBox>
-          <Board>
-            <LineContainer>
-              <LineStyles />
-              <LineStyles />
-            </LineContainer>
-            <ContentContainer {...restProps}>{children}</ContentContainer>
-            <img src="/image/trees.svg" alt="나무" />
-          </Board>
-        </BackgroundBox>
-      </PageContainer>
-    </ThemeProvider>
+    <PageContainer>
+      <BackgroundBox>
+        <Board>
+          <LineContainer>
+            <LineStyles />
+            <LineStyles />
+          </LineContainer>
+          <ContentContainer {...restProps}>{children}</ContentContainer>
+          <img src="/image/trees.svg" alt="나무" />
+        </Board>
+      </BackgroundBox>
+    </PageContainer>
   );
-};
+}
 
 const PageContainer = styled.div`
   min-height: 100vh;
@@ -50,8 +46,7 @@ const Board = styled.div`
   width: 1014px;
   height: 708px;
   background-color: ${({ theme }) => theme.colors.primary.yellow};
-  border-width: 10px;
-  border-color: #ffbb54;
+  border: 10px solid #ffbb54;
   border-radius: 30px;
   position: absolute;
   left: 50%;
