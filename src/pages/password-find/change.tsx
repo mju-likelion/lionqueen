@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { theme } from '~/styles/theme';
 import Router from 'next/router';
 import styled from 'styled-components';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
@@ -6,26 +7,16 @@ import InputGroup from '~DesignSystem/InputGroup';
 import Button from '../../DesignSystem/Button';
 
 const Change = () => {
-  // 변경 패스워드를 useState로 관리하였습니다.
   const [changePassword, setChangePassword] = useState('');
-
-  // 변경 패스워드 확인을 useState로 관리하였습니다.
   const [checkPassword, setCheckPassword] = useState('');
-
-  // 변경 패스워드 에러메시지를 useState로 관리하였습니다.
   const [changeError, setChangeError] = useState('');
-
-  // 변경 패스워드 확인 에러메시지를 useState로 관리하였습니다.
   const [checkError, setCheckError] = useState('');
-
-  // 버튼 비활성화 기능을 useState로 관리하였습니다.
   const [disabled, setDisabled] = useState(true);
 
-  // 정규 표현식으로 6~10자의 영문, 숫자를 포함해야합니다.
   const passwordRegex = /^[a-zA-Z0-9]{6,10}$/;
 
-  // 변경 패스워드에서 실행되는 함수입니다.
-  const isChange = e => {
+  // 패스워드 변경 인풋에서 실행되는 함수입니다.
+  const changePasswordInput = e => {
     // 정규 표현식을 통과하면 에러메시지는 빈칸, 통과하지 못하면 아래의 에러메시지를 띄웁니다.
     if (passwordRegex.test(e.target.value) === true) {
       setChangeError(changeError => '');
@@ -34,8 +25,8 @@ const Change = () => {
     }
   };
 
-  // 변경 패스워드 확인에서 실행되는 함수입니다.
-  const isCheck = () => {
+  // 패스워드 변경 확인에서 실행되는 함수입니다.
+  const checkPasswordInput = () => {
     // 정규표현식을 통과하고 패스워드가 일치한다면 에러메시지를 비우고 버튼을 활성화합니다.
     if (changeError === '' && changePassword === checkPassword) {
       setCheckError(checkError => '');
@@ -59,78 +50,79 @@ const Change = () => {
 
   return (
     <BackgroundMain>
-      <MainText>비밀번호 변경</MainText>
-      <CrossLine />
-      <form>
-        <InputDiv>
-          <InputGroup
-            id="id"
-            label="변경 패스워드"
-            labelPos="left"
-            labelDist={20}
-            error={changeError}
-            fullWidth
-          >
-            <input
-              name="input"
-              id="change"
-              type="password"
-              value={changePassword}
-              placeholder="6~10자의 영문, 숫자를 조합해서 입력하세요"
-              onChange={e => setChangePassword(e.target.value)}
-              onBlur={isChange}
-            />
-          </InputGroup>
-        </InputDiv>
-        <InputDiv>
-          <InputGroup
-            id="password"
-            label="변경 패스워드 확인"
-            labelPos="left"
-            labelDist={20}
-            error={checkError}
-            fullWidth
-          >
-            <input
-              name="input"
-              id="change-confirm"
-              type="password"
-              value={checkPassword}
-              placeholder="비밀번호를 한 번 더 입력하세요"
-              onChange={e => setCheckPassword(e.target.value)}
-              onBlur={isCheck}
-            />
-          </InputGroup>
-        </InputDiv>
-        <ButtonDiv>
-          <Button size="large" onClick={onClick} disabled={disabled}>
-            비밀번호 변경
-          </Button>
-        </ButtonDiv>
-      </form>
+      <OverLap>
+        <MainText>비밀번호 변경</MainText>
+        <CrossLine />
+        <form>
+          <InputDiv>
+            <InputGroup
+              id="id"
+              label="변경 패스워드"
+              labelPos="left"
+              labelDist={20}
+              error={changeError}
+              fullWidth
+            >
+              <input
+                name="input"
+                id="change"
+                type="password"
+                value={changePassword}
+                placeholder="6~10자의 영문, 숫자를 조합해서 입력하세요"
+                onChange={e => setChangePassword(e.target.value)}
+                onBlur={changePasswordInput}
+              />
+            </InputGroup>
+          </InputDiv>
+          <InputDiv>
+            <InputGroup
+              id="password"
+              label="변경 패스워드 확인"
+              labelPos="left"
+              labelDist={20}
+              error={checkError}
+              fullWidth
+            >
+              <input
+                name="input"
+                id="change-confirm"
+                type="password"
+                value={checkPassword}
+                placeholder="비밀번호를 한 번 더 입력하세요"
+                onChange={e => setCheckPassword(e.target.value)}
+                onBlur={checkPasswordInput}
+              />
+            </InputGroup>
+          </InputDiv>
+          <ButtonDiv>
+            <Button size="large" onClick={onClick} disabled={disabled}>
+              비밀번호 변경
+            </Button>
+          </ButtonDiv>
+        </form>
+      </OverLap>
     </BackgroundMain>
   );
 };
 const OverLap = styled.div`
   display: flex;
   margin: 0 auto;
-  font-family: 'Maplestory OTF';
 `;
 
-const MainText = styled(OverLap)`
+const MainText = styled.div`
   width: 256px;
   padding-top: 44px;
   font-size: 45px;
 `;
 
-const CrossLine = styled(OverLap)`
+const CrossLine = styled.div`
   width: 600px;
   border: 0;
-  border-top: 2px solid black;
+  border-top: 2px solid ${({ theme }) => theme.colors.text};
   margin-top: 12px;
 `;
 
-const InputDiv = styled(OverLap)`
+const InputDiv = styled.div`
   width: 546px;
   height: 36px;
   margin-top: 72px;
@@ -155,7 +147,7 @@ const InputDiv = styled(OverLap)`
     margin-top: 37px;
   }
 `;
-const ButtonDiv = styled(OverLap)`
+const ButtonDiv = styled.div`
   margin-top: 63px;
   width: 240px;
 `;

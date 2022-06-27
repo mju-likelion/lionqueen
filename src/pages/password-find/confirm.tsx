@@ -24,7 +24,6 @@ const Confirm = () => {
 const OverLap = styled.div`
   display: flex;
   margin: 0 auto;
-  font-family: 'Maplestory OTF';
 `;
 
 const MainText = styled(OverLap)`
