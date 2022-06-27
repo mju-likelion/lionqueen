@@ -9,7 +9,7 @@ const MyPage = () => {
   const [isShow, setIsShow] = useState(true);
   const [secondShow, setSecondShow] = useState(false);
 
-  const lounge = [
+  const loungeList = [
     {
       id: 1,
       name: '멋사 명지대',
@@ -20,11 +20,11 @@ const MyPage = () => {
     },
     {
       id: 3,
-      name: '할수있다할수있다있다',
+      name: '할수있다할수있다있뮤',
     },
     {
       id: 4,
-      name: '다섯도 프린트 됨?',
+      name: 'aaaabbbbccccdd', // 영문 14글자
     },
     {
       id: 5,
@@ -78,14 +78,12 @@ const MyPage = () => {
               <LoungeBox>
                 <LoungeTitle>소속 라운지</LoungeTitle>
                 <LoungeInfo>
-                  <div>
-                    {lounge.map(lounge => (
-                      <LoungeRow>
-                        <LoungeName>{lounge.name}</LoungeName>
-                        <LoungeOutButton>탈퇴</LoungeOutButton>
-                      </LoungeRow>
-                    ))}
-                  </div>
+                  {loungeList.map(lounge => (
+                    <LoungeRow>
+                      <LoungeName>{lounge.name}</LoungeName>
+                      <LoungeOutButton>탈퇴</LoungeOutButton>
+                    </LoungeRow>
+                  ))}
                 </LoungeInfo>
               </LoungeBox>
               <WithdrawalButton>계정삭제</WithdrawalButton>
