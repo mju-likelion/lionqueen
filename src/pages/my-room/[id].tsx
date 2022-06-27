@@ -1,7 +1,7 @@
 import styled, { ThemeProvider } from 'styled-components';
 import { useRouter } from 'next/router';
-import Rack from '../../../public/image/rack.svg';
-import MemoBoard from '../../../public/image/MemoBoard.svg';
+import BoardRack from '../../components/icons/BoardRack';
+import BoardBody from '../../components/icons/BoardBody';
 import { theme } from '../../styles/theme';
 
 const MyRoom = () => {
@@ -19,10 +19,11 @@ const MyRoom = () => {
           <RoomName>사용자이름의 방</RoomName>
           <RoomConent>
             <Board>
-              <BoardRack />
+              <Rack />
               <BoardBox />
             </Board>
             <AvatarBox>
+              {/* 사용자 이름 패치 필요 */}
               <p>사용자이름</p>
               <img src="/image/human.png" alt="아바타" />
             </AvatarBox>
@@ -41,6 +42,8 @@ const Wrap = styled.div`
   display: flex;
   align-items: center;
   min-height: 100vh;
+  width: 100%;
+  min-width: 1440px;
 `;
 
 const ContentContainer = styled.div`
@@ -70,13 +73,13 @@ const Board = styled.div`
   position: relative;
 `;
 
-const BoardRack = styled(Rack)`
+const Rack = styled(BoardRack)`
   z-index: 1;
   position: absolute;
   left: 174px;
 `;
 
-const BoardBox = styled(MemoBoard)`
+const BoardBox = styled(BoardBody)`
   z-index: 1;
   position: absolute;
   top: 134px;
@@ -86,7 +89,6 @@ const AvatarBox = styled.div`
   font-size: 50px;
   margin: 148px 320px auto auto;
   width: 320px;
-  height: 520px;
   text-align: center;
   p {
     margin-bottom: 47px;

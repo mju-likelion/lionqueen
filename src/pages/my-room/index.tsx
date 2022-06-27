@@ -1,3 +1,3 @@
 import MyRoom from './[id]';
 
-export default MyRoom;
+export default { MyRoom };
