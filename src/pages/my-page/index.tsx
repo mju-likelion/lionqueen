@@ -112,7 +112,6 @@ const NameTitle = styled.p`
   justify-content: left;
   font-size: 12px;
   line-height: 18px;
-  font-weight: 300;
   margin-left: 12px;
 `;
 
@@ -127,7 +126,6 @@ const NameInfo = styled.div`
 `;
 
 const NameText = styled.p`
-  font-weight: 300;
   font-size: 15px;
   margin: 8px 0 8px 13px;
 `;
@@ -151,7 +149,6 @@ const LoungeTitle = styled.p`
   justify-content: left;
   font-size: 12px;
   line-height: 18px;
-  font-weight: 300;
   margin-left: 12px;
 `;
 
@@ -163,7 +160,6 @@ const LoungeInfo = styled.div`
 `;
 
 const LoungeName = styled.div`
-  font-weight: 300;
   font-size: 12px;
   margin: 8px 0 3px 13px;
 `;
