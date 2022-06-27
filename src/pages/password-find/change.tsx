@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { theme } from '~/styles/theme';
 import Router from 'next/router';
 import styled from 'styled-components';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
-import Button from '../../DesignSystem/Button';
+import Button from '~DesignSystem/Button';
 
 const Change = () => {
   const [changePassword, setChangePassword] = useState('');
