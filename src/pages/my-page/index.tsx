@@ -6,8 +6,8 @@ import MyInfoModal from '~/components/MyPage/MyInfoModal';
 import LoungeList from '~/components/MyPage/LoungeList';
 
 const MyPage = () => {
-  const [isShow, setIsShow] = useState(false);
-  const [secondShow, setSecondShow] = useState(false);
+  const [isModalShow, setIsModalShow] = useState(false);
+  const [secondModalShow, setSecondModalShow] = useState(false);
 
   return (
     <BackgroundMain>
@@ -15,7 +15,7 @@ const MyPage = () => {
         <Title>마이페이지</Title>
 
         <MyPageButton>
-          <ButtonMargin size="large" onClick={() => setIsShow(true)}>
+          <ButtonMargin size="large" onClick={() => setIsModalShow(true)}>
             나의 정보
           </ButtonMargin>
           {/* mvp 제외 기능 */}
@@ -24,13 +24,13 @@ const MyPage = () => {
           <ButtonMargin size="large">라운지 검색 / 추천</ButtonMargin>
         </MyPageButton>
 
-        {isShow && (
+        {isModalShow && (
           <MyInfoModal
             isSingle
             size="large"
             title=""
             onClose={() => {
-              setIsShow(false);
+              setIsModalShow(false);
             }}
           >
             <InfoBox>
