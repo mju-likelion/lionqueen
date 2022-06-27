@@ -8,13 +8,44 @@ import ConfirmModal from '~/components/ConfirmModal';
 const MyPage = () => {
   const [isShow, setIsShow] = useState(true);
   const [secondShow, setSecondShow] = useState(false);
+
+  const lounge = [
+    {
+      id: 1,
+      name: '멋사 명지대',
+    },
+    {
+      id: 2,
+      name: '이건열글자이건열글자',
+    },
+    {
+      id: 3,
+      name: '할수있다할수있다있다',
+    },
+    {
+      id: 4,
+      name: '다섯도 프린트 됨?',
+    },
+    {
+      id: 5,
+      name: '다섯',
+    },
+    // { 스크롤 구현 예정
+    //   id: 6,
+    //   name: '여섯',
+    // },
+    // {
+    //   id: 7,
+    //   name: '일곱',
+    // },
+  ];
   return (
     <BackgroundMain>
       <MypageBg>
         <TitleStyle>마이페이지</TitleStyle>
 
         <ButtonStyle>
-          <Link href="/MyPage/MyInfo">
+          <Link href="/my-page/MyInfo">
             <ButtonMargin size="large">나의 정보</ButtonMargin>
           </Link>
           {/* mvp 제외 기능 */}
@@ -47,14 +78,14 @@ const MyPage = () => {
               <LoungeBox>
                 <LoungeTitle>소속 라운지</LoungeTitle>
                 <LoungeInfo>
-                  <LoungeRow>
-                    <LoungeName>멋쟁이사자처럼 명지대</LoungeName>
-                    <LoungeOutButton>탈퇴</LoungeOutButton>
-                  </LoungeRow>
-                  <LoungeRow>
-                    <LoungeName>멋쟁이사자처럼 명지대</LoungeName>
-                    <LoungeOutButton>탈퇴</LoungeOutButton>
-                  </LoungeRow>
+                  <div>
+                    {lounge.map(lounge => (
+                      <LoungeRow>
+                        <LoungeName>{lounge.name}</LoungeName>
+                        <LoungeOutButton>탈퇴</LoungeOutButton>
+                      </LoungeRow>
+                    ))}
+                  </div>
                 </LoungeInfo>
               </LoungeBox>
               <WithdrawalButton>계정삭제</WithdrawalButton>
