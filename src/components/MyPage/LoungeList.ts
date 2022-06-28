@@ -5,7 +5,7 @@ const LoungeList = [
   },
   {
     id: 2,
-    name: '이건열글자이건열글자',
+    name: '이 건 열 글 자 이 건 열 글 자',
   },
   {
     id: 3,
@@ -13,7 +13,7 @@ const LoungeList = [
   },
   {
     id: 4,
-    name: 'aaaabbbbccccdd', // 영문 14글자
+    name: 'a a a a b b b b c c c c d d', // 영문 14글자
   },
   {
     id: 5,
