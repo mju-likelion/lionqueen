@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import BackgroundMain from '~/DesignSystem/BackgroundMain';
@@ -10,18 +11,41 @@ const MyPage = () => {
   const [isModalShow, setIsModalShow] = useState(false);
   const [LoungeOutModalShow, setLoungeOutModalShow] = useState(false);
   const [WithdrawalModalShow, setWithdrawalModalShow] = useState(false);
+  const [lounge, setLounge] = useState(LoungeList);
+
+  const onClickSave = () => alert('새로운 이름을 저장했습니다.');
+  const onClickPrepare = () => alert('준비 중입니다.');
+
+  // 라운지 탈퇴
+  const goodByeLounge = () => {
+    if (LoungeOutModalShow === true) {
+      alert('소속 라운지를 탈퇴했습니다.');
+    }
+  };
+
+  // 라이언타운 계정 삭제
+  const goodByeLionTown = () => {
+    if (WithdrawalModalShow === true) {
+      alert('라이언타운 계정을 삭제했습니다. 안녕히 가세요.');
+    }
+  };
+
   return (
     <BackgroundMain>
       <MypageBg>
         <Title>마이페이지</Title>
         <MyPageButton>
           <ButtonMargin size="large" onClick={() => setIsModalShow(true)}>
-            나의 정보
+            내 정보
           </ButtonMargin>
           {/* mvp 제외 기능 */}
-          <ButtonMargin size="large">라운지 설정</ButtonMargin>
+          <ButtonMargin size="large" onClick={onClickPrepare}>
+            라운지 설정
+          </ButtonMargin>
           {/* mvp 제외 기능 */}
-          <ButtonMargin size="large">라운지 검색 / 추천</ButtonMargin>
+          <ButtonMargin size="large" onClick={onClickPrepare}>
+            라운지 검색 / 추천
+          </ButtonMargin>
         </MyPageButton>
         {isModalShow && (
           <MyInfoModal
@@ -36,15 +60,15 @@ const MyPage = () => {
               <MyInfoTitle>내 정보</MyInfoTitle>
               <NameTitle>이름</NameTitle>
               <NameInfo>
-                <NameText>여기는 이름이 들어옴</NameText>
-                <NameSaveButton>저장</NameSaveButton>
+                <NameText type="text" maxLength={4} />
+                <NameSaveButton onClick={onClickSave}>저장</NameSaveButton>
               </NameInfo>
               <LoungeBox>
                 <LoungeTitle>소속 라운지</LoungeTitle>
                 <LoungeInfo>
-                  {LoungeList.map(lounge => (
-                    <LoungeRow>
-                      <LoungeName>{lounge.name}</LoungeName>
+                  {lounge.map(Lounge => (
+                    <LoungeRow key={Lounge.id}>
+                      <LoungeName>{Lounge.name}</LoungeName>
                       <LoungeOutButton
                         onClick={() => {
                           setLoungeOutModalShow(true);
@@ -66,6 +90,7 @@ const MyPage = () => {
             </InfoBox>
           </MyInfoModal>
         )}
+
         {/* //소속 라운지 탈퇴 모달 */}
         {LoungeOutModalShow && (
           <ConfirmModal
@@ -76,6 +101,7 @@ const MyPage = () => {
             }}
             onConfirm={() => {
               setLoungeOutModalShow(false);
+              goodByeLounge();
             }}
           >
             정말 [라운지이름]을 탈퇴하시겠습니까?
@@ -91,10 +117,11 @@ const MyPage = () => {
             }}
             onConfirm={() => {
               setWithdrawalModalShow(false);
+              goodByeLionTown();
             }}
           >
-            <p>정말로 라이언타운과 작별 인사를 하시겠습니까?</p>
-            <LastAlertText>*추후 계정 복구는 불가능합니다.</LastAlertText>
+            <GoodbyeText>정말로 라이언타운과 작별 인사를 하시겠습니까?</GoodbyeText>
+            <GoodbyeText>*추후 계정 복구는 불가능합니다.</GoodbyeText>
           </ConfirmModal>
         )}
       </MypageBg>
@@ -107,10 +134,11 @@ const MypageBg = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  user-select: none;
 `;
 
-const Title = styled.button`
-  font-size: 45px;
+const Title = styled.div`
+  font-size: 50px;
   margin-top: 70px;
   margin-bottom: 23px;
 `;
@@ -126,11 +154,11 @@ const ButtonMargin = styled(Button)`
   margin-bottom: 28px;
 `;
 
-// 모달UI
+// 내 정보 모달UI
 const MyInfoTitle = styled.p`
-  font-size: 30px;
+  font-size: 35px;
   line-height: 28px;
-  margin-bottom: 33px;
+  margin-bottom: 27px;
 `;
 
 const InfoBox = styled.div`
@@ -138,19 +166,21 @@ const InfoBox = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  user-select: none;
 `;
 
 // 이름 정보
 
 const NameTitle = styled.p`
-  font-size: 12px;
+  font-size: 20px;
   line-height: 18px;
   margin-right: 260px;
+  margin-bottom: 5px;
 `;
 
 const NameInfo = styled.div`
-  width: 307px;
-  height: 36px;
+  width: 315px;
+  height: 41px;
   border: 1px solid;
   border-radius: 15px;
   flex-direction: row;
@@ -159,14 +189,15 @@ const NameInfo = styled.div`
   align-items: center;
 `;
 
-const NameText = styled.p`
-  font-size: 15px;
+const NameText = styled.input`
+  font-size: 18px;
   margin: 8px 0 7px 13px;
+  outline: none;
 `;
 
 const NameSaveButton = styled.button`
   color: ${({ theme }) => theme.colors.primary.green};
-  font-size: 12px;
+  font-size: 16px;
   margin: 8px 12px 7px 0;
 `;
 
@@ -175,26 +206,27 @@ const LoungeBox = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top: 14px;
+  margin-top: 25px;
 `;
 
 const LoungeTitle = styled.p`
   display: flex;
   justify-content: left;
-  font-size: 12px;
+  font-size: 20px;
   line-height: 18px;
-  margin-left: 12px;
+  margin-left: 11px;
+  margin-bottom: 5px;
 `;
 
 const LoungeInfo = styled.div`
-  width: 308px;
+  width: 315px;
   height: 192px;
   border: 1px solid;
   border-radius: 15px;
 `;
 
 const LoungeName = styled.div`
-  font-size: 12px;
+  font-size: 16px;
   margin: 8px 0 3px 13px;
 `;
 
@@ -207,19 +239,19 @@ const LoungeRow = styled.div`
 
 const LoungeOutButton = styled.button`
   color: ${({ theme }) => theme.colors.primary.error};
-  font-size: 12px;
+  font-size: 16px;
   margin: 8px 12px 3px 0;
 `;
 
 // 계정 삭제 버튼
 const WithdrawalButton = styled.button`
   color: #bd2517;
-  font-size: 15px;
-  margin: 14px 0 8px 220px;
+  font-size: 17px;
+  margin: 14px 0 8px 230px;
 `;
 
-const LastAlertText = styled.p`
-  font-size: 12px;
+const GoodbyeText = styled.p`
+  font-size: 17px;
   margin: 10px 0;
 `;
 

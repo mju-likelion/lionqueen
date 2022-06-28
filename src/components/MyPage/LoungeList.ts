@@ -1,3 +1,5 @@
+type LoungeList = { id: number; name: string };
+
 const LoungeList = [
   {
     id: 1,
