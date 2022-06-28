@@ -18,14 +18,14 @@ const MyPage = () => {
 
   // 라운지 탈퇴
   const goodByeLounge = () => {
-    if (LoungeOutModalShow === true) {
+    if (LoungeOutModalShow) {
       alert('소속 라운지를 탈퇴했습니다.');
     }
   };
 
   // 라이언타운 계정 삭제
   const goodByeLionTown = () => {
-    if (WithdrawalModalShow === true) {
+    if (WithdrawalModalShow) {
       alert('라이언타운 계정을 삭제했습니다. 안녕히 가세요.');
     }
   };
