@@ -1,8 +1,7 @@
-import styled, { ThemeProvider, css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useRouter } from 'next/router';
-import BoardRack from '../../components/icons/BoardRack';
+import BoardRack from '~/components/icons/BoardRack';
 import TapeIcon from '~/components/icons/Tape';
-import { theme } from '../../styles/theme';
 
 const MyRoom = () => {
   const router = useRouter();
@@ -12,55 +11,53 @@ const MyRoom = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Wrap>
-        <ContentContainer>
-          {/* 여기에 사용자 이름 패치 필요 */}
-          <RoomName>사용자이름의 방</RoomName>
-          <RoomConent>
-            {/* 보드, 포스트 각각 컴포넌트화 시키기 */}
-            <Board>
-              <Rack />
-              <BoardBody>
-                <Post top="10%" left="8%">
-                  <Tape position="center" />
-                  <PostBody shape="circle">대충내용1</PostBody>
-                </Post>
-                <Post top="10%" left="65%" rotate="right">
-                  <Tape fill="#3efff3" opacity="0.52" position="leftTop" />
-                  <PostBody shape="rectangle">대충내용2</PostBody>
-                  <Tape fill="#3efff3" opacity="0.52" position="rightBottom" />
-                </Post>
-                <Post top="30%" left="35%" rotate="left">
-                  <Tape fill="#fff844" opacity="0.63" position="leftTop" />
-                  <Tape fill="#fff844" opacity="0.63" position="rightTop" />
-                  <PostBody shape="rectangle">대충내용3</PostBody>
-                  <Tape fill="#fff844" opacity="0.63" position="leftBottom" />
-                  <Tape fill="#fff844" opacity="0.63" position="rightBottom" />
-                </Post>
-                <Post top="50%" left="10%" rotate="right">
-                  <Tape fill="#caa5E8" opacity="0.52" position="leftTop" />
-                  <PostBody shape="rectangle">내용최대7글자</PostBody>
-                  <Tape fill="#caa5E8" opacity="0.52" position="rightBottom" />
-                </Post>
-                <Post top="55%" left="65%">
-                  <Tape fill="#b3ec9f" opacity="0.59" position="center" />
-                  <PostBody shape="circle">내 용 최 대</PostBody>
-                </Post>
-              </BoardBody>
-            </Board>
-            <AvatarBox>
-              {/* 사용자 이름 패치 필요 */}
-              <p>사용자이름</p>
-              <img src="/image/human.png" alt="아바타" />
-            </AvatarBox>
-          </RoomConent>
-          <RoomBottom>
-            <Door onClick={handleRoute} />
-          </RoomBottom>
-        </ContentContainer>
-      </Wrap>
-    </ThemeProvider>
+    <Wrap>
+      <ContentContainer>
+        {/* 여기에 사용자 이름 패치 필요 */}
+        <RoomName>사용자이름의 방</RoomName>
+        <RoomConent>
+          {/* 보드, 포스트 각각 컴포넌트화 시키기 */}
+          <Board>
+            <Rack />
+            <BoardBody>
+              <Post top="10%" left="8%">
+                <Tape position="center" />
+                <PostBody shape="circle">대충내용1</PostBody>
+              </Post>
+              <Post top="10%" left="65%" rotate="right">
+                <Tape fill="#3efff3" opacity="0.52" position="leftTop" />
+                <PostBody shape="rectangle">대충내용2</PostBody>
+                <Tape fill="#3efff3" opacity="0.52" position="rightBottom" />
+              </Post>
+              <Post top="30%" left="35%" rotate="left">
+                <Tape fill="#fff844" opacity="0.63" position="leftTop" />
+                <Tape fill="#fff844" opacity="0.63" position="rightTop" />
+                <PostBody shape="rectangle">대충내용3</PostBody>
+                <Tape fill="#fff844" opacity="0.63" position="leftBottom" />
+                <Tape fill="#fff844" opacity="0.63" position="rightBottom" />
+              </Post>
+              <Post top="50%" left="10%" rotate="right">
+                <Tape fill="#caa5E8" opacity="0.52" position="leftTop" />
+                <PostBody shape="rectangle">내용최대7글자</PostBody>
+                <Tape fill="#caa5E8" opacity="0.52" position="rightBottom" />
+              </Post>
+              <Post top="55%" left="65%">
+                <Tape fill="#b3ec9f" opacity="0.59" position="center" />
+                <PostBody shape="circle">내 용 최 대</PostBody>
+              </Post>
+            </BoardBody>
+          </Board>
+          <AvatarBox>
+            {/* 사용자 이름 패치 필요 */}
+            <p>사용자이름</p>
+            <img src="/image/human.png" alt="아바타" />
+          </AvatarBox>
+        </RoomConent>
+        <RoomBottom>
+          <Door onClick={handleRoute} />
+        </RoomBottom>
+      </ContentContainer>
+    </Wrap>
   );
 };
 
