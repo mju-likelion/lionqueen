@@ -36,7 +36,6 @@ const LoungeBg = styled.div`
   display: flex;
   position: relative;
   justify-content: center;
-  position: relative;
   width: 100%;
   height: 100vh;
   overflow-y: hidden;
@@ -48,7 +47,7 @@ const ListBottomContainer = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  margin-top: 80px;
+  margin-top: 100px;
 `;
 
 const LoungeList = styled.div`
