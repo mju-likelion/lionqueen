@@ -1,5 +1,6 @@
 import type { ComponentPropsWithoutRef } from 'react';
 import styled from 'styled-components';
+import TreeIcon from '~/components/icons/Trees';
 
 type BackgroundProps = {
   className?: string;
@@ -17,34 +18,44 @@ function BackgroundMain(props: BackgroundProps) {
             <LineStyles />
           </LineContainer>
           <ContentContainer {...restProps}>{children}</ContentContainer>
-          <img src="/image/trees.svg" alt="나무" />
         </Board>
+        <Trees />
       </BackgroundBox>
     </PageContainer>
   );
 }
 
 const PageContainer = styled.div`
-  min-height: 100vh;
+  min-width: 1440px;
+  min-height: 1024px;
+  height: 100vh;
+  width: 100%;
   background-color: ${({ theme }) => theme.colors.primary.skyblue};
   display: flex;
   justify-items: center;
 `;
 
 const BackgroundBox = styled.div`
-  min-height: 1024px;
-  min-width: 100%;
-  position: relative;
+  /* 미디어 스크린으로 1440 1024일때 left, top translate속성 주기 */
+  height: 100%;
+  max-height: 1024px;
+  width: 1440px;
+  position: absolute;
   display: flex;
   justify-items: center;
   background-image: url('/image/wallpaper.svg');
   background-repeat: no-repeat;
   background-position: center;
+  left: 50%;
+  top: 50%;
+  /* bottom: 50%; */
+  transform: translate(-50%, -50%);
+  overflow: scroll;
 `;
 
 const Board = styled.div`
   width: 1014px;
-  height: 708px;
+  min-height: 708px;
   background-color: ${({ theme }) => theme.colors.primary.yellow};
   border: 10px solid #ffbb54;
   border-radius: 30px;
@@ -52,6 +63,12 @@ const Board = styled.div`
   left: 50%;
   top: 30%;
   transform: translate(-50%, -30%);
+`;
+
+const Trees = styled(TreeIcon)`
+  position: absolute;
+  top: 65%;
+  left: 15%;
 `;
 
 const LineContainer = styled.div`
@@ -75,7 +92,7 @@ const LineStyles = styled.div`
 
 const ContentContainer = styled.div`
   width: 912px;
-  height: 542px;
+  min-height: 542px;
   margin: 102px auto auto auto;
   border-radius: 15px;
   background-color: #ffffffcc;
