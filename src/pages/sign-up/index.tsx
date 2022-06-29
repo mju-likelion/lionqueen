@@ -5,7 +5,7 @@ import Button from '~DesignSystem/Button';
 import { FormContainer } from '~/components/SignUp';
 import { SignUpValidationSchema } from '~lib/validation';
 
-interface InitialValues {
+type InitialValues = {
   email: string;
   password: string;
   passwordConfirm: string;
@@ -13,7 +13,7 @@ interface InitialValues {
   phone: string;
   code: string;
   privacyCheck: boolean;
-}
+};
 
 const SignUp = () => {
   const formik = useFormik<InitialValues>({

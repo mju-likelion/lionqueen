@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
 
-interface FormContainerProps {
+type FormContainerProps = {
   labelName?: string;
   placeholder: string;
   name: string;
@@ -14,7 +14,7 @@ interface FormContainerProps {
   value: string;
   type?: React.HTMLInputTypeAttribute;
   error?: string;
-}
+};
 
 const FormContainer: React.FC<FormContainerProps> = ({
   onChange,
