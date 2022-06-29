@@ -4,7 +4,7 @@ type Props = {
   color?: string;
 };
 
-const XIcon = ({ width = '46', height = '52', color = '#FFF0AF' }: Props) => {
+const RightArrow = ({ width = '46', height = '52', color = '#FFF0AF' }: Props) => {
   return (
     <svg
       width={width}
@@ -21,4 +21,4 @@ const XIcon = ({ width = '46', height = '52', color = '#FFF0AF' }: Props) => {
   );
 };
 
-export default XIcon;
+export default RightArrow;

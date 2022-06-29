@@ -4,7 +4,7 @@ type Props = {
   color?: string;
 };
 
-const XIcon = ({ width = '38', height = '38', color = '#FFF0AF' }: Props) => {
+const ModalPlusButton = ({ width = '38', height = '38', color = '#FFF0AF' }: Props) => {
   return (
     <svg
       width={width}
@@ -54,4 +54,4 @@ const XIcon = ({ width = '38', height = '38', color = '#FFF0AF' }: Props) => {
   );
 };
 
-export default XIcon;
+export default ModalPlusButton;

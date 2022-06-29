@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import Bubble from '../../public/image/Bubble.svg';
-import Left from '../../public/image/leftarrow.svg';
-import Right from '../../public/image/rightarrow.svg';
+import Bubble from './icons/Bubble';
+import Left from './icons/LeftArrow';
+import Right from './icons/RightArrow';
 
-const Button = () => {
+const BubbleMoveButton = () => {
   type GroupType = { id: number; name: string };
 
   const [group, setGroup] = useState<GroupType[]>([
@@ -26,7 +26,7 @@ const Button = () => {
   const groupList = group.map(n => (
     <BubbleWrapper>
       <Bubble />
-      <GroupName>{n.name}</GroupName>
+      <GroupName key={n.id}>{n.name}</GroupName>
     </BubbleWrapper>
   ));
 
@@ -69,7 +69,8 @@ const GroupName = styled.p`
   font-size: 20px;
   color: ${({ theme }) => theme.colors.primary.black};
   position: absolute;
-  margin-left: 30px;
+  left: 300px;
+  top: 400px;
 `;
 
-export default Button;
+export default BubbleMoveButton;

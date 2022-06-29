@@ -4,7 +4,7 @@ type Props = {
   color?: string;
 };
 
-const XIcon = ({ width = '133', height = '133', color = '#C5E5FF' }: Props) => {
+const Bubble = ({ width = '133', height = '133', color = '#C5E5FF' }: Props) => {
   return (
     <svg
       width={width}
@@ -67,4 +67,4 @@ const XIcon = ({ width = '133', height = '133', color = '#C5E5FF' }: Props) => {
   );
 };
 
-export default XIcon;
+export default Bubble;

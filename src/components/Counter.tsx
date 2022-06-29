@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { useState } from 'react';
-import Plus from '../components/icons/ModalPlus';
+import Plus from './icons/ModalPlusButton';
 import Minus from '../components/icons/Minus';
 
 const Counter = () => {
