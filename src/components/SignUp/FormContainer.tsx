@@ -59,9 +59,6 @@ const FormWrapper = styled.div`
   input {
     width: 306px;
   }
-  error {
-    text-align: left;
-  }
 `;
 
 const StyledButton = styled.div`
