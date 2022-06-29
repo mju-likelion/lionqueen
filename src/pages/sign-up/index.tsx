@@ -1,9 +1,9 @@
 import { useFormik } from 'formik';
-import React from 'react';
 import styled from 'styled-components';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import Button from '~DesignSystem/Button';
-import { FormContainer } from '../../components/SignUp';
+import { FormContainer } from '~/components/SignUp';
+import { SignUpValidationSchema } from '~lib/validation';
 
 interface InitialValues {
   email: string;
@@ -12,6 +12,7 @@ interface InitialValues {
   name: string;
   phone: string;
   code: string;
+  privacyCheck: boolean;
 }
 
 const SignUp = () => {
@@ -23,10 +24,13 @@ const SignUp = () => {
       name: '',
       phone: '',
       code: '',
+      privacyCheck: false,
     },
     onSubmit: values => {
-      console.log(values);
+      // 콘솔 지울예정 api 수정필요
+      console.log(formik.values);
     },
+    validationSchema: SignUpValidationSchema,
   });
 
   return (
@@ -43,23 +47,31 @@ const SignUp = () => {
             btnTitle="이메일 전송"
             onChange={formik.handleChange}
             value={formik.values.email}
+            onBlur={formik.handleBlur}
+            error={formik.touched.email ? formik.errors.email && formik.errors.email : undefined}
           />
           <FormContainer
-            placeholder="인증코드를 입력해주세요."
+            placeholder="인증코드를 입력하세요."
             name="code"
             id="code"
             btnTitle="인증 코드 확인"
             onChange={formik.handleChange}
             value={formik.values.code}
+            onBlur={formik.handleBlur}
+            error={formik.touched.code ? formik.errors.code && formik.errors.code : undefined}
           />
           <FormContainer
             labelName="비밀번호"
-            placeholder="영문과 숫자를 조합해 6-10자를 써주세요."
+            placeholder="6-10자의 영문, 숫자를 조합해서 입력하세요."
             name="password"
             id="password"
             type="password"
             onChange={formik.handleChange}
             value={formik.values.password}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.password ? formik.errors.password && formik.errors.password : undefined
+            }
           />
           <FormContainer
             placeholder="비밀번호를 한번 더 입력하세요."
@@ -69,6 +81,12 @@ const SignUp = () => {
             type="password"
             onChange={formik.handleChange}
             value={formik.values.passwordConfirm}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.passwordConfirm
+                ? formik.errors.passwordConfirm && formik.errors.passwordConfirm
+                : undefined
+            }
           />
           <FormContainer
             placeholder="한글로 입력하세요."
@@ -76,21 +94,43 @@ const SignUp = () => {
             name="name"
             id="name"
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.name}
+            error={formik.touched.name ? formik.errors.name && formik.errors.name : undefined}
           />
           <FormContainer
-            placeholder="'-'구분 없이 입력하세요."
+            placeholder="'-' 구분 없이 입력하세요."
             labelName="휴대폰 번호"
             name="phone"
             id="phone"
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.phone}
+            error={formik.touched.phone ? formik.errors.phone && formik.errors.phone : undefined}
           />
+
           <Privacy>
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              name="privacy"
+              onChange={formik.handleChange}
+              checked={formik.values.privacyCheck}
+            />
             (필수) 본인은 만 14세 이상이며 이메일 주소 수집에 동의합니다.
           </Privacy>
-          <Button size="medium" type="submit">
+          <Button
+            size="medium"
+            type="submit"
+            disabled={
+              !!formik.errors.email ||
+              !!formik.errors.password ||
+              !!formik.errors.passwordConfirm ||
+              !!formik.errors.name ||
+              !!formik.errors.phone ||
+              !!formik.errors.code ||
+              !formik.values.privacyCheck
+            }
+          >
             가입하기
           </Button>
         </form>
@@ -112,7 +152,7 @@ const Title = styled.div`
 
 const Line = styled.div`
   border-top: 2px solid ${({ theme }) => theme.colors.text};
-  margin-top: 16px;
+  margin: 16px;
 `;
 
 const Privacy = styled.div`

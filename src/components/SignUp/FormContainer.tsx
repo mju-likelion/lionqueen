@@ -10,12 +10,15 @@ interface FormContainerProps {
   id: string;
   btnTitle?: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onBlur: React.FocusEventHandler<HTMLInputElement>;
   value: string;
   type?: React.HTMLInputTypeAttribute;
+  error?: string;
 }
 
 const FormContainer: React.FC<FormContainerProps> = ({
   onChange,
+  onBlur,
   value,
   labelName,
   placeholder,
@@ -23,13 +26,15 @@ const FormContainer: React.FC<FormContainerProps> = ({
   id,
   btnTitle,
   type,
+  error,
 }) => {
   return (
     <FormWrapper>
-      <InputGroup id={id} label={labelName} labelPos="left" labelDist={20} fullWidth>
+      <InputGroup id={id} label={labelName} labelPos="left" labelDist={20} error={error} fullWidth>
         <input
           type={type}
           onChange={onChange}
+          onBlur={onBlur}
           value={value}
           placeholder={placeholder}
           name={name}
@@ -53,6 +58,9 @@ const FormWrapper = styled.div`
 
   input {
     width: 306px;
+  }
+  error {
+    text-align: left;
   }
 `;
 

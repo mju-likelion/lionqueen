@@ -5,7 +5,7 @@ import * as S from './styles';
 
 type Props = {
   children?: React.ReactNode;
-  size?: 'medium' | 'large';
+  size?: 'large' | 'medium' | 'small';
   title?: React.ReactNode;
   onClose: () => void;
 };
