@@ -19,9 +19,13 @@ const BoardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   position: absolute;
-  top: -35px;
+  top: -7px;
   width: 500px;
   height: 280px;
+
+  @media screen and (max-height: 900px) {
+    top: -35px;
+  }
 `;
 
 const StickContainer = styled.div`

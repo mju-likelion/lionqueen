@@ -23,7 +23,11 @@ const LoungeDoor = () => {
 const LoungeFloor = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 73px;
+  padding-top: 90px;
+
+  @media screen and (max-height: 900px) {
+    padding-top: 73px;
+  }
 `;
 
 const DoorsContainer = styled.div`
@@ -65,7 +69,6 @@ const RoomName = styled.p`
   font-weight: 500;
   text-align: center;
   background-color: #fff;
-  color: ${({ theme }) => theme.colors.text};
 `;
 
 const Knob = styled.div`
