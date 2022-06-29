@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import Bubble from './icons/Bubble';
-import Left from './icons/LeftArrow';
-import Right from './icons/RightArrow';
+import Bubble from '../icons/Bubble';
+import Left from '../icons/LeftArrow';
+import Right from '../icons/RightArrow';
 
 const BubbleMoveButton = () => {
   type GroupType = { id: number; name: string };

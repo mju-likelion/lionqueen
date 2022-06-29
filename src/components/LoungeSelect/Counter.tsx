@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 import { useState } from 'react';
-import Plus from './icons/ModalPlusButton';
-import Minus from '../components/icons/Minus';
+import Plus from '../icons/ModalPlusButton';
+import Minus from '../icons/Minus';
 
 const Counter = () => {
   const [count, setCount] = useState<number>(100);
