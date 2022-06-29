@@ -79,11 +79,15 @@ const FloorNum = styled.p`
   width: 65px;
   height: 67px;
   margin: 230px 0 0 -50px;
-  padding: 20px 0 10px 0;
+  padding: 35px 0 10px 0;
   font-family: NanumBarunGothic;
   font-size: 35px;
   font-weight: 800;
   text-align: center;
+
+  @media screen and (max-height: 900px) {
+    padding: 20px 0 10px 0;
+  }
 `;
 
 export default LoungeHome;
