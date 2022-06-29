@@ -24,9 +24,9 @@ const BubbleMoveButton = () => {
   ]);
 
   const groupList = group.map(n => (
-    <BubbleWrapper>
+    <BubbleWrapper key={n.id}>
       <Bubble />
-      <GroupName key={n.id}>{n.name}</GroupName>
+      <GroupName>{n.name}</GroupName>
     </BubbleWrapper>
   ));
 
