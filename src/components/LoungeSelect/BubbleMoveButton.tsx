@@ -19,15 +19,17 @@ const BubbleMoveButton = () => {
     },
     {
       id: 3,
-      name: '그룹이름3',
+      name: '그룹이름3 (새로 생성된)',
     },
   ]);
 
   const groupList = group.map(n => (
-    <BubbleWrapper key={n.id}>
-      <Bubble />
+    <div>
+      <BubbleWrapper key={n.id}>
+        <Bubble />
+      </BubbleWrapper>
       <GroupName>{n.name}</GroupName>
-    </BubbleWrapper>
+    </div>
   ));
 
   return (
@@ -65,12 +67,17 @@ const ArrowWrapper = styled.div`
   cursor: pointer;
 `;
 
-const GroupName = styled.p`
+const GroupName = styled.div`
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  margin: -120px 0 0 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
   font-size: 20px;
   color: ${({ theme }) => theme.colors.primary.black};
-  position: absolute;
-  left: 300px;
-  top: 400px;
+  word-break: keep-all;
 `;
 
 export default BubbleMoveButton;
