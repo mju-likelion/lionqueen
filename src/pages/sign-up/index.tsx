@@ -1,8 +1,10 @@
-import { useFormik } from 'formik';
+/* eslint-disable no-return-assign */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import { useFormik, Field } from 'formik';
 import styled from 'styled-components';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import Button from '~DesignSystem/Button';
-import { FormContainer } from '~/components/SignUp';
+import { FormContainer } from '~components/SignUp';
 import { SignUpValidationSchema } from '~lib/validation';
 
 type InitialValues = {
@@ -28,7 +30,7 @@ const SignUp = () => {
     },
     onSubmit: values => {
       // 콘솔 지울예정 api 수정필요
-      console.log(formik.values);
+      console.log('가입하기 버튼');
     },
     validationSchema: SignUpValidationSchema,
   });
@@ -48,7 +50,15 @@ const SignUp = () => {
             onChange={formik.handleChange}
             value={formik.values.email}
             onBlur={formik.handleBlur}
-            error={formik.touched.email ? formik.errors.email && formik.errors.email : undefined}
+            error={
+              formik.values.email !== '' && formik.touched.email
+                ? formik.errors.email && formik.errors.email
+                : undefined
+            }
+            onClick={() => {
+              // 이메일인증  api연결예정
+              console.log('이메일인증 버튼');
+            }}
           />
           <FormContainer
             placeholder="인증코드를 입력하세요."
@@ -58,7 +68,15 @@ const SignUp = () => {
             onChange={formik.handleChange}
             value={formik.values.code}
             onBlur={formik.handleBlur}
-            error={formik.touched.code ? formik.errors.code && formik.errors.code : undefined}
+            error={
+              formik.values.code !== '' && formik.touched.code
+                ? formik.errors.code && formik.errors.code
+                : undefined
+            }
+            onClick={() => {
+              // 인증코드 확인 api연결예정
+              console.log('인증코드확인 버튼');
+            }}
           />
           <FormContainer
             labelName="비밀번호"
@@ -70,7 +88,9 @@ const SignUp = () => {
             value={formik.values.password}
             onBlur={formik.handleBlur}
             error={
-              formik.touched.password ? formik.errors.password && formik.errors.password : undefined
+              formik.values.password !== '' && formik.touched.password
+                ? formik.errors.password && formik.errors.password
+                : undefined
             }
           />
           <FormContainer
@@ -83,7 +103,7 @@ const SignUp = () => {
             value={formik.values.passwordConfirm}
             onBlur={formik.handleBlur}
             error={
-              formik.touched.passwordConfirm
+              formik.values.passwordConfirm !== '' && formik.touched.passwordConfirm
                 ? formik.errors.passwordConfirm && formik.errors.passwordConfirm
                 : undefined
             }
@@ -96,7 +116,11 @@ const SignUp = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.name}
-            error={formik.touched.name ? formik.errors.name && formik.errors.name : undefined}
+            error={
+              formik.values.name !== '' && formik.touched.name
+                ? formik.errors.name && formik.errors.name
+                : undefined
+            }
           />
           <FormContainer
             placeholder="'-' 구분 없이 입력하세요."
@@ -106,17 +130,25 @@ const SignUp = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.phone}
-            error={formik.touched.phone ? formik.errors.phone && formik.errors.phone : undefined}
+            error={
+              formik.values.phone !== '' && formik.touched.phone
+                ? formik.errors.phone && formik.errors.phone
+                : undefined
+            }
           />
-
           <Privacy>
-            <input
-              type="checkbox"
-              name="privacy"
-              onChange={formik.handleChange}
-              checked={formik.values.privacyCheck}
-            />
-            (필수) 본인은 만 14세 이상이며 이메일 주소 수집에 동의합니다.
+            <label htmlFor="privacy">
+              <input
+                type="checkbox"
+                name="privacy"
+                id="privacy"
+                onChange={e => {
+                  formik.values.privacyCheck = e.target.checked;
+                }}
+                onBlur={formik.handleBlur}
+              />
+              (필수) 본인은 만 14세 이상이며 이메일 주소 수집에 동의합니다.
+            </label>
           </Privacy>
           <Button
             size="medium"
@@ -152,7 +184,7 @@ const Title = styled.div`
 
 const Line = styled.div`
   border-top: 2px solid ${({ theme }) => theme.colors.text};
-  margin: 16px;
+  margin: 16px 0;
 `;
 
 const Privacy = styled.div`
