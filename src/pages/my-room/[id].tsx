@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
 import { useRouter } from 'next/router';
-import BoardRack from '~/components/icons/BoardRack';
-import TapeIcon from '~/components/icons/Tape';
+import BoardRack from '~components/icons/BoardRack';
+import TapeIcon from '~components/icons/Tape';
 
 const MyRoom = () => {
   const router = useRouter();
-  const handleRoute = () => {
+  const handleRouteClick = () => {
     // 추후 라운지 내부로 가는 코드로 고치기
     router.push('/');
   };
@@ -54,7 +54,7 @@ const MyRoom = () => {
           </AvatarBox>
         </RoomConent>
         <RoomBottom>
-          <Door onClick={handleRoute} />
+          <Door onClick={handleRouteClick} />
         </RoomBottom>
       </ContentContainer>
     </Wrap>
@@ -65,9 +65,8 @@ const Wrap = styled.div`
   background-color: ${({ theme }) => theme.colors.primary.skyblue};
   display: flex;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
-  min-width: 1440px;
 `;
 
 const ContentContainer = styled.div`
@@ -109,7 +108,7 @@ const BoardBody = styled.div`
   top: 134px;
   width: 622px;
   height: 441px;
-  background-image: url('../image/board.png');
+  background-image: url('/image/board.png');
 `;
 
 const Post = styled.div<{ top?: string; left?: string; rotate?: string }>`
@@ -169,14 +168,14 @@ const PostBody = styled.div<{ shape: string }>`
   ${props =>
     props.shape === 'circle' &&
     css`
-      background-image: url('../image/postCircle.png');
+      background-image: url('/image/postCircle.png');
       width: 126px;
       height: 122px;
     `}
   ${props =>
     props.shape === 'rectangle' &&
     css`
-      background-image: url('../image/postRectangle.png');
+      background-image: url('/image/postRectangle.png');
       width: 133px;
       height: 140px;
     `}
