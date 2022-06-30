@@ -14,6 +14,7 @@ type FormContainerProps = {
   value: string;
   type?: React.HTMLInputTypeAttribute;
   error?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 const FormContainer: React.FC<FormContainerProps> = ({
@@ -27,6 +28,7 @@ const FormContainer: React.FC<FormContainerProps> = ({
   btnTitle,
   type,
   error,
+  onClick,
 }) => {
   return (
     <FormWrapper>
@@ -41,7 +43,15 @@ const FormContainer: React.FC<FormContainerProps> = ({
           id={id}
         />
       </InputGroup>
-      <StyledButton>{btnTitle ? <Button size="small">{btnTitle}</Button> : ''}</StyledButton>
+      <ButtonBox>
+        {btnTitle ? (
+          <StyledButton size="small" onClick={onClick}>
+            {btnTitle}
+          </StyledButton>
+        ) : (
+          ''
+        )}
+      </ButtonBox>
     </FormWrapper>
   );
 };
@@ -61,8 +71,12 @@ const FormWrapper = styled.div`
   }
 `;
 
-const StyledButton = styled.div`
+const ButtonBox = styled.div`
   width: 145px;
+`;
+
+const StyledButton = styled(Button)`
+  font-size: 16px;
 `;
 
 export default FormContainer;
