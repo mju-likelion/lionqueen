@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef } from 'react';
 import styled from 'styled-components';
-import TreeIcon from '~/components/icons/Trees';
+import TreeIcon from '~components/icons/Trees';
 
 type BackgroundProps = {
   className?: string;
@@ -19,15 +19,14 @@ function BackgroundMain(props: BackgroundProps) {
           </LineContainer>
           <ContentContainer {...restProps}>{children}</ContentContainer>
         </Board>
-        <Trees />
+        <Tree left="15%" />
+        <Tree left="74%" />
       </BackgroundBox>
     </PageContainer>
   );
 }
 
 const PageContainer = styled.div`
-  min-width: 1440px;
-  min-height: 1024px;
   height: 100vh;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.primary.skyblue};
@@ -36,10 +35,8 @@ const PageContainer = styled.div`
 `;
 
 const BackgroundBox = styled.div`
-  /* 미디어 스크린으로 1440 1024일때 left, top translate속성 주기 */
-  height: 100%;
-  max-height: 1024px;
   width: 1440px;
+  height: 1024px;
   position: absolute;
   display: flex;
   justify-items: center;
@@ -48,9 +45,7 @@ const BackgroundBox = styled.div`
   background-position: center;
   left: 50%;
   top: 50%;
-  /* bottom: 50%; */
   transform: translate(-50%, -50%);
-  overflow: scroll;
 `;
 
 const Board = styled.div`
@@ -65,10 +60,10 @@ const Board = styled.div`
   transform: translate(-50%, -30%);
 `;
 
-const Trees = styled(TreeIcon)`
+const Tree = styled(TreeIcon)<{ left?: string }>`
   position: absolute;
   top: 65%;
-  left: 15%;
+  left: ${props => props.left || '0'};
 `;
 
 const LineContainer = styled.div`
@@ -87,13 +82,12 @@ const LineStyles = styled.div`
   height: 118px;
   border-radius: 10px;
   background-color: #cd853f;
-  /* padding-bottom: 10px; */
 `;
 
 const ContentContainer = styled.div`
   width: 912px;
   min-height: 542px;
-  margin: 102px auto auto auto;
+  margin: 102px auto 48px auto;
   border-radius: 15px;
   background-color: #ffffffcc;
 `;
