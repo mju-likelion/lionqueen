@@ -1,6 +1,6 @@
 /* eslint-disable no-return-assign */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useFormik, Field } from 'formik';
+import { useFormik } from 'formik';
 import styled from 'styled-components';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import Button from '~DesignSystem/Button';
@@ -14,7 +14,7 @@ type InitialValues = {
   name: string;
   phone: string;
   code: string;
-  privacyCheck: boolean;
+  privacyCheck: string[];
 };
 
 const SignUp = () => {
@@ -26,11 +26,11 @@ const SignUp = () => {
       name: '',
       phone: '',
       code: '',
-      privacyCheck: false,
+      privacyCheck: [],
     },
     onSubmit: values => {
       // 콘솔 지울예정 api 수정필요
-      console.log('가입하기 버튼');
+      console.log(values);
     },
     validationSchema: SignUpValidationSchema,
   });
@@ -140,12 +140,12 @@ const SignUp = () => {
             <label htmlFor="privacy">
               <input
                 type="checkbox"
-                name="privacy"
+                name="privacyCheck"
                 id="privacy"
-                onChange={e => {
-                  formik.values.privacyCheck = e.target.checked;
-                }}
+                onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                value="privacy"
+                checked={formik.values.privacyCheck.includes('privacy')}
               />
               (필수) 본인은 만 14세 이상이며 이메일 주소 수집에 동의합니다.
             </label>
@@ -153,15 +153,15 @@ const SignUp = () => {
           <Button
             size="medium"
             type="submit"
-            disabled={
-              !!formik.errors.email ||
-              !!formik.errors.password ||
-              !!formik.errors.passwordConfirm ||
-              !!formik.errors.name ||
-              !!formik.errors.phone ||
-              !!formik.errors.code ||
-              !formik.values.privacyCheck
-            }
+            // disabled={
+            //   !!formik.errors.email ||
+            //   !!formik.errors.password ||
+            //   !!formik.errors.passwordConfirm ||
+            //   !!formik.errors.name ||
+            //   !!formik.errors.phone ||
+            //   !!formik.errors.code ||
+            //   !formik.values.privacyCheck.length
+            // }
           >
             가입하기
           </Button>
