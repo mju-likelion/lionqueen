@@ -226,8 +226,13 @@ const LoungeInfo = styled.div`
 `;
 
 const LoungeName = styled.div`
+  display: block;
   font-size: 16px;
   margin: 8px 0 3px 13px;
+  width: 220px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 const LoungeRow = styled.div`
