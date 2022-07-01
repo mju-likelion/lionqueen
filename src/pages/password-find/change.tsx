@@ -14,9 +14,7 @@ const Change = () => {
 
   const passwordRegex = /^[a-zA-Z0-9]{6,10}$/;
 
-  // 패스워드 변경 인풋에서 실행되는 함수입니다.
-  const changePasswordInput = e => {
-    // 정규 표현식을 통과하면 에러메시지는 빈칸, 통과하지 못하면 아래의 에러메시지를 띄웁니다.
+  const changePasswordError = e => {
     if (passwordRegex.test(e.target.value) === true) {
       setChangeError(changeError => '');
     } else {
@@ -24,9 +22,7 @@ const Change = () => {
     }
   };
 
-  // 패스워드 변경 확인에서 실행되는 함수입니다.
-  const checkPasswordInput = () => {
-    // 정규표현식을 통과하고 패스워드가 일치한다면 에러메시지를 비우고 버튼을 활성화합니다.
+  const checkPasswordError = () => {
     if (changeError === '' && changePassword === checkPassword) {
       setCheckError(checkError => '');
       setDisabled(false);
@@ -35,10 +31,7 @@ const Change = () => {
     }
   };
 
-  // 버튼을 클릭할 때 실행되는 함수입니다.
   const onClick = e => {
-    // 에러를 모두 해결했다면 확인 페이지로 이동합니다.
-    // query를 줌으로써 confirm.tsx는 다양한 텍스트를 띄울 수 있게 되었습니다.
     if (changeError === '' && checkError === '') {
       Router.push({
         pathname: '/password-find/confirm',
@@ -69,7 +62,7 @@ const Change = () => {
                 value={changePassword}
                 placeholder="6~10자의 영문, 숫자를 조합해서 입력하세요"
                 onChange={e => setChangePassword(e.target.value)}
-                onBlur={changePasswordInput}
+                onBlur={changePasswordError}
               />
             </InputGroup>
           </InputDiv>
@@ -89,7 +82,7 @@ const Change = () => {
                 value={checkPassword}
                 placeholder="비밀번호를 한 번 더 입력하세요"
                 onChange={e => setCheckPassword(e.target.value)}
-                onBlur={checkPasswordInput}
+                onBlur={checkPasswordError}
               />
             </InputGroup>
           </InputDiv>

@@ -3,7 +3,7 @@ import Router from 'next/router';
 import styled from 'styled-components';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
-import Button from '../../DesignSystem/Button';
+import Button from '~DesignSystem/Button';
 
 const user = [
   // 임의로 작성한 로그인 가능한 계정들

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
-import Button from '../../DesignSystem/Button';
+import Button from '~DesignSystem/Button';
 
 const Confirm = () => {
   const router = useRouter();
