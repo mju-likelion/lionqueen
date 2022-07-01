@@ -1,39 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@font-face {
-  font-family: 'Maplestory';
-  src: url('../../public/fonts/MaplestoryLight.otf') format('otf');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+* {
+  box-sizing: border-box;
+  color: #2e2e2e;
+  font-family: Maplestory, NanumBarunGothic, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
-
-@font-face {
-  font-family: 'Maplestory';
-  src: url('../../public/fonts/MaplestoryBold.otf') format('otf');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-.button-primary-orange {
-  @apply border-2 bg-primary-orange shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] text-text rounded-md hover:shadow-inner;
-
-  border-color: #fff38b;
-}
-
-.button-primary-orange:hover {
-  background: linear-gradient(180deg, #f2b112 0%, #f3ca67 100%);
-}
-
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Maplestory, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
-    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -41,6 +15,24 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+button {
+  outline: none;
+  border: none;
+  background: transparent;
+}
+
+@font-face {
+  font-family: 'Maplestory';
+  src: url('../../public/fonts/MaplestoryLight.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Maplestory';
+  src: url('../../public/fonts/MaplestoryBold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
