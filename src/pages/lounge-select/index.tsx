@@ -1,10 +1,26 @@
 import styled from 'styled-components';
 
-import BackgroundMain from '../../DesignSystem/BackgroundMain';
-import Button from './Button';
-import Plus from '../../../public/image/plus.svg';
+import { useState } from 'react';
+import BackgroundMain from '~DesignSystem/BackgroundMain';
+import Button from '../../components/LoungeSelect/BubbleMoveButton';
+import Plus from '../../components/icons/Plus';
+import PlusModal from '~/components/LoungeSelect/PlusModal';
 
 const LoungeSelect = () => {
+  const [clicked, setClicked] = useState(false);
+  const [isClosed, setIsClosed] = useState(false);
+
+  const closeModal = () => {
+    if (isClosed) {
+      setClicked(false);
+    }
+  };
+
+  const createLounge = () => {
+    setClicked(true);
+    setIsClosed(false);
+  };
+
   return (
     <BackgroundMain>
       <Container>
@@ -13,8 +29,17 @@ const LoungeSelect = () => {
           <Line />
         </TitleContainer>
         <Button />
-        <PlusWrapper>
+        <PlusWrapper onClick={createLounge}>
           <Plus />
+          {clicked && (
+            <PlusModal
+              size="large"
+              title=""
+              onClose={() => {
+                setIsClosed(true);
+              }}
+            />
+          )}
         </PlusWrapper>
       </Container>
     </BackgroundMain>
@@ -54,6 +79,7 @@ const PlusWrapper = styled.div`
   width: 50px;
   height: 50px;
   margin: 0 auto;
+  cursor: pointer;
 `;
 
 export default LoungeSelect;
