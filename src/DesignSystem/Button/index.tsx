@@ -6,13 +6,28 @@ type ButtonProps = {
   size?: 'small' | 'medium' | 'large';
   className?: string;
   fontColor?: string;
+  disabled?: boolean;
 } & ComponentPropsWithoutRef<'button'>;
 
 const Button = (props: ButtonProps) => {
-  const { size = 'medium', className = '', fontColor = '', children, ...restProps } = props;
+  const {
+    size = 'medium',
+    className = '',
+    fontColor = '',
+    children,
+    disabled = false,
+    ...restProps
+  } = props;
 
   return (
-    <Style.Btn type="button" size={size} fontColor={fontColor} className={className} {...restProps}>
+    <Style.Btn
+      type="button"
+      size={size}
+      fontColor={fontColor}
+      className={className}
+      disabled={disabled}
+      {...restProps}
+    >
       {children}
     </Style.Btn>
   );

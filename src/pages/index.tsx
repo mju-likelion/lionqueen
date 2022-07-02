@@ -44,6 +44,9 @@ const Home: NextPage = () => {
         <H1Placeholder>text-placeholder</H1Placeholder>
 
         {/* 버튼 스타일링 예시 */}
+        <Button disabled size="medium">
+          버튼
+        </Button>
         <Button size="medium">버튼</Button>
         <Button
           size="large"
