@@ -12,7 +12,7 @@ function NavBar() {
         <Link href="/MyPage">
           <MenuItem>마이페이지</MenuItem>
         </Link>
-        <Link href="/MyPage">
+        <Link href="/lounge-select">
           <MenuItem>그룹 전환</MenuItem>
         </Link>
         <Button>로그아웃</Button>
