@@ -26,14 +26,20 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <div>
-      <MyInfoModal isSingle size="large" title="" onClose={onClose}>
+      <MyInfoModal
+        isSingle
+        size="large"
+        title={<MyInfoTitle>내 정보</MyInfoTitle>}
+        onClose={onClose}
+      >
         <InfoBox>
-          <MyInfoTitle>내 정보</MyInfoTitle>
-          <NameTitle>이름</NameTitle>
-          <NameInfo>
-            <NameText type="text" maxLength={4} />
-            <NameSaveButton onClick={onClickSave}>저장</NameSaveButton>
-          </NameInfo>
+          <NameBox>
+            <NameTitle>이름</NameTitle>
+            <NameInfo>
+              <NameText type="text" maxLength={4} />
+              <NameSaveButton onClick={onClickSave}>저장</NameSaveButton>
+            </NameInfo>
+          </NameBox>
           <LoungeBox>
             <LoungeTitle>소속 라운지</LoungeTitle>
             <LoungeInfo>
@@ -102,24 +108,31 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
 const MyInfoTitle = styled.p`
   font-size: 35px;
   line-height: 28px;
-  margin-bottom: 27px;
+  margin: 0;
+  user-select: none;
 `;
 
 const InfoBox = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   user-select: none;
 `;
 
 // 이름 정보
 
+const NameBox = styled.div`
+  width: 315px;
+`;
+
 const NameTitle = styled.p`
   font-size: 20px;
   line-height: 18px;
-  margin-right: 260px;
+  text-align: left;
+
   margin-bottom: 5px;
+  margin-left: 10px;
 `;
 
 const NameInfo = styled.div`
@@ -127,8 +140,9 @@ const NameInfo = styled.div`
   height: 41px;
   border: 1px solid;
   border-radius: 15px;
-  flex-direction: row;
+
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 `;
@@ -136,7 +150,10 @@ const NameInfo = styled.div`
 const NameText = styled.input`
   font-size: 18px;
   margin: 8px 0 7px 13px;
-  outline: none;
+  border: none;
+  :focus {
+    outline: none;
+  }
 `;
 
 const NameSaveButton = styled.button`
@@ -150,15 +167,15 @@ const LoungeBox = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top: 25px;
+  margin-top: 10px;
 `;
 
 const LoungeTitle = styled.p`
-  display: flex;
-  justify-content: left;
+  text-align: left;
   font-size: 20px;
   line-height: 18px;
-  margin-left: 11px;
+
+  margin-left: 10px;
   margin-bottom: 5px;
 `;
 

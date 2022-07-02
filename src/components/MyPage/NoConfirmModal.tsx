@@ -5,7 +5,7 @@ import Modal from '~DesignSystem/Modal';
 
 type Props = {
   children: React.ReactNode;
-  title: string;
+  title: React.ReactNode;
   isSingle?: boolean;
   size?: 'large' | 'medium' | 'small';
   onClose?: () => void;
