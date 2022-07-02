@@ -25,8 +25,8 @@ const ConfirmModal = ({
       <Modal.Body>{children}</Modal.Body>
       <Modal.Footer>
         <>
-          <Button onClick={onConfirm}>확인</Button>
           {!isSingle && <Button onClick={onClose}>취소</Button>}
+          <Button onClick={onConfirm}>확인</Button>
         </>
       </Modal.Footer>
     </Modal>
