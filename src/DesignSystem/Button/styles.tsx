@@ -33,4 +33,11 @@ export const Btn = styled.button<{ size?: 'small' | 'medium' | 'large'; fontColo
   :hover {
     background: linear-gradient(180deg, #f2b112 0%, #f3ca67 100%);
   }
+
+  &:disabled {
+    background: #afafaf;
+    border: 2px solid #e5e5e5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+  }
 `;
