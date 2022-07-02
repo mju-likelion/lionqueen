@@ -6,21 +6,21 @@ import LoungeList from '~/components/MyPage/LoungeList';
 import ConfirmModal from '~/components/ConfirmModal';
 
 const MyInfo = ({ onClose }: { onClose: () => void }) => {
-  const [LoungeOutModalShow, setLoungeOutModalShow] = useState(false); // 파스칼 케이스 ;ㅏㅂ꾸기
-  const [WithdrawalModalShow, setWithdrawalModalShow] = useState(false);
+  const [loungeOutModalShow, setLoungeOutModalShow] = useState(false);
+  const [withdrawalModalShow, setWithdrawalModalShow] = useState(false);
   const [lounge, setLounge] = useState(LoungeList);
   const onClickSave = () => alert('새로운 이름을 저장했습니다.');
 
   // 라운지 탈퇴
   const goodByeLounge = () => {
-    if (LoungeOutModalShow) {
+    if (loungeOutModalShow) {
       alert('소속 라운지를 탈퇴했습니다.');
     }
   };
 
   // 라이언타운 계정 삭제
   const goodByeLionTown = () => {
-    if (WithdrawalModalShow) {
+    if (withdrawalModalShow) {
       alert('라이언타운 계정을 삭제했습니다. 안녕히 가세요.');
     }
   };
@@ -63,7 +63,7 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
       </MyInfoModal>
 
       {/* //소속 라운지 탈퇴 모달 */}
-      {LoungeOutModalShow && (
+      {loungeOutModalShow && (
         <ConfirmModal
           size="medium"
           title="소속 라운지 탈퇴"
@@ -79,7 +79,7 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
         </ConfirmModal>
       )}
       {/* //소속 라운지 탈퇴 모달 */}
-      {WithdrawalModalShow && (
+      {withdrawalModalShow && (
         <ConfirmModal
           size="medium"
           title="계정 삭제"
