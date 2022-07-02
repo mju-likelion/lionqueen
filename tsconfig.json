@@ -14,13 +14,13 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
-      "~page/*": ["pages/*"],
-      "~lib/*": ["lib/*"],
-      "~DesignSystem/*": ["DesignSystem/*"],
-      "~components/*": ["components/*"],
-      "~/*": ["./*"]
+      "~page/*": ["src/pages/*"],
+      "~lib/*": ["src/lib/*"],
+      "~DesignSystem/*": ["src/DesignSystem/*"],
+      "~components/*": ["src/components/*"],
+      "~/*": ["src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js"],
