@@ -7,55 +7,83 @@ import LionLogo from '../icons/LionLogo';
 function NavBar() {
   return (
     <NavBarWrapper>
-      <NavBarBox>
-        <TextTitle>메뉴</TextTitle>
+      <TextTitle>메뉴</TextTitle>
+      <ButtonBox>
         <Link href="/MyPage">
-          <StyledPrimaryButton>마이페이지</StyledPrimaryButton>
+          <MenuItem>마이페이지</MenuItem>
         </Link>
-        <StyledPrimaryButton>그룹 전환</StyledPrimaryButton>
-        <StyledSecondaryButton>로그아웃</StyledSecondaryButton>
-        <LionLogoContainer />
-      </NavBarBox>
+        <Link href="/MyPage">
+          <MenuItem>그룹 전환</MenuItem>
+        </Link>
+        <Button>로그아웃</Button>
+      </ButtonBox>
+
+      <LionLogoBox>
+        <LionLogo />
+      </LionLogoBox>
     </NavBarWrapper>
   );
 }
 
 const NavBarWrapper = styled.div`
-  z-index: 1;
-  position: absolute;
-  right: 0;
-  top: 56px;
-  background-color: rgba(255, 187, 23, 0.7);
-  width: 200px;
-  height: 888px;
-  border-radius: 20px;
-`;
-
-const NavBarBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 200px;
+  height: 888px;
+
+  position: absolute;
+  right: 0;
+  top: 56px;
+  z-index: 10;
+
+  background-color: rgba(255, 187, 23, 0.7);
+  border-radius: 20px;
 `;
 
 const TextTitle = styled.p`
+  font-size: 72px;
   font-weight: 300;
   line-height: 80px;
+  text-align: center;
+
   margin-bottom: 71px;
   margin-top: 32px;
-  font-size: 72px;
-  text-align: center;
 `;
 
-const LionLogoContainer = styled(LionLogo)`
+const LionLogoBox = styled.div`
+  position: absolute;
   width: 159px;
   height: 154px;
+  bottom: 30px;
 `;
 
-const StyledPrimaryButton = styled(Button)`
-  margin-bottom: 54px;
+const MenuItem = styled.a`
+  width: 160px;
+  height: 42px;
+  font-size: 22px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: ${({ theme }) => theme.colors.primary.orange};
+  color: #2e2e2e;
+  border: 2px solid #fff38b;
+  border-radius: 10px;
+
+  text-align: center;
+  line-height: 28px;
+
+  :hover {
+    background: linear-gradient(180deg, #f2b112 0%, #f3ca67 100%);
+  }
 `;
 
-const StyledSecondaryButton = styled(Button)`
-  margin-bottom: 287px;
+const ButtonBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 54px;
 `;
+
 export default NavBar;
