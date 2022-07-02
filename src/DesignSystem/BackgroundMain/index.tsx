@@ -1,10 +1,10 @@
-import type { ComponentPropsWithoutRef } from 'react';
 import styled from 'styled-components';
 import Trees from '~components/Icons/Trees';
 
 type BackgroundProps = {
+  children: React.ReactNode;
   className?: string;
-} & ComponentPropsWithoutRef<'div'>;
+};
 
 function BackgroundMain(props: BackgroundProps) {
   const { children, ...restProps } = props;
