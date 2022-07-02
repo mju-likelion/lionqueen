@@ -13,6 +13,9 @@
     "prepare": "husky install",
     "deploy": "serverless"
   },
+  "browser": {
+    "[module-name]": false
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
     "next": "12.1.5",
