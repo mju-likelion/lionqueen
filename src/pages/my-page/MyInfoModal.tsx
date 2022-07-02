@@ -5,9 +5,8 @@ import MyInfoModal from '~/components/MyPage/NoConfirmModal';
 import LoungeList from '~/components/MyPage/LoungeList';
 import ConfirmModal from '~/components/ConfirmModal';
 
-const MyInfo = () => {
-  const [isModalShow, setIsModalShow] = useState(false);
-  const [LoungeOutModalShow, setLoungeOutModalShow] = useState(false);
+const MyInfo = ({ onClose }: { onClose: () => void }) => {
+  const [LoungeOutModalShow, setLoungeOutModalShow] = useState(false); // 파스칼 케이스 ;ㅏㅂ꾸기
   const [WithdrawalModalShow, setWithdrawalModalShow] = useState(false);
   const [lounge, setLounge] = useState(LoungeList);
   const onClickSave = () => alert('새로운 이름을 저장했습니다.');
@@ -28,14 +27,7 @@ const MyInfo = () => {
 
   return (
     <div>
-      <MyInfoModal
-        isSingle
-        size="large"
-        title=""
-        onClose={() => {
-          setIsModalShow(false);
-        }}
-      >
+      <MyInfoModal isSingle size="large" title="" onClose={onClose}>
         <InfoBox>
           <MyInfoTitle>내 정보</MyInfoTitle>
           <NameTitle>이름</NameTitle>

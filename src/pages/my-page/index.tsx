@@ -3,17 +3,18 @@ import styled from 'styled-components';
 import React, { useState } from 'react';
 import BackgroundMain from '~/DesignSystem/BackgroundMain';
 import Button from '~/DesignSystem/Button';
-import MyInfo from '~page/my-page/MyInfoModal';
+import MyInfo from '~page/my-page/MyInfoModal'; // 컨벤션 이름 같게 수정 , 파일 이동
 
 const MyPage = () => {
   const [isModalShow, setIsModalShow] = useState(false);
-
+  const onClose = () => {
+    setIsModalShow(false);
+  };
   const onClickPrepare = () => alert('준비 중입니다.');
-
   return (
     <BackgroundMain>
       <MypageBg>
-        {isModalShow && <MyInfo />}
+        {isModalShow && <MyInfo onClose={onClose} />}
         <Title>마이페이지</Title>
         <MyPageButton>
           <ButtonMargin size="large" onClick={() => setIsModalShow(true)}>
