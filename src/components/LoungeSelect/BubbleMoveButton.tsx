@@ -4,32 +4,16 @@ import styled from 'styled-components';
 import Bubble from '../icons/Bubble';
 import Left from '../icons/LeftArrow';
 import Right from '../icons/RightArrow';
+import group from './GroupList';
 
 const BubbleMoveButton = () => {
-  type GroupType = { id: number; name: string };
-
-  const [group, setGroup] = useState<GroupType[]>([
-    {
-      id: 1,
-      name: '그룹이름1',
-    },
-    {
-      id: 2,
-      name: '그룹이름2',
-    },
-    {
-      id: 3,
-      name: '그룹이름3 (새로 생성된)',
-    },
-  ]);
-
   const groupList = group.map(n => (
-    <div>
+    <Group>
       <BubbleWrapper key={n.id}>
         <Bubble />
       </BubbleWrapper>
       <GroupName>{n.name}</GroupName>
-    </div>
+    </Group>
   ));
 
   return (
@@ -67,17 +51,26 @@ const ArrowWrapper = styled.div`
   cursor: pointer;
 `;
 
-const GroupName = styled.div`
-  width: 120px;
-  height: 120px;
+const Group = styled.div`
+  width: 124px;
+  height: 124px;
+  text-overflow: ellipsis;
+`;
+
+const GroupName = styled.span`
+  width: 100px;
+  height: 60px;
+  border: 1px solid black;
   position: absolute;
-  margin: -120px 0 0 8px;
+  margin: -90px 0 0 17px;
   display: flex;
   align-items: center;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 18px;
   color: ${({ theme }) => theme.colors.primary.black};
-  word-break: keep-all;
+  overflow: hidden;
+  white-space: wrap;
+  text-overflow: '[...]';
 `;
 
 export default BubbleMoveButton;
