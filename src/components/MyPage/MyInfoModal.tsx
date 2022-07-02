@@ -167,7 +167,20 @@ const LoungeInfo = styled.div`
   width: 315px;
   height: 192px;
   border: 1px solid;
-  border-radius: 15px;
+  border-radius: 15px 5px 5px 15px;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 8px; /* 스크롤바의 너비 */
+  }
+  &::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: ${({ theme }) => theme.colors.primary.lightgreen}; /* 스크롤바의 색상 */
+
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 144, 224, 0.1); /*스크롤바 뒷 배경 색상*/
+  }
 `;
 
 const LoungeName = styled.div`

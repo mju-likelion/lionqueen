@@ -21,14 +21,14 @@ const LoungeList = [
     id: 5,
     name: '2022 명지대 멋쟁이사자처럼 라운지',
   },
-  // { 스크롤 구현 예정
-  //   id: 6,
-  //   name: '여섯',
-  // },
-  // {
-  //   id: 7,
-  //   name: '일곱',
-  // },
+  {
+    id: 6,
+    name: '연빈님이 기능 얼른 하라고 함',
+  },
+  {
+    id: 7,
+    name: '여기도 토큰이 있고 저기도 is',
+  },
 ];
 
 export default LoungeList;
