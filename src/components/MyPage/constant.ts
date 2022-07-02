@@ -1,6 +1,6 @@
 type LoungeList = { id: number; name: string };
 
-const LoungeList = [
+export const LoungeList = [
   {
     id: 1,
     name: '6 0 2 1 2 4 0 4 하 나 둘 셋 넷 다 잘려라잘려라',
@@ -30,5 +30,3 @@ const LoungeList = [
     name: '여기도 토큰이 있고 저기도 is',
   },
 ];
-
-export default LoungeList;
