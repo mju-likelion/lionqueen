@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef } from 'react';
 import styled from 'styled-components';
-import TreeIcon from '~components/Icons/Trees';
+import Trees from '~components/Icons/Trees';
 
 type BackgroundProps = {
   className?: string;
@@ -19,8 +19,8 @@ function BackgroundMain(props: BackgroundProps) {
           </LineContainer>
           <ContentContainer {...restProps}>{children}</ContentContainer>
           <TreeContainer>
-            <TreeIcon />
-            <TreeIcon />
+            <Trees />
+            <Trees />
           </TreeContainer>
         </Board>
       </BackgroundBox>
