@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 
 import Bubble from '../icons/Bubble';
@@ -8,12 +7,12 @@ import group from './GroupList';
 
 const BubbleMoveButton = () => {
   const groupList = group.map(n => (
-    <Group>
-      <BubbleWrapper key={n.id}>
+    <div key={n.id}>
+      <BubbleWrapper>
         <Bubble />
       </BubbleWrapper>
       <GroupName>{n.name}</GroupName>
-    </Group>
+    </div>
   ));
 
   return (
@@ -30,8 +29,8 @@ const BubbleMoveButton = () => {
 };
 
 const Container = styled.div`
-  height: 124px;
-  width: 612px;
+  height: 165px;
+  width: 745px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -40,37 +39,30 @@ const Container = styled.div`
 `;
 
 const BubbleWrapper = styled.div`
-  width: 124px;
-  height: 124px;
+  width: 165px;
+  height: 165px;
   cursor: pointer;
 `;
 
 const ArrowWrapper = styled.div`
-  width: 49px;
+  width: 48px;
   height: 55px;
   cursor: pointer;
 `;
 
-const Group = styled.div`
-  width: 124px;
-  height: 124px;
-  text-overflow: ellipsis;
-`;
-
 const GroupName = styled.span`
-  width: 100px;
-  height: 60px;
-  border: 1px solid black;
+  width: 140px;
+  height: 30px;
   position: absolute;
-  margin: -90px 0 0 17px;
+  margin: -95px 0 0 8px;
   display: flex;
-  align-items: center;
   cursor: pointer;
   font-size: 18px;
   color: ${({ theme }) => theme.colors.primary.black};
+  white-space: nowrap;
+  text-overflow: ellipsis;
   overflow: hidden;
-  white-space: wrap;
-  text-overflow: '[...]';
+  display: block;
 `;
 
 export default BubbleMoveButton;
