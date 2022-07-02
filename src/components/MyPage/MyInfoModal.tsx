@@ -1,14 +1,13 @@
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import MyInfoModal from '~/components/MyPage/NoConfirmModal';
-import LoungeList from '~/components/MyPage/LoungeList';
-import ConfirmModal from '~/components/ConfirmModal';
+import MyInfoModal from '~components/MyPage/NoConfirmModal';
+import { LoungeList } from '~components/MyPage/constant';
+import ConfirmModal from '~components/ConfirmModal';
 
 const MyInfo = ({ onClose }: { onClose: () => void }) => {
   const [loungeOutModalShow, setLoungeOutModalShow] = useState(false);
   const [withdrawalModalShow, setWithdrawalModalShow] = useState(false);
-  const [lounge, setLounge] = useState(LoungeList);
   const onClickSave = () => alert('새로운 이름을 저장했습니다.');
 
   // 라운지 탈퇴
@@ -38,9 +37,9 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
           <LoungeBox>
             <LoungeTitle>소속 라운지</LoungeTitle>
             <LoungeInfo>
-              {lounge.map(Lounge => (
-                <LoungeRow key={Lounge.id}>
-                  <LoungeName>{Lounge.name}</LoungeName>
+              {LoungeList.map(lounge => (
+                <LoungeRow key={lounge.id}>
+                  <LoungeName>{lounge.name}</LoungeName>
                   <LoungeOutButton
                     onClick={() => {
                       setLoungeOutModalShow(true);
