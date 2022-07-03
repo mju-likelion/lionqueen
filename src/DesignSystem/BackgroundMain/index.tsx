@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Trees from '~components/Icons/Trees';
+import Tree from '~components/Icons/Tree';
 
 type BackgroundProps = {
   children: React.ReactNode;
@@ -19,8 +19,8 @@ function BackgroundMain(props: BackgroundProps) {
           </LineContainer>
           <ContentContainer {...restProps}>{children}</ContentContainer>
           <TreeContainer>
-            <Trees />
-            <Trees />
+            <Tree />
+            <Tree />
           </TreeContainer>
         </Board>
       </BackgroundBox>
