@@ -1,5 +1,3 @@
-/* eslint-disable no-return-assign */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useFormik } from 'formik';
 import styled from 'styled-components';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
@@ -35,6 +33,10 @@ const SignUp = () => {
     validationSchema: SignUpValidationSchema,
   });
 
+  const formError = (field: keyof InitialValues) => {
+    return !!formik.values[field] && formik.touched[field] ? formik.errors[field] : undefined;
+  };
+
   return (
     <BackgroundMain>
       <SignUpContainer>
@@ -50,11 +52,7 @@ const SignUp = () => {
             onChange={formik.handleChange}
             value={formik.values.email}
             onBlur={formik.handleBlur}
-            error={
-              formik.values.email !== '' && formik.touched.email
-                ? formik.errors.email && formik.errors.email
-                : undefined
-            }
+            error={formError('email')}
             onClick={() => {
               // 이메일인증  api연결예정
               console.log('이메일인증 버튼');
@@ -68,11 +66,7 @@ const SignUp = () => {
             onChange={formik.handleChange}
             value={formik.values.code}
             onBlur={formik.handleBlur}
-            error={
-              formik.values.code !== '' && formik.touched.code
-                ? formik.errors.code && formik.errors.code
-                : undefined
-            }
+            error={formError('code')}
             onClick={() => {
               // 인증코드 확인 api연결예정
               console.log('인증코드확인 버튼');
@@ -102,11 +96,7 @@ const SignUp = () => {
             onChange={formik.handleChange}
             value={formik.values.passwordConfirm}
             onBlur={formik.handleBlur}
-            error={
-              formik.values.passwordConfirm !== '' && formik.touched.passwordConfirm
-                ? formik.errors.passwordConfirm && formik.errors.passwordConfirm
-                : undefined
-            }
+            error={formError('passwordConfirm')}
           />
           <FormContainer
             placeholder="한글로 입력하세요."
@@ -116,11 +106,7 @@ const SignUp = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.name}
-            error={
-              formik.values.name !== '' && formik.touched.name
-                ? formik.errors.name && formik.errors.name
-                : undefined
-            }
+            error={formError('name')}
           />
           <FormContainer
             placeholder="'-' 구분 없이 입력하세요."
@@ -130,11 +116,7 @@ const SignUp = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.phone}
-            error={
-              formik.values.phone !== '' && formik.touched.phone
-                ? formik.errors.phone && formik.errors.phone
-                : undefined
-            }
+            error={formError('phone')}
           />
           <Privacy>
             <label htmlFor="privacy">
@@ -153,15 +135,15 @@ const SignUp = () => {
           <Button
             size="medium"
             type="submit"
-            // disabled={
-            //   !!formik.errors.email ||
-            //   !!formik.errors.password ||
-            //   !!formik.errors.passwordConfirm ||
-            //   !!formik.errors.name ||
-            //   !!formik.errors.phone ||
-            //   !!formik.errors.code ||
-            //   !formik.values.privacyCheck.length
-            // }
+            disabled={
+              !!formik.errors.email ||
+              !!formik.errors.password ||
+              !!formik.errors.passwordConfirm ||
+              !!formik.errors.name ||
+              !!formik.errors.phone ||
+              !!formik.errors.code ||
+              !formik.values.privacyCheck.length
+            }
           >
             가입하기
           </Button>
