@@ -7,17 +7,21 @@ on: push
 
 # what the action will do
 jobs:
-  test:
-    # the operating system it will run on
+  chromatic-deployment:
     runs-on: ubuntu-latest
-    # the list of steps that the action will go through
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - run: yarn
-      - uses: chromaui/action@v1
-        # options required to the GitHub chromatic action
+      - name: Install dependencies and build
+        run: |
+          npm ci
+          npm run build-buoy
+      - name: Publish to Chromatic
+        uses: chromaui/action@v1
         with:
+          workingDir: buoy-workspace
           projectToken: 0aefef65099b
           token: ${{ secrets.TOKEN }}
+          exitZeroOnChanges: true
