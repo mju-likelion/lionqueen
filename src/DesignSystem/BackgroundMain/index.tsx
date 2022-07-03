@@ -48,7 +48,7 @@ const BackgroundBox = styled.div`
 
   padding-top: 93px;
 
-  background-image: url('/image/background.png');
+  background-image: url('https://lionqueen.s3.amazonaws.com/background.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 1440px 1024px;
