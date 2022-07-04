@@ -2,44 +2,27 @@ import styled from 'styled-components';
 
 import { useState } from 'react';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
-import Button from '../../components/LoungeSelect/BubbleMoveButton';
-import Plus from '../../components/icons/Plus';
+import Button from '~/components/LoungeSelect/BubbleMoveButton';
+import Plus from '~/components/icons/Plus';
 import PlusModal from '~/components/LoungeSelect/PlusModal';
 
 const LoungeSelect = () => {
-  const [clicked, setClicked] = useState(false);
-  const [isClosed, setIsClosed] = useState(false);
+  const [isModalShow, setIsModalShow] = useState(false);
 
-  const closeModal = () => {
-    if (isClosed) {
-      setClicked(false);
-    }
-  };
-
-  const createLounge = () => {
-    setClicked(true);
-    setIsClosed(false);
+  const onClose = () => {
+    setIsModalShow(false);
   };
 
   return (
     <BackgroundMain>
+      {isModalShow && <PlusModal onClose={onClose} />}
       <Container>
         <TitleContainer>
           <Title>라운지 선택</Title>
-          <Line />
         </TitleContainer>
         <Button />
-        <PlusWrapper onClick={createLounge}>
+        <PlusWrapper onClick={() => setIsModalShow(true)}>
           <Plus />
-          {clicked && (
-            <PlusModal
-              size="large"
-              title=""
-              onClose={() => {
-                setIsClosed(true);
-              }}
-            />
-          )}
         </PlusWrapper>
       </Container>
     </BackgroundMain>
@@ -48,20 +31,22 @@ const LoungeSelect = () => {
 
 const Container = styled.div`
   width: 612px;
-  height: 542px;
+  height: 700px;
   display: flex;
   text-align: center;
+  align-items: center;
   margin: 0 auto;
-  padding-top: 40px;
+  padding-top: 25px;
   flex-direction: column;
 `;
 
 const TitleContainer = styled.div`
-  width: 496px;
-  height: 120px;
+  width: 576px;
+  height: 130px;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.black};
 `;
 
 const Title = styled.p`
@@ -69,10 +54,6 @@ const Title = styled.p`
   margin-top: 58px;
   margin-bottom: 20px;
   color: ${({ theme }) => theme.colors.primary.black};
-`;
-
-const Line = styled.div`
-  border-top: 2px solid ${({ theme }) => theme.colors.black};
 `;
 
 const PlusWrapper = styled.div`

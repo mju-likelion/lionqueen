@@ -1,67 +1,41 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-
 import styled from 'styled-components';
 
 import { useState } from 'react';
 import Button from '~DesignSystem/Button';
-import Modal from '~DesignSystem/Modal';
+import ModalForm from './ModalForm';
 import Counter from './Counter';
 
-type Props = {
-  children: React.ReactNode;
-  title: string;
-  size: 'large';
-  onCreate: () => void;
-  onClose?: () => void;
-};
-
-const PlusModal = ({
-  children,
-  title = '라운지 생성',
-  size = 'large',
-  onCreate,
-  onClose,
-}: Props) => {
+const PlusModal = ({ onClose }: { onClose: () => void }) => {
   const [input, setInput] = useState('');
   const [maxLength, setMaxLength] = useState(0);
   const [errorShow, setErrorShow] = useState(false);
-  const checkLang = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+  // const regex = /[^a-z|A-Z|0-9|ㄱ-ㅎ|가-힣]/g;
 
   const onChangeInput = (e: { target: { value: string } }) => {
     setInput(e.target.value);
-
-    if (checkLang.test(input) === true) {
-      setMaxLength(10);
-      if (input.length > 10) {
-        // 에러
+    if (input) {
+      setMaxLength(12);
+      if (input.length > 12) {
         setErrorShow(true);
-      }
-    } else {
-      setMaxLength(14);
-      if (input.length > 14) {
-        // 에러
-        setErrorShow(true);
+      } else {
+        setErrorShow(false);
       }
     }
   };
 
   return (
-    <Modal title={title} size={size}>
-      <Modal.Body>
-        <InputContainer>
-          <InputTitle>그룹 이름</InputTitle>
-          <InputText value={input} onChange={onChangeInput} maxLength={maxLength} />
-          {errorShow && <CautionText>한글 10자, 영문 14자 이내로 작성해주세요.</CautionText>}
-        </InputContainer>
-        <PeopleContainer>
-          <NumPeople>인원수</NumPeople>
-          <Counter />
-        </PeopleContainer>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={onCreate}>생성</Button>
-      </Modal.Footer>
-    </Modal>
+    <ModalForm isSingle size="large" title="라운지 생성" onClose={onClose}>
+      <InputContainer>
+        <InputTitle>그룹 이름</InputTitle>
+        <InputText value={input} onChange={onChangeInput} maxLength={maxLength} />
+        {errorShow && <CautionText>한글, 영문, 숫자 포함 12자 이내로 작성해주세요.</CautionText>}
+      </InputContainer>
+      <PeopleContainer>
+        <NumPeople>인원수</NumPeople>
+        <Counter />
+      </PeopleContainer>
+      <Button>생성</Button>
+    </ModalForm>
   );
 };
 
