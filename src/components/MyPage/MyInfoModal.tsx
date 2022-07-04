@@ -6,9 +6,14 @@ import { LoungeList } from '~components/MyPage/constant';
 import ConfirmModal from '~components/ConfirmModal';
 
 const MyInfo = ({ onClose }: { onClose: () => void }) => {
+  const [name, setName] = useState('이유라');
   const [loungeOutModalShow, setLoungeOutModalShow] = useState(false);
   const [withdrawalModalShow, setWithdrawalModalShow] = useState(false);
-  const onClickSave = () => alert('새로운 이름을 저장했습니다.');
+  const onClickSave = () => {
+    alert('새로운 이름을 저장했습니다.');
+    setName(name);
+    console.log(name);
+  };
 
   // 라운지 탈퇴
   const goodByeLounge = () => {
@@ -23,7 +28,7 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
       alert('라이언타운 계정을 삭제했습니다. 안녕히 가세요.');
     }
   };
-
+  console.log(name);
   return (
     <div>
       <MyInfoModal
@@ -36,7 +41,12 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
           <NameBox>
             <NameTitle>이름</NameTitle>
             <NameInfo>
-              <NameText type="text" maxLength={4} />
+              <NameText
+                type="text"
+                maxLength={5}
+                value={name}
+                onChange={e => setName(e.target.value)}
+              />
               <NameSaveButton onClick={onClickSave}>저장</NameSaveButton>
             </NameInfo>
           </NameBox>
