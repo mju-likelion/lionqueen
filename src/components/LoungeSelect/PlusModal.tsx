@@ -7,19 +7,15 @@ import Counter from './Counter';
 
 const PlusModal = ({ onClose }: { onClose: () => void }) => {
   const [input, setInput] = useState('');
-  const [maxLength, setMaxLength] = useState(0);
   const [errorShow, setErrorShow] = useState(false);
-  // const regex = /[^a-z|A-Z|0-9|ㄱ-ㅎ|가-힣]/g;
+  const regex = /^[a-zA-Z0-9ㄱ-ㅎ가-힣]{0,11}$/;
 
   const onChangeInput = (e: { target: { value: string } }) => {
     setInput(e.target.value);
-    if (input) {
-      setMaxLength(12);
-      if (input.length > 12) {
-        setErrorShow(true);
-      } else {
-        setErrorShow(false);
-      }
+    if (regex.test(input)) {
+      setErrorShow(false);
+    } else {
+      setErrorShow(true);
     }
   };
 
@@ -27,14 +23,14 @@ const PlusModal = ({ onClose }: { onClose: () => void }) => {
     <ModalForm isSingle size="large" title="라운지 생성" onClose={onClose}>
       <InputContainer>
         <InputTitle>그룹 이름</InputTitle>
-        <InputText value={input} onChange={onChangeInput} maxLength={maxLength} />
+        <InputText value={input} onChange={onChangeInput} />
         {errorShow && <CautionText>한글, 영문, 숫자 포함 12자 이내로 작성해주세요.</CautionText>}
       </InputContainer>
       <PeopleContainer>
         <NumPeople>인원수</NumPeople>
         <Counter />
       </PeopleContainer>
-      <Button>생성</Button>
+      <Button onClick={onClose}>생성</Button>
     </ModalForm>
   );
 };
@@ -58,8 +54,8 @@ const InputTitle = styled.p`
 const InputText = styled.input`
   width: 283px;
   height: 38px;
-  border: 2px solid ${({ theme }) => theme.colors.primary.orange};
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 2.5px solid ${({ theme }) => theme.colors.primary.orange};
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   font-size: 16px;
   padding-left: 5px;
