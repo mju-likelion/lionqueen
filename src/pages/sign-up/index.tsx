@@ -81,11 +81,7 @@ const SignUp = () => {
             onChange={formik.handleChange}
             value={formik.values.password}
             onBlur={formik.handleBlur}
-            error={
-              formik.values.password !== '' && formik.touched.password
-                ? formik.errors.password && formik.errors.password
-                : undefined
-            }
+            error={formError('password')}
           />
           <FormContainer
             placeholder="비밀번호를 한번 더 입력하세요."
