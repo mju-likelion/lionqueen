@@ -1,9 +1,10 @@
-import type { ComponentPropsWithoutRef } from 'react';
 import styled from 'styled-components';
+import Tree from '~components/Icons/Tree';
 
 type BackgroundProps = {
+  children: React.ReactNode;
   className?: string;
-} & ComponentPropsWithoutRef<'div'>;
+};
 
 function BackgroundMain(props: BackgroundProps) {
   const { children, ...restProps } = props;
@@ -17,7 +18,10 @@ function BackgroundMain(props: BackgroundProps) {
             <LineStyles />
           </LineContainer>
           <ContentContainer {...restProps}>{children}</ContentContainer>
-          <img src="/image/trees.svg" alt="나무" />
+          <TreeContainer>
+            <Tree />
+            <Tree />
+          </TreeContainer>
         </Board>
       </BackgroundBox>
     </PageContainer>
@@ -25,44 +29,63 @@ function BackgroundMain(props: BackgroundProps) {
 }
 
 const PageContainer = styled.div`
-  min-height: 100vh;
+  height: 100%;
+  width: 100%;
   background-color: ${({ theme }) => theme.colors.primary.skyblue};
   display: flex;
   justify-items: center;
 `;
 
 const BackgroundBox = styled.div`
-  min-height: 1024px;
-  min-width: 100%;
   position: relative;
+  min-width: 1440px;
+  min-height: 1024px;
+  margin: 0 auto;
+
   display: flex;
-  justify-items: center;
-  background-image: url('/image/wallpaper.svg');
+  justify-content: center;
+  align-items: flex-start;
+
+  padding-top: 93px;
+
+  background-image: url('https://lionqueen.s3.amazonaws.com/background.png');
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 1440px 1024px;
+  box-shadow: none;
 `;
 
 const Board = styled.div`
+  position: relative;
+
   width: 1014px;
-  height: 708px;
+  min-height: 708px;
+
   background-color: ${({ theme }) => theme.colors.primary.yellow};
   border: 10px solid #ffbb54;
   border-radius: 30px;
+`;
+
+const TreeContainer = styled.div`
   position: absolute;
-  left: 50%;
-  top: 30%;
-  transform: translate(-50%, -30%);
+  bottom: -60px;
+  left: 0;
+
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const LineContainer = styled.div`
-  width: 440px;
-  display: flex;
-  justify-content: space-between;
   position: absolute;
   top: -15px;
-  left: 25%;
-  right: 25%;
+
+  width: 100%;
   margin: 0 auto;
+
+  display: flex;
+  justify-content: center;
+  gap: 440px;
 `;
 
 const LineStyles = styled.div`
@@ -70,13 +93,12 @@ const LineStyles = styled.div`
   height: 118px;
   border-radius: 10px;
   background-color: #cd853f;
-  /* padding-bottom: 10px; */
 `;
 
 const ContentContainer = styled.div`
   width: 912px;
-  height: 542px;
-  margin: 102px auto auto auto;
+  min-height: 542px;
+  margin: 102px auto 48px auto;
   border-radius: 15px;
   background-color: #ffffffcc;
 `;

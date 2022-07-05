@@ -1,13 +1,13 @@
 * {
   box-sizing: border-box;
   color: #2e2e2e;
+  font-family: Maplestory, NanumBarunGothic, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Maplestory, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
-    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
