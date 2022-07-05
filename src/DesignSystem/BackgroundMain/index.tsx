@@ -1,10 +1,10 @@
-import type { ComponentPropsWithoutRef } from 'react';
 import styled from 'styled-components';
-import TreeIcon from '~components/icons/Trees';
+import Tree from '~components/Icons/Tree';
 
 type BackgroundProps = {
+  children: React.ReactNode;
   className?: string;
-} & ComponentPropsWithoutRef<'div'>;
+};
 
 function BackgroundMain(props: BackgroundProps) {
   const { children, ...restProps } = props;
@@ -18,16 +18,18 @@ function BackgroundMain(props: BackgroundProps) {
             <LineStyles />
           </LineContainer>
           <ContentContainer {...restProps}>{children}</ContentContainer>
+          <TreeContainer>
+            <Tree />
+            <Tree />
+          </TreeContainer>
         </Board>
-        <Tree left="15%" />
-        <Tree left="74%" />
       </BackgroundBox>
     </PageContainer>
   );
 }
 
 const PageContainer = styled.div`
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.primary.skyblue};
   display: flex;
@@ -35,46 +37,55 @@ const PageContainer = styled.div`
 `;
 
 const BackgroundBox = styled.div`
-  width: 1440px;
-  height: 1024px;
-  position: absolute;
+  position: relative;
+  min-width: 1440px;
+  min-height: 1024px;
+  margin: 0 auto;
+
   display: flex;
-  justify-items: center;
-  background-image: url('/image/wallpaper.svg');
+  justify-content: center;
+  align-items: flex-start;
+
+  padding-top: 93px;
+
+  background-image: url('https://lionqueen.s3.amazonaws.com/background.png');
   background-repeat: no-repeat;
   background-position: center;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  background-size: 1440px 1024px;
+  box-shadow: none;
 `;
 
 const Board = styled.div`
+  position: relative;
+
   width: 1014px;
   min-height: 708px;
+
   background-color: ${({ theme }) => theme.colors.primary.yellow};
   border: 10px solid #ffbb54;
   border-radius: 30px;
-  position: absolute;
-  left: 50%;
-  top: 30%;
-  transform: translate(-50%, -30%);
 `;
 
-const Tree = styled(TreeIcon)<{ left?: string }>`
+const TreeContainer = styled.div`
   position: absolute;
-  top: 65%;
-  left: ${props => props.left || '0'};
+  bottom: -60px;
+  left: 0;
+
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const LineContainer = styled.div`
-  width: 440px;
-  display: flex;
-  justify-content: space-between;
   position: absolute;
   top: -15px;
-  left: 25%;
-  right: 25%;
+
+  width: 100%;
   margin: 0 auto;
+
+  display: flex;
+  justify-content: center;
+  gap: 440px;
 `;
 
 const LineStyles = styled.div`

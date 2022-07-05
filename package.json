@@ -9,7 +9,7 @@
     "lint": "next lint ./src",
     "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "build-storybook -s public",
-    "chromatic": "npx chromatic --project-token=0aefef65099b",
+    "chromatic": "chromatic --project-token=0aefef65099b",
     "prepare": "husky install",
     "deploy": "serverless"
   },
