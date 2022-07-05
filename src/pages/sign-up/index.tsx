@@ -135,7 +135,7 @@ const SignUp = () => {
               !!formik.errors.email ||
               !!formik.errors.password ||
               !!formik.errors.passwordConfirm ||
-              !!formik.errors.name ||
+              !!formik.errors.nickname ||
               !!formik.errors.phone ||
               !!formik.errors.code ||
               !formik.values.privacyCheck.length
