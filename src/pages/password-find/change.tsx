@@ -10,7 +10,6 @@ const Change = () => {
   const [checkPassword, setCheckPassword] = useState('');
   const [changeError, setChangeError] = useState('');
   const [checkError, setCheckError] = useState('');
-  const [disabled, setDisabled] = useState(true);
 
   const passwordRegex = /^[a-zA-Z0-9]{6,10}$/;
 
@@ -25,7 +24,6 @@ const Change = () => {
   const secondPasswordError = () => {
     if (changeError === '' && changePassword === checkPassword) {
       setCheckError(checkError => '');
-      setDisabled(false);
     } else {
       setCheckError(checkError => '비밀번호가 일치하지 않습니다. 다시 시도해주세요');
     }
@@ -87,7 +85,7 @@ const Change = () => {
           </InputGroup>
         </InputDiv>
         <ButtonDiv>
-          <Button size="large" disabled={disabled} type="submit">
+          <Button size="large" type="submit">
             비밀번호 변경
           </Button>
         </ButtonDiv>
