@@ -84,6 +84,9 @@ const Home: NextPage = () => {
         <InputGroup id="test4" label="이름" labelPos="left" labelDist={20} fullWidth>
           <input placeholder="asdasd" name="input" id="test4" />
         </InputGroup>
+        <InputGroup id="test5" label="이름" labelPos="left" labelDist={20} fullWidth width="500px">
+          <input placeholder="asdasd" name="input" id="test4" />
+        </InputGroup>
         <BackgroundMain>
           안녕하세요! 여기는 게시판 영역입니다! 내부 콘텐츠 스탕일링은 각자 해야합니다!
         </BackgroundMain>

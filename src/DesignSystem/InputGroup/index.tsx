@@ -9,8 +9,17 @@ type Props = {
   fullWidth?: boolean;
   labelPos?: 'up' | 'left';
   labelDist?: number;
+  contentWidth?: string;
 } & ComponentPropsWithoutRef<'input'>;
-
+/*
+ * @param id = label의 id
+ * @param label = label의 값
+ * @param error = input에 대한 에러
+ * @param labelPos = label이 인풋기준 위치 ('left' or 'up')
+ * @param labelDist = label과 input 사이의 거리
+ * @param fullWidth = inputGroup의 fullwidth를 주거나 안주거나 <boolean>
+ * @param contentWidth = 라벨을 제외한 내용의 width값 <string>
+ */
 function InputGroup({
   children,
   id,
@@ -19,13 +28,14 @@ function InputGroup({
   labelPos = 'up',
   labelDist = 0,
   fullWidth,
+  contentWidth = '',
 }: Props) {
   return (
     <Style.Container fullWidth={fullWidth} labelPos={labelPos} dist={labelDist}>
       <Style.LabelBox htmlFor={id} error={error}>
         {label}
       </Style.LabelBox>
-      <Style.Content>
+      <Style.Content contentWidth={contentWidth}>
         <Style.InputBox pos={labelPos} dist={labelDist}>
           {children}
         </Style.InputBox>
