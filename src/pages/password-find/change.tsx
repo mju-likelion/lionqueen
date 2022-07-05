@@ -14,7 +14,7 @@ const Change = () => {
 
   const passwordRegex = /^[a-zA-Z0-9]{6,10}$/;
 
-  const changePasswordError = e => {
+  const firstPasswordError = e => {
     if (passwordRegex.test(e.target.value) === true) {
       setChangeError(changeError => '');
     } else {
@@ -22,7 +22,7 @@ const Change = () => {
     }
   };
 
-  const checkPasswordError = () => {
+  const secondPasswordError = () => {
     if (changeError === '' && changePassword === checkPassword) {
       setCheckError(checkError => '');
       setDisabled(false);
@@ -31,8 +31,9 @@ const Change = () => {
     }
   };
 
-  const onClick = e => {
-    if (changeError === '' && checkError === '') {
+  const onSubmit = e => {
+    e.preventDefault();
+    if (changePassword === checkPassword && changeError === '' && checkError === '') {
       Router.push({
         pathname: '/password-find/confirm',
         query: { backtoLogin: '비밀번호가 성공적으로 변경되었습니다' },
@@ -42,57 +43,55 @@ const Change = () => {
 
   return (
     <BackgroundMain>
-      <OverLap>
-        <MainText>비밀번호 변경</MainText>
-        <CrossLine />
-        <form>
-          <InputDiv>
-            <InputGroup
-              id="id"
-              label="변경 패스워드"
-              labelPos="left"
-              labelDist={20}
-              error={changeError}
-              fullWidth
-            >
-              <input
-                name="input"
-                id="change"
-                type="password"
-                value={changePassword}
-                placeholder="6~10자의 영문, 숫자를 조합해서 입력하세요"
-                onChange={e => setChangePassword(e.target.value)}
-                onBlur={changePasswordError}
-              />
-            </InputGroup>
-          </InputDiv>
-          <InputDiv>
-            <InputGroup
-              id="password"
-              label="변경 패스워드 확인"
-              labelPos="left"
-              labelDist={20}
-              error={checkError}
-              fullWidth
-            >
-              <input
-                name="input"
-                id="change-confirm"
-                type="password"
-                value={checkPassword}
-                placeholder="비밀번호를 한 번 더 입력하세요"
-                onChange={e => setCheckPassword(e.target.value)}
-                onBlur={checkPasswordError}
-              />
-            </InputGroup>
-          </InputDiv>
-          <ButtonDiv>
-            <Button size="large" onClick={onClick} disabled={disabled}>
-              비밀번호 변경
-            </Button>
-          </ButtonDiv>
-        </form>
-      </OverLap>
+      <MainText>비밀번호 변경</MainText>
+      <CrossLine />
+      <form onSubmit={onSubmit}>
+        <InputDiv>
+          <InputGroup
+            id="id"
+            label="변경 패스워드"
+            labelPos="left"
+            labelDist={20}
+            error={changeError}
+            width="148px"
+          >
+            <input
+              name="input"
+              id="change"
+              type="password"
+              value={changePassword}
+              placeholder="6~10자의 영문, 숫자를 조합해서 입력하세요"
+              onChange={e => setChangePassword(e.target.value)}
+              onBlur={firstPasswordError}
+            />
+          </InputGroup>
+        </InputDiv>
+        <InputDiv>
+          <InputGroup
+            id="password"
+            label="변경 패스워드 확인"
+            labelPos="left"
+            labelDist={20}
+            error={checkError}
+            fullWidth
+          >
+            <input
+              name="input"
+              id="change-confirm"
+              type="password"
+              value={checkPassword}
+              placeholder="비밀번호를 한 번 더 입력하세요"
+              onChange={e => setCheckPassword(e.target.value)}
+              onBlur={secondPasswordError}
+            />
+          </InputGroup>
+        </InputDiv>
+        <ButtonDiv>
+          <Button size="large" disabled={disabled} type="submit">
+            비밀번호 변경
+          </Button>
+        </ButtonDiv>
+      </form>
     </BackgroundMain>
   );
 };
@@ -101,45 +100,37 @@ const OverLap = styled.div`
   margin: 0 auto;
 `;
 
-const MainText = styled.div`
+const MainText = styled(OverLap)`
   width: 256px;
-  padding-top: 44px;
+  padding-top: 46px;
   font-size: 45px;
 `;
 
-const CrossLine = styled.div`
+const CrossLine = styled(OverLap)`
   width: 600px;
   border: 0;
   border-top: 2px solid ${({ theme }) => theme.colors.text};
-  margin-top: 12px;
+  margin-top: 13px;
 `;
 
-const InputDiv = styled.div`
+const InputDiv = styled(OverLap)`
   width: 546px;
   height: 36px;
   margin-top: 72px;
   font-size: 20px;
-  // InputDiv 안의 input에 대한 css 속성입니다.
   input {
     width: 352px;
     height: 38px;
     border-radius: 10px;
   }
-  #change {
-    margin-left: 40px;
+  label {
+    width: 206px;
   }
-
-  // placeholder에 css 속성을 주기 위해 선택자를 사용하였습니다.
-  input::placeholder {
-    font-size: 14px;
-  }
-
-  // 같은 요소가 겹칠 경우 간격 사이에 margin-top을 줍니다.
   & + & {
     margin-top: 37px;
   }
 `;
-const ButtonDiv = styled.div`
+const ButtonDiv = styled(OverLap)`
   margin-top: 63px;
   width: 240px;
 `;
