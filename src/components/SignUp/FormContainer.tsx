@@ -32,7 +32,7 @@ const FormContainer: React.FC<FormContainerProps> = ({
 }) => {
   return (
     <FormWrapper>
-      <InputGroup id={id} label={labelName} labelPos="left" labelDist={20} error={error} fullWidth>
+      <InputGroup id={id} label={labelName} labelPos="left" error={error} fullWidth>
         <input
           type={type}
           onChange={onChange}

@@ -9,7 +9,7 @@ type InitialValues = {
   email: string;
   password: string;
   passwordConfirm: string;
-  name: string;
+  nickname: string;
   phone: string;
   code: string;
   privacyCheck: string[];
@@ -21,7 +21,7 @@ const SignUp = () => {
       email: '',
       password: '',
       passwordConfirm: '',
-      name: '',
+      nickname: '',
       phone: '',
       code: '',
       privacyCheck: [],
@@ -95,14 +95,14 @@ const SignUp = () => {
             error={formError('passwordConfirm')}
           />
           <FormContainer
-            placeholder="한글로 입력하세요."
-            labelName="이름"
-            name="name"
-            id="name"
+            placeholder="닉네임을 입력하세요."
+            labelName="닉네임"
+            name="nickname"
+            id="nickname"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.name}
-            error={formError('name')}
+            value={formik.values.nickname}
+            error={formError('nickname')}
           />
           <FormContainer
             placeholder="'-' 구분 없이 입력하세요."

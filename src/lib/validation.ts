@@ -18,11 +18,11 @@ export const SignUpValidationSchema = Yup.object({
   phone: Yup.string()
     .matches(/^[0-9]{11}$/i, '번호는 01012345678형태로 입력해주세요')
     .required('휴대폰 번호를 입력해주세요'),
-  name: Yup.string()
-    .matches(/^[가-힣]{2,5}$/, '한글로 입력해주세요.')
-    .min(2, '2글자 이상 5글자 이하로 입력해주세요')
-    .max(4, '2글자 이상 5글자 이하로 입력해주세요')
-    .required('이름을 입력해주세요.'),
+  nickname: Yup.string()
+    .matches(/^[가-힣|a-z|A-Z|0-9]{1,6}$/, '영문, 한글, 숫자 6자 이내로 조합해주세요.')
+    .min(1, '1글자 이상 6글자 이하로 입력해주세요')
+    .max(6, '1글자 이상 6글자 이하로 입력해주세요')
+    .required('닉네임을 입력해주세요.'),
   code: Yup.string().length(6, '코드의 길이가 다릅니다.').required('인증코드를 입력해주세요.'),
   // privacyCheck: Yup.boolean().oneOf([true], '회원가입을 위해 약관에 동의해주세요.'),
 });
