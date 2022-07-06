@@ -1,5 +1,7 @@
 import { useFormik } from 'formik';
 import styled from 'styled-components';
+import axios from 'axios';
+
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import Button from '~DesignSystem/Button';
 import { FormContainer } from '~components/SignUp';
@@ -27,8 +29,21 @@ const SignUp = () => {
       privacyCheck: [],
     },
     onSubmit: values => {
-      // 콘솔 지울예정 api 수정필요
       console.log(values);
+
+      axios
+        .post('/api/auth/sign-up', {
+          email: formik.values.email,
+          password: formik.values.password,
+          name: formik.values.nickname,
+          phone: formik.values.phone,
+        })
+        .then(() => {
+          alert('회원가입이 완료되었습니다.');
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     validationSchema: SignUpValidationSchema,
   });
@@ -53,9 +68,23 @@ const SignUp = () => {
             value={formik.values.email}
             onBlur={formik.handleBlur}
             error={formError('email')}
+            disabled={!!formik.errors.email}
             onClick={() => {
               // 이메일인증  api연결예정
               console.log('이메일인증 버튼');
+              if (formik.values.email) {
+                axios
+                  .post('/api/auth/send-email', {
+                    email: formik.values.email,
+                  })
+
+                  .then(() => {
+                    alert('이메일 전송이 완료되었습니다. 3시간내에 인증코드를 입력해주세요.');
+                  })
+                  .catch(err => {
+                    console.log(err);
+                  });
+              }
             }}
           />
           <FormContainer
@@ -67,9 +96,21 @@ const SignUp = () => {
             value={formik.values.code}
             onBlur={formik.handleBlur}
             error={formError('code')}
+            disabled={!!formik.errors.email || !!formik.errors.code}
             onClick={() => {
-              // 인증코드 확인 api연결예정
-              console.log('인증코드확인 버튼');
+              if (formik.values.code && formik.values.email) {
+                axios
+                  .post('/api/auth/email-verify', {
+                    email: formik.values.email,
+                    token: formik.values.code,
+                  })
+                  .then(() => {
+                    alert('인증이 완료되었습니다.');
+                  })
+                  .catch(err => {
+                    alert('인증번호가 일치하지 않습니다.');
+                  });
+              }
             }}
           />
           <FormContainer
@@ -128,7 +169,7 @@ const SignUp = () => {
               (필수) 본인은 만 14세 이상이며 이메일 주소 수집에 동의합니다.
             </label>
           </Privacy>
-          <Button
+          <StyledButton
             size="medium"
             type="submit"
             disabled={
@@ -142,7 +183,7 @@ const SignUp = () => {
             }
           >
             가입하기
-          </Button>
+          </StyledButton>
         </form>
       </SignUpContainer>
     </BackgroundMain>
@@ -173,5 +214,8 @@ const Privacy = styled.div`
     margin-right: 10px;
   }
 `;
-
+const StyledButton = styled(Button)`
+  position: relative;
+  z-index: 1;
+`;
 export default SignUp;
