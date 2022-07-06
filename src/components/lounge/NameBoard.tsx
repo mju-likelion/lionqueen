@@ -23,7 +23,7 @@ const BoardContainer = styled.div`
   width: 500px;
   height: 280px;
 
-  @media screen and (max-height: 900px) {
+  @media (max-height: 900px) {
     top: -35px;
   }
 `;
@@ -52,10 +52,14 @@ const GroupBoard = styled.div`
 `;
 
 const GroupName = styled.p`
-  width: 500px;
+  display: block;
+  width: 430px;
   height: 80px;
   margin: 0;
-  padding: 16px 0 10px 0;
+  padding: 16px 10px 10px 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   text-align: center;
   font-weight: 700;
   font-size: 43px;
