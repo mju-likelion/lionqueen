@@ -9,7 +9,7 @@ function NavBar() {
     <NavBarWrapper>
       <TextTitle>메뉴</TextTitle>
       <ButtonBox>
-        <Link href="/MyPage">
+        <Link href="/my-page">
           <MenuItem>마이페이지</MenuItem>
         </Link>
         <Link href="/lounge-select">
