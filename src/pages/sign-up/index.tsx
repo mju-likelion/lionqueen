@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -48,6 +49,9 @@ const SignUp = () => {
     validationSchema: SignUpValidationSchema,
   });
 
+  const [isToken, setIsToken] = useState(false);
+  const [isBtn, setIsBtn] = useState(true);
+
   const formError = (field: keyof InitialValues) => {
     return !!formik.values[field] && formik.touched[field] ? formik.errors[field] : undefined;
   };
@@ -68,7 +72,7 @@ const SignUp = () => {
             value={formik.values.email}
             onBlur={formik.handleBlur}
             error={formError('email')}
-            disabled={!!formik.errors.email}
+            btnDisabled={!!formik.errors.email}
             onClick={() => {
               // 이메일인증  api연결예정
               console.log('이메일인증 버튼');
@@ -91,12 +95,13 @@ const SignUp = () => {
             placeholder="인증코드를 입력하세요."
             name="code"
             id="code"
-            btnTitle="인증 코드 확인"
+            btnTitle={isBtn && '인증 코드 확인'}
             onChange={formik.handleChange}
             value={formik.values.code}
             onBlur={formik.handleBlur}
             error={formError('code')}
-            disabled={!!formik.errors.email || !!formik.errors.code}
+            btnDisabled={!!formik.errors.email || !!formik.errors.code}
+            inputDisabled={isToken}
             onClick={() => {
               if (formik.values.code && formik.values.email) {
                 axios
@@ -106,6 +111,8 @@ const SignUp = () => {
                   })
                   .then(() => {
                     alert('인증이 완료되었습니다.');
+                    setIsToken(true);
+                    setIsBtn(false);
                   })
                   .catch(err => {
                     alert('인증번호가 일치하지 않습니다.');

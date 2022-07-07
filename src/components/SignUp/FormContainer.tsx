@@ -8,14 +8,15 @@ type FormContainerProps = {
   placeholder: string;
   name: string;
   id: string;
-  btnTitle?: string;
+  btnTitle?: string | boolean;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   onBlur: React.FocusEventHandler<HTMLInputElement>;
   value: string;
   type?: React.HTMLInputTypeAttribute;
   error?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  disabled?: boolean;
+  btnDisabled?: boolean;
+  inputDisabled?: boolean;
 };
 
 const FormContainer: React.FC<FormContainerProps> = ({
@@ -30,7 +31,8 @@ const FormContainer: React.FC<FormContainerProps> = ({
   type,
   error,
   onClick,
-  disabled,
+  btnDisabled,
+  inputDisabled,
 }) => {
   return (
     <FormWrapper>
@@ -43,11 +45,12 @@ const FormContainer: React.FC<FormContainerProps> = ({
           placeholder={placeholder}
           name={name}
           id={id}
+          disabled={inputDisabled}
         />
       </InputGroup>
       <ButtonBox>
         {btnTitle ? (
-          <StyledButton size="small" onClick={onClick} disabled={disabled}>
+          <StyledButton size="small" onClick={onClick} disabled={btnDisabled}>
             {btnTitle}
           </StyledButton>
         ) : (
