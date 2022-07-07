@@ -49,7 +49,7 @@ const SignUp = () => {
     validationSchema: SignUpValidationSchema,
   });
 
-  const [isToken, setIsToken] = useState(false);
+  const [isInput, setIsInput] = useState(false);
   const [isBtn, setIsBtn] = useState(true);
 
   const formError = (field: keyof InitialValues) => {
@@ -67,12 +67,13 @@ const SignUp = () => {
             placeholder="이메일 주소를 입력하세요."
             name="email"
             id="email"
-            btnTitle="이메일 전송"
+            btnTitle={isBtn && '이메일 전송'}
             onChange={formik.handleChange}
             value={formik.values.email}
             onBlur={formik.handleBlur}
             error={formError('email')}
             btnDisabled={!!formik.errors.email}
+            inputDisabled={isInput}
             onClick={() => {
               // 이메일인증  api연결예정
               console.log('이메일인증 버튼');
@@ -101,7 +102,7 @@ const SignUp = () => {
             onBlur={formik.handleBlur}
             error={formError('code')}
             btnDisabled={!!formik.errors.email || !!formik.errors.code}
-            inputDisabled={isToken}
+            inputDisabled={isInput}
             onClick={() => {
               if (formik.values.code && formik.values.email) {
                 axios
