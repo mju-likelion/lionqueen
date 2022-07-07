@@ -1,13 +1,18 @@
 import styled from 'styled-components';
 
-const FloorButton = () => {
+type ControlButtonsProps = {
+  onScrollUp: React.MouseEventHandler<HTMLDivElement>;
+  onScrollDown: React.MouseEventHandler<HTMLDivElement>;
+};
+
+const FloorButton = ({ onScrollUp, onScrollDown }: ControlButtonsProps) => {
   return (
     <BtnContainer>
       <FloorBtnWrap>
-        <FloorBtn type="up">
+        <FloorBtn type="up" onClick={onScrollUp}>
           <BtnTop />
         </FloorBtn>
-        <FloorBtn type="down">
+        <FloorBtn type="down" onClick={onScrollDown}>
           <BtnTop />
         </FloorBtn>
       </FloorBtnWrap>

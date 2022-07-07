@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useEffect, useRef, MutableRefObject } from 'react';
 
 import FloorNumber from '~components/lounge/FloorDemoData';
 import DoorBottom from '~components/icons/DoorBottom.svg';
@@ -9,20 +9,36 @@ import NameBoard from '~components/lounge/NameBoard';
 import LoungeDoor from '~components/lounge/LoungeDoor';
 
 const LoungeHome = () => {
+  const [currentFloor, setCurrentFloor] = useState<number>(0);
+  // const floorRef = useRef(document.createElement('div'));
+  const floorRef = useRef() as MutableRefObject<HTMLDivElement>;
+
   const handleScrollUp = () => {
     console.log('up');
+    if (currentFloor === 4) setCurrentFloor(0);
+    else setCurrentFloor(currentFloor + 1);
+    console.log(currentFloor);
   };
 
   const handleScrollDown = () => {
     console.log('down');
+    if (currentFloor === 0) setCurrentFloor(0);
+    else setCurrentFloor(currentFloor - 1);
+    console.log(currentFloor);
   };
+
+  useEffect(() => {
+    floorRef.current.style.transition = 'transform 1.2s ease-out';
+    floorRef.current.style.transform = `translateY(calc(60px + ${currentFloor}00%)`;
+    // floorRef.current.style.transform = `translateY(${currentFloor}00%)`;
+  }, [currentFloor]);
 
   return (
     <LoungeBg>
       <NameBoard />
       <ListBottomContainer>
         <Lounge>
-          <LoungeList>
+          <LoungeList ref={floorRef}>
             {FloorNumber.map(floor => (
               <FloorContainer key={floor}>
                 <FloorLine />
@@ -32,6 +48,7 @@ const LoungeHome = () => {
             <LoungeDoor />
           </LoungeList>
         </Lounge>
+        <FloorLine />
         <BottomContainer>
           <FloorButton onScrollUp={handleScrollUp} onScrollDown={handleScrollDown} />
           <DoorBottom />
@@ -50,7 +67,7 @@ const LoungeBg = styled.div`
   justify-content: center;
   width: 100%;
   height: 100vh;
-  overflow-y: hidden;
+  overflow: hidden;
   background-color: ${({ theme }) => theme.colors.primary.skyblue};
 `;
 
@@ -64,13 +81,15 @@ const ListBottomContainer = styled.div`
 
 const Lounge = styled.div`
   position: fixed;
-  top: 110px;
-  height: 650px;
+  top: 160px;
+  height: 600px;
+  margin-left: 15px;
   overflow: hidden;
+  background-color: green;
 
   @media (max-height: 900px) {
-    top: 75px;
-    height: 600px;
+    top: 125px;
+    height: 550px;
   }
 `;
 
@@ -80,13 +99,10 @@ const LoungeList = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  height: 650px;
-  /* transform: translate(0, 650px); */
-  /* transition: transform 1.2s ease-out; */
+  height: 600px;
 
   @media (max-height: 900px) {
-    height: 600px;
-    /* transform: translate(0, 600px); */
+    height: 550px;
   }
 `;
 
@@ -112,6 +128,7 @@ const FloorLine = styled.div`
   margin: 305px 0 0 50px;
   background-color: ${({ theme }) => theme.colors.primary.brown};
   pointer-events: none;
+  z-index: 3;
 
   @media (max-height: 900px) {
     margin: 280px 0 0 50px;
