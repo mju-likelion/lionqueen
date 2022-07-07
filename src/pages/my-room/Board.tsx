@@ -12,28 +12,38 @@ const Board = () => {
       <BoardBody>
         <Post top="10%" left="8%">
           <Tape position="center" />
-          <PostBody shape="circle">대충내용1</PostBody>
+          <PostBody shape="circle">
+            <p>대충내용1</p>
+          </PostBody>
         </Post>
         <Post top="10%" left="65%" rotate="right">
           <Tape fill="#3efff3" opacity="0.52" position="leftTop" />
-          <PostBody shape="rectangle">대충내용2</PostBody>
+          <PostBody shape="rectangle">
+            <p>대충내용2</p>
+          </PostBody>
           <Tape fill="#3efff3" opacity="0.52" position="rightBottom" />
         </Post>
         <Post top="30%" left="35%" rotate="left">
           <Tape fill="#fff844" opacity="0.63" position="leftTop" />
           <Tape fill="#fff844" opacity="0.63" position="rightTop" />
-          <PostBody shape="rectangle">대충내용3</PostBody>
+          <PostBody shape="rectangle">
+            <p>대충내용3</p>
+          </PostBody>
           <Tape fill="#fff844" opacity="0.63" position="leftBottom" />
           <Tape fill="#fff844" opacity="0.63" position="rightBottom" />
         </Post>
         <Post top="50%" left="10%" rotate="right">
           <Tape fill="#caa5E8" opacity="0.52" position="leftTop" />
-          <PostBody shape="rectangle">내용최대7글자</PostBody>
+          <PostBody shape="rectangle">
+            <p>사각형 엄청나게 긴 제목입니다</p>
+          </PostBody>
           <Tape fill="#caa5E8" opacity="0.52" position="rightBottom" />
         </Post>
         <Post top="55%" left="65%">
           <Tape fill="#b3ec9f" opacity="0.59" position="center" />
-          <PostBody shape="circle">내 용 최 대</PostBody>
+          <PostBody shape="circle">
+            <p>동그라미 엄청나게 긴 제목입니다</p>
+          </PostBody>
         </Post>
       </BoardBody>
     </BoardContainer>
@@ -133,6 +143,15 @@ const PostBody = styled.div<{ shape: PostShape }>`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  p {
+    width: 118px;
+    padding: 0 6px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 `;
 
 export default Board;

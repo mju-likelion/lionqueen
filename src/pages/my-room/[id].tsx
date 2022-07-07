@@ -31,7 +31,8 @@ const Wrap = styled.div`
   background-color: ${({ theme }) => theme.colors.primary.skyblue};
   display: flex;
   align-items: center;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   width: 100%;
 `;
 
@@ -52,7 +53,7 @@ const RoomName = styled.div`
 
 const RoomConent = styled.div`
   background-image: url('/image/myRoomWallpaper.jpg');
-  width: 100%;
+  width: inherit;
   height: 668px;
   display: flex;
 `;
