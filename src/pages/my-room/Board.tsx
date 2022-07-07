@@ -4,46 +4,51 @@ import TapeIcon from '~components/icons/Tape';
 
 type TapePositions = 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom' | 'center';
 type PostShape = 'circle' | 'rectangle';
-
-const Board = () => {
+type Props = {
+  handleModalClick: () => void;
+};
+const Board = ({ handleModalClick }: Props) => {
   return (
     <BoardContainer>
       <Rack />
       <BoardBody>
+        <MoreButton type="button" onClick={handleModalClick}>
+          전체 보기
+        </MoreButton>
         <Post top="10%" left="8%">
-          <Tape position="center" />
           <PostBody shape="circle">
             <p>대충내용1</p>
           </PostBody>
+          <Tape position="center" />
         </Post>
         <Post top="10%" left="65%" rotate="right">
-          <Tape fill="#3efff3" opacity="0.52" position="leftTop" />
           <PostBody shape="rectangle">
             <p>대충내용2</p>
           </PostBody>
+          <Tape fill="#3efff3" opacity="0.52" position="leftTop" />
           <Tape fill="#3efff3" opacity="0.52" position="rightBottom" />
         </Post>
         <Post top="30%" left="35%" rotate="left">
-          <Tape fill="#fff844" opacity="0.63" position="leftTop" />
-          <Tape fill="#fff844" opacity="0.63" position="rightTop" />
           <PostBody shape="rectangle">
             <p>대충내용3</p>
           </PostBody>
+          <Tape fill="#fff844" opacity="0.63" position="leftTop" />
+          <Tape fill="#fff844" opacity="0.63" position="rightTop" />
           <Tape fill="#fff844" opacity="0.63" position="leftBottom" />
           <Tape fill="#fff844" opacity="0.63" position="rightBottom" />
         </Post>
         <Post top="50%" left="10%" rotate="right">
-          <Tape fill="#caa5E8" opacity="0.52" position="leftTop" />
           <PostBody shape="rectangle">
             <p>사각형 엄청나게 긴 제목입니다</p>
           </PostBody>
+          <Tape fill="#caa5E8" opacity="0.52" position="leftTop" />
           <Tape fill="#caa5E8" opacity="0.52" position="rightBottom" />
         </Post>
         <Post top="55%" left="65%">
-          <Tape fill="#b3ec9f" opacity="0.59" position="center" />
           <PostBody shape="circle">
             <p>동그라미 엄청나게 긴 제목입니다</p>
           </PostBody>
+          <Tape fill="#b3ec9f" opacity="0.59" position="center" />
         </Post>
       </BoardBody>
     </BoardContainer>
@@ -56,13 +61,11 @@ const BoardContainer = styled.div`
 `;
 
 const Rack = styled(BoardRack)`
-  z-index: 1;
   position: absolute;
   left: 174px;
 `;
 
 const BoardBody = styled.div`
-  z-index: 1;
   position: absolute;
   top: 134px;
   width: 622px;
@@ -70,6 +73,14 @@ const BoardBody = styled.div`
   background-image: url('/image/board.png');
 `;
 
+const MoreButton = styled.button`
+  cursor: pointer;
+  :hover {
+    background-color: white;
+  }
+`;
+
+// 버튼으로 변경 필요
 const Post = styled.div<{ top?: string; left?: string; rotate?: string }>`
   ${props =>
     props.rotate === 'right' &&
@@ -120,7 +131,6 @@ const Tape = styled(TapeIcon)<{ position: TapePositions }>`
     css`
       left: 50%;
     `}
-  z-index: 1;
 `;
 
 const PostBody = styled.div<{ shape: PostShape }>`
