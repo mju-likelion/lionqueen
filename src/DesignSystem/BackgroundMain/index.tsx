@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Tree from '~components/icons/Tree';
+import Tree from '~components/Icons/Tree';
 
 type BackgroundProps = {
   children: React.ReactNode;
