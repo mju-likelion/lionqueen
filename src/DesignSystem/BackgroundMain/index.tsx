@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Trees from '~components/Icons/Trees';
+import Tree from '~components/icons/Tree';
 
 type BackgroundProps = {
   children: React.ReactNode;
@@ -19,8 +19,8 @@ function BackgroundMain(props: BackgroundProps) {
           </LineContainer>
           <ContentContainer {...restProps}>{children}</ContentContainer>
           <TreeContainer>
-            <Trees />
-            <Trees />
+            <Tree />
+            <Tree />
           </TreeContainer>
         </Board>
       </BackgroundBox>
@@ -48,7 +48,7 @@ const BackgroundBox = styled.div`
 
   padding-top: 93px;
 
-  background-image: url('/image/background.png');
+  background-image: url('https://lionqueen.s3.amazonaws.com/background.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 1440px 1024px;
