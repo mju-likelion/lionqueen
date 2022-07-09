@@ -18,9 +18,6 @@ type Props = {
 
 const MemoModal = ({ onClose, comment }: Props) => {
   // alert를 나중에 모달로 변경하기
-  const handleMemoCreate = () => {
-    alert('메모가 작성됐습니다');
-  };
   const handleMemoDelete = () => {
     alert('메모가 삭제됐습니다');
   };
@@ -57,7 +54,11 @@ const MemoModal = ({ onClose, comment }: Props) => {
             </ButtonsContainer>
             {/* readOnly의 경우 추후 유저별 적용 필요 */}
             <MemoBody value={comment?.content} readOnly />
-            <Writer>{comment ? comment.nickname : '글쓴이'}</Writer>
+            <Writer>
+              <p>-</p>
+              <p>{comment ? comment.nickname : '글쓴이'}</p>
+              <p>-</p>
+            </Writer>
           </FormContainer>
         </Content>
       </Container>
@@ -122,10 +123,15 @@ const MemoBody = styled.textarea`
   }
 `;
 
-const Writer = styled.p`
-  font-size: 26px;
-  text-align: right;
+const Writer = styled.div`
+  display: flex;
+  justify-content: end;
   margin: 4px 0;
+  gap: 8px;
+  p {
+    font-size: 26px;
+    margin: 0;
+  }
 `;
 
 export default MemoModal;
