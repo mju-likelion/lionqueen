@@ -38,7 +38,7 @@ const MyRoom = ({ comments }: Props) => {
         {/* 여기에 사용자 이름 패치 필요 */}
         <RoomName>사용자이름의 방</RoomName>
         <RoomConent>
-          <Board handleModalClick={handleModalClick} />
+          <Board comments={comments} handleModalClick={handleModalClick} />
           <Avatar />
         </RoomConent>
         <RoomBottom>

@@ -4,10 +4,21 @@ import TapeIcon from '~components/icons/Tape';
 
 type TapePositions = 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom' | 'center';
 type PostShape = 'circle' | 'rectangle';
+
+type comment = {
+  id: number;
+  title: string;
+  content: string;
+  nickname: string;
+};
+
 type Props = {
   handleModalClick: () => void;
+  comments: Array<comment>;
 };
-const Board = ({ handleModalClick }: Props) => {
+
+// comments는 최신 5개? 처음 5개? 만약 5개 미만이면?
+const Board = ({ handleModalClick, comments }: Props) => {
   return (
     <BoardContainer>
       <Rack />
@@ -17,20 +28,20 @@ const Board = ({ handleModalClick }: Props) => {
         </MoreButton>
         <Post top="10%" left="8%">
           <PostBody shape="circle">
-            <p>대충내용1</p>
+            <p>{comments[0].title}</p>
           </PostBody>
           <Tape position="center" />
         </Post>
         <Post top="10%" left="65%" rotate="right">
           <PostBody shape="rectangle">
-            <p>대충내용2</p>
+            <p>{comments[1].title}</p>
           </PostBody>
           <Tape fill="#3efff3" opacity="0.52" position="leftTop" />
           <Tape fill="#3efff3" opacity="0.52" position="rightBottom" />
         </Post>
         <Post top="30%" left="35%" rotate="left">
           <PostBody shape="rectangle">
-            <p>대충내용3</p>
+            <p>{comments[2].title}</p>
           </PostBody>
           <Tape fill="#fff844" opacity="0.63" position="leftTop" />
           <Tape fill="#fff844" opacity="0.63" position="rightTop" />
@@ -39,14 +50,14 @@ const Board = ({ handleModalClick }: Props) => {
         </Post>
         <Post top="50%" left="10%" rotate="right">
           <PostBody shape="rectangle">
-            <p>사각형 엄청나게 긴 제목입니다</p>
+            <p>{comments[3].title}</p>
           </PostBody>
           <Tape fill="#caa5E8" opacity="0.52" position="leftTop" />
           <Tape fill="#caa5E8" opacity="0.52" position="rightBottom" />
         </Post>
         <Post top="55%" left="65%">
           <PostBody shape="circle">
-            <p>동그라미 엄청나게 긴 제목입니다</p>
+            <p>{comments[4].title}</p>
           </PostBody>
           <Tape fill="#b3ec9f" opacity="0.59" position="center" />
         </Post>
@@ -80,7 +91,6 @@ const MoreButton = styled.button`
   }
 `;
 
-// 버튼으로 변경 필요
 const Post = styled.div<{ top?: string; left?: string; rotate?: string }>`
   ${props =>
     props.rotate === 'right' &&
@@ -133,7 +143,7 @@ const Tape = styled(TapeIcon)<{ position: TapePositions }>`
     `}
 `;
 
-const PostBody = styled.div<{ shape: PostShape }>`
+const PostBody = styled.button<{ shape: PostShape }>`
   ${props =>
     props.shape === 'circle' &&
     css`
@@ -153,6 +163,7 @@ const PostBody = styled.div<{ shape: PostShape }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   p {
     width: 118px;
