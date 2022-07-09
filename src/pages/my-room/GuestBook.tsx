@@ -74,10 +74,13 @@ const GuestBook = ({ onClose, comments }: Props) => {
           </MidBox>
 
           <CommentWrap ref={slideRef}>
-            {comments.map((memo: { id: number; content: string }) => (
+            {comments.map((memo: { id: number; title: string; nickname: string }) => (
               <MemoBox key={memo.id}>
                 <Tape fill="#62fade" opacity="0.7" />
-                <button type="button">{memo.content}</button>
+                <button type="button">
+                  <p>{memo.title}</p>
+                  <p>{memo.nickname}</p>
+                </button>
               </MemoBox>
             ))}
           </CommentWrap>
@@ -180,6 +183,14 @@ const MemoBox = styled.div`
     width: 142px;
     height: 161px;
     cursor: pointer;
+  }
+
+  p {
+    width: 118px;
+    padding: 0 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 `;
 
