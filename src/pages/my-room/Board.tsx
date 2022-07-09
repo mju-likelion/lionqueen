@@ -14,11 +14,12 @@ type comment = {
 
 type Props = {
   handleModalClick: () => void;
+  handleSecondModalClick: (id: number) => void;
   comments: Array<comment>;
 };
 
 // comments는 최신 5개? 처음 5개? 만약 5개 미만이면?
-const Board = ({ handleModalClick, comments }: Props) => {
+const Board = ({ handleModalClick, handleSecondModalClick, comments }: Props) => {
   return (
     <BoardContainer>
       <Rack />
@@ -27,20 +28,20 @@ const Board = ({ handleModalClick, comments }: Props) => {
           전체 보기
         </MoreButton>
         <Post top="10%" left="8%">
-          <PostBody shape="circle">
+          <PostBody shape="circle" onClick={() => handleSecondModalClick(0)}>
             <p>{comments[0].title}</p>
           </PostBody>
           <Tape position="center" />
         </Post>
         <Post top="10%" left="65%" rotate="right">
-          <PostBody shape="rectangle">
+          <PostBody shape="rectangle" onClick={() => handleSecondModalClick(1)}>
             <p>{comments[1].title}</p>
           </PostBody>
           <Tape fill="#3efff3" opacity="0.52" position="leftTop" />
           <Tape fill="#3efff3" opacity="0.52" position="rightBottom" />
         </Post>
         <Post top="30%" left="35%" rotate="left">
-          <PostBody shape="rectangle">
+          <PostBody shape="rectangle" onClick={() => handleSecondModalClick(2)}>
             <p>{comments[2].title}</p>
           </PostBody>
           <Tape fill="#fff844" opacity="0.63" position="leftTop" />
@@ -49,14 +50,14 @@ const Board = ({ handleModalClick, comments }: Props) => {
           <Tape fill="#fff844" opacity="0.63" position="rightBottom" />
         </Post>
         <Post top="50%" left="10%" rotate="right">
-          <PostBody shape="rectangle">
+          <PostBody shape="rectangle" onClick={() => handleSecondModalClick(3)}>
             <p>{comments[3].title}</p>
           </PostBody>
           <Tape fill="#caa5E8" opacity="0.52" position="leftTop" />
           <Tape fill="#caa5E8" opacity="0.52" position="rightBottom" />
         </Post>
         <Post top="55%" left="65%">
-          <PostBody shape="circle">
+          <PostBody shape="circle" onClick={() => handleSecondModalClick(4)}>
             <p>{comments[4].title}</p>
           </PostBody>
           <Tape fill="#b3ec9f" opacity="0.59" position="center" />

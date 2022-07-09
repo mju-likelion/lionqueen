@@ -1,7 +1,6 @@
-/* eslint-disable no-console */
 import React, { useRef, useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
-import Potal from '~/DesignSystem/Portal';
+import Portal from '~/DesignSystem/Portal';
 import Arrow from '~components/icons/Arrow';
 import TapeIcon from '~components/icons/Tape';
 import XIcon from '~components/icons/XIcon';
@@ -17,10 +16,11 @@ type comment = {
 
 type Props = {
   onClose: () => void;
+  handleSecondModalClick: (id: number) => void;
   comments: Array<comment>;
 };
 
-const GuestBook = ({ onClose, comments }: Props) => {
+const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
   // 모달창 크기에 최대 메모장 10개 보임 => 즉, 10개당 1슬라이드를 의미 나머지 발생 시 + 1
   const slideRef = useRef<HTMLDivElement>(null);
   const slideTotal = useRef<number>(Math.ceil(comments.length / 10) - 1);
@@ -43,10 +43,9 @@ const GuestBook = ({ onClose, comments }: Props) => {
   }, [currentSlide]);
 
   return (
-    <Potal>
+    <Portal>
       <Container>
         <Content>
-          {/* top, mid, commentBox 컴포넌트화 필요 */}
           <TopBox>
             <Title>방명록</Title>
             <XIconBox onClick={onClose}>
@@ -77,7 +76,7 @@ const GuestBook = ({ onClose, comments }: Props) => {
             {comments.map((memo: { id: number; title: string; nickname: string }) => (
               <MemoBox key={memo.id}>
                 <Tape fill="#62fade" opacity="0.7" />
-                <button type="button">
+                <button type="button" onClick={() => handleSecondModalClick(memo.id)}>
                   <p>{memo.title}</p>
                   <p>{memo.nickname}</p>
                 </button>
@@ -86,7 +85,7 @@ const GuestBook = ({ onClose, comments }: Props) => {
           </CommentWrap>
         </Content>
       </Container>
-    </Potal>
+    </Portal>
   );
 };
 

@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import Board from './Board';
 import Avatar from './Avatar';
 import GuestBook from './GuestBook';
+import MemoModal from './MemoModal';
 
 // comment type 코드 중복을 해결할 수 없을까
 type comment = {
@@ -21,6 +22,8 @@ type Props = {
 const MyRoom = ({ comments }: Props) => {
   const router = useRouter();
   const [isModalPopup, setIsModalPopup] = useState(false);
+  const [isSecondModalPopup, setIsSecondModalPopup] = useState(false);
+  const clickedMemoProps = useRef<comment>();
 
   const handleRouteClick = () => {
     // 추후 라운지 내부로 가는 코드로 고치기
@@ -31,14 +34,36 @@ const MyRoom = ({ comments }: Props) => {
     setIsModalPopup(!isModalPopup);
   };
 
+  // 메모장 모달을 띄워줌과 동시에 메모장 props 세팅
+  const handleSecondModalClick = (id: number) => {
+    setIsSecondModalPopup(!isSecondModalPopup);
+    clickedMemoProps.current = comments.find(comment => comment.id === id);
+  };
+
   return (
     <Wrap>
-      {isModalPopup && <GuestBook onClose={() => setIsModalPopup(false)} comments={comments} />}
+      {isModalPopup && (
+        <GuestBook
+          onClose={() => setIsModalPopup(false)}
+          handleSecondModalClick={handleSecondModalClick}
+          comments={comments}
+        />
+      )}
+      {isSecondModalPopup && (
+        <MemoModal
+          onClose={() => setIsSecondModalPopup(false)}
+          comment={clickedMemoProps.current}
+        />
+      )}
       <ContentContainer>
         {/* 여기에 사용자 이름 패치 필요 */}
         <RoomName>사용자이름의 방</RoomName>
         <RoomConent>
-          <Board comments={comments} handleModalClick={handleModalClick} />
+          <Board
+            comments={comments}
+            handleModalClick={handleModalClick}
+            handleSecondModalClick={handleSecondModalClick}
+          />
           <Avatar />
         </RoomConent>
         <RoomBottom>
