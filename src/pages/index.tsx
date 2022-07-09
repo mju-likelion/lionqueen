@@ -10,8 +10,7 @@ import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
 import Button from '~DesignSystem/Button';
 import LoadingPage from '~DesignSystem/Loading';
-
-// import NavBar from '~/components/NavBar';
+import NavBar from '~/components/NavBar';
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -26,6 +25,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <NavBar />
         <h2>자동배포가되면 여기가 바뀜123123123131313sadadasdasdadasd</h2>
         <h2>자동배포가되면 여기가 바뀜123123123131313sadadasdasdadasd</h2>
         <h2>과연 배포에 성공할까요?</h2>
