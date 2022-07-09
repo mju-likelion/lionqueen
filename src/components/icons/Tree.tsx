@@ -2,7 +2,7 @@ type Props = {
   className?: string;
 };
 
-const Trees = ({ className }: Props) => {
+const Tree = ({ className }: Props) => {
   return (
     <span>
       <svg
@@ -25,4 +25,4 @@ const Trees = ({ className }: Props) => {
   );
 };
 
-export default Trees;
+export default Tree;
