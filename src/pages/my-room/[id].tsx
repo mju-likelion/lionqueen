@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
-import styled from 'styled-components';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import Board from './Board';
+import styled from 'styled-components';
 import Avatar from './Avatar';
+import Board from './Board';
 import GuestBook from './GuestBook';
 import MemoModal from './MemoModal';
 

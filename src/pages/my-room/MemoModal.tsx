@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import Portal from '~DesignSystem/Portal';
-import XIcon from '~components/icons/XIcon';
 import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
+import Portal from '~DesignSystem/Portal';
+import XIcon from '~components/icons/XIcon';
 
 type comment = {
   id: number;

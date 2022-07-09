@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
-import Portal from '~/DesignSystem/Portal';
 import Arrow from '~components/icons/Arrow';
 import TapeIcon from '~components/icons/Tape';
 import XIcon from '~components/icons/XIcon';
-import InputGroup from '~DesignSystem/InputGroup';
 import Button from '~DesignSystem/Button';
+import InputGroup from '~DesignSystem/InputGroup';
+import Portal from '~/DesignSystem/Portal';
 
 type comment = {
   id: number;

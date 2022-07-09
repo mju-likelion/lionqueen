@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import BoardRack from '~components/icons/BoardRack';
+import LionDoll from '~components/icons/LionDoll';
 import TapeIcon from '~components/icons/Tape';
 
 type TapePositions = 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom' | 'center';
@@ -25,7 +26,7 @@ const Board = ({ handleModalClick, handleSecondModalClick, comments }: Props) =>
       <Rack />
       <BoardBody>
         <MoreButton type="button" onClick={handleModalClick}>
-          전체 보기
+          <LionDoll />
         </MoreButton>
         <Post top="10%" left="8%">
           <PostBody shape="circle" onClick={() => handleSecondModalClick(0)}>
@@ -86,10 +87,10 @@ const BoardBody = styled.div`
 `;
 
 const MoreButton = styled.button`
+  position: absolute;
+  top: 300px;
+  right: -100px;
   cursor: pointer;
-  :hover {
-    background-color: white;
-  }
 `;
 
 const Post = styled.div<{ top?: string; left?: string; rotate?: string }>`
