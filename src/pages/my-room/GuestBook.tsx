@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+import React, { useRef, useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import Potal from '~/DesignSystem/Portal';
 import Arrow from '~components/icons/Arrow';
@@ -19,13 +21,26 @@ type Props = {
 };
 
 const GuestBook = ({ onClose, comments }: Props) => {
-  const onClickNext = () => {
-    console.log('next click!');
+  // 모달창 크기에 최대 메모장 10개 보임 => 즉, 10개당 1슬라이드를 의미 나머지 발생 시 + 1
+  const slideRef = useRef<HTMLDivElement>(null);
+  const slideTotal = useRef<number>(Math.ceil(comments.length / 10) - 1);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // prev 클릭 시 현재 슬라이드를 -1, next 클릭은 +1, 각각 처음 혹은 끝이면 반대 방향으로 이동
+  const onClickPrev = () => {
+    if (currentSlide === 0) setCurrentSlide(slideTotal.current);
+    else setCurrentSlide(currentSlide - 1);
   };
 
-  const onClickPrev = () => {
-    console.log('prev click!');
+  const onClickNext = () => {
+    if (currentSlide >= slideTotal.current) setCurrentSlide(0);
+    else setCurrentSlide(currentSlide + 1);
   };
+
+  useEffect(() => {
+    if (slideRef.current != null)
+      slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
+  }, [currentSlide]);
 
   return (
     <Potal>
@@ -54,18 +69,18 @@ const GuestBook = ({ onClose, comments }: Props) => {
             </InputGroup>
             <MemoButtonWrap>
               <Button size="small">삭제</Button>
-              <Button size="small">추가</Button>
+              <Button size="small">+추가</Button>
             </MemoButtonWrap>
           </MidBox>
 
-          <CommentBox>
+          <CommentWrap ref={slideRef}>
             {comments.map((memo: { id: number; content: string }) => (
               <MemoBox key={memo.id}>
                 <Tape fill="#62fade" opacity="0.7" />
                 <button type="button">{memo.content}</button>
               </MemoBox>
             ))}
-          </CommentBox>
+          </CommentWrap>
         </Content>
       </Container>
     </Potal>
@@ -88,6 +103,8 @@ const Content = styled.div`
   width: 920px;
   height: 630px;
   background-color: ${({ theme }) => theme.colors.primary.skyblue};
+  border-radius: 15px;
+  overflow: hidden;
 `;
 
 const TopBox = styled.div`
@@ -139,15 +156,16 @@ const MemoButtonWrap = styled.div`
   gap: 10px;
 `;
 
-const CommentBox = styled.div`
+const CommentWrap = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  overflow-x: scroll;
   justify-content: center;
   gap: 30px 50px;
   height: 410px;
   padding: 0 15px;
+  transition: 0.3s ease-out;
+  /* overflow-x: hidden; */
 `;
 
 const MemoBox = styled.div`
