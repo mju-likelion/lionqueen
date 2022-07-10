@@ -4,25 +4,22 @@ import NavBarIcon from '~components/icons/NavBarIcon';
 import Menu from '~components/NavBar/Menu';
 
 function NavBar() {
-  const [isOpenNavBar, setIsOpenNavBar] = useState<boolean>(false);
+  const [isOpenNavBar, setIsOpenNavBar] = useState(false);
 
   return (
     <div>
-      <NavBarWrapper>
-        <NavBarIconBox
-          onClick={() => {
-            setIsOpenNavBar(!isOpenNavBar);
-          }}
-        >
-          <NavBarIcon />
-        </NavBarIconBox>
+      <NavBarWrapper
+        onClick={() => {
+          setIsOpenNavBar(!isOpenNavBar);
+        }}
+      >
+        <NavBarIcon />
       </NavBarWrapper>
       {isOpenNavBar && <Menu />}
     </div>
   );
 }
 
-const NavBarIconBox = styled.button``;
 const NavBarWrapper = styled.div`
   position: absolute;
   z-index: 10;

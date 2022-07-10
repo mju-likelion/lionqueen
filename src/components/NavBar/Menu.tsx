@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Button from '~DesignSystem/Button';
-import LionLogo from '../icons/LionLogo';
+import LionLogo from '~components/icons/LionLogo';
 
 const Menu = () => {
   return (
@@ -68,7 +68,6 @@ const MenuItem = styled.a`
   align-items: center;
 
   background-color: ${({ theme }) => theme.colors.primary.orange};
-  color: #2e2e2e;
   border: 2px solid #fff38b;
   border-radius: 10px;
 
