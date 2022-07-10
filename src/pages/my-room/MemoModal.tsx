@@ -5,34 +5,22 @@ import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
 import Portal from '~DesignSystem/Portal';
 import XIcon from '~components/icons/XIcon';
-
-type comment = {
-  id: number;
-  title: string;
-  content: string;
-  nickname: string;
-};
+import { Comment } from './CommentType';
 
 type Mode = 'create' | 'writer' | 'host' | 'general';
 
 type Props = {
   onClose: () => void;
-  comment: comment | undefined;
+  comment: Comment | undefined;
 };
 
 const MemoModal = ({ onClose, comment }: Props) => {
   const [mode, setMode] = useState<Mode>('create');
 
   // alert를 나중에 모달로 변경하기
-  const handleMemoCreate = () => {
-    alert('메모가 생성됐습니다');
-  };
   const handleMemoDelete = () => {
     alert('메모가 삭제됐습니다');
     onClose();
-  };
-  const handleMemoUpdate = () => {
-    alert('메모가 수정됐습니다');
   };
 
   // 방명록 추가, 수정
@@ -77,13 +65,28 @@ const MemoModal = ({ onClose, comment }: Props) => {
               />
             </InputGroup>
             <ButtonsContainer>
+              {/* 유저 모드 전환 테스트 */}
+              <div>
+                <button type="button" onClick={() => setMode('create')}>
+                  생성
+                </button>
+                <button type="button" onClick={() => setMode('writer')}>
+                  작성자
+                </button>
+                <button type="button" onClick={() => setMode('host')}>
+                  방주인
+                </button>
+                <button type="button" onClick={() => setMode('general')}>
+                  일반
+                </button>
+              </div>
               {mode === 'create' && (
-                <Button type="submit" size="small" onClick={handleMemoCreate}>
+                <Button type="submit" size="small">
                   추가
                 </Button>
               )}
               {mode === 'writer' && (
-                <Button type="submit" size="small" onClick={handleMemoUpdate}>
+                <Button type="submit" size="small">
                   수정
                 </Button>
               )}

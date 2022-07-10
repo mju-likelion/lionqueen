@@ -6,24 +6,17 @@ import Avatar from './Avatar';
 import Board from './Board';
 import GuestBook from './GuestBook';
 import MemoModal from './MemoModal';
-
-// comment type 코드 중복을 해결할 수 없을까
-type comment = {
-  id: number;
-  title: string;
-  content: string;
-  nickname: string;
-};
+import { Comment } from './CommentType';
 
 type Props = {
-  comments: Array<comment>;
+  comments: Array<Comment>;
 };
 
 const MyRoom = ({ comments }: Props) => {
   const router = useRouter();
   const [isModalPopup, setIsModalPopup] = useState(false);
   const [isSecondModalPopup, setIsSecondModalPopup] = useState(false);
-  const clickedMemoProps = useRef<comment | undefined>();
+  const clickedMemoProps = useRef<Comment | undefined>();
 
   const handleRouteClick = () => {
     // 추후 라운지 내부로 가는 코드로 고치기

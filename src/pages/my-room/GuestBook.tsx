@@ -6,18 +6,12 @@ import XIcon from '~components/icons/XIcon';
 import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
 import Portal from '~/DesignSystem/Portal';
-
-type comment = {
-  id: number;
-  title: string;
-  content: string;
-  nickname: string;
-};
+import { Comment } from './CommentType';
 
 type Props = {
   onClose: () => void;
   handleSecondModalClick: (id: number | null) => void;
-  comments: Array<comment>;
+  comments: Array<Comment>;
 };
 
 const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {

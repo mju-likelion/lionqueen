@@ -2,21 +2,15 @@ import styled, { css } from 'styled-components';
 import BoardRack from '~components/icons/BoardRack';
 import LionDoll from '~components/icons/LionDoll';
 import TapeIcon from '~components/icons/Tape';
+import { Comment } from './CommentType';
 
 type TapePositions = 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom' | 'center';
 type PostShape = 'circle' | 'rectangle';
 
-type comment = {
-  id: number;
-  title: string;
-  content: string;
-  nickname: string;
-};
-
 type Props = {
   handleModalClick: () => void;
   handleSecondModalClick: (id: number) => void;
-  comments: Array<comment>;
+  comments: Array<Comment>;
 };
 
 // comments는 최신 5개? 처음 5개? 만약 5개 미만이면?
