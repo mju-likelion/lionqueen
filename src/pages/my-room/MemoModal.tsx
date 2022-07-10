@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { useEffect, useState } from 'react';
+import { useFormik } from 'formik';
 import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
 import Portal from '~DesignSystem/Portal';
@@ -11,19 +13,49 @@ type comment = {
   nickname: string;
 };
 
+type Mode = 'create' | 'writer' | 'host' | 'general';
+
 type Props = {
   onClose: () => void;
   comment: comment | undefined;
 };
 
 const MemoModal = ({ onClose, comment }: Props) => {
+  const [mode, setMode] = useState<Mode>('create');
+
   // alert를 나중에 모달로 변경하기
+  const handleMemoCreate = () => {
+    alert('메모가 생성됐습니다');
+  };
   const handleMemoDelete = () => {
     alert('메모가 삭제됐습니다');
+    onClose();
   };
   const handleMemoUpdate = () => {
     alert('메모가 수정됐습니다');
   };
+
+  // 방명록 추가, 수정
+  const formik = useFormik({
+    initialValues: {
+      title: comment?.title || '',
+      content: comment?.content || '',
+      nickname: comment?.nickname || '',
+    },
+    onSubmit: values => {
+      alert(JSON.stringify(values, null, 2));
+      onClose();
+    },
+  });
+
+  useEffect(() => {
+    // 추후 유저에 따른 상태 변화 필요
+    if (comment === undefined) {
+      setMode('create');
+    } else {
+      setMode('writer');
+    }
+  }, []);
 
   return (
     <Portal>
@@ -33,30 +65,46 @@ const MemoModal = ({ onClose, comment }: Props) => {
             <XIcon color="#ffbb17" width="28" height="30" />
           </XIconBox>
           {/* formik으로 변경 필요 */}
-          <FormContainer>
+          <FormContainer onSubmit={formik.handleSubmit}>
             <InputGroup id="title" fullWidth>
               <Title
                 id="title"
-                name="input"
+                name="title"
                 placeholder="제목을 입력하세요."
-                value={comment?.title}
-                readOnly // 추후 유저별 적용 필요
+                value={formik.values.title}
+                onChange={formik.handleChange}
+                readOnly={mode === 'host' || mode === 'general'}
               />
             </InputGroup>
-            {/* 방장(삭제), 작성자(수정,삭제), 일반유저(읽기만) */}
             <ButtonsContainer>
-              <Button size="small" onClick={handleMemoUpdate}>
-                수정
-              </Button>
-              <Button size="small" onClick={handleMemoDelete}>
-                삭제
-              </Button>
+              {mode === 'create' && (
+                <Button type="submit" size="small" onClick={handleMemoCreate}>
+                  추가
+                </Button>
+              )}
+              {mode === 'writer' && (
+                <Button type="submit" size="small" onClick={handleMemoUpdate}>
+                  수정
+                </Button>
+              )}
+              {(mode === 'writer' || mode === 'host') && (
+                <Button size="small" onClick={handleMemoDelete}>
+                  삭제
+                </Button>
+              )}
             </ButtonsContainer>
             {/* readOnly의 경우 추후 유저별 적용 필요 */}
-            <MemoBody value={comment?.content} readOnly />
+            <MemoBody
+              id="content"
+              name="content"
+              value={formik.values.content}
+              onChange={formik.handleChange}
+              readOnly={mode === 'host' || mode === 'general'}
+            />
             <Writer>
               <p>-</p>
-              <p>{comment ? comment.nickname : '글쓴이'}</p>
+              {/* 새로 생성 => 로그인한 유저 이름, 나머지는 방명록 작성자 이름으로 변경 필요 */}
+              <input id="nickname" value={comment?.nickname} readOnly />
               <p>-</p>
             </Writer>
           </FormContainer>
@@ -128,9 +176,20 @@ const Writer = styled.div`
   justify-content: end;
   margin: 4px 0;
   gap: 8px;
+  font-size: 26px;
   p {
-    font-size: 26px;
     margin: 0;
+  }
+  input {
+    text-align: center;
+    border: 0;
+    background: none;
+    font-size: 26px;
+    width: 100px;
+    cursor: default;
+  }
+  input:focus {
+    outline: none;
   }
 `;
 

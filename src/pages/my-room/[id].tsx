@@ -23,7 +23,7 @@ const MyRoom = ({ comments }: Props) => {
   const router = useRouter();
   const [isModalPopup, setIsModalPopup] = useState(false);
   const [isSecondModalPopup, setIsSecondModalPopup] = useState(false);
-  const clickedMemoProps = useRef<comment>();
+  const clickedMemoProps = useRef<comment | undefined>();
 
   const handleRouteClick = () => {
     // 추후 라운지 내부로 가는 코드로 고치기
@@ -35,7 +35,7 @@ const MyRoom = ({ comments }: Props) => {
   };
 
   // 메모장 모달을 띄워줌과 동시에 메모장 props 세팅
-  const handleSecondModalClick = (id: number) => {
+  const handleSecondModalClick = (id: number | null) => {
     setIsSecondModalPopup(!isSecondModalPopup);
     clickedMemoProps.current = comments.find(comment => comment.id === id);
   };

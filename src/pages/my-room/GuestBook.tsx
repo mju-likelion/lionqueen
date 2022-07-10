@@ -16,7 +16,7 @@ type comment = {
 
 type Props = {
   onClose: () => void;
-  handleSecondModalClick: (id: number) => void;
+  handleSecondModalClick: (id: number | null) => void;
   comments: Array<comment>;
 };
 
@@ -68,7 +68,9 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
             </InputGroup>
             <MemoButtonWrap>
               <Button size="small">삭제</Button>
-              <Button size="small">+추가</Button>
+              <Button size="small" onClick={() => handleSecondModalClick(null)}>
+                +추가
+              </Button>
             </MemoButtonWrap>
           </MidBox>
 
