@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import Image from 'next/image';
 
 const Avatar = () => {
   return (
     <AvatarBox>
       {/* 사용자 이름 패치 필요 */}
       <p>사용자이름</p>
-      <img src="/image/human.png" alt="아바타" />
+      <Image src="/image/human.png" alt="아바타" width="312" height="398" />
     </AvatarBox>
   );
 };

@@ -17,7 +17,7 @@ type Props = {
 const Board = ({ handleModalClick, handleSecondModalClick, comments }: Props) => {
   return (
     <BoardContainer>
-      <Rack />
+      <BoardRack />
       <BoardBody>
         <MoreButton type="button" onClick={handleModalClick}>
           <LionDoll />
@@ -65,16 +65,14 @@ const Board = ({ handleModalClick, handleSecondModalClick, comments }: Props) =>
 const BoardContainer = styled.div`
   margin: 25px auto auto 82px;
   position: relative;
-`;
-
-const Rack = styled(BoardRack)`
-  position: absolute;
-  left: 174px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const BoardBody = styled.div`
-  position: absolute;
-  top: 134px;
+  position: relative;
+  top: -30px;
   width: 622px;
   height: 441px;
   background-image: url('/image/board.png');

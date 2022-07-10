@@ -11,7 +11,7 @@ type Mode = 'create' | 'writer' | 'host' | 'general';
 
 type Props = {
   onClose: () => void;
-  comment: Comment | undefined;
+  comment: Comment | null;
 };
 
 const MemoModal = ({ onClose, comment }: Props) => {
@@ -38,7 +38,7 @@ const MemoModal = ({ onClose, comment }: Props) => {
 
   useEffect(() => {
     // 추후 유저에 따른 상태 변화 필요
-    if (comment === undefined) {
+    if (comment === null) {
       setMode('create');
     } else {
       setMode('writer');
