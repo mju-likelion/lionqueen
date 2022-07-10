@@ -4,33 +4,27 @@ import { useState, useEffect, useRef, MutableRefObject } from 'react';
 import FloorNumber from '~components/lounge/FloorDemoData';
 import DoorBottom from '~components/icons/DoorBottom.svg';
 import Gear from '~components/icons/Gear.svg';
-import FloorButton from '~components/lounge/FloorButton';
 import NameBoard from '~components/lounge/NameBoard';
+import FloorButton from '~components/lounge/FloorButton';
 import LoungeDoor from '~components/lounge/LoungeDoor';
 
 const LoungeHome = () => {
   const [currentFloor, setCurrentFloor] = useState<number>(0);
-  // const floorRef = useRef(document.createElement('div'));
   const floorRef = useRef() as MutableRefObject<HTMLDivElement>;
 
   const handleScrollUp = () => {
-    console.log('up');
     if (currentFloor === 4) setCurrentFloor(0);
     else setCurrentFloor(currentFloor + 1);
-    console.log(currentFloor);
   };
 
   const handleScrollDown = () => {
-    console.log('down');
     if (currentFloor === 0) setCurrentFloor(0);
     else setCurrentFloor(currentFloor - 1);
-    console.log(currentFloor);
   };
 
   useEffect(() => {
     floorRef.current.style.transition = 'transform 1.2s ease-out';
-    floorRef.current.style.transform = `translateY(calc(60px + ${currentFloor}00%)`;
-    // floorRef.current.style.transform = `translateY(${currentFloor}00%)`;
+    floorRef.current.style.transform = `translateY(calc(${currentFloor}00% * 0.735))`;
   }, [currentFloor]);
 
   return (
@@ -48,14 +42,14 @@ const LoungeHome = () => {
             <LoungeDoor />
           </LoungeList>
         </Lounge>
-        <FloorLine />
-        <BottomContainer>
-          <FloorButton onScrollUp={handleScrollUp} onScrollDown={handleScrollDown} />
-          <DoorBottom />
-          <GearWrap>
+        <Bottom>
+          <BottomLine />
+          <BottomContainer>
+            <FloorButton onScrollUp={handleScrollUp} onScrollDown={handleScrollDown} />
+            <DoorBottom />
             <Gear />
-          </GearWrap>
-        </BottomContainer>
+          </BottomContainer>
+        </Bottom>
       </ListBottomContainer>
     </LoungeBg>
   );
@@ -75,79 +69,89 @@ const ListBottomContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: center;
-  margin-top: 100px;
 `;
 
 const Lounge = styled.div`
-  position: fixed;
-  top: 160px;
-  height: 600px;
-  margin-left: 15px;
   overflow: hidden;
-  background-color: green;
-
-  @media (max-height: 900px) {
-    top: 125px;
-    height: 550px;
-  }
 `;
 
 const LoungeList = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  height: 600px;
+  height: 870px;
+  margin-bottom: -320px;
 
-  @media (max-height: 900px) {
-    height: 550px;
+  @media (max-width: 1024px) {
+    height: 770px;
+    margin-bottom: -280px;
   }
-`;
-
-const BottomContainer = styled.div`
-  display: grid;
-  grid-template-columns: 200px 340px 340px;
-  margin-bottom: -10px;
-  height: 23%;
-`;
-
-const GearWrap = styled.div`
-  margin: 85px 0 0 330px;
-  cursor: pointer;
 `;
 
 const FloorContainer = styled.div`
   display: flex;
-`;
-
-const FloorLine = styled.div`
-  width: 1024px;
-  height: 20px;
-  margin: 305px 0 0 50px;
-  background-color: ${({ theme }) => theme.colors.primary.brown};
-  pointer-events: none;
-  z-index: 3;
-
-  @media (max-height: 900px) {
-    margin: 280px 0 0 50px;
-  }
+  position: relative;
 `;
 
 const FloorNum = styled.p`
   width: 65px;
   height: 67px;
-  margin: 255px 0 0 -50px;
-  padding: 10px 0 10px 0;
+  margin: -40px 0 0 -65px;
+  padding: 0;
   font-family: NanumBarunGothic;
   font-size: 35px;
   font-weight: 800;
   text-align: center;
 
-  @media screen and (max-height: 900px) {
-    padding: 20px 0 10px 0;
-    margin: 215px 0 0 -50px;
+  @media (max-width: 1024px) {
+    margin: -30px 0 0 -65px;
+    font-size: 27px;
+  }
+`;
+
+const FloorLine = styled.div`
+  width: 1050px;
+  height: 20px;
+  margin-bottom: 300px;
+  background-color: ${({ theme }) => theme.colors.primary.brown};
+  pointer-events: none;
+  z-index: 3;
+
+  @media (max-width: 1024px) {
+    width: 820px;
+    margin-bottom: 260px;
+  }
+`;
+
+const Bottom = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const BottomContainer = styled.div`
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+  width: 1024px;
+
+  @media (max-width: 1024px) {
+    width: 750px;
+    margin-bottom: -25px;
+  }
+`;
+
+const BottomLine = styled.div`
+  width: 1050px;
+  height: 20px;
+  background-color: ${({ theme }) => theme.colors.primary.brown};
+  pointer-events: none;
+  z-index: 3;
+
+  @media (max-width: 1024px) {
+    width: 820px;
   }
 `;
 

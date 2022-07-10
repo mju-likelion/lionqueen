@@ -26,9 +26,14 @@ const BtnContainer = styled.div`
   align-items: center;
   width: 122px;
   height: 122px;
-  margin-top: 23px;
   border-radius: 100%;
   background-color: ${({ theme }) => theme.colors.primary.yellow};
+
+  @media (max-width: 1024px) {
+    width: 105px;
+    height: 105px;
+    margin-bottom: 20px;
+  }
 `;
 
 const FloorBtnWrap = styled.div`
@@ -38,7 +43,6 @@ const FloorBtnWrap = styled.div`
   justify-content: center;
   width: 80%;
   height: 90%;
-  margin-top: 6px;
 `;
 
 const FloorBtn = styled.div<{ type: 'up' | 'down' }>`
@@ -46,10 +50,16 @@ const FloorBtn = styled.div<{ type: 'up' | 'down' }>`
   width: 66px;
   height: 10px;
   border-radius: 0.5rem;
-  margin: 8% 0 15% 0;
+  margin: 8% 0 8% 0;
   transform: ${props => props.type === 'down' && 'rotate(180deg)'};
   background-color: ${({ theme }) => theme.colors.primary.orange};
   cursor: pointer;
+
+  @media (max-width: 1024px) {
+    width: 60px;
+    height: 10px;
+    margin: 8% 0 8% 0;
+  }
 `;
 
 const BtnTop = styled.div`
@@ -63,6 +73,13 @@ const BtnTop = styled.div`
   transform: rotate(315deg);
   background-color: ${({ theme }) => theme.colors.primary.orange};
   cursor: pointer;
+
+  @media (max-width: 1024px) {
+    width: 47px;
+    height: 47px;
+    top: -18px;
+    left: 6.5px;
+  }
 `;
 
 export default FloorButton;

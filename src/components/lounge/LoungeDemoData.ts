@@ -24,6 +24,23 @@ const TestDoor: TestDoorType[] = [
   { userNum: 18, userName: '거북이' },
   { userNum: 19, userName: '다람쥐다람쥐다람쥐' },
   { userNum: 20, userName: '앵무새' },
+  { userNum: 21, userName: 'ㅇㅇ' },
+  { userNum: 22, userName: 'ㅎㅎ' },
+  { userNum: 23, userName: 'ㄱㄱ' },
+  { userNum: 24, userName: 'ㅁㅁ' },
+  { userNum: 25, userName: 'ㄴㄴ' },
+  { userNum: 26, userName: 'ㄷㄷ' },
+  { userNum: 27, userName: 'ㅂㅂ' },
+  { userNum: 28, userName: 'ㅠㅠ' },
+  { userNum: 29, userName: 'ㅊㅊ' },
+  { userNum: 30, userName: 'ㅌㅌ' },
+  { userNum: 31, userName: 'ㅋㅋ' },
+  { userNum: 32, userName: 'ㅈㅈ' },
+  { userNum: 33, userName: 'ㄹㄹ' },
+  { userNum: 34, userName: 'ㅕㅕ' },
+  { userNum: 35, userName: 'ㅡㅡ' },
+  { userNum: 36, userName: 'ㅔㅔ' },
+  { userNum: 37, userName: 'ㅍㅍ' },
 ];
 
 export default TestDoor;
