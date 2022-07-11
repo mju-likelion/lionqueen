@@ -1,6 +1,11 @@
 import styled, { css } from 'styled-components';
 
-export const Container = styled.div<{ fullWidth?: boolean; labelPos: 'up' | 'left'; dist: number }>`
+export const Container = styled.div<{
+  fullWidth?: boolean;
+  labelPos: 'up' | 'left';
+  dist: number;
+  contentWidth?: string;
+}>`
   display: flex;
   /* 기본 width 설정 시 여기(fullWidth 위)에 추가 필요 */
   width: ${props => (props.fullWidth ? '100%' : 'fit-content')};
@@ -27,8 +32,8 @@ export const LabelBox = styled.label<{ error?: string }>`
   min-width: fit-content;
 `;
 
-export const Content = styled.div`
-  width: 100%;
+export const Content = styled.div<{ contentWidth?: string }>`
+  width: ${props => props.contentWidth};
 `;
 
 export const InputBox = styled.div<{ pos?: 'up' | 'left'; dist?: number }>`
@@ -49,6 +54,8 @@ export const InputBox = styled.div<{ pos?: 'up' | 'left'; dist?: number }>`
 `;
 
 export const ErrorBox = styled.div`
+  display: flex;
+  align-items: flex-start;
   color: ${({ theme }) => theme.colors.primary.error};
   font-size: 12px;
   line-height: 16px;

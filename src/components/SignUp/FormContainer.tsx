@@ -44,9 +44,11 @@ const FormContainer: React.FC<FormContainerProps> = ({
           value={value}
           placeholder={placeholder}
           name={name}
-          id={id}
           disabled={inputDisabled}
         />
+      </InputGroup>
+      <InputGroup id={id} label={labelName} labelPos="left" labelDist={20} fullWidth>
+        <input placeholder={placeholder} name={name} />
       </InputGroup>
       <ButtonBox>
         {btnTitle ? (
