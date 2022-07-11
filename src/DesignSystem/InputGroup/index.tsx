@@ -1,8 +1,9 @@
 import type { ComponentPropsWithoutRef } from 'react';
+import React from 'react';
 import * as Style from './styles';
 
 type Props = {
-  children: React.ReactNode;
+  inputChild: React.ReactElement;
   id?: string;
   label?: React.ReactNode;
   error?: string;
@@ -12,6 +13,7 @@ type Props = {
   contentWidth?: string;
 } & ComponentPropsWithoutRef<'input'>;
 /*
+ * @param inputChild = label의 id
  * @param id = label의 id
  * @param label = label의 값
  * @param error = input에 대한 에러
@@ -21,7 +23,7 @@ type Props = {
  * @param contentWidth = 라벨을 제외한 내용의 width값 <string>
  */
 function InputGroup({
-  children,
+  inputChild,
   id,
   label,
   error = '',
@@ -37,7 +39,7 @@ function InputGroup({
       </Style.LabelBox>
       <Style.Content contentWidth={contentWidth}>
         <Style.InputBox pos={labelPos} dist={labelDist}>
-          {children}
+          {React.cloneElement(inputChild, { id })}
         </Style.InputBox>
         {error !== '' && <Style.ErrorBox>{error}</Style.ErrorBox>}
       </Style.Content>
