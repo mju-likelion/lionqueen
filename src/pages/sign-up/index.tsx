@@ -70,7 +70,7 @@ const SignUp = () => {
             value={formik.values.email}
             onBlur={formik.handleBlur}
             error={formError('email')}
-            btnDisabled={!!formik.errors.email}
+            btnDisabled={!formik.values.email || !!formik.errors.email}
             inputDisabled={isInput}
             onClick={() => {
               // 이메일인증  api연결예정
@@ -99,7 +99,12 @@ const SignUp = () => {
             value={formik.values.code}
             onBlur={formik.handleBlur}
             error={formError('code')}
-            btnDisabled={!!formik.errors.email || !!formik.errors.code}
+            btnDisabled={
+              !formik.values.email ||
+              !formik.values.code ||
+              !!formik.errors.email ||
+              !!formik.errors.code
+            }
             inputDisabled={isInput}
             onClick={() => {
               if (formik.values.code && formik.values.email) {
