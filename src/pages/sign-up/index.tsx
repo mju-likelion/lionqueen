@@ -30,8 +30,6 @@ const SignUp = () => {
       privacyCheck: [],
     },
     onSubmit: values => {
-      console.log(values);
-
       axios
         .post('/api/auth/sign-up', {
           email: formik.values.email,
@@ -112,7 +110,7 @@ const SignUp = () => {
                   })
                   .then(() => {
                     alert('인증이 완료되었습니다.');
-                    setIsToken(true);
+                    setIsInput(true);
                     setIsBtn(false);
                   })
                   .catch(err => {
