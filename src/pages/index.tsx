@@ -59,57 +59,41 @@ const Home: NextPage = () => {
         </Button>
 
         {/* input 스타일링 예시 */}
-        <InputGroup
-          inputChild={<input placeholder="asdasd" name="input" id="input" />}
-          id="input"
-          label="이름"
-          labelPos="up"
-          labelDist={10}
-          fullWidth
-        />
-        <InputGroup
-          inputChild={<input placeholder="asdasd" name="input" />}
-          id="test"
-          label="이름"
-          labelPos="up"
-          labelDist={10}
-        />
+        <InputGroup id="input" label="이름" labelPos="up" labelDist={10} fullWidth>
+          <input placeholder="asdasd" name="input" />
+        </InputGroup>
+        <InputGroup id="test" label="이름" labelPos="up" labelDist={10}>
+          <input placeholder="asdasd" name="input" />
+        </InputGroup>
         <button type="button" onClick={() => setIsShow(true)}>
           show
         </button>
+        <InputGroup id="test2" label="이름" labelPos="left" labelDist={20}>
+          <input placeholder="asdasd" name="input" />
+        </InputGroup>
         <InputGroup
-          inputChild={<input placeholder="asdasd" name="input" />}
-          id="test2"
-          label="이름"
-          labelPos="left"
-          labelDist={20}
-        />
-        <InputGroup
-          inputChild={<input placeholder="asdasd" name="input" />}
           id="test3"
           label="이름"
           labelPos="left"
           labelDist={20}
           error="에러메시지"
           fullWidth
-        />
+        >
+          <input placeholder="asdasd" name="input" />
+        </InputGroup>
+        <InputGroup id="test4" label="이름" labelPos="left" labelDist={20} fullWidth>
+          <input placeholder="asdasd" name="input" />
+        </InputGroup>
         <InputGroup
-          inputChild={<input placeholder="asdasd" name="input" />}
-          id="test4"
-          label="이름"
-          labelPos="left"
-          labelDist={20}
-          fullWidth
-        />
-        <InputGroup
-          inputChild={<input placeholder="asdasd" name="input" />}
           id="test5"
           label="이름"
           labelPos="left"
           labelDist={20}
           fullWidth
           contentWidth="500px"
-        />
+        >
+          <input placeholder="asdasd" name="input" />
+        </InputGroup>
         <BackgroundMain>
           안녕하세요! 여기는 게시판 영역입니다! 내부 콘텐츠 스탕일링은 각자 해야합니다!
         </BackgroundMain>

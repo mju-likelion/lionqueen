@@ -3,7 +3,7 @@ import React from 'react';
 import * as Style from './styles';
 
 type Props = {
-  inputChild: React.ReactElement;
+  children: React.ReactElement;
   id?: string;
   label?: React.ReactNode;
   error?: string;
@@ -23,7 +23,7 @@ type Props = {
  * @param contentWidth = 라벨을 제외한 내용의 width값 <string>
  */
 function InputGroup({
-  inputChild,
+  children,
   id,
   label,
   error = '',
@@ -39,7 +39,7 @@ function InputGroup({
       </Style.LabelBox>
       <Style.Content contentWidth={contentWidth}>
         <Style.InputBox pos={labelPos} dist={labelDist}>
-          {React.cloneElement(inputChild, { id })}
+          {React.cloneElement(children, { id })}
         </Style.InputBox>
         {error !== '' && <Style.ErrorBox>{error}</Style.ErrorBox>}
       </Style.Content>

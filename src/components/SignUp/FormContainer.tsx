@@ -20,15 +20,9 @@ const FormContainer: React.FC<formContainerProps> = ({
 }) => {
   return (
     <FormWrapper>
-      <InputGroup
-        inputChild={<input placeholder={placeholder} name={name} />}
-        id={id}
-        label={labelName}
-        labelPos="left"
-        labelDist={20}
-        fullWidth
-      />
-
+      <InputGroup id={id} label={labelName} labelPos="left" labelDist={20} fullWidth>
+        <input placeholder={placeholder} name={name} />
+      </InputGroup>
       <StyledButton>{btnTitle ? <Button size="small">{btnTitle}</Button> : ''}</StyledButton>
     </FormWrapper>
   );
