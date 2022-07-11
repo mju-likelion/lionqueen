@@ -16,7 +16,7 @@ export default {
 const Template: ComponentStory<typeof InputGroup> = args => (
   <ThemeProvider theme={theme}>
     <InputGroup {...args}>
-      <input placeholder="asdasd" name="input" id="input" />
+      <input placeholder="asdasd" name="input" />
     </InputGroup>
   </ThemeProvider>
 );
