@@ -47,9 +47,6 @@ const FormContainer: React.FC<FormContainerProps> = ({
           disabled={inputDisabled}
         />
       </InputGroup>
-      <InputGroup id={id} label={labelName} labelPos="left" labelDist={20} fullWidth>
-        <input placeholder={placeholder} name={name} />
-      </InputGroup>
       <ButtonBox>
         {btnTitle ? (
           <StyledButton size="small" onClick={onClick} disabled={btnDisabled}>
