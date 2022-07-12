@@ -5,7 +5,7 @@ import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
 import Portal from '~DesignSystem/Portal';
 import XIcon from '~components/icons/XIcon';
-import { Comment } from './CommentType';
+import { Comment } from './commentType';
 
 type Mode = 'create' | 'writer' | 'host' | 'general';
 
@@ -45,6 +45,29 @@ const MemoModal = ({ onClose, comment }: Props) => {
     }
   }, []);
 
+  const testButtons: { id: number; text: string; testType: Mode }[] = [
+    {
+      id: 0,
+      text: '생성',
+      testType: 'create',
+    },
+    {
+      id: 1,
+      text: '작성자',
+      testType: 'writer',
+    },
+    {
+      id: 2,
+      text: '방주인',
+      testType: 'host',
+    },
+    {
+      id: 3,
+      text: '일반',
+      testType: 'general',
+    },
+  ];
+
   return (
     <Portal>
       <Container>
@@ -54,9 +77,8 @@ const MemoModal = ({ onClose, comment }: Props) => {
           </XIconBox>
           {/* formik으로 변경 필요 */}
           <FormContainer onSubmit={formik.handleSubmit}>
-            <InputGroup id="title" fullWidth>
+            <InputGroup id="title" fullWidth contentWidth="100%">
               <Title
-                id="title"
                 name="title"
                 placeholder="제목을 입력하세요."
                 value={formik.values.title}
@@ -67,19 +89,13 @@ const MemoModal = ({ onClose, comment }: Props) => {
             <ButtonsContainer>
               {/* 유저 모드 전환 테스트 */}
               <div>
-                <button type="button" onClick={() => setMode('create')}>
-                  생성
-                </button>
-                <button type="button" onClick={() => setMode('writer')}>
-                  작성자
-                </button>
-                <button type="button" onClick={() => setMode('host')}>
-                  방주인
-                </button>
-                <button type="button" onClick={() => setMode('general')}>
-                  일반
-                </button>
+                {testButtons.map((item: { id: number; text: string; testType: Mode }) => (
+                  <button type="button" key={item.id} onClick={() => setMode(item.testType)}>
+                    {item.text}
+                  </button>
+                ))}
               </div>
+              {/* api 완성 후 데이터 정제 요망 (https://github.com/mju-likelion/lionqueen/pull/29) */}
               {mode === 'create' && (
                 <Button type="submit" size="small">
                   추가

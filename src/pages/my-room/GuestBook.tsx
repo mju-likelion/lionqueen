@@ -7,7 +7,7 @@ import XIcon from '~components/icons/XIcon';
 import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
 import Portal from '~/DesignSystem/Portal';
-import { Comment } from './CommentType';
+import { Comment } from './commentType';
 
 type Props = {
   onClose: () => void;
@@ -71,9 +71,8 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
           </TopBox>
 
           <MidBox>
-            {/* inputGroup은 차후 contentWidth 적용하기 */}
-            <InputGroup id="search">
-              <input id="search" placeholder="찾고 싶은 키워드를 입력하세요." />
+            <InputGroup id="search" contentWidth="336px">
+              <input placeholder="찾고 싶은 키워드를 입력하세요." />
             </InputGroup>
             <MemoButtonWrap>
               <Button size="small">삭제</Button>
