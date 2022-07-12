@@ -10,8 +10,7 @@ import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
 import Button from '~DesignSystem/Button';
 import LoadingPage from '~DesignSystem/Loading';
-
-// import NavBar from '~/components/NavBar';
+import NavBar from '~/components/NavBar';
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -26,6 +25,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <NavBar />
         <h2>자동배포가되면 여기가 바뀜123123123131313sadadasdasdadasd</h2>
         <h2>자동배포가되면 여기가 바뀜123123123131313sadadasdasdadasd</h2>
         <h2>과연 배포에 성공할까요?</h2>
@@ -60,16 +60,16 @@ const Home: NextPage = () => {
 
         {/* input 스타일링 예시 */}
         <InputGroup id="input" label="이름" labelPos="up" labelDist={10} fullWidth>
-          <input placeholder="asdasd" name="input" id="input" />
+          <input placeholder="asdasd" name="input" />
         </InputGroup>
         <InputGroup id="test" label="이름" labelPos="up" labelDist={10}>
-          <input placeholder="asdasd" name="input" id="test" />
+          <input placeholder="asdasd" name="input" />
         </InputGroup>
         <button type="button" onClick={() => setIsShow(true)}>
           show
         </button>
         <InputGroup id="test2" label="이름" labelPos="left" labelDist={20}>
-          <input placeholder="asdasd" name="input" id="test2" />
+          <input placeholder="asdasd" name="input" />
         </InputGroup>
         <InputGroup
           id="test3"
@@ -79,10 +79,20 @@ const Home: NextPage = () => {
           error="에러메시지"
           fullWidth
         >
-          <input placeholder="asdasd" name="input" id="test3" />
+          <input placeholder="asdasd" name="input" />
         </InputGroup>
         <InputGroup id="test4" label="이름" labelPos="left" labelDist={20} fullWidth>
-          <input placeholder="asdasd" name="input" id="test4" />
+          <input placeholder="asdasd" name="input" />
+        </InputGroup>
+        <InputGroup
+          id="test5"
+          label="이름"
+          labelPos="left"
+          labelDist={20}
+          fullWidth
+          contentWidth="500px"
+        >
+          <input placeholder="asdasd" name="input" />
         </InputGroup>
         <BackgroundMain>
           안녕하세요! 여기는 게시판 영역입니다! 내부 콘텐츠 스탕일링은 각자 해야합니다!
