@@ -6,14 +6,16 @@ const LoungeDoor = () => {
   return (
     <LoungeFloor>
       <Doors>
-        {TestDoor.map(item => (
-          <LoungeDoors key={item.userNum}>
-            <NameSpace>
-              <RoomName>{item.userName}</RoomName>
-            </NameSpace>
-            <Knob />
-          </LoungeDoors>
-        ))}
+        {TestDoor.slice(0)
+          .reverse()
+          .map(item => (
+            <LoungeDoors key={item.userNum}>
+              <NameSpace>
+                <RoomName>{item.userName}</RoomName>
+              </NameSpace>
+              <Knob />
+            </LoungeDoors>
+          ))}
       </Doors>
     </LoungeFloor>
   );
