@@ -71,6 +71,6 @@
     "storybook-addon-next": "^1.6.2"
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix"
+    "*.{ts,tsx}": "eslint --cache --fix"
   }
 }
