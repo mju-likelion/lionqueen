@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, MouseEvent } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { scrollTo } from 'seamless-scroll-polyfill';
 import Arrow from '~components/icons/Arrow';
@@ -23,12 +23,6 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
   const containerRef = useRef(null);
 
   const [currentSlide, setCurrentSlide] = useState<number>(0);
-
-  const handleModalOutsideClick = (e: MouseEvent) => {
-    if (useModalOutsideClick(containerRef, e)) {
-      onClose();
-    }
-  };
 
   // prev 클릭 시 현재 슬라이드를 -1, next 클릭은 +1, 각각 처음 혹은 끝이면 반대 방향으로 이동
   const onClickPrev = () => {
@@ -62,7 +56,7 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
 
   return (
     <Portal>
-      <Container ref={containerRef} onClick={handleModalOutsideClick}>
+      <Container ref={containerRef} onClick={e => useModalOutsideClick(containerRef, e, onClose)}>
         <Content>
           <TopBox>
             <Title>방명록</Title>
