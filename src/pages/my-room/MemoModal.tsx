@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
 import Portal from '~DesignSystem/Portal';
 import XIcon from '~components/icons/XIcon';
 import { Comment } from './commentType';
+import useModalOutsideClick from '~/hooks/useModalOutsideClick';
 
 type Mode = 'create' | 'writer' | 'host' | 'general';
 
@@ -16,6 +17,13 @@ type Props = {
 
 const MemoModal = ({ onClose, comment }: Props) => {
   const [mode, setMode] = useState<Mode>('create');
+  const containerRef = useRef(null);
+
+  const handleModalOutsideClick = (e: MouseEvent) => {
+    if (useModalOutsideClick(containerRef, e)) {
+      onClose();
+    }
+  };
 
   // alert를 나중에 모달로 변경하기
   const handleMemoDelete = () => {
@@ -70,7 +78,7 @@ const MemoModal = ({ onClose, comment }: Props) => {
 
   return (
     <Portal>
-      <Container>
+      <Container ref={containerRef} onClick={handleModalOutsideClick}>
         <Content>
           <XIconBox onClick={onClose}>
             <XIcon color="#ffbb17" width="28" height="30" />
