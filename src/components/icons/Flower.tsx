@@ -4,7 +4,7 @@ type Props = {
   fill?: string;
 };
 
-const Flower = ({ height = 175, width = 175, fill }: Props) => {
+const Flower = ({ height = 175, width = 175, fill = '#7FDF9A' }: Props) => {
   return (
     <svg
       width={width}
