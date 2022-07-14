@@ -39,6 +39,7 @@ const NavBarWrapper = styled.div`
 
   background-color: rgba(255, 187, 23, 0.7);
   border-radius: 20px;
+  user-select: none;
 `;
 
 const TextTitle = styled.p`
