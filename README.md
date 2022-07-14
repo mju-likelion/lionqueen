@@ -38,7 +38,7 @@ yarn dev
 - Next.js, TypeScript
 
 • 페이지 스타일링
-- tailwindCSS
+- Styled-Components
 
 • 배포 및 CDN
 - AWS
