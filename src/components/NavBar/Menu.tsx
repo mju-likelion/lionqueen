@@ -84,4 +84,5 @@ const ButtonBox = styled.div`
   flex-direction: column;
   gap: 54px;
 `;
+
 export default Menu;
