@@ -27,4 +27,5 @@ const NavBarWrapper = styled.div`
   right: 237px;
   bottom: 79px;
 `;
+
 export default NavBar;
