@@ -32,12 +32,12 @@ const NavBarWrapper = styled.div`
   width: 200px;
   height: 888px;
 
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 56px;
   z-index: 10;
 
-  background-color: rgba(255, 187, 23, 0.7);
+  background-color: #ffbb17b3;
   border-radius: 20px;
   user-select: none;
 `;
