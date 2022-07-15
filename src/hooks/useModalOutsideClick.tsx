@@ -1,16 +1,21 @@
-import { RefObject, MouseEvent } from 'react';
+import { MouseEvent, useRef } from 'react';
 
 type Props = {
-  ref: RefObject<HTMLDivElement>;
-  e: MouseEvent;
   onClose: () => void;
 };
 
 // 모달 바깥 클릭 시 닫힘
-const useModalOutsideClick = (ref: Props['ref'], e: Props['e'], onClose: Props['onClose']) => {
-  if (e.target === ref.current) {
-    onClose();
-  }
+const useModalOutsideClick = (onClose: Props['onClose']) => {
+  const outsideRef = useRef(null);
+  const onClick = (e: MouseEvent) => {
+    if (outsideRef.current === e.target) {
+      onClose();
+    }
+  };
+  return {
+    ref: outsideRef,
+    onClick,
+  };
 };
 
 export default useModalOutsideClick;

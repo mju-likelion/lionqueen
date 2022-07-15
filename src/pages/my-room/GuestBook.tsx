@@ -20,7 +20,6 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
   // 모달창 크기에 최대 메모장 10개 보임 => 즉, 10개당 1슬라이드를 의미 나머지 발생 시 + 1
   const slideRef = useRef<HTMLDivElement>(null);
   const slideTotal = useRef<number>(Math.ceil(comments.length / 10) - 1);
-  const containerRef = useRef(null);
 
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
@@ -56,7 +55,7 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
 
   return (
     <Portal>
-      <Container ref={containerRef} onClick={e => useModalOutsideClick(containerRef, e, onClose)}>
+      <Container {...useModalOutsideClick(onClose)}>
         <Content>
           <TopBox>
             <Title>방명록</Title>
