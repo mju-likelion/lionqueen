@@ -8,6 +8,7 @@ import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
 import Portal from '~/DesignSystem/Portal';
 import { Comment } from './commentType';
+import useModalOutsideClick from '~/hooks/useModalOutsideClick';
 
 type Props = {
   onClose: () => void;
@@ -19,6 +20,7 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
   // 모달창 크기에 최대 메모장 10개 보임 => 즉, 10개당 1슬라이드를 의미 나머지 발생 시 + 1
   const slideRef = useRef<HTMLDivElement>(null);
   const slideTotal = useRef<number>(Math.ceil(comments.length / 10) - 1);
+
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
   // prev 클릭 시 현재 슬라이드를 -1, next 클릭은 +1, 각각 처음 혹은 끝이면 반대 방향으로 이동
@@ -53,7 +55,7 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
 
   return (
     <Portal>
-      <Container>
+      <Container {...useModalOutsideClick(onClose)}>
         <Content>
           <TopBox>
             <Title>방명록</Title>

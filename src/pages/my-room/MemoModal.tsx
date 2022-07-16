@@ -6,6 +6,7 @@ import InputGroup from '~DesignSystem/InputGroup';
 import Portal from '~DesignSystem/Portal';
 import XIcon from '~components/icons/XIcon';
 import { Comment } from './commentType';
+import useModalOutsideClick from '~/hooks/useModalOutsideClick';
 
 type Mode = 'create' | 'writer' | 'host' | 'general';
 
@@ -70,7 +71,7 @@ const MemoModal = ({ onClose, comment }: Props) => {
 
   return (
     <Portal>
-      <Container>
+      <Container {...useModalOutsideClick(onClose)}>
         <Content>
           <XIconBox onClick={onClose}>
             <XIcon color="#ffbb17" width="28" height="30" />
