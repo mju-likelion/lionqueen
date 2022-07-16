@@ -5,12 +5,14 @@ import { wrapper } from '../store';
 import { theme } from '~/styles/theme';
 
 import '../styles/globals.css';
+import Notice from '~components/Notice';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />
+        <Notice />
       </ThemeProvider>
     </RecoilRoot>
   );
