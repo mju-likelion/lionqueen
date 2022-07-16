@@ -1,0 +1,17 @@
+{
+  "extends": ["stylelint-config-recommended", "stylelint-config-styled-components", "stylelint-config-concentric-order"],
+  "overrides": [
+    {
+      "files": ["**/*.{ts,tsx}"],
+      "customSyntax": "@stylelint/postcss-css-in-js",
+      "rules": {
+        "color-hex-case": "lower",
+        "unit-case": "lower",
+        "at-rule-no-unknown": null,
+        "function-no-unknown":[true, {
+          "ignoreAtRules": ["styled-components"]
+      }]
+      }
+    }
+  ]
+}
