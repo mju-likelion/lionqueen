@@ -20,6 +20,7 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-redux": "^8.0.2",
+    "recoil": "^0.7.4",
     "serverless": "2.72.2",
     "serverless-nextjs-plugin": "^2.5.2-alpha.0",
     "storybook-addon-styled-component-theme": "^2.0.0",
