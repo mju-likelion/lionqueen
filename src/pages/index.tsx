@@ -10,6 +10,7 @@ import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
 import Button from '~DesignSystem/Button';
 import LoadingPage from '~DesignSystem/Loading';
+import useShowNotice from '~components/Notice/useShowNotice';
 
 // import NavBar from '~/components/NavBar';
 
@@ -17,6 +18,13 @@ const Home: NextPage = () => {
   const router = useRouter();
   const [isShow, setIsShow] = useState(false);
   const [secondShow, setSecondShow] = useState(false);
+  const { showNotice } = useShowNotice();
+
+  const handleNotice = () => {
+    showNotice({
+      message: `showNotice테스트`,
+    });
+  };
 
   return (
     <div>
@@ -121,6 +129,7 @@ const Home: NextPage = () => {
             2번째 모달
           </ConfirmModal>
         )}
+        <Button onClick={() => handleNotice()}>Notice테스트</Button>
       </main>
     </div>
   );
