@@ -127,7 +127,6 @@ const NameBox = styled.div`
 `;
 
 const NameTitle = styled.p`
-
   margin-bottom: 5px;
   margin-left: 10px;
   text-align: left;
@@ -136,7 +135,6 @@ const NameTitle = styled.p`
 `;
 
 const NameInfo = styled.div`
-
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -189,7 +187,6 @@ const LoungeInfo = styled.div`
     width: 8px; /* 스크롤바의 너비 */
   }
   &::-webkit-scrollbar-thumb {
-
     border-radius: 10px;
     background: ${({ theme }) => theme.colors.primary.lightgreen}; /* 스크롤바의 색상 */
     height: 30%; /* 스크롤바의 길이 */

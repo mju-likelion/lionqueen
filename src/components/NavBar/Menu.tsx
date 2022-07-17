@@ -60,7 +60,6 @@ const LionLogoBox = styled.div`
 `;
 
 const MenuItem = styled.a`
-
   display: flex;
   align-items: center;
   justify-content: center;

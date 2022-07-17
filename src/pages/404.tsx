@@ -90,38 +90,38 @@ const Custom404 = () => {
 
 const Wrapper404 = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
-
-  padding: 30px;
+  justify-content: center;
   margin-top: 40px;
 
   background-color: #b7e4b7;
+
+  padding: 30px;
   user-select: none;
 `;
 
 const Container404 = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 `;
 
 const TextBox = styled.div`
-  flex-direction: column;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  margin-right: 50px;
+  border-radius: 40px;
 
   background-color: #ffffff;
-  border-radius: 40px;
-  margin-right: 50px;
   padding: 20px;
 `;
 
 const Title404 = styled.p`
-  font-size: 60px;
   margin: 15px auto;
+  font-size: 60px;
 `;
 
 const Text404 = styled.p`
@@ -129,22 +129,21 @@ const Text404 = styled.p`
 `;
 
 const FlowerContainer = styled.div`
-  width: 700px;
-  height: auto;
-
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  margin: 20px auto;
 
   border-radius: 20px;
-  margin: 20px auto;
+  width: 700px;
+  height: auto;
 `;
 
 const GoToHome = styled.button`
-  font-size: 25px;
   margin-top: 10px;
   cursor: pointer;
+  font-size: 25px;
 
   &:hover {
     transform: scale(1.5);
@@ -161,8 +160,8 @@ const FlowerBox = styled.div`
 `;
 
 const FlowerName = styled.p`
-  text-align: center;
   margin-bottom: 28px;
+  text-align: center;
 `;
 
 export default Custom404;
