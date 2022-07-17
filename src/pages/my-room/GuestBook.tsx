@@ -102,22 +102,22 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
 };
 
 const Container = styled.div`
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: #00000066;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #00000066;
 `;
 
 const Content = styled.div`
+  border-radius: 15px;
+  background-color: ${({ theme }) => theme.colors.primary.skyblue};
   width: 920px;
   height: 630px;
-  background-color: ${({ theme }) => theme.colors.primary.skyblue};
-  border-radius: 15px;
   overflow: hidden;
 `;
 
@@ -127,24 +127,24 @@ const TopBox = styled.div`
 `;
 
 const Title = styled.p`
-  font-size: 80px;
-  text-align: center;
   margin: 0;
+  text-align: center;
+  font-size: 80px;
 `;
 
 const XIconBox = styled.button`
-  cursor: pointer;
   position: absolute;
   top: 0;
   right: 0;
+  cursor: pointer;
 `;
 
 const SlideButtonWrap = styled.div`
+  display: flex;
   position: absolute;
   top: 58px;
-  width: 100%;
-  display: flex;
   justify-content: space-between;
+  width: 100%;
 `;
 
 const SlideButtonBox = styled.button<{ left?: boolean }>`
@@ -158,47 +158,47 @@ const SlideButtonBox = styled.button<{ left?: boolean }>`
 
 const MidBox = styled.div`
   display: flex;
-  justify-content: end;
   align-items: center;
+  justify-content: end;
   margin: 45px 25px 17px 25px;
 `;
 
 const MemoButtonWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-left: 15px;
   gap: 10px;
+  margin-left: 15px;
 `;
 
 const CommentWrap = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 30px 50px;
-  height: 410px;
-  padding: 0 15px;
+  justify-content: center;
   transition: 0.3s ease-out;
+  padding: 0 15px;
+  height: 410px;
   overflow-x: hidden;
 `;
 
 const MemoBox = styled.div`
-  position: relative;
-  transform: rotate(0.02turn);
   display: flex;
+  position: relative;
   justify-content: center;
+  transform: rotate(0.02turn);
   height: fit-content;
 
   button {
     background-color: #fff3eb;
+    cursor: pointer;
     width: 142px;
     height: 161px;
-    cursor: pointer;
   }
 
   p {
-    width: 118px;
     padding: 0 6px;
+    width: 118px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

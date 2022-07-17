@@ -106,17 +106,17 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
 
 // 내 정보 모달UI
 const MyInfoTitle = styled.p`
-  font-size: 35px;
-  line-height: 28px;
   margin: 0;
+  line-height: 28px;
+  font-size: 35px;
   user-select: none;
 `;
 
 const InfoBox = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   user-select: none;
 `;
 
@@ -127,72 +127,72 @@ const NameBox = styled.div`
 `;
 
 const NameTitle = styled.p`
-  font-size: 20px;
-  line-height: 18px;
-  text-align: left;
 
   margin-bottom: 5px;
   margin-left: 10px;
+  text-align: left;
+  line-height: 18px;
+  font-size: 20px;
 `;
 
 const NameInfo = styled.div`
-  width: 315px;
-  height: 41px;
-  border: 1px solid;
-  border-radius: 15px;
 
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  border: 1px solid;
+  border-radius: 15px;
+  width: 315px;
+  height: 41px;
 `;
 
 const NameText = styled.input`
-  font-size: 18px;
   margin: 8px 0 7px 13px;
   border: none;
+  font-size: 18px;
   :focus {
     outline: none;
   }
 `;
 
 const NameSaveButton = styled.button`
+  margin: 8px 12px 7px 0;
   color: ${({ theme }) => theme.colors.primary.green};
   font-size: 16px;
-  margin: 8px 12px 7px 0;
 `;
 
 // 라운지 정보
 const LoungeBox = styled.div`
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
   margin-top: 10px;
 `;
 
 const LoungeTitle = styled.p`
-  text-align: left;
-  font-size: 20px;
-  line-height: 18px;
+  margin-bottom: 5px;
 
   margin-left: 10px;
-  margin-bottom: 5px;
+  text-align: left;
+  line-height: 18px;
+  font-size: 20px;
 `;
 
 const LoungeInfo = styled.div`
-  width: 315px;
-  height: 192px;
   border: 1px solid;
   border-radius: 15px 5px 5px 15px;
+  width: 315px;
+  height: 192px;
   overflow: auto;
   &::-webkit-scrollbar {
     width: 8px; /* 스크롤바의 너비 */
   }
   &::-webkit-scrollbar-thumb {
-    height: 30%; /* 스크롤바의 길이 */
-    background: ${({ theme }) => theme.colors.primary.lightgreen}; /* 스크롤바의 색상 */
 
     border-radius: 10px;
+    background: ${({ theme }) => theme.colors.primary.lightgreen}; /* 스크롤바의 색상 */
+    height: 30%; /* 스크롤바의 길이 */
   }
   &::-webkit-scrollbar-track {
     background: rgba(255, 144, 224, 0.1); /*스크롤바 뒷 배경 색상*/
@@ -201,37 +201,37 @@ const LoungeInfo = styled.div`
 
 const LoungeName = styled.div`
   display: block;
-  font-size: 16px;
   margin: 8px 0 3px 13px;
   width: 220px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
 `;
 
 const LoungeRow = styled.div`
-  flex-direction: row;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   margin-bottom: 4px;
 `;
 
 const LoungeOutButton = styled.button`
+  margin: 8px 12px 3px 0;
   color: ${({ theme }) => theme.colors.primary.error};
   font-size: 16px;
-  margin: 8px 12px 3px 0;
 `;
 
 // 계정 삭제 버튼
 const WithdrawalButton = styled.button`
+  margin: 14px 0 8px 230px;
   color: #bd2517;
   font-size: 17px;
-  margin: 14px 0 8px 230px;
 `;
 
 const GoodbyeText = styled.p`
-  font-size: 17px;
   margin: 10px 0;
+  font-size: 17px;
 `;
 
 export default MyInfo;

@@ -12,10 +12,10 @@ const Avatar = () => {
 };
 
 const AvatarBox = styled.div`
-  font-size: 50px;
   margin: 148px 320px auto auto;
   width: 320px;
   text-align: center;
+  font-size: 50px;
   p {
     margin-bottom: 47px;
   }

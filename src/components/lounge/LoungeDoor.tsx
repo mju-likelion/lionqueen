@@ -37,47 +37,47 @@ const DoorsContainer = styled.div`
 `;
 
 const FloorLine = styled.div`
+  background-color: ${({ theme }) => theme.colors.primary.brown};
   width: 1024px;
   height: 20px;
-  background-color: ${({ theme }) => theme.colors.primary.brown};
 `;
 
 const LoungeDoors = styled.div`
   display: grid;
   grid-template-rows: repeat(2, 1fr);
-  width: 15%;
-  height: 220px;
   border-radius: 15px 15px 0 0;
   box-shadow: 8px 0 5px #7f7f7fb3;
   background-color: ${({ theme }) => theme.colors.primary.yellow};
   cursor: pointer;
+  width: 15%;
+  height: 220px;
 `;
 
 const NameSpace = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 `;
 
 const RoomName = styled.p`
+  margin: 0;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 10px 0 10px 0;
   width: 80%;
   height: 38%;
-  margin: 0;
-  padding: 10px 0 10px 0;
-  border-radius: 10px;
+  text-align: center;
   font-size: 20px;
   font-weight: 500;
-  text-align: center;
-  background-color: #fff;
 `;
 
 const Knob = styled.div`
-  width: 18px;
-  height: 18px;
   margin-left: 10px;
   border-radius: 100%;
   box-shadow: 0 4px 5px #7f7f7f99;
   background-color: #7f7f7f;
+  width: 18px;
+  height: 18px;
 `;
 
 export default LoungeDoor;
