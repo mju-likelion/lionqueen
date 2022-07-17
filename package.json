@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint ./src",
+    "lint-staged": "lint-staged",
     "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "build-storybook -s public",
     "chromatic": "chromatic --project-token=0aefef65099b",
@@ -67,7 +68,7 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-storybook": "^0.5.11",
-    "husky": "^7.0.4",
+    "husky": "^8.0.1",
     "lint-staged": "^12.4.1",
     "postcss": "^8.4.14",
     "postcss-syntax": "^0.36.2",
@@ -79,6 +80,9 @@
     "stylelint-config-styled-components": "^0.1.1"
   },
   "lint-staged": {
-    "*.{ts,tsx}": "eslint --cache --fix"
+    "*.{ts,tsx}": [
+      "eslint --cache --fix",
+      "stylelint"
+    ]
   }
 }
