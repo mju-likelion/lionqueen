@@ -13,7 +13,7 @@ const Custom404 = () => {
     {
       id: 0,
       name: '연빈',
-      fill: '#8979EE',
+      fill: '#8979ee',
       path: 'https://www.wanted.co.kr/',
     },
     { id: 1, name: '예빈', fill: '#ef9c65', path: 'https://www.google.co.kr/' },
