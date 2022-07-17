@@ -9,9 +9,7 @@
         "unit-case": "lower",
         "at-rule-no-unknown": null,
         "font-family-no-missing-generic-family-keyword":null,
-        "function-no-unknown":[true, {
-          "ignoreAtRules": ["styled-components"]
-      }]
+        "function-no-unknown": [true, { "ignoreFunctions": ["/\\${/"] }]
       }
     }
   ]
