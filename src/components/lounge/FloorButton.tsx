@@ -50,7 +50,7 @@ const FloorBtn = styled.div<{ type: 'up' | 'down' }>`
   width: 66px;
   height: 10px;
   border-radius: 0.5rem;
-  margin: 8% 0 8% 0;
+  margin: 8% 0;
   transform: ${props => props.type === 'down' && 'rotate(180deg)'};
   background-color: ${({ theme }) => theme.colors.primary.orange};
   cursor: pointer;
@@ -78,7 +78,7 @@ const BtnTop = styled.div`
     width: 47px;
     height: 47px;
     top: -18px;
-    left: 6.5px;
+    left: 6px;
   }
 `;
 
