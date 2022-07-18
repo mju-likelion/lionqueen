@@ -7,7 +7,7 @@ import XIcon from '~components/icons/XIcon';
 import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
 import Portal from '~/DesignSystem/Portal';
-import { Comment } from './commentType';
+import { Comment } from '~/lib/commentType';
 import useModalOutsideClick from '~/hooks/useModalOutsideClick';
 
 type Props = {

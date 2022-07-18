@@ -6,7 +6,7 @@ import Avatar from './Avatar';
 import Board from './Board';
 import GuestBook from './GuestBook';
 import MemoModal from './MemoModal';
-import { Comment } from './commentType';
+import { Comment } from '~/lib/commentType';
 
 type Props = {
   comments: Array<Comment>;
