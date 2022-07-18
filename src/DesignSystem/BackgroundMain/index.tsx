@@ -29,78 +29,78 @@ function BackgroundMain(props: BackgroundProps) {
 }
 
 const PageContainer = styled.div`
-  height: 100%;
-  width: 100%;
-  background-color: ${({ theme }) => theme.colors.primary.skyblue};
   display: flex;
   justify-items: center;
+  background-color: ${({ theme }) => theme.colors.primary.skyblue};
+  width: 100%;
+  height: 100%;
 `;
 
 const BackgroundBox = styled.div`
-  position: relative;
-  min-width: 1440px;
-  min-height: 1024px;
-  margin: 0 auto;
 
   display: flex;
-  justify-content: center;
+  position: relative;
   align-items: flex-start;
-
-  padding-top: 93px;
+  justify-content: center;
+  margin: 0 auto;
+  box-shadow: none;
 
   background-image: url('https://lionqueen.s3.amazonaws.com/background.png');
-  background-repeat: no-repeat;
   background-position: center;
+  background-repeat: no-repeat;
   background-size: 1440px 1024px;
-  box-shadow: none;
+
+  padding-top: 93px;
+  min-width: 1440px;
+  min-height: 1024px;
 `;
 
 const Board = styled.div`
   position: relative;
+  border: 10px solid #ffbb54;
+  border-radius: 30px;
+
+  background-color: ${({ theme }) => theme.colors.primary.yellow};
 
   width: 1014px;
   min-height: 708px;
-
-  background-color: ${({ theme }) => theme.colors.primary.yellow};
-  border: 10px solid #ffbb54;
-  border-radius: 30px;
 `;
 
 const TreeContainer = styled.div`
+  display: flex;
   position: absolute;
   bottom: -60px;
   left: 0;
+  justify-content: space-between;
 
   width: 100%;
-  display: flex;
-  justify-content: space-between;
 `;
 
 const LineContainer = styled.div`
-  position: absolute;
-  top: -15px;
-
-  width: 100%;
-  margin: 0 auto;
 
   display: flex;
-  justify-content: center;
+  position: absolute;
+  top: -15px;
   gap: 440px;
+  justify-content: center;
+  margin: 0 auto;
+
+  width: 100%;
 `;
 
 const LineStyles = styled.div`
-  width: 16px;
-  height: 118px;
   border-radius: 10px;
   background-color: #cd853f;
+  width: 16px;
+  height: 118px;
 `;
 
 const ContentContainer = styled.div`
-  width: 912px;
-  min-height: 542px;
   margin: 102px auto 48px auto;
   border-radius: 15px;
   background-color: #ffffffcc;
+  width: 912px;
+  min-height: 542px;
 `;
 
 export default BackgroundMain;

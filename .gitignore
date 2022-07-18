@@ -36,3 +36,6 @@ yarn-error.log*
 
 # jetbrains ide
 .idea
+
+# lint
+.eslintcache
