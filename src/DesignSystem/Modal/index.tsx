@@ -1,11 +1,11 @@
 import React, { useEffect, useLayoutEffect } from 'react';
-import XIcon from '~/components/icons/XIcon';
+import XIcon from '~components/icons/XIcon';
 import Portal from '~DesignSystem/Portal';
 import * as S from './styles';
 
 type Props = {
   children?: React.ReactNode;
-  size?: 'medium' | 'large';
+  size?: 'large' | 'medium' | 'small';
   title?: React.ReactNode;
   onClose: () => void;
 };

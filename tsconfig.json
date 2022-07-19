@@ -14,14 +14,15 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
-      "~page/*": ["pages/*"],
-      "~lib/*": ["lib/*"],
-      "~DesignSystem/*": ["DesignSystem/*"],
-      "~/*": ["./*"]
+      "~page/*": ["src/pages/*"],
+      "~lib/*": ["src/lib/*"],
+      "~DesignSystem/*": ["src/DesignSystem/*"],
+      "~components/*": ["src/components/*"],
+      "~/*": ["src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js", "tailwind.config.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js"],
   "exclude": ["node_modules"]
 }

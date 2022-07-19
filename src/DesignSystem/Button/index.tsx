@@ -1,30 +1,35 @@
 import type { ComponentPropsWithoutRef } from 'react';
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import { theme } from '../../styles/theme';
 import * as Style from './styles';
 
 type ButtonProps = {
   size?: 'small' | 'medium' | 'large';
   className?: string;
   fontColor?: string;
+  disabled?: boolean;
 } & ComponentPropsWithoutRef<'button'>;
 
 const Button = (props: ButtonProps) => {
-  const { size = 'medium', className = '', fontColor = '', children, ...restProps } = props;
+  const {
+    size = 'medium',
+    className = '',
+    fontColor = '',
+    children,
+    disabled = false,
+    ...restProps
+  } = props;
 
   return (
-    <ThemeProvider theme={theme}>
-      <Style.Btn
-        type="button"
-        size={size}
-        fontColor={fontColor}
-        className={className}
-        {...restProps}
-      >
-        {children}
-      </Style.Btn>
-    </ThemeProvider>
+    <Style.Btn
+      type="button"
+      size={size}
+      fontColor={fontColor}
+      className={className}
+      disabled={disabled}
+      {...restProps}
+    >
+      {children}
+    </Style.Btn>
   );
 };
 
