@@ -16,12 +16,11 @@ function NoticeMessage({ contents }: messageProps) {
   useEffect(() => {
     const timer = setTimeout(() => {
       dispatch(noticeActions.isNotShow());
-      console.log('teststest');
     }, 3500);
     return () => {
       clearTimeout(timer);
     };
-  }, []);
+  }, [showNotice]);
 
   return (
     <Container isShow={showNotice}>
