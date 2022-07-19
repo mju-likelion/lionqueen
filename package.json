@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint ./src",
-    "lint:style": "stylelint ./src/**/*.{ts,tsx}",
+    "lint:style": "stylelint \"./src/**/*.{ts,tsx}\"",
     "lint-staged": "lint-staged",
     "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "build-storybook -s public",

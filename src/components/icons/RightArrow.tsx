@@ -4,7 +4,7 @@ type Props = {
   color?: string;
 };
 
-const RightArrow = ({ width = '46', height = '52', color = '#FFF0AF' }: Props) => {
+const RightArrow = ({ width = '46', height = '52', color = '#fff0af' }: Props) => {
   return (
     <svg
       width={width}

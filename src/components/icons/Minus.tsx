@@ -4,7 +4,7 @@ type Props = {
   color?: string;
 };
 
-const Minus = ({ width = '38', height = '38', color = '#FFF0AF' }: Props) => {
+const Minus = ({ width = '38', height = '38', color = '#fff0af' }: Props) => {
   return (
     <svg
       width={width}
