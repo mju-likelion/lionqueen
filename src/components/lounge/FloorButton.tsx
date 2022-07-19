@@ -39,7 +39,7 @@ const FloorBtnWrap = styled.div`
 const FloorBtn = styled.div<{ type: 'up' | 'down' }>`
   position: relative;
   transform: ${props => props.type === 'down' && 'rotate(180deg)'};
-  margin: 8% 0 15% 0;
+  margin: 8% 0 15%;
   border-radius: 0.5rem;
   background-color: ${({ theme }) => theme.colors.primary.orange};
   cursor: pointer;

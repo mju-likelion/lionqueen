@@ -16,6 +16,7 @@ const AvatarBox = styled.div`
   width: 320px;
   text-align: center;
   font-size: 50px;
+
   p {
     margin-bottom: 47px;
   }

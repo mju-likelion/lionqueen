@@ -77,7 +77,7 @@ const FloorContainer = styled.div`
 
 const FloorNum = styled.p`
   margin: 230px 0 0 -50px;
-  padding: 35px 0 10px 0;
+  padding: 35px 0 10px;
   width: 65px;
   height: 67px;
   text-align: center;
@@ -86,7 +86,7 @@ const FloorNum = styled.p`
   font-weight: 800;
 
   @media screen and (max-height: 900px) {
-    padding: 20px 0 10px 0;
+    padding: 20px 0 10px;
   }
 `;
 

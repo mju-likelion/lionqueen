@@ -149,6 +149,7 @@ const NameText = styled.input`
   margin: 8px 0 7px 13px;
   border: none;
   font-size: 18px;
+
   :focus {
     outline: none;
   }
@@ -170,7 +171,6 @@ const LoungeBox = styled.div`
 
 const LoungeTitle = styled.p`
   margin-bottom: 5px;
-
   margin-left: 10px;
   text-align: left;
   line-height: 18px;
@@ -183,16 +183,19 @@ const LoungeInfo = styled.div`
   width: 315px;
   height: 192px;
   overflow: auto;
+
   &::-webkit-scrollbar {
     width: 8px; /* 스크롤바의 너비 */
   }
+
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background: ${({ theme }) => theme.colors.primary.lightgreen}; /* 스크롤바의 색상 */
     height: 30%; /* 스크롤바의 길이 */
   }
+
   &::-webkit-scrollbar-track {
-    background: rgba(255, 144, 224, 0.1); /*스크롤바 뒷 배경 색상*/
+    background: rgb(255 144 224 / 10%); /* 스크롤바 뒷 배경 색상 */
   }
 `;
 

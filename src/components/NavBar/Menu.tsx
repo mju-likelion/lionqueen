@@ -27,7 +27,6 @@ const Menu = () => {
 
 const NavBarWrapper = styled.div`
   display: flex;
-
   position: fixed;
   top: 56px;
   right: 0;
@@ -35,7 +34,6 @@ const NavBarWrapper = styled.div`
   align-items: center;
   z-index: 10;
   border-radius: 20px;
-
   background-color: #ffbb17b3;
   width: 200px;
   height: 888px;
@@ -44,7 +42,6 @@ const NavBarWrapper = styled.div`
 
 const TextTitle = styled.p`
   margin-top: 32px;
-
   margin-bottom: 71px;
   text-align: center;
   line-height: 80px;
@@ -65,11 +62,9 @@ const MenuItem = styled.a`
   justify-content: center;
   border: 2px solid #fff38b;
   border-radius: 10px;
-
   background-color: ${({ theme }) => theme.colors.primary.orange};
   width: 160px;
   height: 42px;
-
   text-align: center;
   line-height: 28px;
   font-size: 22px;

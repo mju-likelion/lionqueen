@@ -7,6 +7,7 @@ export const Container = styled.div<{
   contentWidth?: string;
 }>`
   display: flex;
+
   /* 기본 width 설정 시 여기(fullWidth 위)에 추가 필요 */
   align-items: flex-start;
   width: ${props => (props.fullWidth ? '100%' : 'fit-content')};

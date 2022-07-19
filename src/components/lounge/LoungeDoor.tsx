@@ -63,7 +63,7 @@ const RoomName = styled.p`
   margin: 0;
   border-radius: 10px;
   background-color: #fff;
-  padding: 10px 0 10px 0;
+  padding: 10px 0;
   width: 80%;
   height: 38%;
   text-align: center;

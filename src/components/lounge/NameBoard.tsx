@@ -53,7 +53,7 @@ const GroupBoard = styled.div`
 
 const GroupName = styled.p`
   margin: 0;
-  padding: 16px 0 10px 0;
+  padding: 16px 0 10px;
   width: 500px;
   height: 80px;
   text-align: center;

@@ -50,6 +50,7 @@ const loading = keyframes`
     background-color: ${theme.colors.primary.skyblue};
     width: 30px;
   }
+
   to {
     background-color: ${theme.colors.primary.yellow};
   }
@@ -87,7 +88,6 @@ const LoadingSquare = styled.div`
   border-radius: 13px;
   width: 28px;
   height: 47px;
-
   animation-name: ${loading};
   animation-duration: 1.7s;
   animation-iteration-count: infinite;

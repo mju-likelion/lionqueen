@@ -153,6 +153,7 @@ const PostBody = styled.button<{ shape: PostShape }>`
       width: 133px;
       height: 140px;
     `}
+
   display: flex;
   position: absolute;
   top: 20px;
