@@ -20,30 +20,27 @@ export const Title = styled.header`
   font-style: normal;
 `;
 export const Content = styled.div<{ size: 'large' | 'medium' | 'small' }>`
-   ${props =>
+  ${props =>
     props.size === 'large' &&
     css`
       padding: 33px 43px;
       width: 520px;
       height: 478px;
-    `
-
-   ${props =>
+    `}
+  ${props =>
     props.size === 'medium' &&
     css`
       padding: 40px 30px;
       width: 450px;
       height: auto;
-    `
-
-     ${props =>
+    `}
+  ${props =>
     props.size === 'small' &&
     css`
       padding: 40px 30px;
       width: 400px;
       height: auto;
-    `
-
+    `}
   display: flex;
   position: relative;
   flex-direction: column;
