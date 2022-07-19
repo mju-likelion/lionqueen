@@ -135,34 +135,34 @@ const MemoModal = ({ onClose, comment }: Props) => {
 };
 
 const Container = styled.div`
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: #00000066;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #00000066;
 `;
 
 const Content = styled.div`
+  border-radius: 15px;
+  background-color: ${({ theme }) => theme.colors.primary.skyblue};
   width: 920px;
   height: 630px;
-  background-color: ${({ theme }) => theme.colors.primary.skyblue};
-  border-radius: 15px;
   overflow: hidden;
 `;
 
 const XIconBox = styled.button`
-  cursor: pointer;
   display: flex;
   margin: 18px 21px auto auto;
+  cursor: pointer;
 `;
 
 const FormContainer = styled.form`
-  width: 812px;
   margin: 23px auto;
+  width: 812px;
 `;
 
 const Title = styled.input`
@@ -172,18 +172,18 @@ const Title = styled.input`
 
 const ButtonsContainer = styled.div`
   display: flex;
+  gap: 20px;
   justify-content: end;
   margin: 14px auto;
-  gap: 20px;
 `;
 
 const MemoBody = styled.textarea`
-  width: 100%;
-  height: 382px;
   border: 2px solid ${({ theme }) => theme.colors.primary.orange};
   border-radius: 15px;
-  padding: 26px 29px;
   background-color: #fff3d6;
+  padding: 26px 29px;
+  width: 100%;
+  height: 382px;
   resize: none;
   font-size: 20px;
   :focus {
@@ -193,20 +193,20 @@ const MemoBody = styled.textarea`
 
 const Writer = styled.div`
   display: flex;
+  gap: 8px;
   justify-content: end;
   margin: 4px 0;
-  gap: 8px;
   font-size: 26px;
   p {
     margin: 0;
   }
   input {
-    text-align: center;
     border: 0;
     background: none;
-    font-size: 26px;
-    width: 100px;
     cursor: default;
+    width: 100px;
+    text-align: center;
+    font-size: 26px;
   }
   input:focus {
     outline: none;

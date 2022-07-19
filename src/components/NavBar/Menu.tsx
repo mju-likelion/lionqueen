@@ -27,53 +27,52 @@ const Menu = () => {
 
 const NavBarWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 200px;
-  height: 888px;
 
   position: fixed;
-  right: 0;
   top: 56px;
+  right: 0;
+  flex-direction: column;
+  align-items: center;
   z-index: 10;
+  border-radius: 20px;
 
   background-color: #ffbb17b3;
-  border-radius: 20px;
+  width: 200px;
+  height: 888px;
   user-select: none;
 `;
 
 const TextTitle = styled.p`
-  font-size: 72px;
-  font-weight: 300;
-  line-height: 80px;
-  text-align: center;
+  margin-top: 32px;
 
   margin-bottom: 71px;
-  margin-top: 32px;
+  text-align: center;
+  line-height: 80px;
+  font-size: 72px;
+  font-weight: 300;
 `;
 
 const LionLogoBox = styled.div`
   position: absolute;
+  bottom: 30px;
   width: 159px;
   height: 154px;
-  bottom: 30px;
 `;
 
 const MenuItem = styled.a`
-  width: 160px;
-  height: 42px;
-  font-size: 22px;
-
   display: flex;
-  justify-content: center;
   align-items: center;
-
-  background-color: ${({ theme }) => theme.colors.primary.orange};
+  justify-content: center;
   border: 2px solid #fff38b;
   border-radius: 10px;
 
+  background-color: ${({ theme }) => theme.colors.primary.orange};
+  width: 160px;
+  height: 42px;
+
   text-align: center;
   line-height: 28px;
+  font-size: 22px;
 
   :hover {
     background: linear-gradient(180deg, #f2b112 0%, #f3ca67 100%);

@@ -21,24 +21,24 @@ export const Btn = styled.button<{ size?: 'small' | 'medium' | 'large'; fontColo
     css`
       width: 240px;
       height: 48px;
-      font-size: 24px;
       line-height: 28px;
-    `};
+      font-size: 24px;
+    `}
 
-  background-color: ${({ theme }) => theme.colors.primary.orange};
-  color: ${props => (props.fontColor ? props.fontColor : '#2E2E2E')};
   border: 2px solid #fff38b;
   border-radius: 10px;
+  background-color: ${({ theme }) => theme.colors.primary.orange};
   cursor: pointer;
+  color: ${props => (props.fontColor ? props.fontColor : '#2E2E2E')};
+
+  &:disabled {
+    border: 2px solid #e5e5e5;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background: #afafaf;
+  }
 
   :hover {
     background: linear-gradient(180deg, #f2b112 0%, #f3ca67 100%);
-  }
-
-  &:disabled {
-    background: #afafaf;
-    border: 2px solid #e5e5e5;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
   }
 `;
