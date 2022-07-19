@@ -4,7 +4,7 @@ type Props = {
   color?: string;
 };
 
-const Bubble = ({ width = '163', height = '163', color = '#C5E5FF' }: Props) => {
+const Bubble = ({ width = '163', height = '163', color = '#c5e5ff' }: Props) => {
   return (
     <svg
       width={width}

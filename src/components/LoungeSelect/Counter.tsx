@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 import { useState } from 'react';
-import Plus from '../icons/ModalPlusButton';
-import Minus from '../icons/Minus';
+import Plus from '~/components/icons/ModalPlusButton';
+import Minus from '~/components/icons/Minus';
 
 const Counter = () => {
   const [count, setCount] = useState<number>(100);
 
   const incNum = () => {
-    if (count === 100) {
+    if (count >= 100) {
       setCount(100);
     } else {
       setCount(count + 5);
@@ -16,7 +16,7 @@ const Counter = () => {
   };
 
   const decNum = () => {
-    if (count === 0) {
+    if (count <= 0) {
       setCount(0);
     } else {
       setCount(count - 5);
@@ -37,18 +37,17 @@ const Counter = () => {
 };
 
 const Container = styled.div`
-  width: 120px;
-  height: 30px;
   display: flex;
-  flex-direction: row;
   align-items: center;
   margin-left: 40px;
+  width: 120px;
+  height: 30px;
 `;
 
-const ButtonWrapper = styled.div`
+const ButtonWrapper = styled.button`
+  margin: 0 25px 10px 20px;
   width: 30px;
   height: 30px;
-  margin: 0 25px 10px 20px;
 `;
 
 export default Counter;

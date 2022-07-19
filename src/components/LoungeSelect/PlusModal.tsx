@@ -36,52 +36,49 @@ const PlusModal = ({ onClose }: { onClose: () => void }) => {
 };
 
 const InputContainer = styled.div`
-  width: 283px;
-  height: 110px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 0 auto;
-  margin-top: 35px;
+  margin: 35px auto 0 auto;
+  width: 283px;
+  height: 110px;
 `;
 
-const InputTitle = styled.p`
-  font-size: 16px;
+const InputTitle = styled.label`
   margin: 0 0 11px 8px;
   color: ${({ theme }) => theme.colors.primary.black};
+  font-size: 16px;
 `;
 
 const InputText = styled.input`
+  border: 2.5px solid ${({ theme }) => theme.colors.primary.orange};
+  border-radius: 10px;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+  padding-left: 5px;
   width: 283px;
   height: 38px;
-  border: 2.5px solid ${({ theme }) => theme.colors.primary.orange};
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  font-size: 16px;
-  padding-left: 5px;
   color: ${({ theme }) => theme.colors.primary.black};
+  font-size: 16px;
 `;
 
 const PeopleContainer = styled.div`
-  width: 240px;
-  height: 30px;
   display: flex;
   flex-direction: row;
-  margin: 0 auto;
-  margin-top: 40px;
-  margin-bottom: 35px;
+  margin: 40px auto 35px auto;
+  width: 240px;
+  height: 30px;
 `;
 
 const NumPeople = styled.p`
-  font-size: 16px;
   color: ${({ theme }) => theme.colors.primary.black};
+  font-size: 16px;
 `;
 
 // 글자수 초과시 에러 메시지 출력
 const CautionText = styled.p`
-  font-size: 13px;
-  color: ${({ theme }) => theme.colors.primary.error};
   margin: 10px 0 0 8px;
+  color: ${({ theme }) => theme.colors.primary.error};
+  font-size: 13px;
 `;
 
 export default PlusModal;
