@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import styled from 'styled-components';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
@@ -17,6 +17,7 @@ const Find = () => {
   const [userEmail, setUserEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const router = useRouter();
   // 배열의 요소에서 name과 email이 userName과 userEmail과 일치한다면
   // { name: element.name, email: element.email }을 반환합니다.
   const findUser = (element: { name: string; email: string }) => {
@@ -35,20 +36,20 @@ const Find = () => {
       setErrorMessage('');
       routePage();
     } else {
-      setErrorMessage(
-        errorMessage => `이름 및 이메일을 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.`,
-      );
+      setErrorMessage(`이름 및 이메일을 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.`);
     }
   };
 
   const routePage = () => {
-    Router.push({
-      pathname: '/password-find/confirm',
-      query: { backtoLogin: '비밀번호 변경 메일이 발송되었습니다.' },
-    });
+    if (router.pathname === '/password-find') {
+      Router.push({
+        pathname: '/password-find/confirm',
+        query: { backtoLogin: '비밀번호가 성공적으로 변경되었습니다' },
+      });
+    }
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     checkUser();
   };

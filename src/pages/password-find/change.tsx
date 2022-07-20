@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import styled from 'styled-components';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
@@ -11,27 +11,34 @@ const Change = () => {
   const [changeError, setChangeError] = useState('');
   const [checkError, setCheckError] = useState('');
 
+  const router = useRouter();
   const passwordRegex = /^[a-zA-Z0-9]{6,10}$/;
 
-  const firstPasswordError = e => {
+  const firstPasswordError = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (passwordRegex.test(e.target.value) === true) {
-      setChangeError(changeError => '');
+      setChangeError('');
     } else {
-      setChangeError(changeError => '6~10자 내에서 영문, 숫자를 조합해서 입력하세요');
+      setChangeError('6~10자 내에서 영문, 숫자를 조합해서 입력하세요');
     }
   };
 
   const secondPasswordError = () => {
     if (changeError === '' && changePassword === checkPassword) {
-      setCheckError(checkError => '');
+      setCheckError('');
     } else {
-      setCheckError(checkError => '비밀번호가 일치하지 않습니다. 다시 시도해주세요');
+      setCheckError('비밀번호가 일치하지 않습니다. 다시 시도해주세요');
     }
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (changePassword === checkPassword && changeError === '' && checkError === '') {
+      routeToConfirm();
+    }
+  };
+
+  const routeToConfirm = () => {
+    if (router.pathname === '/password-find/change') {
       Router.push({
         pathname: '/password-find/confirm',
         query: { backtoLogin: '비밀번호가 성공적으로 변경되었습니다' },
