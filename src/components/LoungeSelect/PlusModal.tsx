@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import { useState } from 'react';
 import Button from '~DesignSystem/Button';
+import InputGroup from '~DesignSystem/InputGroup';
 import ModalForm from './ModalForm';
 import Counter from './Counter';
 
@@ -22,8 +23,9 @@ const PlusModal = ({ onClose }: { onClose: () => void }) => {
   return (
     <ModalForm isSingle size="large" title="라운지 생성" onClose={onClose}>
       <InputContainer>
-        <InputTitle>그룹 이름</InputTitle>
-        <InputText value={input} onChange={onChangeInput} />
+        <InputGroup label="그룹 이름" labelDist={10} contentWidth="283px">
+          <InputText value={input} onChange={onChangeInput} />
+        </InputGroup>
         {errorShow && <CautionText>한글, 영문, 숫자 포함 12자 이내로 작성해주세요.</CautionText>}
       </InputContainer>
       <PeopleContainer>
@@ -44,19 +46,9 @@ const InputContainer = styled.div`
   height: 110px;
 `;
 
-const InputTitle = styled.label`
-  margin: 0 0 11px 8px;
-  color: ${({ theme }) => theme.colors.primary.black};
-  font-size: 16px;
-`;
-
 const InputText = styled.input`
-  border: 2.5px solid ${({ theme }) => theme.colors.primary.orange};
-  border-radius: 10px;
+  border: 3px solid ${({ theme }) => theme.colors.primary.orange};
   box-shadow: 0 3px 3px rgba(0 0 0 / 25%);
-  padding-left: 5px;
-  width: 283px;
-  height: 38px;
   color: ${({ theme }) => theme.colors.primary.black};
   font-size: 16px;
 `;
@@ -64,9 +56,10 @@ const InputText = styled.input`
 const PeopleContainer = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   margin: 40px auto 35px;
-  width: 240px;
-  height: 30px;
+  width: 260px;
+  height: 40px;
 `;
 
 const NumPeople = styled.p`

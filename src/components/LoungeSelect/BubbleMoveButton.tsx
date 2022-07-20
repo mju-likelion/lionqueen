@@ -50,7 +50,6 @@ const ArrowWrapper = styled.button`
 `;
 
 const GroupName = styled.span`
-  display: flex;
   display: block;
   position: absolute;
   margin: -95px 0 0 8px;
