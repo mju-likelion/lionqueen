@@ -20,6 +20,20 @@ export const Title = styled.header`
   font-style: normal;
 `;
 export const Content = styled.div<{ size: 'large' | 'medium' | 'small' }>`
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 10px solid #ffab2d;
+  border-radius: 30px;
+  box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+  background: #fff;
+  padding: 30px 20px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+
   ${props =>
     props.size === 'large' &&
     css`
@@ -43,20 +57,6 @@ export const Content = styled.div<{ size: 'large' | 'medium' | 'small' }>`
       width: 400px;
       height: auto;
     `}
-
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  border: 10px solid #ffab2d;
-  border-radius: 30px;
-  box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
-  background: #fff;
-  padding: 30px 20px;
-  width: 100%;
-  height: 100%;
-  text-align: center;
 `;
 
 export const XIconWrapper = styled.button`
