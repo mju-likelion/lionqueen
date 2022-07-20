@@ -27,11 +27,11 @@ const SignIn = () => {
     mockUpcheck();
   };
 
-  const idChange = (e: React.ChangeEvent<HTMLFormElement>) => {
+  const idChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserId(e.target.value);
   };
 
-  const passwordChange = (e: React.ChangeEvent<HTMLFormElement>) => {
+  const passwordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserPassword(e.target.value);
   };
 
@@ -41,49 +41,41 @@ const SignIn = () => {
       <CrossLine />
       <form onSubmit={onSubmit}>
         <InputTotalDiv>
-          <InputDiv>
-            <InputGroup id="id" label="아이디" labelPos="left" labelDist={20}>
-              <input
-                placeholder="아이디를 입력하세요"
-                name="input"
-                id="id"
-                maxLength={25}
-                value={userId}
-                onChange={idChange}
-              />
-            </InputGroup>
-          </InputDiv>
-          <InputDiv>
-            <InputGroup
-              id="password"
-              label="비밀번호"
-              labelPos="left"
-              labelDist={20}
-              error={errorMessage}
-              fullWidth
-            >
-              <input
-                placeholder="비밀번호를 입력하세요"
-                name="input"
-                id="password"
-                maxLength={25}
-                value={userPassword}
-                onChange={passwordChange}
-                type="password"
-              />
-            </InputGroup>
-          </InputDiv>
+          <InputGroup id="id" label="아이디" labelPos="left" labelDist={20}>
+            <input
+              placeholder="아이디를 입력하세요"
+              name="input"
+              maxLength={25}
+              value={userId}
+              onChange={idChange}
+            />
+          </InputGroup>
+          <InputGroup
+            id="password"
+            label="비밀번호"
+            labelPos="left"
+            labelDist={20}
+            error={errorMessage}
+            fullWidth
+          >
+            <input
+              placeholder="비밀번호를 입력하세요"
+              name="input"
+              maxLength={25}
+              value={userPassword}
+              onChange={passwordChange}
+              type="password"
+            />
+          </InputGroup>
         </InputTotalDiv>
         <ButtonDiv>
-          <Button id="loginButton" type="submit">
-            로그인
-          </Button>
+          <Button type="submit">로그인</Button>
         </ButtonDiv>
       </form>
       <TextDiv>
-        <button type="submit">비밀번호 찾기</button>
+        <button type="button">회원가입</button>
         <p>|</p>
-        <button type="submit"> 회원가입</button>
+        <button type="button">비밀번호 찾기</button>
       </TextDiv>
     </BackgroundMain>
   );
@@ -97,56 +89,53 @@ const OverLap = styled.div`
 `;
 
 const MainText = styled(OverLap)`
+  padding-top: 44px;
   width: 264px;
   height: 78px;
-  padding-top: 44px;
   font-size: 55px;
 `;
 
 const CrossLine = styled(OverLap)`
-  width: 716px;
+  margin-top: 73px;
   border: 0;
   border-top: 2px solid ${({ theme }) => theme.colors.text};
-  margin-top: 73px;
+  width: 716px;
 `;
 
 const InputTotalDiv = styled.div`
+  margin-top: 60px;
   margin-left: 247px;
   width: 374px;
   height: 102px;
-  margin-top: 60px;
+
   input {
     width: 306px;
     height: 40px;
   }
-  #id {
-    margin-left: 12px;
-  }
-`;
 
-const InputDiv = styled.div`
-  & + & {
-    margin-top: 22px;
+  div:first-child {
+    margin-bottom: 10px;
+    margin-left: 10px;
   }
 `;
 
 const ButtonDiv = styled.div`
   margin-top: -104px;
   margin-left: 644px;
-  #loginButton {
+
+  button {
     width: 115px;
     height: 107px;
   }
 `;
 
 const TextDiv = styled(OverLap)`
-  margin-top: 68px;
-  font-size: 20px;
+  margin: 68px auto 0;
   width: 310px;
-  justify-content: space-between;
+
   button {
     margin: auto 20px;
-    font-weight: 300;
     font-size: 20px;
+    font-weight: 300;
   }
 `;
