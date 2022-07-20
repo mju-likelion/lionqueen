@@ -144,12 +144,7 @@ const TextDiv = styled(OverLap)`
   font-size: 20px;
   width: 310px;
   justify-content: space-between;
-  button:first-child {
-    margin: auto 20px;
-    font-weight: 300;
-    font-size: 20px;
-  }
-  button:last-child {
+  button {
     margin: auto 20px;
     font-weight: 300;
     font-size: 20px;
