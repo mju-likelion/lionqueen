@@ -1,10 +1,10 @@
-import type { ComponentPropsWithoutRef } from 'react';
 import styled from 'styled-components';
-import TreeIcon from '~components/icons/Trees';
+import Tree from '~components/icons/Tree';
 
 type BackgroundProps = {
+  children: React.ReactNode;
   className?: string;
-} & ComponentPropsWithoutRef<'div'>;
+};
 
 function BackgroundMain(props: BackgroundProps) {
   const { children, ...restProps } = props;
@@ -18,78 +18,81 @@ function BackgroundMain(props: BackgroundProps) {
             <LineStyles />
           </LineContainer>
           <ContentContainer {...restProps}>{children}</ContentContainer>
+          <TreeContainer>
+            <Tree />
+            <Tree />
+          </TreeContainer>
         </Board>
-        <Tree left="15%" />
-        <Tree left="74%" />
       </BackgroundBox>
     </PageContainer>
   );
 }
 
 const PageContainer = styled.div`
-  height: 100vh;
-  width: 100%;
-  background-color: ${({ theme }) => theme.colors.primary.skyblue};
   display: flex;
   justify-items: center;
+  background-color: ${({ theme }) => theme.colors.primary.skyblue};
+  width: 100%;
+  height: 100%;
 `;
 
 const BackgroundBox = styled.div`
-  width: 1440px;
-  height: 1024px;
-  position: absolute;
   display: flex;
-  justify-items: center;
-  background-image: url('/image/wallpaper.svg');
-  background-repeat: no-repeat;
+  position: relative;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 0 auto;
+  box-shadow: none;
+  background-image: url('https://lionqueen.s3.amazonaws.com/background.png');
   background-position: center;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  background-repeat: no-repeat;
+  background-size: 1440px 1024px;
+  padding-top: 93px;
+  min-width: 1440px;
+  min-height: 1024px;
 `;
 
 const Board = styled.div`
-  width: 1014px;
-  min-height: 708px;
-  background-color: ${({ theme }) => theme.colors.primary.yellow};
+  position: relative;
   border: 10px solid #ffbb54;
   border-radius: 30px;
-  position: absolute;
-  left: 50%;
-  top: 30%;
-  transform: translate(-50%, -30%);
+  background-color: ${({ theme }) => theme.colors.primary.yellow};
+  width: 1014px;
+  min-height: 708px;
 `;
 
-const Tree = styled(TreeIcon)<{ left?: string }>`
+const TreeContainer = styled.div`
+  display: flex;
   position: absolute;
-  top: 65%;
-  left: ${props => props.left || '0'};
+  bottom: -60px;
+  left: 0;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 const LineContainer = styled.div`
-  width: 440px;
   display: flex;
-  justify-content: space-between;
   position: absolute;
   top: -15px;
-  left: 25%;
-  right: 25%;
+  gap: 440px;
+  justify-content: center;
   margin: 0 auto;
+  width: 100%;
 `;
 
 const LineStyles = styled.div`
-  width: 16px;
-  height: 118px;
   border-radius: 10px;
   background-color: #cd853f;
+  width: 16px;
+  height: 118px;
 `;
 
 const ContentContainer = styled.div`
+  margin: 102px auto 48px;
+  border-radius: 15px;
+  background-color: #fffc;
   width: 912px;
   min-height: 542px;
-  margin: 102px auto 48px auto;
-  border-radius: 15px;
-  background-color: #ffffffcc;
 `;
 
 export default BackgroundMain;
