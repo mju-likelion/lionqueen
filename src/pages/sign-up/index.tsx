@@ -202,9 +202,9 @@ const SignUp = () => {
 };
 
 const SignUpContainer = styled.div`
-  width: 675px;
   margin: 0 auto;
   padding: 20px 0;
+  width: 675px;
   text-align: center;
 `;
 
@@ -213,8 +213,8 @@ const Title = styled.div`
 `;
 
 const Line = styled.div`
-  border-top: 2px solid ${({ theme }) => theme.colors.text};
   margin: 16px 0;
+  border-top: 2px solid ${({ theme }) => theme.colors.text};
 `;
 
 const Privacy = styled.div`
@@ -225,8 +225,10 @@ const Privacy = styled.div`
     margin-right: 10px;
   }
 `;
+
 const StyledButton = styled(Button)`
   position: relative;
   z-index: 1;
 `;
+
 export default SignUp;

@@ -7,7 +7,8 @@ import XIcon from '~components/icons/XIcon';
 import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
 import Portal from '~/DesignSystem/Portal';
-import { Comment } from './commentType';
+import { Comment } from '~/lib/commentType';
+import useModalOutsideClick from '~/hooks/useModalOutsideClick';
 
 type Props = {
   onClose: () => void;
@@ -19,6 +20,7 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
   // 모달창 크기에 최대 메모장 10개 보임 => 즉, 10개당 1슬라이드를 의미 나머지 발생 시 + 1
   const slideRef = useRef<HTMLDivElement>(null);
   const slideTotal = useRef<number>(Math.ceil(comments.length / 10) - 1);
+
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
   // prev 클릭 시 현재 슬라이드를 -1, next 클릭은 +1, 각각 처음 혹은 끝이면 반대 방향으로 이동
@@ -53,7 +55,7 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
 
   return (
     <Portal>
-      <Container>
+      <Container {...useModalOutsideClick(onClose)}>
         <Content>
           <TopBox>
             <Title>방명록</Title>
@@ -100,49 +102,49 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
 };
 
 const Container = styled.div`
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: #0006;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #00000066;
 `;
 
 const Content = styled.div`
+  border-radius: 15px;
+  background-color: ${({ theme }) => theme.colors.primary.skyblue};
   width: 920px;
   height: 630px;
-  background-color: ${({ theme }) => theme.colors.primary.skyblue};
-  border-radius: 15px;
   overflow: hidden;
 `;
 
 const TopBox = styled.div`
   position: relative;
-  margin: 25px 25px auto 25px;
+  margin: 25px 25px auto;
 `;
 
 const Title = styled.p`
-  font-size: 80px;
-  text-align: center;
   margin: 0;
+  text-align: center;
+  font-size: 80px;
 `;
 
 const XIconBox = styled.button`
-  cursor: pointer;
   position: absolute;
   top: 0;
   right: 0;
+  cursor: pointer;
 `;
 
 const SlideButtonWrap = styled.div`
+  display: flex;
   position: absolute;
   top: 58px;
-  width: 100%;
-  display: flex;
   justify-content: space-between;
+  width: 100%;
 `;
 
 const SlideButtonBox = styled.button<{ left?: boolean }>`
@@ -156,47 +158,46 @@ const SlideButtonBox = styled.button<{ left?: boolean }>`
 
 const MidBox = styled.div`
   display: flex;
-  justify-content: end;
   align-items: center;
-  margin: 45px 25px 17px 25px;
+  justify-content: end;
+  margin: 45px 25px 17px;
 `;
 
 const MemoButtonWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-left: 15px;
   gap: 10px;
+  margin-left: 15px;
 `;
 
 const CommentWrap = styled.div`
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-flow: column wrap;
   gap: 30px 50px;
-  height: 410px;
-  padding: 0 15px;
+  justify-content: center;
   transition: 0.3s ease-out;
+  padding: 0 15px;
+  height: 410px;
   overflow-x: hidden;
 `;
 
 const MemoBox = styled.div`
-  position: relative;
-  transform: rotate(0.02turn);
   display: flex;
+  position: relative;
   justify-content: center;
+  transform: rotate(0.02turn);
   height: fit-content;
 
   button {
     background-color: #fff3eb;
+    cursor: pointer;
     width: 142px;
     height: 161px;
-    cursor: pointer;
   }
 
   p {
-    width: 118px;
     padding: 0 6px;
+    width: 118px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
