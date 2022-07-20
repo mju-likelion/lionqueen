@@ -25,4 +25,5 @@ Orange.args = {
   size: 'small',
   color: 'primary-orange',
   children: '버튼',
+  disabled: false,
 };

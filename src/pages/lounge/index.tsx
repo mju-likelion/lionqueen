@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { useState, useEffect, useRef, MutableRefObject } from 'react';
+import { useState, useEffect, useRef } from 'react';
+// import { scrollTo } from 'seamless-scroll-polyfill';
 
 import FloorNumber from '~components/lounge/FloorDemoData';
 import DoorBottom from '~components/icons/DoorBottom.svg';
@@ -10,7 +11,7 @@ import LoungeDoor from '~components/lounge/LoungeDoor';
 
 const LoungeHome = () => {
   const [currentFloor, setCurrentFloor] = useState<number>(0);
-  const floorRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const floorRef = useRef<HTMLDivElement>(null);
 
   const handleScrollUp = () => {
     if (currentFloor === 4) setCurrentFloor(0);
@@ -23,9 +24,17 @@ const LoungeHome = () => {
   };
 
   useEffect(() => {
-    floorRef.current.style.transition = 'transform 1.2s ease-out';
-    floorRef.current.style.transform = `translateY(calc(${currentFloor}00% * 0.735))`;
+    if (floorRef.current !== null) {
+      floorRef.current.style.transition = 'transform 1.2s ease-out';
+      floorRef.current.style.transform = `translateY(calc(${currentFloor}00% * 0.735))`;
+    }
   }, [currentFloor]);
+
+  // useEffect(() => {
+  //   if (floorRef.current !== null) {
+  //     scrollTo(floorRef.current, { top: currentFloor * 560, behavior: 'smooth' });
+  //   }
+  // }, [currentFloor]);
 
   return (
     <LoungeBg>
@@ -59,10 +68,10 @@ const LoungeBg = styled.div`
   display: flex;
   position: relative;
   justify-content: center;
+  background-color: ${({ theme }) => theme.colors.primary.skyblue};
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-color: ${({ theme }) => theme.colors.primary.skyblue};
 `;
 
 const ListBottomContainer = styled.div`
@@ -78,14 +87,13 @@ const Lounge = styled.div`
 const LoungeList = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   align-items: center;
-  height: 870px;
   margin-bottom: -320px;
+  height: 870px;
 
   @media (max-width: 1024px) {
-    height: 770px;
     margin-bottom: -280px;
+    height: 770px;
   }
 `;
 
@@ -95,14 +103,15 @@ const FloorContainer = styled.div`
 `;
 
 const FloorNum = styled.p`
+  margin: 230px 0 0 -50px;
+  margin: -40px 0 0 -65px;
+  padding: 35px 0 10px;
+  padding: 0;
   width: 65px;
   height: 67px;
-  margin: -40px 0 0 -65px;
-  padding: 0;
   font-family: NanumBarunGothic;
   font-size: 35px;
   font-weight: 800;
-  text-align: center;
 
   @media (max-width: 1024px) {
     margin: -30px 0 0 -65px;
@@ -111,16 +120,16 @@ const FloorNum = styled.p`
 `;
 
 const FloorLine = styled.div`
-  width: 1050px;
-  height: 20px;
+  z-index: 3;
   margin-bottom: 300px;
   background-color: ${({ theme }) => theme.colors.primary.brown};
+  width: 1050px;
+  height: 20px;
   pointer-events: none;
-  z-index: 3;
 
   @media (max-width: 1024px) {
-    width: 820px;
     margin-bottom: 260px;
+    width: 820px;
   }
 `;
 
@@ -131,24 +140,24 @@ const Bottom = styled.div`
 `;
 
 const BottomContainer = styled.div`
-  position: relative;
   display: grid;
+  position: relative;
   grid-template-columns: repeat(3, 1fr);
-  place-items: center;
   width: 1024px;
+  place-items: center;
 
   @media (max-width: 1024px) {
-    width: 750px;
     margin-bottom: -25px;
+    width: 750px;
   }
 `;
 
 const BottomLine = styled.div`
+  z-index: 3;
+  background-color: ${({ theme }) => theme.colors.primary.brown};
   width: 1050px;
   height: 20px;
-  background-color: ${({ theme }) => theme.colors.primary.brown};
   pointer-events: none;
-  z-index: 3;
 
   @media (max-width: 1024px) {
     width: 820px;

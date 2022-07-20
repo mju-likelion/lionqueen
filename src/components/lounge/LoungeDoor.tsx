@@ -22,23 +22,25 @@ const LoungeDoor = () => {
 };
 
 const LoungeFloor = styled.div`
-  position: absolute;
   display: flex;
-  flex-direction: column;
+  position: absolute;
   bottom: 320px;
+  flex-direction: column;
+
+  /* bottom: 203px; */
 
   @media (max-width: 1024px) {
-    bottom: 280px;
+    bottom: 178px;
   }
 `;
 
 const Doors = styled.div`
   display: grid;
-  width: 1024px;
   row-gap: 100px;
   grid-template-rows: 1fr;
   grid-template-columns: repeat(4, 1fr);
   place-items: center;
+  width: 1024px;
 
   @media (max-width: 1024px) {
     width: 750px;
@@ -51,10 +53,6 @@ const LoungeDoors = styled.div`
   grid-template-rows: repeat(2, 1fr);
   width: 154px;
   height: 220px;
-  border-radius: 15px 15px 0 0;
-  box-shadow: 8px 0 5px #7f7f7fb3;
-  background-color: ${({ theme }) => theme.colors.primary.yellow};
-  cursor: pointer;
 
   @media (max-width: 1024px) {
     width: 135px;
@@ -64,7 +62,6 @@ const LoungeDoors = styled.div`
 
 const NameSpace = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   width: 154px;
 
@@ -75,18 +72,18 @@ const NameSpace = styled.div`
 
 const RoomName = styled.p`
   display: block;
+  margin: 0;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 10px;
   width: 122px;
   height: 42px;
-  margin: 0;
-  padding: 10px;
-  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
   font-size: 19px;
   font-weight: 500;
-  text-align: center;
-  background-color: #fff;
 
   @media (max-width: 1024px) {
     width: 110px;
@@ -96,8 +93,6 @@ const RoomName = styled.p`
 `;
 
 const Knob = styled.div`
-  width: 18px;
-  height: 18px;
   margin-left: 10px;
   border-radius: 100%;
   box-shadow: 0 4px 5px #7f7f7f99;

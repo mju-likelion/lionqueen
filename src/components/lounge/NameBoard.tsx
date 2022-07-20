@@ -16,8 +16,6 @@ const NameBoard = () => {
 
 const BoardContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
   position: absolute;
   top: -15px;
   width: 500px;
@@ -39,16 +37,14 @@ const StickContainer = styled.div`
 `;
 
 const BoardStick = styled.div`
+  background-color: #665f41;
   width: 14px;
   height: 70px;
-  background-color: #665f41;
 `;
 
 const GroupBoard = styled.div`
   display: flex;
   justify-content: center;
-  width: 500px;
-  height: 80px;
   margin-top: -18px;
   border-radius: 10px;
   box-shadow: 0 7px 5px #7f7f7f99;
@@ -62,16 +58,14 @@ const GroupBoard = styled.div`
 
 const GroupName = styled.p`
   display: block;
+  margin: 0;
+  padding: 16px 10px 10px;
   width: 430px;
   height: 80px;
-  margin: 0;
-  padding: 16px 10px 10px 10px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   overflow: hidden;
   text-align: center;
-  font-weight: 700;
-  font-size: 43px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: #fff;
 
   @media (max-width: 1024px) {

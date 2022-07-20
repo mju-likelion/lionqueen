@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect } from 'react';
-import XIcon from '~/components/icons/XIcon';
+import XIcon from '~components/icons/XIcon';
 import Portal from '~DesignSystem/Portal';
 import * as S from './styles';
 
