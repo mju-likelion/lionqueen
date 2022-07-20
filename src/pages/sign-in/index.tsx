@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { theme } from '~/styles/theme';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
@@ -22,22 +22,22 @@ const SignIn = () => {
     }
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     mockUpcheck();
   };
 
-  const idChange = e => {
+  const idChange = (e: React.ChangeEvent<HTMLFormElement>) => {
     setUserId(e.target.value);
   };
 
-  const passwordChange = e => {
+  const passwordChange = (e: React.ChangeEvent<HTMLFormElement>) => {
     setUserPassword(e.target.value);
   };
 
   return (
     <BackgroundMain>
-      <MainText> Lion Town</MainText>
+      <MainText>Lion Town</MainText>
       <CrossLine />
       <form onSubmit={onSubmit}>
         <InputTotalDiv>
@@ -75,15 +75,20 @@ const SignIn = () => {
           </InputDiv>
         </InputTotalDiv>
         <ButtonDiv>
-          <Button type="submit" style={{ width: '115px', height: '107px' }}>
+          <Button id="loginButton" type="submit">
             로그인
           </Button>
         </ButtonDiv>
       </form>
-      <TextDiv>아이디 찾기 | 비밀번호 찾기 | 회원가입</TextDiv>
+      <TextDiv>
+        <button type="submit">비밀번호 찾기</button>
+        <p>|</p>
+        <button type="submit"> 회원가입</button>
+      </TextDiv>
     </BackgroundMain>
   );
 };
+
 export default SignIn;
 
 const OverLap = styled.div`
@@ -128,10 +133,25 @@ const InputDiv = styled.div`
 const ButtonDiv = styled.div`
   margin-top: -104px;
   margin-left: 644px;
+  #loginButton {
+    width: 115px;
+    height: 107px;
+  }
 `;
 
 const TextDiv = styled(OverLap)`
   margin-top: 68px;
   font-size: 20px;
   width: 310px;
+  justify-content: space-between;
+  button:first-child {
+    margin: auto 20px;
+    font-weight: 300;
+    font-size: 20px;
+  }
+  button:last-child {
+    margin: auto 20px;
+    font-weight: 300;
+    font-size: 20px;
+  }
 `;
