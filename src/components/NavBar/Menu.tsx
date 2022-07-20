@@ -1,10 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import Router from 'next/router';
+import { removeCookie } from '~lib/Cookie';
 import Button from '~DesignSystem/Button';
 import LionLogo from '~components/icons/LionLogo';
 
 const Menu = () => {
+  const onClickLogOut = () => {
+    removeCookie('jwt');
+    Router.push('/sign-in');
+  };
   return (
     <NavBarWrapper>
       <TextTitle>메뉴</TextTitle>
@@ -15,7 +21,7 @@ const Menu = () => {
         <Link href="/lounge-select">
           <MenuItem>그룹 전환</MenuItem>
         </Link>
-        <Button>로그아웃</Button>
+        <Button onClick={onClickLogOut}>로그아웃</Button>
       </ButtonBox>
 
       <LionLogoBox>
