@@ -46,10 +46,11 @@ const loadingPage = () => {
 
 const loading = keyframes`
   from {
-    width: 30px;
     margin-left: 10%;
     background-color: ${theme.colors.primary.skyblue};
+    width: 30px;
   }
+
   to {
     background-color: ${theme.colors.primary.yellow};
   }
@@ -58,23 +59,23 @@ const loading = keyframes`
 const LoadingWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   user-select: none;
 `;
 
 const LoadingTitle = styled.p`
-  font-weight: 700;
-  font-size: 50px;
-  line-height: 56px;
   margin-top: 44px;
   margin-left: 15px;
+  line-height: 56px;
+  font-size: 50px;
+  font-weight: 700;
 `;
 
 const HrStyle = styled.hr`
-  width: 600px;
-  border-top: 2px solid black;
   margin-top: 32px;
+  border-top: 2px solid black;
+  width: 600px;
 `;
 
 const LoadingBox = styled.div`
@@ -83,11 +84,10 @@ const LoadingBox = styled.div`
 `;
 
 const LoadingSquare = styled.div`
+  margin-right: 26px;
+  border-radius: 13px;
   width: 28px;
   height: 47px;
-  border-radius: 13px;
-  margin-right: 26px;
-
   animation-name: ${loading};
   animation-duration: 1.7s;
   animation-iteration-count: infinite;
@@ -96,10 +96,10 @@ const LoadingSquare = styled.div`
 
 const MessageBox = styled.div`
   margin-top: 94px;
-  font-weight: 300;
-  font-size: 23px;
   line-height: 22px;
   color: ${({ theme }) => theme.colors.primary.black};
+  font-size: 23px;
+  font-weight: 300;
 `;
 
 export default loadingPage;
