@@ -22,7 +22,6 @@ function NavBar() {
 
 const NavBarWrapper = styled.div`
   position: absolute;
-
   right: 237px;
   bottom: 79px;
   z-index: 10;

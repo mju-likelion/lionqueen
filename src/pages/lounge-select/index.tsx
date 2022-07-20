@@ -57,7 +57,7 @@ const Title = styled.p`
 `;
 
 const PlusWrapper = styled.div`
-  margin: 0 auto -100px auto;
+  margin: 0 auto -100px;
   cursor: pointer;
   width: 50px;
   height: 50px;

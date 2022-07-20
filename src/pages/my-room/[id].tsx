@@ -201,6 +201,7 @@ const Door = styled.div`
   background: url('/image/doorClose.png') no-repeat;
   width: 85px;
   height: 120px;
+
   :hover {
     background: url('/image/doorOpen.png') no-repeat;
     width: 170px;

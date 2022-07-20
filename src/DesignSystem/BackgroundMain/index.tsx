@@ -43,12 +43,10 @@ const BackgroundBox = styled.div`
   justify-content: center;
   margin: 0 auto;
   box-shadow: none;
-
   background-image: url('https://lionqueen.s3.amazonaws.com/background.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: 1440px 1024px;
-
   padding-top: 93px;
   min-width: 1440px;
   min-height: 1024px;
@@ -58,9 +56,7 @@ const Board = styled.div`
   position: relative;
   border: 10px solid #ffbb54;
   border-radius: 30px;
-
   background-color: ${({ theme }) => theme.colors.primary.yellow};
-
   width: 1014px;
   min-height: 708px;
 `;
@@ -71,7 +67,6 @@ const TreeContainer = styled.div`
   bottom: -60px;
   left: 0;
   justify-content: space-between;
-
   width: 100%;
 `;
 
@@ -82,7 +77,6 @@ const LineContainer = styled.div`
   gap: 440px;
   justify-content: center;
   margin: 0 auto;
-
   width: 100%;
 `;
 
@@ -94,9 +88,9 @@ const LineStyles = styled.div`
 `;
 
 const ContentContainer = styled.div`
-  margin: 102px auto 48px auto;
+  margin: 102px auto 48px;
   border-radius: 15px;
-  background-color: #ffffffcc;
+  background-color: #fffc;
   width: 912px;
   min-height: 542px;
 `;

@@ -7,6 +7,7 @@ export const Container = styled.div<{
   contentWidth?: string;
 }>`
   display: flex;
+
   /* 기본 width 설정 시 여기(fullWidth 위)에 추가 필요 */
   align-items: flex-start;
   width: ${props => (props.fullWidth ? '100%' : 'fit-content')};
@@ -21,6 +22,7 @@ export const Container = styled.div<{
     css`
       flex-direction: row;
       gap: ${props.dist}px;
+
       > label {
         margin-top: 7px;
       }
@@ -37,12 +39,14 @@ export const Content = styled.div<{ contentWidth?: string }>`
 
 export const InputBox = styled.div<{ pos?: 'up' | 'left'; dist?: number }>`
   width: 100%;
+
   > input {
     border: 2px solid ${({ theme }) => theme.colors.primary.orange};
     border-radius: 10px;
     padding: 4px 8px;
     width: 100%;
     height: 38px;
+
     &:focus {
       /* 색상 임의 선택, 확인 필요 */
       outline: 2px solid #ff9400;

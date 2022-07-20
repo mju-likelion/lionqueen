@@ -86,16 +86,16 @@ const MoreButton = styled.button`
 `;
 
 const Post = styled.div<{ top?: string; left?: string; rotate?: string }>`
-   ${props =>
+  ${props =>
     props.rotate === 'right' &&
     css`
       transform: rotate(0.03turn);
-    `
-   ${props =>
+    `}
+  ${props =>
     props.rotate === 'left' &&
     css`
       transform: rotate(-0.04turn);
-    `
+    `}
   
   position: absolute;
   top: ${props => props.top || '0'};
@@ -106,53 +106,54 @@ const Post = styled.div<{ top?: string; left?: string; rotate?: string }>`
 
 const Tape = styled(TapeIcon)<{ position: TapePositions }>`
   position: absolute;
-   ${props =>
+  ${props =>
     props.position === 'leftTop' &&
     css`
       top: 5%;
       transform: rotate(0.12turn);
-    `
-   ${props =>
+    `}
+  ${props =>
     props.position === 'rightTop' &&
     css`
       left: 80%;
       transform: rotate(-0.15turn);
-    `
-   ${props =>
+    `}
+  ${props =>
     props.position === 'leftBottom' &&
     css`
       top: 88%;
       transform: rotate(-0.18turn);
-    `
-   ${props =>
+    `}
+  ${props =>
     props.position === 'rightBottom' &&
     css`
       top: 88%;
       left: 88%;
       transform: rotate(0.1turn);
-    `
-   ${props =>
+    `}
+  ${props =>
     props.position === 'center' &&
     css`
       left: 50%;
-    `
+    `}
 `;
 
 const PostBody = styled.button<{ shape: PostShape }>`
-   ${props =>
+  ${props =>
     props.shape === 'circle' &&
     css`
       background-image: url('/image/postCircle.png');
       width: 126px;
       height: 122px;
-    `
-   ${props =>
+    `}
+  ${props =>
     props.shape === 'rectangle' &&
     css`
       background-image: url('/image/postRectangle.png');
       width: 133px;
       height: 140px;
-    `
+    `}
+
   display: flex;
   position: absolute;
   top: 20px;

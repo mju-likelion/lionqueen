@@ -31,7 +31,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 65px 0 60px 0;
+  margin: 65px 0 60px;
   width: 750px;
   height: 165px;
   overflow: hidden;

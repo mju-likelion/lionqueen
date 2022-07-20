@@ -39,7 +39,7 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 35px auto 0 auto;
+  margin: 35px auto 0;
   width: 283px;
   height: 110px;
 `;
@@ -53,7 +53,7 @@ const InputTitle = styled.label`
 const InputText = styled.input`
   border: 2.5px solid ${({ theme }) => theme.colors.primary.orange};
   border-radius: 10px;
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 3px 3px rgba(0 0 0 / 25%);
   padding-left: 5px;
   width: 283px;
   height: 38px;
@@ -64,7 +64,7 @@ const InputText = styled.input`
 const PeopleContainer = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 40px auto 35px auto;
+  margin: 40px auto 35px;
   width: 240px;
   height: 30px;
 `;

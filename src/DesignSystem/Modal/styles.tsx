@@ -7,7 +7,7 @@ export const Container = styled.div`
   left: 0;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgb(0 0 0 / 40%);
   width: 100%;
   height: 100%;
 `;
@@ -20,6 +20,19 @@ export const Title = styled.header`
   font-style: normal;
 `;
 export const Content = styled.div<{ size: 'large' | 'medium' | 'small' }>`
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 10px solid #ffab2d;
+  border-radius: 30px;
+  box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+  background: #fff;
+  padding: 30px 20px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
   ${props =>
     props.size === 'large' &&
     css`
@@ -34,26 +47,13 @@ export const Content = styled.div<{ size: 'large' | 'medium' | 'small' }>`
       width: 450px;
       height: auto;
     `}
-  ${props =>
+    ${props =>
     props.size === 'small' &&
     css`
       padding: 40px 30px;
       width: 400px;
       height: auto;
     `}
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  border: 10px solid #ffab2d;
-  border-radius: 30px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background: #ffffff;
-  padding: 30px 20px;
-  width: 100%;
-  height: 100%;
-  text-align: center;
 `;
 
 export const XIconWrapper = styled.button`
@@ -76,6 +76,7 @@ export const Footer = styled.footer`
   justify-content: center;
   margin-top: 12px;
   width: 100%;
+
   button {
     width: 112px !important;
     height: 38px !important;
