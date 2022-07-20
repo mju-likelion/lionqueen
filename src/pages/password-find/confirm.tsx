@@ -11,8 +11,6 @@ const Confirm = () => {
       <MainText>비밀번호 변경</MainText>
       <CrossLine />
       <InfoDiv>
-        {/* query로 내용을 받아왔기 때문에 route에 맞추어 다양한 문구를 보여줄 수 있습니다. 
-        받아온 query가 없다면 에러페이지라는 문구를 띄워주도록 하였습니다. */}
         <p>{infoText || '요청하신 페이지를 찾을 수 없습니다.'}</p>
       </InfoDiv>
       <ButtonDiv>
@@ -35,7 +33,7 @@ const MainText = styled(OverLap)`
 const CrossLine = styled(OverLap)`
   width: 600px;
   border: 0;
-  border-top: 2px solid black;
+  border-top: 2px solid ${({ theme }) => theme.colors.black};
   margin-top: 12px;
 `;
 
