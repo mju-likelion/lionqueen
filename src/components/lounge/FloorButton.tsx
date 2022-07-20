@@ -23,6 +23,7 @@ const FloorButton = ({ onScrollUp, onScrollDown }: ControlButtonsProps) => {
 const BtnContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   border-radius: 100%;
   background-color: ${({ theme }) => theme.colors.primary.yellow};
   width: 122px;
@@ -40,15 +41,17 @@ const FloorBtnWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 6px;
   width: 80%;
   height: 90%;
 `;
 
 const FloorBtn = styled.div<{ type: 'up' | 'down' }>`
   position: relative;
+  transform: ${props => props.type === 'down' && 'rotate(180deg)'};
   margin: 8% 0;
   border-radius: 0.5rem;
+  background-color: ${({ theme }) => theme.colors.primary.orange};
+  cursor: pointer;
   width: 66px;
   height: 10px;
 
@@ -67,10 +70,13 @@ const BtnTop = styled.div`
   border-radius: 0.5rem;
   background-color: ${({ theme }) => theme.colors.primary.orange};
   cursor: pointer;
+  width: 50px;
+  height: 50px;
+  clip-path: polygon(0% 0%, 100% 100%, 100% 0%);
 
   @media (max-width: 1024px) {
     top: -18px;
-    left: 6px;
+    left: 6.5px;
     width: 47px;
     height: 47px;
   }

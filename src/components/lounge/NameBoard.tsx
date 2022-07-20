@@ -17,23 +17,17 @@ const NameBoard = () => {
 const BoardContainer = styled.div`
   display: flex;
   position: absolute;
-  top: -15px;
+  top: -30px;
+  flex-direction: column;
+  align-items: center;
   width: 500px;
   height: 150px;
-
-  @media (max-width: 1024px) {
-    top: -30px;
-  }
 `;
 
 const StickContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 475px;
-
-  @media (max-width: 1024px) {
-    width: 400px;
-  }
+  width: 450px;
 `;
 
 const BoardStick = styled.div`
@@ -49,17 +43,14 @@ const GroupBoard = styled.div`
   border-radius: 10px;
   box-shadow: 0 7px 5px #7f7f7f99;
   background-color: ${({ theme }) => theme.colors.primary.brown};
-
-  @media (max-width: 1024px) {
-    width: 425px;
-    height: 70px;
-  }
+  width: 475px;
+  height: 78px;
 `;
 
 const GroupName = styled.p`
   display: block;
   margin: 0;
-  padding: 16px 10px 10px;
+  padding: 18px 10px 10px;
   width: 430px;
   height: 80px;
   overflow: hidden;
@@ -67,10 +58,8 @@ const GroupName = styled.p`
   text-overflow: ellipsis;
   white-space: nowrap;
   color: #fff;
-
-  @media (max-width: 1024px) {
-    font-size: 35px;
-  }
+  font-size: 40px;
+  font-weight: 700;
 `;
 
 export default NameBoard;
