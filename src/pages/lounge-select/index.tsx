@@ -30,37 +30,37 @@ const LoungeSelect = () => {
 };
 
 const Container = styled.div`
-  width: 612px;
-  height: 700px;
   display: flex;
-  text-align: center;
+  flex-direction: column;
   align-items: center;
   margin: 0 auto;
   padding-top: 25px;
-  flex-direction: column;
+  width: 612px;
+  height: 600px;
+  text-align: center;
 `;
 
 const TitleContainer = styled.div`
-  width: 576px;
-  height: 130px;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  border-bottom: 2px solid ${({ theme }) => theme.colors.black};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.primary.black};
+  width: 576px;
+  height: 130px;
 `;
 
 const Title = styled.p`
-  font-size: 36px;
   margin-top: 58px;
   margin-bottom: 20px;
   color: ${({ theme }) => theme.colors.primary.black};
+  font-size: 36px;
 `;
 
 const PlusWrapper = styled.div`
+  margin: 0 auto -100px auto;
+  cursor: pointer;
   width: 50px;
   height: 50px;
-  margin: 0 auto;
-  cursor: pointer;
 `;
 
 export default LoungeSelect;

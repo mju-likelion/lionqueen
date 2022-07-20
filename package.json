@@ -82,7 +82,7 @@
   "lint-staged": {
     "*.{ts,tsx}": [
       "eslint --cache --fix",
-      "lint:style --fix"
+      "stylelint \"./src/**/*.{ts,tsx}\" --fix"
     ]
   }
 }

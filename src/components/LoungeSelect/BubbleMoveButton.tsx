@@ -32,22 +32,20 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   margin: 65px 0 60px 0;
-  width: 745px;
+  width: 750px;
   height: 165px;
   overflow: hidden;
 `;
 
 const BubbleWrapper = styled.button`
-  border: 1px solid black;
   cursor: pointer;
   width: 165px;
   height: 165px;
 `;
 
 const ArrowWrapper = styled.button`
-  z-index: 3;
   cursor: pointer;
-  width: 48px;
+  width: 55px;
   height: 55px;
 `;
 
