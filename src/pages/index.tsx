@@ -2,7 +2,7 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import styled from 'styled-components';
 
 import ConfirmModal from '~components/ConfirmModal';
@@ -10,12 +10,23 @@ import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
 import Button from '~DesignSystem/Button';
 import LoadingPage from '~DesignSystem/Loading';
+
 import NavBar from '~/components/NavBar';
+import { useAppDispatch, useAppSelector } from '~/store';
+import * as noticeActions from '~store/modules/notice';
+import Notice from '~components/Notice/Notice';
 
 const Home: NextPage = () => {
   const router = useRouter();
   const [isShow, setIsShow] = useState(false);
   const [secondShow, setSecondShow] = useState(false);
+
+  const dispatch = useAppDispatch();
+  const message = useAppSelector(({ notice }) => notice.noticeMessage);
+
+  const handleToastMessage = useCallback(() => {
+    dispatch(noticeActions.Message('테스트입니다. 여기에 메시지 띄울 문구를 작성하면 됩니다.'));
+  }, [dispatch]);
 
   return (
     <div>
@@ -131,6 +142,8 @@ const Home: NextPage = () => {
             2번째 모달
           </ConfirmModal>
         )}
+        <Button onClick={() => handleToastMessage()}>Notice테스트</Button>
+        <Notice contents={message} />
       </main>
     </div>
   );
@@ -138,24 +151,31 @@ const Home: NextPage = () => {
 const H1Orange = styled.h1`
   color: ${({ theme }) => theme.colors.primary.orange};
 `;
+
 const H1Skyblue = styled.h1`
   color: ${({ theme }) => theme.colors.primary.skyblue};
 `;
+
 const H1Brown = styled.h1`
   color: ${({ theme }) => theme.colors.primary.brown};
 `;
+
 const H1Yellow = styled.h1`
   color: ${({ theme }) => theme.colors.primary.yellow};
 `;
+
 const H1Green = styled.h1`
   color: ${({ theme }) => theme.colors.primary.green};
 `;
+
 const H1Lightgreen = styled.h1`
   color: ${({ theme }) => theme.colors.primary.lightgreen};
 `;
+
 const H1DefaultText = styled.h1`
   color: ${({ theme }) => theme.colors.text};
 `;
+
 const H1Placeholder = styled.h1`
   color: ${({ theme }) => theme.colors.placeholder};
 `;
