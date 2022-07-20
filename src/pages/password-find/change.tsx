@@ -62,7 +62,6 @@ const Change = () => {
           >
             <input
               name="input"
-              id="change"
               type="password"
               value={changePassword}
               placeholder="6~10자의 영문, 숫자를 조합해서 입력하세요"
@@ -82,7 +81,6 @@ const Change = () => {
           >
             <input
               name="input"
-              id="change-confirm"
               type="password"
               value={checkPassword}
               placeholder="비밀번호를 한 번 더 입력하세요"
@@ -106,31 +104,34 @@ const OverLap = styled.div`
 `;
 
 const MainText = styled(OverLap)`
-  width: 256px;
   padding-top: 46px;
+  width: 256px;
   font-size: 45px;
 `;
 
 const CrossLine = styled(OverLap)`
-  width: 600px;
+  margin-top: 13px;
   border: 0;
   border-top: 2px solid ${({ theme }) => theme.colors.text};
-  margin-top: 13px;
+  width: 600px;
 `;
 
 const InputDiv = styled(OverLap)`
+  margin-top: 72px;
   width: 546px;
   height: 36px;
-  margin-top: 72px;
   font-size: 20px;
+
   input {
+    border-radius: 10px;
     width: 352px;
     height: 38px;
-    border-radius: 10px;
   }
+
   label {
     width: 206px;
   }
+
   & + & {
     margin-top: 37px;
   }

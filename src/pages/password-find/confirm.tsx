@@ -25,28 +25,28 @@ const OverLap = styled.div`
 `;
 
 const MainText = styled(OverLap)`
-  width: 256px;
   padding-top: 44px;
+  width: 256px;
   font-size: 45px;
 `;
 
 const CrossLine = styled(OverLap)`
-  width: 600px;
-  border: 0;
-  border-top: 2px solid ${({ theme }) => theme.colors.black};
   margin-top: 12px;
+  border: 0;
+  border-top: 2px solid ${({ theme }) => theme.colors.text};
+  width: 600px;
 `;
 
 const InfoDiv = styled(OverLap)`
+  margin-top: 95px;
   width: 380px;
   height: 80px;
-  margin-top: 95px;
   font-size: 24px;
 `;
 
 const ButtonDiv = styled(OverLap)`
-  width: 240px;
   margin-top: 77px;
+  width: 240px;
 `;
 
 export default Confirm;

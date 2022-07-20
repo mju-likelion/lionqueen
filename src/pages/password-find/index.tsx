@@ -63,18 +63,15 @@ const Find = () => {
         <p>본인확인 이메일 주소와 입력한 이메일 주소가 같아야 인증번호를 받을 수 있습니다.</p>
       </InfoDiv>
       <form onSubmit={onSubmit}>
-        <InputDiv>
+        <InputTotalDiv>
           <InputGroup id="id" label="이름" labelPos="left" labelDist={20}>
             <input
               placeholder="이름을 입력하세요"
               name="input"
-              id="name"
               value={userName}
               onChange={e => setUserName(e.target.value)}
             />
           </InputGroup>
-        </InputDiv>
-        <InputDiv>
           <InputGroup
             id="password"
             label="이메일주소"
@@ -86,12 +83,11 @@ const Find = () => {
             <input
               placeholder="이메일 주소를 입력하세요"
               name="input"
-              id="email"
               value={userEmail}
               onChange={e => setUserEmail(e.target.value)}
             />
           </InputGroup>
-        </InputDiv>
+        </InputTotalDiv>
         <ButtonDiv>
           <Button size="medium" type="submit">
             이메일 전송
@@ -108,63 +104,68 @@ const OverLap = styled.div`
 `;
 
 const MainText = styled(OverLap)`
-  width: 245px;
   padding-top: 45px;
+  width: 245px;
   font-size: 45px;
 `;
 
 const CrossLine = styled(OverLap)`
-  width: 600px;
+  margin-top: 13px;
   border: 0;
   border-top: 2px solid black;
-  margin-top: 13px;
+  width: 600px;
 `;
 
 const InfoDiv = styled(OverLap)`
   flex-direction: column;
-  white-space: pre-wrap;
+  margin-top: 28px;
   width: 514px;
   height: 80px;
-  margin-top: 28px;
+  white-space: pre-wrap;
+
   p:first-child {
+    margin-top: 0;
     font-size: 24px;
-    margin-top: 0;
   }
+
   p:last-child {
-    font-size: 16px;
     margin-top: 0;
+    font-size: 16px;
   }
 `;
 
-const InputDiv = styled(OverLap)`
-  width: 546px;
-  height: 36px;
+const InputTotalDiv = styled(OverLap)`
+  display: table;
   margin-top: 41px;
   margin-left: 244px;
+  width: 546px;
+  height: 36px;
   font-size: 20px;
-  // InputDiv 안의 input에 대한 css 속성입니다.
+
   input {
+    border-radius: 10px;
     width: 306px;
     height: 38px;
-    border-radius: 10px;
   }
-  // 이름을 입력하세요 인풋에 margin-left를 걸어줍니다.
-  #name {
+
+  div:first-child {
+    margin-bottom: 13px;
     margin-left: 50px;
+
+    label {
+      margin-left: -48px;
+      width: 93px;
+    }
   }
-  // placeholder에 css 속성을 주기 위해 css 속성선택자를 사용하였습니다.
+
   input::placeholder {
     font-size: 14px;
   }
-  // 같은 요소가 겹칠 경우 간격 사이에 margin-top을 줍니다.
-  & + & {
-    margin-top: 13px;
-  }
 `;
 const ButtonDiv = styled(OverLap)`
+  margin-top: 48px;
   width: 160px;
   height: 40px;
-  margin-top: 48px;
 `;
 
 export default Find;
