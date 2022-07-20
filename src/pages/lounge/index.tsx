@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-// import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 // import { scrollTo } from 'seamless-scroll-polyfill';
 
 import FloorNumber from '~components/lounge/FloorDemoData';
@@ -10,31 +10,32 @@ import FloorButton from '~components/lounge/FloorButton';
 import LoungeDoor from '~components/lounge/LoungeDoor';
 
 const LoungeHome = () => {
-  // const [currentFloor, setCurrentFloor] = useState<number>(0);
-  // const floorRef = useRef<HTMLDivElement>(null);
+  const [currentFloor, setCurrentFloor] = useState<number>(0);
+  const floorRef = useRef<HTMLDivElement>(null);
 
-  // const handleScrollUp = () => {
-  //   if (currentFloor === 4) setCurrentFloor(0);
-  //   else setCurrentFloor(currentFloor + 1);
-  // };
+  const handleScrollUp = () => {
+    if (currentFloor === 4) setCurrentFloor(0);
+    else setCurrentFloor(currentFloor + 1);
+  };
 
-  // const handleScrollDown = () => {
-  //   if (currentFloor === 0) setCurrentFloor(0);
-  //   else setCurrentFloor(currentFloor - 1);
-  // };
-
-  // useEffect(() => {
-  //   if (floorRef.current !== null) {
-  //     floorRef.current.style.transition = 'transform 1.2s ease-out';
-  //     floorRef.current.style.transform = `translateY(calc(${currentFloor}00% * 0.735))`;
-  //   }
-  // }, [currentFloor]);
+  const handleScrollDown = () => {
+    if (currentFloor === 0) setCurrentFloor(0);
+    else setCurrentFloor(currentFloor - 1);
+  };
 
   // useEffect(() => {
   //   if (floorRef.current !== null) {
-  //     scrollTo(floorRef.current, { top: currentFloor * 560, behavior: 'smooth' });
+  //     scrollTo(floorRef.current, { top: currentFloor * 630, behavior: 'smooth' });
   //   }
+  //   console.log(floorRef);
   // }, [currentFloor]);
+
+  useEffect(() => {
+    if (floorRef.current !== null) {
+      floorRef.current.style.transition = 'transform 1.2s ease-out';
+      floorRef.current.style.transform = `translateY(calc(${currentFloor}00% * 0.2))`;
+    }
+  }, [currentFloor]);
 
   return (
     <LoungeBg>
@@ -43,20 +44,22 @@ const LoungeHome = () => {
         <Bottom>
           <FloorLine />
           <BottomContainer>
-            <FloorButton />
+            <FloorButton onScrollUp={handleScrollUp} onScrollDown={handleScrollDown} />
             <DoorBottom />
             <Gear />
           </BottomContainer>
         </Bottom>
         <Lounge>
-          {FloorNumber.map(floor => (
-            <FloorNumContainer key={floor}>
-              <FloorNum>{floor}</FloorNum>
-              <FloorLine />
-            </FloorNumContainer>
-          ))}
+          <LoungeFloor ref={floorRef}>
+            {FloorNumber.map(floor => (
+              <FloorNumContainer key={floor}>
+                <FloorNum>{floor}</FloorNum>
+                <FloorLine />
+              </FloorNumContainer>
+            ))}
+            <LoungeDoor />
+          </LoungeFloor>
         </Lounge>
-        <LoungeDoor />
       </ListBottomContainer>
     </LoungeBg>
   );
@@ -77,6 +80,18 @@ const ListBottomContainer = styled.div`
 `;
 
 const Lounge = styled.div`
+  position: relative;
+
+  /* background-color: skyblue; */
+  width: 1000px;
+  height: 535px;
+  overflow: hidden;
+`;
+
+const LoungeFloor = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 15px;
   margin-bottom: -20px;
 `;
 
@@ -88,7 +103,6 @@ const FloorNumContainer = styled.div`
 `;
 
 const FloorNum = styled.div`
-  background-color: pink;
   padding: 10px 10px 5px 0;
   width: 50px;
   height: 50px;
@@ -100,7 +114,6 @@ const FloorNum = styled.div`
 
 const Bottom = styled.div`
   display: flex;
-  position: relative;
   flex-direction: column;
   align-items: center;
   z-index: 3;

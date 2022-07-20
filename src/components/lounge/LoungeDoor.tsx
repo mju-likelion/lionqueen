@@ -24,7 +24,7 @@ const LoungeDoor = () => {
 const LoungeFloor = styled.div`
   display: flex;
   position: absolute;
-  bottom: 204px;
+  bottom: 20px;
   flex-direction: column;
 `;
 
