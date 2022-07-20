@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import BoardRack from '~components/icons/BoardRack';
 import LionDoll from '~components/icons/LionDoll';
 import TapeIcon from '~components/icons/Tape';
-import { Comment } from './commentType';
+import { Comment } from '~/lib/commentType';
 
 type TapePositions = 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom' | 'center';
 type PostShape = 'circle' | 'rectangle';
@@ -153,6 +153,7 @@ const PostBody = styled.button<{ shape: PostShape }>`
       width: 133px;
       height: 140px;
     `}
+
   display: flex;
   position: absolute;
   top: 20px;

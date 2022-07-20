@@ -7,7 +7,7 @@ export const Container = styled.div`
   left: 0;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgb(0 0 0 / 40%);
   width: 100%;
   height: 100%;
 `;
@@ -51,8 +51,8 @@ export const Content = styled.div<{ size: 'large' | 'medium' | 'small' }>`
   justify-content: space-between;
   border: 10px solid #ffab2d;
   border-radius: 30px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background: #ffffff;
+  box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+  background: #fff;
   padding: 30px 20px;
   width: 100%;
   height: 100%;
@@ -79,6 +79,7 @@ export const Footer = styled.footer`
   justify-content: center;
   margin-top: 12px;
   width: 100%;
+
   button {
     width: 112px !important;
     height: 38px !important;

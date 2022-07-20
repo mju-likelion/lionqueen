@@ -93,9 +93,7 @@ const Wrapper404 = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 40px;
-
   background-color: #b7e4b7;
-
   padding: 30px;
   user-select: none;
 `;
@@ -114,8 +112,7 @@ const TextBox = styled.div`
   justify-content: center;
   margin-right: 50px;
   border-radius: 40px;
-
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 20px;
 `;
 
@@ -134,7 +131,6 @@ const FlowerContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin: 20px auto;
-
   border-radius: 20px;
   width: 700px;
   height: auto;

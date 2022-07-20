@@ -7,7 +7,7 @@ import XIcon from '~components/icons/XIcon';
 import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
 import Portal from '~/DesignSystem/Portal';
-import { Comment } from './commentType';
+import { Comment } from '~/lib/commentType';
 import useModalOutsideClick from '~/hooks/useModalOutsideClick';
 
 type Props = {
@@ -108,7 +108,7 @@ const Container = styled.div`
   left: 0;
   align-items: center;
   justify-content: center;
-  background-color: #00000066;
+  background-color: #0006;
   width: 100%;
   height: 100%;
 `;
@@ -123,7 +123,7 @@ const Content = styled.div`
 
 const TopBox = styled.div`
   position: relative;
-  margin: 25px 25px auto 25px;
+  margin: 25px 25px auto;
 `;
 
 const Title = styled.p`
@@ -160,7 +160,7 @@ const MidBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
-  margin: 45px 25px 17px 25px;
+  margin: 45px 25px 17px;
 `;
 
 const MemoButtonWrap = styled.div`
@@ -172,8 +172,7 @@ const MemoButtonWrap = styled.div`
 
 const CommentWrap = styled.div`
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
   gap: 30px 50px;
   justify-content: center;
   transition: 0.3s ease-out;

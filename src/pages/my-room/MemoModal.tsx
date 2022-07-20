@@ -5,7 +5,7 @@ import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
 import Portal from '~DesignSystem/Portal';
 import XIcon from '~components/icons/XIcon';
-import { Comment } from './commentType';
+import { Comment } from '~/lib/commentType';
 import useModalOutsideClick from '~/hooks/useModalOutsideClick';
 
 type Mode = 'create' | 'writer' | 'host' | 'general';
@@ -141,7 +141,7 @@ const Container = styled.div`
   left: 0;
   align-items: center;
   justify-content: center;
-  background-color: #00000066;
+  background-color: #0006;
   width: 100%;
   height: 100%;
 `;
@@ -186,6 +186,7 @@ const MemoBody = styled.textarea`
   height: 382px;
   resize: none;
   font-size: 20px;
+
   :focus {
     outline: 2px solid #ff9400;
   }
@@ -197,9 +198,11 @@ const Writer = styled.div`
   justify-content: end;
   margin: 4px 0;
   font-size: 26px;
+
   p {
     margin: 0;
   }
+
   input {
     border: 0;
     background: none;
@@ -208,6 +211,7 @@ const Writer = styled.div`
     text-align: center;
     font-size: 26px;
   }
+
   input:focus {
     outline: none;
   }

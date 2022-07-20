@@ -7,13 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint ./src",
+    "lint:style": "stylelint \"./src/**/*.{ts,tsx}\"",
     "lint-staged": "lint-staged",
     "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "build-storybook -s public",
     "chromatic": "chromatic --project-token=0aefef65099b",
     "prepare": "husky install",
-    "deploy": "serverless",
-    "stylelint": "stylelint './src/**/*.{ts,tsx}'"
+    "deploy": "serverless"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
@@ -76,13 +76,15 @@
     "storybook-addon-next": "^1.6.2",
     "stylelint": "^14.9.1",
     "stylelint-config-concentric-order": "^5.0.0",
+    "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-recommended": "^8.0.0",
+    "stylelint-config-standard": "^26.0.0",
     "stylelint-config-styled-components": "^0.1.1"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
       "eslint --cache --fix",
-      "stylelint --fix"
+      "stylelint \"./src/**/*.{ts,tsx}\" --fix"
     ]
   }
 }
