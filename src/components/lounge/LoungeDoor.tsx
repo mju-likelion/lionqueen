@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import TestDoor from '~components/lounge/LoungeDemoData';
+import FloorNumber from '~components/lounge/FloorDemoData';
 
 const LoungeDoor = () => {
   return (
@@ -17,15 +18,24 @@ const LoungeDoor = () => {
             </LoungeDoors>
           ))}
       </Doors>
+      <Test>
+        {FloorNumber.map(floor => (
+          <FloorNumContainer key={floor}>
+            <FloorNum>{floor}</FloorNum>
+            <FloorLine />
+          </FloorNumContainer>
+        ))}
+      </Test>
     </LoungeFloor>
   );
 };
 
 const LoungeFloor = styled.div`
-  display: flex;
-  position: absolute;
-  bottom: 20px;
-  flex-direction: column;
+  position: relative;
+  bottom: -5px;
+
+  /* display: flex;
+  flex-direction: column; */
 `;
 
 const Doors = styled.div`
@@ -78,6 +88,36 @@ const Knob = styled.div`
   background-color: #7f7f7f;
   width: 18px;
   height: 18px;
+`;
+
+const Test = styled.div`
+  display: flex;
+  position: absolute;
+  bottom: -20px;
+  flex-direction: column;
+`;
+
+const FloorNumContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 245px;
+`;
+
+const FloorNum = styled.div`
+  padding: 10px 10px 5px 0;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-family: NanumBarunGothic;
+  font-size: 35px;
+  font-weight: 800;
+`;
+
+const FloorLine = styled.div`
+  background-color: ${({ theme }) => theme.colors.primary.brown};
+  width: 970px;
+  height: 20px;
 `;
 
 export default LoungeDoor;
