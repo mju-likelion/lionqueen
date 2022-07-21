@@ -4,10 +4,10 @@ import { useState, useEffect, useRef } from 'react';
 
 import FloorNumber from '~components/lounge/FloorDemoData';
 import DoorBottom from '~components/icons/DoorBottom.svg';
-import Gear from '~components/icons/Gear.svg';
 import NameBoard from '~components/lounge/NameBoard';
 import FloorButton from '~components/lounge/FloorButton';
 import LoungeDoor from '~components/lounge/LoungeDoor';
+import NavBar from '~components/NavBar';
 
 const LoungeHome = () => {
   const [currentFloor, setCurrentFloor] = useState<number>(0);
@@ -46,7 +46,9 @@ const LoungeHome = () => {
           <BottomContainer>
             <FloorButton onScrollUp={handleScrollUp} onScrollDown={handleScrollDown} />
             <DoorBottom />
-            <Gear />
+            <NavbarWrap>
+              <NavBar />
+            </NavbarWrap>
           </BottomContainer>
         </Bottom>
         <Lounge>
@@ -131,4 +133,9 @@ const FloorLine = styled.div`
   width: 970px;
   height: 20px;
 `;
+
+const NavbarWrap = styled.div`
+  cursor: pointer;
+`;
+
 export default LoungeHome;
