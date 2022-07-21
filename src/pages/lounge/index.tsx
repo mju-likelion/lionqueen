@@ -22,7 +22,10 @@ const LoungeHome = () => {
     else setCurrentFloor(currentFloor - 1);
   };
 
-  // useEffect(() => {});
+  // 렌더링 시 맨 아래로 이동구현
+  // useEffect(() => {
+
+  // }, []);
 
   useEffect(() => {
     if (floorRef.current !== null) {

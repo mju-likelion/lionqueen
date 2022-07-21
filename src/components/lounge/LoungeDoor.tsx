@@ -18,14 +18,14 @@ const LoungeDoor = () => {
             </LoungeDoors>
           ))}
       </Doors>
-      <Test>
+      <FloorWrap>
         {FloorNumber.map(floor => (
           <FloorNumContainer key={floor}>
             <FloorNum>{floor}</FloorNum>
             <FloorLine />
           </FloorNumContainer>
         ))}
-      </Test>
+      </FloorWrap>
     </LoungeFloor>
   );
 };
@@ -33,9 +33,6 @@ const LoungeDoor = () => {
 const LoungeFloor = styled.div`
   position: relative;
   bottom: -5px;
-
-  /* display: flex;
-  flex-direction: column; */
 `;
 
 const Doors = styled.div`
@@ -90,7 +87,7 @@ const Knob = styled.div`
   height: 18px;
 `;
 
-const Test = styled.div`
+const FloorWrap = styled.div`
   display: flex;
   position: absolute;
   bottom: -20px;
