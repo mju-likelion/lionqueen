@@ -34,6 +34,7 @@ const Container = styled.div<{ isShow: boolean }>`
   bottom: 100px;
   left: calc(50% - 200px);
   transition: all 1s ease-in 0;
+  z-index: 20;
   width: 400px;
   text-align: center;
 

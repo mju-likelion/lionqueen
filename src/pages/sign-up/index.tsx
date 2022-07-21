@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useFormik } from 'formik';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -7,6 +7,10 @@ import BackgroundMain from '~DesignSystem/BackgroundMain';
 import Button from '~DesignSystem/Button';
 import { FormContainer } from '~components/SignUp';
 import { SignUpValidationSchema } from '~lib/validation';
+
+import { useAppDispatch, useAppSelector } from '~/store';
+import * as noticeActions from '~store/modules/notice';
+import Notice from '~components/Notice/Notice';
 
 type InitialValues = {
   email: string;
@@ -19,6 +23,25 @@ type InitialValues = {
 };
 
 const SignUp = () => {
+  const [isInput, setIsInput] = useState(false);
+  const [isBtn, setIsBtn] = useState(true);
+  const dispatch = useAppDispatch();
+  const message = useAppSelector(({ notice }) => notice.noticeMessage);
+
+  const handleSendMail = useCallback(() => {
+    dispatch(noticeActions.Message('이메일 전송이 완료되었습니다. 이메일을 확인해주세요.'));
+  }, [dispatch]);
+  const handleEmailVerify = useCallback(() => {
+    dispatch(noticeActions.Message('이메일 인증이 완료되었습니다.'));
+  }, [dispatch]);
+  const handleSignUp = useCallback(() => {
+    dispatch(noticeActions.Message('회원가입에 성공하였습니다.'));
+  }, [dispatch]);
+
+  const formError = (field: keyof InitialValues) => {
+    return !!formik.values[field] && formik.touched[field] ? formik.errors[field] : undefined;
+  };
+
   const formik = useFormik<InitialValues>({
     initialValues: {
       email: '',
@@ -38,7 +61,7 @@ const SignUp = () => {
           phone: formik.values.phone,
         })
         .then(() => {
-          alert('회원가입이 완료되었습니다.');
+          handleSignUp();
         })
         .catch(err => {
           console.log(err);
@@ -46,13 +69,6 @@ const SignUp = () => {
     },
     validationSchema: SignUpValidationSchema,
   });
-
-  const [isInput, setIsInput] = useState(false);
-  const [isBtn, setIsBtn] = useState(true);
-
-  const formError = (field: keyof InitialValues) => {
-    return !!formik.values[field] && formik.touched[field] ? formik.errors[field] : undefined;
-  };
 
   return (
     <BackgroundMain>
@@ -73,16 +89,13 @@ const SignUp = () => {
             btnDisabled={!formik.values.email || !!formik.errors.email}
             inputDisabled={isInput}
             onClick={() => {
-              // 이메일인증  api연결예정
-              console.log('이메일인증 버튼');
               if (formik.values.email) {
                 axios
                   .post('/api/auth/send-email', {
                     email: formik.values.email,
                   })
-
                   .then(() => {
-                    alert('이메일 전송이 완료되었습니다. 3시간내에 인증코드를 입력해주세요.');
+                    handleSendMail();
                   })
                   .catch(err => {
                     console.log(err);
@@ -114,7 +127,8 @@ const SignUp = () => {
                     token: formik.values.code,
                   })
                   .then(() => {
-                    alert('인증이 완료되었습니다.');
+                    handleEmailVerify();
+
                     setIsInput(true);
                     setIsBtn(false);
                   })
@@ -195,6 +209,7 @@ const SignUp = () => {
           >
             가입하기
           </StyledButton>
+          <Notice contents={message} />
         </form>
       </SignUpContainer>
     </BackgroundMain>
