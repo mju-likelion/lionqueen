@@ -5,7 +5,7 @@ type Props = {
   children: React.ReactNode;
   id?: string;
   label?: React.ReactNode;
-  error?: string;
+  error?: string[];
   fullWidth?: boolean;
   labelPos?: 'up' | 'left';
   labelDist?: number;
@@ -15,7 +15,7 @@ function InputGroup({
   children,
   id,
   label,
-  error = '',
+  error = [],
   labelPos = 'up',
   labelDist = 0,
   fullWidth,
@@ -29,7 +29,7 @@ function InputGroup({
         <Style.InputBox pos={labelPos} dist={labelDist}>
           {children}
         </Style.InputBox>
-        {error !== '' && <Style.ErrorBox>{error}</Style.ErrorBox>}
+        {error !== [] && <Style.ErrorBox>{error}</Style.ErrorBox>}
       </Style.Content>
     </Style.Container>
   );

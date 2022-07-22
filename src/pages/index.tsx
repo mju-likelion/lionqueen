@@ -76,7 +76,7 @@ const Home: NextPage = () => {
           label="이름"
           labelPos="left"
           labelDist={20}
-          error="에러메시지"
+          error={['에러메시지']}
           fullWidth
         >
           <input placeholder="asdasd" name="input" id="test3" />

@@ -23,7 +23,7 @@ export const Container = styled.div<{ fullWidth?: boolean; labelPos: 'up' | 'lef
     `}
 `;
 
-export const LabelBox = styled.label<{ error?: string }>`
+export const LabelBox = styled.label<{ error?: string[] }>`
   min-width: fit-content;
 `;
 
