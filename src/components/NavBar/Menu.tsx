@@ -36,11 +36,11 @@ const NavBarWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 200px;
-  height: 888px;
+  height: 90%;
 
   position: fixed;
   right: 0;
-  top: 56px;
+  top: 5%;
   z-index: 10;
 
   background-color: #ffbb17b3;
