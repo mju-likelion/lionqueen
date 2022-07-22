@@ -2,9 +2,9 @@ import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { scrollTo } from 'seamless-scroll-polyfill';
 
-import Bubble from '~/components/icons/Bubble';
-import Left from '~/components/icons/LeftArrow';
-import Right from '~/components/icons/RightArrow';
+import Bubble from '~components/icons/Bubble';
+import Left from '~components/icons/LeftArrow';
+import Right from '~components/icons/RightArrow';
 import group from './GroupList';
 
 const BubbleMoveButton = () => {

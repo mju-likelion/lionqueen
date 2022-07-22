@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 import { useState } from 'react';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
-import Button from '~/components/LoungeSelect/BubbleMoveButton';
-import Plus from '~/components/icons/Plus';
-import PlusModal from '~/components/LoungeSelect/PlusModal';
+import Button from '~components/LoungeSelect/BubbleMoveButton';
+import Plus from '~components/icons/Plus';
+import PlusModal from '~components/LoungeSelect/PlusModal';
 
 const LoungeSelect = () => {
   const [isModalShow, setIsModalShow] = useState(false);
