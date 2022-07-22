@@ -6,7 +6,7 @@ type Props = {
   children: React.ReactElement;
   id?: string;
   label?: React.ReactNode;
-  error?: string[];
+  error?: string[] | string;
   fullWidth?: boolean;
   labelPos?: 'up' | 'left';
   labelDist?: number;
