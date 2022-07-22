@@ -21,7 +21,7 @@ const BubbleMoveButton = () => {
   };
 
   const onClickNext = () => {
-    if (currentLounge > loungeTotal.current) {
+    if (currentLounge >= loungeTotal.current) {
       setCurrentLounge(0);
     } else {
       setCurrentLounge(currentLounge + 1);
