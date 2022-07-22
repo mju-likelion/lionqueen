@@ -52,19 +52,15 @@ const SignUp = () => {
       code: '',
       privacyCheck: [],
     },
-    onSubmit: values => {
-      Axios.post('/api/auth/sign-up', {
-        email: formik.values.email,
-        password: formik.values.password,
-        name: formik.values.nickname,
-        phone: formik.values.phone,
-      })
-        .then(() => {
-          handleSignUp();
-        })
-        .catch(err => {
-          console.log(err);
+    onSubmit: async values => {
+      try {
+        await Axios.post('/api/auth/sign-up', {
+          email: formik.values.email,
         });
+        handleSignUp();
+      } catch (err) {
+        console.log(err);
+      }
     },
     validationSchema: SignUpValidationSchema,
   });
@@ -87,17 +83,16 @@ const SignUp = () => {
             error={formError('email')}
             btnDisabled={!formik.values.email || !!formik.errors.email}
             inputDisabled={isInput}
-            onClick={() => {
+            onClick={async () => {
               if (formik.values.email) {
-                Axios.post('/api/auth/send-email', {
-                  email: formik.values.email,
-                })
-                  .then(() => {
-                    handleSendMail();
-                  })
-                  .catch(err => {
-                    console.log(err);
+                try {
+                  await Axios.post('/api/auth/send-email', {
+                    email: formik.values.email,
                   });
+                  handleSendMail();
+                } catch (err) {
+                  console.log(err);
+                }
               }
             }}
           />
@@ -117,21 +112,18 @@ const SignUp = () => {
               !!formik.errors.code
             }
             inputDisabled={isInput}
-            onClick={() => {
+            onClick={async () => {
               if (formik.values.code && formik.values.email) {
-                Axios.post('/api/auth/email-verify', {
-                  email: formik.values.email,
-                  token: formik.values.code,
-                })
-                  .then(() => {
-                    handleEmailVerify();
-
-                    setIsInput(true);
-                    setIsBtn(false);
-                  })
-                  .catch(err => {
-                    alert('인증번호가 일치하지 않습니다.');
+                try {
+                  await Axios.post('/api/auth/email-verify', {
+                    email: formik.values.email,
                   });
+                  handleEmailVerify();
+                  setIsInput(true);
+                  setIsBtn(false);
+                } catch (err) {
+                  console.log(err);
+                }
               }
             }}
           />
