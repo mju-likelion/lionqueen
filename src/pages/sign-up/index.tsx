@@ -53,9 +53,9 @@ const SignUp = () => {
 };
 
 const SignUpContainer = styled.div`
-  width: 675px;
   margin: 0 auto;
   padding: 20px 0;
+  width: 675px;
   text-align: center;
 `;
 
@@ -64,8 +64,8 @@ const Title = styled.div`
 `;
 
 const Line = styled.div`
-  border-top: 2px solid ${({ theme }) => theme.colors.text};
   margin-top: 16px;
+  border-top: 2px solid ${({ theme }) => theme.colors.text};
 `;
 
 const Privacy = styled.div`

@@ -36,25 +36,25 @@ const LoungeBg = styled.div`
   display: flex;
   position: relative;
   justify-content: center;
+  background-color: ${({ theme }) => theme.colors.primary.skyblue};
   width: 100%;
   height: 100vh;
   overflow-y: hidden;
-  background-color: ${({ theme }) => theme.colors.primary.skyblue};
 `;
 
 const ListBottomContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: flex-end;
   margin-top: 100px;
 `;
 
 const LoungeList = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: flex-end;
   height: 624px;
   overflow: hidden;
 `;
@@ -76,17 +76,17 @@ const FloorContainer = styled.div`
 `;
 
 const FloorNum = styled.p`
+  margin: 230px 0 0 -50px;
+  padding: 35px 0 10px;
   width: 65px;
   height: 67px;
-  margin: 230px 0 0 -50px;
-  padding: 35px 0 10px 0;
+  text-align: center;
   font-family: NanumBarunGothic;
   font-size: 35px;
   font-weight: 800;
-  text-align: center;
 
   @media screen and (max-height: 900px) {
-    padding: 20px 0 10px 0;
+    padding: 20px 0 10px;
   }
 `;
 
