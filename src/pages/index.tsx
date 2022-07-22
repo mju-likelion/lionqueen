@@ -113,7 +113,7 @@ const Home: NextPage = () => {
         </button>
         {isShow && (
           <ModalPopup
-            isSingle
+            isCancel
             size="large"
             title="모달 제목"
             onClose={() => {
