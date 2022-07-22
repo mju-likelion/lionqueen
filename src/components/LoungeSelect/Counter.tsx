@@ -45,7 +45,7 @@ const Container = styled.div`
 `;
 
 const ButtonWrapper = styled.button`
-  margin: 0 25px 10px 20px;
+  margin: 0 30px 10px 15px;
   width: 30px;
   height: 30px;
 `;
