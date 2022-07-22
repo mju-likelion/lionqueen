@@ -8,11 +8,11 @@ type Props = {
   title: string;
   isSingle?: boolean;
   size?: 'large' | 'medium' | 'small';
-  onConfirm: () => void;
+  onConfirm?: () => void;
   onClose?: () => void;
 };
 
-const ConfirmModal = ({
+const ModalPopup = ({
   children,
   title = '제목',
   isSingle = false,
@@ -24,13 +24,11 @@ const ConfirmModal = ({
     <Modal title={title} size={size} onClose={onClose}>
       <Modal.Body>{children}</Modal.Body>
       <Modal.Footer>
-        <>
-          <Button onClick={onConfirm}>확인</Button>
-          {!isSingle && <Button onClick={onClose}>취소</Button>}
-        </>
+        {!isSingle && <Button onClick={onClose}>취소</Button>}
+        {onConfirm && <Button onClick={onConfirm}>확인</Button>}
       </Modal.Footer>
     </Modal>
   );
 };
 
-export default ConfirmModal;
+export default ModalPopup;
