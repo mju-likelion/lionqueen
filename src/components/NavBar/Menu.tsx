@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Link from 'next/link';
+import Router from 'next/router';
+import { removeCookie } from '~lib/Cookie';
 import Button from '~DesignSystem/Button';
 import LionLogo from '~components/icons/LionLogo';
 
@@ -11,6 +13,10 @@ type Props = {
 const Menu = ({ isOpenNavBar }: Props) => {
   const [isShow, setIsShow] = useState(false);
   const [isSlideIn, setIsSlideIn] = useState(false);
+  const onClickLogOut = () => {
+    removeCookie('jwt');
+    Router.push('/sign-in');
+  };
 
   useEffect(() => {
     if (isOpenNavBar) {
@@ -36,7 +42,7 @@ const Menu = ({ isOpenNavBar }: Props) => {
         <Link href="/lounge-select">
           <MenuItem>그룹 전환</MenuItem>
         </Link>
-        <Button>로그아웃</Button>
+        <Button onClick={onClickLogOut}>로그아웃</Button>
       </ButtonBox>
       <LionLogoBox>
         <LionLogo />
@@ -69,16 +75,16 @@ const slideOut = keyframes`
 const NavBarWrapper = styled.div<{ isSlideIn: boolean }>`
   display: flex;
   position: fixed;
-  top: 56px;
+  top: 5%;
   right: 0;
   flex-direction: column;
   align-items: center;
   z-index: 10;
   border-radius: 20px;
   background-color: #ffbb17b3;
-  width: 200px;
-  height: 888px;
   user-select: none;
+  width: 200px;
+  height: 90%;
   animation: ${props => (props.isSlideIn ? slideIn : slideOut)} 0.2s linear;
 `;
 
