@@ -42,7 +42,7 @@ leftError.args = {
   id: 'input',
   label: '라벨',
   labelPos: 'left',
-  error: '에러메시지',
+  error: ['에러메시지'],
 };
 
 export const upError = Template.bind({});
@@ -50,7 +50,7 @@ export const upError = Template.bind({});
 upError.args = {
   id: 'input',
   label: '라벨',
-  error: '에러메시지',
+  error: ['에러메시지'],
 };
 
 export const leftDist = Template.bind({});

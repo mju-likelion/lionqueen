@@ -6,7 +6,7 @@ type Props = {
   children: React.ReactElement;
   id?: string;
   label?: React.ReactNode;
-  error?: string;
+  error?: string[] | string;
   fullWidth?: boolean;
   labelPos?: 'up' | 'left';
   labelDist?: number;
@@ -26,7 +26,7 @@ function InputGroup({
   children,
   id,
   label,
-  error = '',
+  error = [],
   labelPos = 'up',
   labelDist = 0,
   fullWidth,
@@ -41,7 +41,7 @@ function InputGroup({
         <Style.InputBox pos={labelPos} dist={labelDist}>
           {React.cloneElement(children, { id })}
         </Style.InputBox>
-        {error !== '' && <Style.ErrorBox>{error}</Style.ErrorBox>}
+        {error !== [] && <Style.ErrorBox>{error}</Style.ErrorBox>}
       </Style.Content>
     </Style.Container>
   );
