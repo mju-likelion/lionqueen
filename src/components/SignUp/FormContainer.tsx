@@ -13,7 +13,7 @@ type FormContainerProps = {
   onBlur: React.FocusEventHandler<HTMLInputElement>;
   value: string;
   type?: React.HTMLInputTypeAttribute;
-  error?: string;
+  error?: string[] | string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   btnDisabled?: boolean;
   inputDisabled?: boolean;
