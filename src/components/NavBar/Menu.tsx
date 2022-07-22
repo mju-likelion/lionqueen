@@ -1,18 +1,39 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import styled, { keyframes } from 'styled-components';
 import Link from 'next/link';
 import Router from 'next/router';
 import { removeCookie } from '~lib/Cookie';
 import Button from '~DesignSystem/Button';
 import LionLogo from '~components/icons/LionLogo';
 
-const Menu = () => {
+type Props = {
+  isOpenNavBar: boolean;
+};
+
+const Menu = ({ isOpenNavBar }: Props) => {
+  const [isShow, setIsShow] = useState(false);
+  const [isSlideIn, setIsSlideIn] = useState(false);
   const onClickLogOut = () => {
     removeCookie('jwt');
     Router.push('/sign-in');
   };
+
+  useEffect(() => {
+    if (isOpenNavBar) {
+      setIsShow(true);
+      setIsSlideIn(true);
+    } else {
+      setIsSlideIn(false);
+      setTimeout(() => {
+        setIsShow(false);
+      }, 190);
+    }
+  }, [isOpenNavBar]);
+
+  if (!isShow) return null;
+
   return (
-    <NavBarWrapper>
+    <NavBarWrapper isSlideIn={isSlideIn}>
       <TextTitle>메뉴</TextTitle>
       <ButtonBox>
         <Link href="/my-page">
@@ -23,7 +44,6 @@ const Menu = () => {
         </Link>
         <Button onClick={onClickLogOut}>로그아웃</Button>
       </ButtonBox>
-
       <LionLogoBox>
         <LionLogo />
       </LionLogoBox>
@@ -31,7 +51,28 @@ const Menu = () => {
   );
 };
 
-const NavBarWrapper = styled.div`
+const slideIn = keyframes`
+  0%{
+    transform: translateX(100%);
+  }
+
+  100%{
+    transform: translateX(0);
+  }
+`;
+const slideOut = keyframes`
+  0%{
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+  100%{
+    transform: translateX(10%);
+    opacity: 0;
+  }
+`;
+
+const NavBarWrapper = styled.div<{ isSlideIn: boolean }>`
   display: flex;
   position: fixed;
   top: 5%;
@@ -44,6 +85,7 @@ const NavBarWrapper = styled.div`
   user-select: none;
   width: 200px;
   height: 90%;
+  animation: ${props => (props.isSlideIn ? slideIn : slideOut)} 0.2s linear;
 `;
 
 const TextTitle = styled.p`

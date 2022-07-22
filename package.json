@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
+    "axios": "^0.27.2",
     "formik": "^2.2.9",
     "next": "12.1.5",
     "next-redux-wrapper": "^7.0.5",
