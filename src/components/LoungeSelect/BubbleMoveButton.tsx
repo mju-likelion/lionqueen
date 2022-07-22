@@ -58,7 +58,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   margin: 65px 0 60px;
-  width: 750px;
+  width: 690px;
   height: 180px;
 `;
 
