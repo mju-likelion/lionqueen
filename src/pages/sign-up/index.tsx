@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { useFormik } from 'formik';
 import styled from 'styled-components';
-import axios from 'axios';
+import Axios from '~lib/axios';
 
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import Button from '~DesignSystem/Button';
@@ -53,13 +53,12 @@ const SignUp = () => {
       privacyCheck: [],
     },
     onSubmit: values => {
-      axios
-        .post('/api/auth/sign-up', {
-          email: formik.values.email,
-          password: formik.values.password,
-          name: formik.values.nickname,
-          phone: formik.values.phone,
-        })
+      Axios.post('/api/auth/sign-up', {
+        email: formik.values.email,
+        password: formik.values.password,
+        name: formik.values.nickname,
+        phone: formik.values.phone,
+      })
         .then(() => {
           handleSignUp();
         })
@@ -90,10 +89,9 @@ const SignUp = () => {
             inputDisabled={isInput}
             onClick={() => {
               if (formik.values.email) {
-                axios
-                  .post('/api/auth/send-email', {
-                    email: formik.values.email,
-                  })
+                Axios.post('/api/auth/send-email', {
+                  email: formik.values.email,
+                })
                   .then(() => {
                     handleSendMail();
                   })
@@ -121,11 +119,10 @@ const SignUp = () => {
             inputDisabled={isInput}
             onClick={() => {
               if (formik.values.code && formik.values.email) {
-                axios
-                  .post('/api/auth/email-verify', {
-                    email: formik.values.email,
-                    token: formik.values.code,
-                  })
+                Axios.post('/api/auth/email-verify', {
+                  email: formik.values.email,
+                  token: formik.values.code,
+                })
                   .then(() => {
                     handleEmailVerify();
 
