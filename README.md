@@ -37,6 +37,10 @@ yarn dev
 • 주요 개발 언어 및 프레임워크
 - Next.js, TypeScript
 
+• 상태 관리
+- [Client] Redux-Toolkit
+- [Server] React-Query
+
 • 페이지 스타일링
 - Styled-Components
 

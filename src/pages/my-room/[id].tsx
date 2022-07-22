@@ -6,7 +6,7 @@ import Avatar from './Avatar';
 import Board from './Board';
 import GuestBook from './GuestBook';
 import MemoModal from './MemoModal';
-import { Comment } from './commentType';
+import { Comment } from '~/lib/commentType';
 
 type Props = {
   comments: Array<Comment>;
@@ -158,13 +158,13 @@ export const getServerSideProps: GetServerSideProps = async () => {
 };
 
 const Wrap = styled.div`
-  background-color: ${({ theme }) => theme.colors.primary.skyblue};
-  position: relative;
   display: flex;
+  position: relative;
   align-items: center;
+  background-color: ${({ theme }) => theme.colors.primary.skyblue};
+  width: 100%;
   height: 100%;
   min-height: 100vh;
-  width: 100%;
 `;
 
 const ContentContainer = styled.div`
@@ -174,33 +174,34 @@ const ContentContainer = styled.div`
 `;
 
 const RoomName = styled.div`
-  width: 100%;
-  height: 94px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 94px;
   font-size: 50px;
 `;
 
 const RoomConent = styled.div`
+  display: flex;
   background-image: url('/image/myRoomWallpaper.jpg');
   width: inherit;
   height: 668px;
-  display: flex;
 `;
 
 const RoomBottom = styled.div`
+  display: flex;
   background-color: #ffc52f;
   width: 100%;
   height: 264px;
-  display: flex;
 `;
 
 const Door = styled.div`
-  background: url('/image/doorClose.png') no-repeat;
   margin: 130px auto auto 37px;
+  background: url('/image/doorClose.png') no-repeat;
   width: 85px;
   height: 120px;
+
   :hover {
     background: url('/image/doorOpen.png') no-repeat;
     width: 170px;

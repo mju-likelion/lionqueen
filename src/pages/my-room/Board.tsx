@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import BoardRack from '~components/icons/BoardRack';
 import LionDoll from '~components/icons/LionDoll';
 import TapeIcon from '~components/icons/Tape';
-import { Comment } from './commentType';
+import { Comment } from '~/lib/commentType';
 
 type TapePositions = 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom' | 'center';
 type PostShape = 'circle' | 'rectangle';
@@ -63,19 +63,19 @@ const Board = ({ handleModalClick, handleSecondModalClick, comments }: Props) =>
 };
 
 const BoardContainer = styled.div`
-  margin: 25px auto auto 82px;
-  position: relative;
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
+  margin: 25px auto auto 82px;
 `;
 
 const BoardBody = styled.div`
   position: relative;
   top: -30px;
+  background-image: url('/image/board.png');
   width: 622px;
   height: 441px;
-  background-image: url('/image/board.png');
 `;
 
 const MoreButton = styled.button`
@@ -96,11 +96,12 @@ const Post = styled.div<{ top?: string; left?: string; rotate?: string }>`
     css`
       transform: rotate(-0.04turn);
     `}
-  width: 126px;
-  height: 144px;
+  
   position: absolute;
   top: ${props => props.top || '0'};
   left: ${props => props.left || '0'};
+  width: 126px;
+  height: 144px;
 `;
 
 const Tape = styled(TapeIcon)<{ position: TapePositions }>`
@@ -108,27 +109,27 @@ const Tape = styled(TapeIcon)<{ position: TapePositions }>`
   ${props =>
     props.position === 'leftTop' &&
     css`
-      transform: rotate(0.12turn);
       top: 5%;
+      transform: rotate(0.12turn);
     `}
   ${props =>
     props.position === 'rightTop' &&
     css`
-      transform: rotate(-0.15turn);
       left: 80%;
+      transform: rotate(-0.15turn);
     `}
   ${props =>
     props.position === 'leftBottom' &&
     css`
-      transform: rotate(-0.18turn);
       top: 88%;
+      transform: rotate(-0.18turn);
     `}
   ${props =>
     props.position === 'rightBottom' &&
     css`
-      transform: rotate(0.1turn);
       top: 88%;
       left: 88%;
+      transform: rotate(0.1turn);
     `}
   ${props =>
     props.position === 'center' &&
@@ -152,18 +153,19 @@ const PostBody = styled.button<{ shape: PostShape }>`
       width: 133px;
       height: 140px;
     `}
+
+  display: flex;
   position: absolute;
   top: 20px;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
 
   p {
-    width: 118px;
     padding: 0 6px;
-    text-align: center;
+    width: 118px;
     overflow: hidden;
+    text-align: center;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
