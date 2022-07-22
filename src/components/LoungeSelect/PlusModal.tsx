@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
-import ModalForm from './ModalForm';
 import Counter from './Counter';
+import Modal from '~components/MyPage/NoConfirmModal';
 
 const PlusModal = ({ onClose }: { onClose: () => void }) => {
   const [input, setInput] = useState('');
@@ -21,7 +21,7 @@ const PlusModal = ({ onClose }: { onClose: () => void }) => {
   };
 
   return (
-    <ModalForm isSingle size="large" title="라운지 생성" onClose={onClose}>
+    <Modal isSingle size="large" title="라운지 생성" onClose={onClose}>
       <InputContainer>
         <InputGroup label="그룹 이름" labelDist={10} contentWidth="283px">
           <InputText value={input} onChange={onChangeInput} />
@@ -33,7 +33,7 @@ const PlusModal = ({ onClose }: { onClose: () => void }) => {
         <Counter />
       </PeopleContainer>
       <Button onClick={onClose}>생성</Button>
-    </ModalForm>
+    </Modal>
   );
 };
 
