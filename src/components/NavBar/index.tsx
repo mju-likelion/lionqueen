@@ -15,7 +15,7 @@ function NavBar() {
       >
         <NavBarIcon />
       </NavBarWrapper>
-      {isOpenNavBar && <Menu />}
+      <Menu isOpenNavBar={isOpenNavBar} />
     </div>
   );
 }
