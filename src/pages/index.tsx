@@ -2,7 +2,7 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import ConfirmModal from '~components/ConfirmModal';
@@ -12,8 +12,8 @@ import Button from '~DesignSystem/Button';
 import LoadingPage from '~DesignSystem/Loading';
 
 import NavBar from '~/components/NavBar';
-import { useAppDispatch, useAppSelector } from '~/store';
-import * as noticeActions from '~store/modules/notice';
+import { useAppDispatch } from '~/store';
+import { showNotice } from '~store/modules/notice';
 import Notice from '~components/Notice/Notice';
 
 const Home: NextPage = () => {
@@ -22,11 +22,10 @@ const Home: NextPage = () => {
   const [secondShow, setSecondShow] = useState(false);
 
   const dispatch = useAppDispatch();
-  const message = useAppSelector(({ notice }) => notice.noticeMessage);
 
-  const handleToastMessage = useCallback(() => {
-    dispatch(noticeActions.Message('테스트입니다. 여기에 메시지 띄울 문구를 작성하면 됩니다.'));
-  }, [dispatch]);
+  function handleToastMessage() {
+    dispatch(showNotice('테스트입니다. 여기에 메시지 띄울 문구를 작성하면 됩니다.'));
+  }
 
   return (
     <div>
@@ -142,8 +141,8 @@ const Home: NextPage = () => {
             2번째 모달
           </ConfirmModal>
         )}
-        <Button onClick={() => handleToastMessage()}>Notice테스트</Button>
-        <Notice contents={message} />
+        <Button onClick={handleToastMessage}>Notice테스트</Button>
+        <Notice />
       </main>
     </div>
   );
