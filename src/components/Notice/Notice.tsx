@@ -2,25 +2,21 @@ import { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
 import { useAppDispatch, useAppSelector } from '~/store';
-import * as noticeActions from '~/store/modules/notice';
+import { hideNotice } from '~/store/modules/notice';
 
-type messageProps = {
-  contents: string;
-};
-
-function NoticeMessage({ contents }: messageProps) {
+function NoticeMessage() {
   const showNotice = useAppSelector(({ notice }) => notice.isShowNotice);
-  const message = contents;
+  const message = useAppSelector(({ notice }) => notice.message);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      dispatch(noticeActions.isNotShow());
+      dispatch(hideNotice());
     }, 3500);
     return () => {
       clearTimeout(timer);
     };
-  }, [showNotice]);
+  });
 
   return (
     <Container isShow={showNotice}>
@@ -33,21 +29,19 @@ const Container = styled.div<{ isShow: boolean }>`
   position: fixed;
   bottom: 100px;
   left: calc(50% - 200px);
-  transition: all 1s ease-in 0;
+  transition: opacity 0.5s linear;
+  visibility: hidden;
+  opacity: 0;
   z-index: 20;
   width: 400px;
   text-align: center;
 
   ${({ isShow }) =>
-    isShow
-      ? css`
-          visibility: 'visible';
-          opacity: 1;
-        `
-      : css`
-          visibility: 'hidden';
-          opacity: 0;
-        `}
+    isShow &&
+    css`
+      visibility: visible;
+      opacity: 1;
+    `}
 `;
 
 const Message = styled.p`

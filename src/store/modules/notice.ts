@@ -3,24 +3,24 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type NoticeState = {
   isShowNotice: boolean;
-  noticeMessage: string;
+  message: string;
 };
 
-const initialState: NoticeState = { isShowNotice: false, noticeMessage: '' };
+const initialState: NoticeState = { isShowNotice: false, message: '' };
 
 const noticeSlice = createSlice({
   name: 'notice',
   initialState,
   reducers: {
-    isNotShow: state => {
+    hideNotice: state => {
       state.isShowNotice = false;
     },
-    Message: (state, action: PayloadAction<string>) => {
+    showNotice: (state, action: PayloadAction<string>) => {
       state.isShowNotice = true;
-      state.noticeMessage = action.payload;
+      state.message = action.payload;
     },
   },
 });
 
-export const { isNotShow, Message } = noticeSlice.actions;
+export const { showNotice, hideNotice } = noticeSlice.actions;
 export default noticeSlice.reducer;
