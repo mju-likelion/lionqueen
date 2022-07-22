@@ -4,9 +4,11 @@ import { AnyAction, combineReducers } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
 import counter, { CounterState } from './counter';
+import notice, { NoticeState } from './notice';
 
 export type State = {
   counter: CounterState;
+  notice: NoticeState;
 };
 
 const reducer = (state: State | undefined, action: AnyAction): State => {
@@ -21,6 +23,7 @@ const reducer = (state: State | undefined, action: AnyAction): State => {
     default: {
       return combineReducers({
         counter,
+        notice,
       })(state, action);
     }
   }
