@@ -24,20 +24,20 @@ const Board = ({ handleModalClick, handleSecondModalClick, comments }: Props) =>
         </MoreButton>
         <Post top="10%" left="8%">
           <PostBody shape="circle" onClick={() => handleSecondModalClick(0)}>
-            <p>{comments[0].title}</p>
+            <p>{comments && comments[0].title}</p>
           </PostBody>
           <Tape position="center" />
         </Post>
         <Post top="10%" left="65%" rotate="right">
           <PostBody shape="rectangle" onClick={() => handleSecondModalClick(1)}>
-            <p>{comments[1].title}</p>
+            <p>{comments && comments[1].title}</p>
           </PostBody>
           <Tape fill="#3efff3" opacity="0.52" position="leftTop" />
           <Tape fill="#3efff3" opacity="0.52" position="rightBottom" />
         </Post>
         <Post top="30%" left="35%" rotate="left">
           <PostBody shape="rectangle" onClick={() => handleSecondModalClick(2)}>
-            <p>{comments[2].title}</p>
+            <p>{comments && comments[2].title}</p>
           </PostBody>
           <Tape fill="#fff844" opacity="0.63" position="leftTop" />
           <Tape fill="#fff844" opacity="0.63" position="rightTop" />
@@ -46,14 +46,14 @@ const Board = ({ handleModalClick, handleSecondModalClick, comments }: Props) =>
         </Post>
         <Post top="50%" left="10%" rotate="right">
           <PostBody shape="rectangle" onClick={() => handleSecondModalClick(3)}>
-            <p>{comments[3].title}</p>
+            <p>{comments && comments[3].title}</p>
           </PostBody>
           <Tape fill="#caa5E8" opacity="0.52" position="leftTop" />
           <Tape fill="#caa5E8" opacity="0.52" position="rightBottom" />
         </Post>
         <Post top="55%" left="65%">
           <PostBody shape="circle" onClick={() => handleSecondModalClick(4)}>
-            <p>{comments[4].title}</p>
+            <p>{comments && comments[4].title}</p>
           </PostBody>
           <Tape fill="#b3ec9f" opacity="0.59" position="center" />
         </Post>
