@@ -2,18 +2,18 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
-import ConfirmModal from '~components/ConfirmModal';
+import ModalPopup from '~components/ModalPopup';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
 import Button from '~DesignSystem/Button';
 import LoadingPage from '~DesignSystem/Loading';
 
 import NavBar from '~/components/NavBar';
-import { useAppDispatch, useAppSelector } from '~/store';
-import * as noticeActions from '~store/modules/notice';
+import { useAppDispatch } from '~/store';
+import { showNotice } from '~store/modules/notice';
 import Notice from '~components/Notice/Notice';
 
 const Home: NextPage = () => {
@@ -22,11 +22,10 @@ const Home: NextPage = () => {
   const [secondShow, setSecondShow] = useState(false);
 
   const dispatch = useAppDispatch();
-  const message = useAppSelector(({ notice }) => notice.noticeMessage);
 
-  const handleToastMessage = useCallback(() => {
-    dispatch(noticeActions.Message('테스트입니다. 여기에 메시지 띄울 문구를 작성하면 됩니다.'));
-  }, [dispatch]);
+  function handleToastMessage() {
+    dispatch(showNotice('테스트입니다. 여기에 메시지 띄울 문구를 작성하면 됩니다.'));
+  }
 
   return (
     <div>
@@ -87,7 +86,7 @@ const Home: NextPage = () => {
           label="이름"
           labelPos="left"
           labelDist={20}
-          error="에러메시지"
+          error={['에러메시지']}
           fullWidth
         >
           <input placeholder="asdasd" name="input" />
@@ -112,8 +111,8 @@ const Home: NextPage = () => {
           show
         </button>
         {isShow && (
-          <ConfirmModal
-            isSingle
+          <ModalPopup
+            isCancel
             size="large"
             title="모달 제목"
             onClose={() => {
@@ -125,11 +124,10 @@ const Home: NextPage = () => {
           >
             여기는 내용이 들어옵니다. 여기는 내용이 들어옵니다. 여기는 내용이 들어옵니다. 여기는
             내용이 들어옵니다. 여기는 내용이 들어옵니다.
-          </ConfirmModal>
+          </ModalPopup>
         )}
         {secondShow && (
-          <ConfirmModal
-            isSingle
+          <ModalPopup
             size="medium"
             title="모달 제목"
             onClose={() => {
@@ -139,11 +137,11 @@ const Home: NextPage = () => {
               setSecondShow(false);
             }}
           >
-            2번째 모달
-          </ConfirmModal>
+            2번째 모달은 취소가있음 isSingle안쓰면 취소생김
+          </ModalPopup>
         )}
-        <Button onClick={() => handleToastMessage()}>Notice테스트</Button>
-        <Notice contents={message} />
+        <Button onClick={handleToastMessage}>Notice테스트</Button>
+        <Notice />
       </main>
     </div>
   );
