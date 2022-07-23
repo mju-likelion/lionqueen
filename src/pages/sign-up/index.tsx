@@ -1,4 +1,5 @@
-import { useState, useCallback } from 'react';
+/* eslint-disable no-unused-expressions */
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import styled from 'styled-components';
 import Axios from '~lib/axios';
@@ -8,8 +9,8 @@ import Button from '~DesignSystem/Button';
 import { FormContainer } from '~components/SignUp';
 import { SignUpValidationSchema } from '~lib/validation';
 
-import { useAppDispatch, useAppSelector } from '~/store';
-import * as noticeActions from '~store/modules/notice';
+import { useAppDispatch } from '~/store';
+import { showNotice } from '~store/modules/notice';
 import Notice from '~components/Notice/Notice';
 
 type InitialValues = {
@@ -26,22 +27,25 @@ const SignUp = () => {
   const [isInput, setIsInput] = useState(false);
   const [isBtn, setIsBtn] = useState(true);
   const dispatch = useAppDispatch();
-  const message = useAppSelector(({ notice }) => notice.noticeMessage);
 
-  const handleSendMail = useCallback(() => {
-    dispatch(noticeActions.Message('이메일 전송이 완료되었습니다. 이메일을 확인해주세요.'));
-  }, [dispatch]);
-  const handleEmailVerify = useCallback(() => {
-    dispatch(noticeActions.Message('이메일 인증이 완료되었습니다.'));
-  }, [dispatch]);
-  const handleSignUp = useCallback(() => {
-    dispatch(noticeActions.Message('회원가입에 성공하였습니다.'));
-  }, [dispatch]);
-
-  const formError = (field: keyof InitialValues) => {
-    return !!formik.values[field] && formik.touched[field] ? formik.errors[field] : undefined;
+  const handleSendMail = () => {
+    dispatch(showNotice('이메일 전송이 완료되었습니다. 이메일을 확인해주세요.'));
   };
-
+  const handleSendMailFailure = () => {
+    dispatch(showNotice('이메일 전송에 실패했습니다. 재시도해주세요.'));
+  };
+  const handleEmailVerify = () => {
+    dispatch(showNotice('이메일 인증이 완료되었습니다.'));
+  };
+  const handleEmailVerifyFailure = () => {
+    dispatch(showNotice('인증번호가 올바르지 않습니다.'));
+  };
+  const handleSignUp = () => {
+    dispatch(showNotice('회원가입에 성공하였습니다.'));
+  };
+  const handleSignUpFailure = () => {
+    dispatch(showNotice('회원가입에 실패하였습니다. 다시 확인해주세요.'));
+  };
   const formik = useFormik<InitialValues>({
     initialValues: {
       email: '',
@@ -59,11 +63,52 @@ const SignUp = () => {
         });
         handleSignUp();
       } catch (err) {
-        console.log(err);
+        handleSignUpFailure();
       }
     },
     validationSchema: SignUpValidationSchema,
   });
+  const formError = (field: keyof InitialValues) => {
+    return !!formik.values[field] && formik.touched[field] ? formik.errors[field] : undefined;
+  };
+  const sendMail = () => {
+    async () => {
+      if (formik.values.email) {
+        try {
+          await Axios.post('/api/auth/send-email', {
+            email: formik.values.email,
+          });
+          handleSendMail();
+        } catch (err) {
+          handleSendMailFailure();
+        }
+      }
+    };
+  };
+  const emailVerify = () => {
+    async () => {
+      if (formik.values.code && formik.values.email) {
+        try {
+          await Axios.post('/api/auth/email-verify', {
+            email: formik.values.email,
+          });
+          handleEmailVerify();
+          setIsInput(true);
+          setIsBtn(false);
+        } catch (err) {
+          handleEmailVerifyFailure();
+        }
+      }
+    };
+  };
+  const formDisabled =
+    !!formik.errors.email ||
+    !!formik.errors.password ||
+    !!formik.errors.passwordConfirm ||
+    !!formik.errors.nickname ||
+    !!formik.errors.phone ||
+    !!formik.errors.code ||
+    !formik.values.privacyCheck.length;
 
   return (
     <BackgroundMain>
@@ -83,18 +128,7 @@ const SignUp = () => {
             error={formError('email')}
             btnDisabled={!formik.values.email || !!formik.errors.email}
             inputDisabled={isInput}
-            onClick={async () => {
-              if (formik.values.email) {
-                try {
-                  await Axios.post('/api/auth/send-email', {
-                    email: formik.values.email,
-                  });
-                  handleSendMail();
-                } catch (err) {
-                  console.log(err);
-                }
-              }
-            }}
+            onClick={sendMail}
           />
           <FormContainer
             placeholder="인증코드를 입력하세요."
@@ -112,20 +146,7 @@ const SignUp = () => {
               !!formik.errors.code
             }
             inputDisabled={isInput}
-            onClick={async () => {
-              if (formik.values.code && formik.values.email) {
-                try {
-                  await Axios.post('/api/auth/email-verify', {
-                    email: formik.values.email,
-                  });
-                  handleEmailVerify();
-                  setIsInput(true);
-                  setIsBtn(false);
-                } catch (err) {
-                  console.log(err);
-                }
-              }
-            }}
+            onClick={emailVerify}
           />
           <FormContainer
             labelName="비밀번호"
@@ -183,22 +204,10 @@ const SignUp = () => {
               (필수) 본인은 만 14세 이상이며 이메일 주소 수집에 동의합니다.
             </label>
           </Privacy>
-          <StyledButton
-            size="medium"
-            type="submit"
-            disabled={
-              !!formik.errors.email ||
-              !!formik.errors.password ||
-              !!formik.errors.passwordConfirm ||
-              !!formik.errors.nickname ||
-              !!formik.errors.phone ||
-              !!formik.errors.code ||
-              !formik.values.privacyCheck.length
-            }
-          >
+          <StyledButton size="medium" type="submit" disabled={formDisabled}>
             가입하기
           </StyledButton>
-          <Notice contents={message} />
+          <Notice />
         </form>
       </SignUpContainer>
     </BackgroundMain>
