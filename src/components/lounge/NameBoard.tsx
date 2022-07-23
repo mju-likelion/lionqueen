@@ -17,21 +17,17 @@ const NameBoard = () => {
 const BoardContainer = styled.div`
   display: flex;
   position: absolute;
-  top: -7px;
+  top: -30px;
   flex-direction: column;
   align-items: center;
   width: 500px;
-  height: 280px;
-
-  @media screen and (max-height: 900px) {
-    top: -35px;
-  }
+  height: 150px;
 `;
 
 const StickContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 475px;
+  width: 450px;
 `;
 
 const BoardStick = styled.div`
@@ -47,18 +43,22 @@ const GroupBoard = styled.div`
   border-radius: 10px;
   box-shadow: 0 7px 5px #7f7f7f99;
   background-color: ${({ theme }) => theme.colors.primary.brown};
-  width: 500px;
-  height: 80px;
+  width: 475px;
+  height: 78px;
 `;
 
 const GroupName = styled.p`
+  display: block;
   margin: 0;
-  padding: 16px 0 10px;
-  width: 500px;
+  padding: 18px 10px 10px;
+  width: 430px;
   height: 80px;
+  overflow: hidden;
   text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: #fff;
-  font-size: 43px;
+  font-size: 40px;
   font-weight: 700;
 `;
 
