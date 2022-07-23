@@ -11,22 +11,34 @@ import NavBar from '~components/NavBar';
 const LoungeHome = () => {
   const [currentFloor, setCurrentFloor] = useState<number>(0);
   const floorRef = useRef<HTMLDivElement>(null);
+  // 0: 9-10F / 1: 7-8F / 2: 5-6F / 3: 3-4F / 4: 1-2F
+  const totalFloor = 4;
 
+  //
   const handleScrollUp = () => {
-    if (currentFloor === 4) setCurrentFloor(0);
-    else setCurrentFloor(currentFloor + 1);
+    if (currentFloor === 0) {
+      setCurrentFloor(totalFloor);
+    } else {
+      setCurrentFloor(currentFloor - 1);
+    }
   };
 
   const handleScrollDown = () => {
-    if (currentFloor === 0) setCurrentFloor(0);
-    else setCurrentFloor(currentFloor - 1);
+    if (currentFloor >= totalFloor) {
+      setCurrentFloor(0);
+    } else {
+      setCurrentFloor(currentFloor + 1);
+    }
   };
 
   // 렌더링 시 맨 아래로 이동구현
-  // useEffect(() => {
+  useEffect(() => {
+    if (floorRef.current !== null) {
+      scrollTo(floorRef.current, { top: 630 * 4, behavior: 'smooth' });
+    }
+  }, []);
 
-  // }, []);
-
+  // 버튼 누를 때
   useEffect(() => {
     if (floorRef.current !== null) {
       scrollTo(floorRef.current, { top: currentFloor * 630, behavior: 'smooth' });
@@ -71,7 +83,6 @@ const ListBottomContainer = styled.div`
 
 const LoungeFloor = styled.div`
   margin-bottom: 0;
-  background-color: skyblue;
   width: 975px;
   height: 535px;
   overflow: hidden;
