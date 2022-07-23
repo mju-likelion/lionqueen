@@ -6,12 +6,16 @@ import InputGroup from '~DesignSystem/InputGroup';
 import Counter from './Counter';
 import Modal from '~components/ModalPopup';
 
+type Input = {
+  input: string;
+};
+
 const PlusModal = ({ onClose }: { onClose: () => void }) => {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState<string>('');
   const [errorShow, setErrorShow] = useState(false);
   const regex = /^[a-zA-Z0-9ㄱ-ㅎ가-힣]{0,11}$/;
 
-  const onChangeInput = (e: { target: { value: string } }) => {
+  const onChangeInput: React.ChangeEventHandler<HTMLInputElement> = e => {
     setInput(e.target.value);
     if (regex.test(input)) {
       setErrorShow(false);
