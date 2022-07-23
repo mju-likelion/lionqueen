@@ -5,7 +5,7 @@ import { LoungeList } from '~components/MyPage/constant';
 import ModalPopup from '~components/ModalPopup';
 
 const MyInfo = ({ onClose }: { onClose: () => void }) => {
-  const [name, setName] = useState('이유라');
+  const [name, setName] = useState('');
   const [loungeOutModalShow, setLoungeOutModalShow] = useState(false);
   const [withdrawalModalShow, setWithdrawalModalShow] = useState(false);
   const onClickSave = () => {
@@ -37,7 +37,7 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
             <NameInfo>
               <NameText
                 type="text"
-                maxLength={5}
+                maxLength={6}
                 value={name}
                 onChange={e => setName(e.target.value)}
               />
