@@ -33,7 +33,6 @@ export const Content = styled.div<{ size: 'large' | 'medium' | 'small' }>`
   width: 100%;
   height: 100%;
   text-align: center;
-
   ${props =>
     props.size === 'large' &&
     css`
@@ -41,7 +40,6 @@ export const Content = styled.div<{ size: 'large' | 'medium' | 'small' }>`
       width: 520px;
       height: 478px;
     `}
-
   ${props =>
     props.size === 'medium' &&
     css`
@@ -49,7 +47,6 @@ export const Content = styled.div<{ size: 'large' | 'medium' | 'small' }>`
       width: 450px;
       height: auto;
     `}
-
     ${props =>
     props.size === 'small' &&
     css`
