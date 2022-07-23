@@ -20,7 +20,10 @@
       "~lib/*": ["src/lib/*"],
       "~DesignSystem/*": ["src/DesignSystem/*"],
       "~components/*": ["src/components/*"],
-      "~/*": ["src/*"]
+      "~styles/*": ["src/styles/*"],
+      "~store/*": ["src/store/*"],
+      "~/*": ["src/*"],
+      "~hooks/*": ["src/hooks/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js"],

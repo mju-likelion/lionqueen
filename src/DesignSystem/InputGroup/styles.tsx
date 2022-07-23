@@ -29,7 +29,7 @@ export const Container = styled.div<{
     `}
 `;
 
-export const LabelBox = styled.label<{ error?: string }>`
+export const LabelBox = styled.label<{ error?: string[] | string }>`
   min-width: fit-content;
 `;
 

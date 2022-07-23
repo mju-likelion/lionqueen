@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import MyInfoModal from '~components/MyPage/NoConfirmModal';
 import { LoungeList } from '~components/MyPage/constant';
-import ConfirmModal from '~components/ConfirmModal';
+import ModalPopup from '~components/ModalPopup';
 
 const MyInfo = ({ onClose }: { onClose: () => void }) => {
   const [loungeOutModalShow, setLoungeOutModalShow] = useState(false);
@@ -69,7 +69,7 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
 
       {/* //소속 라운지 탈퇴 모달 */}
       {loungeOutModalShow && (
-        <ConfirmModal
+        <ModalPopup
           size="medium"
           title="소속 라운지 탈퇴"
           onClose={() => {
@@ -81,11 +81,11 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
           }}
         >
           정말 [라운지이름]을 탈퇴하시겠습니까?
-        </ConfirmModal>
+        </ModalPopup>
       )}
       {/* //소속 라운지 탈퇴 모달 */}
       {withdrawalModalShow && (
-        <ConfirmModal
+        <ModalPopup
           size="medium"
           title="계정 삭제"
           onClose={() => {
@@ -98,7 +98,7 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
         >
           <GoodbyeText>정말로 라이언타운과 작별 인사를 하시겠습니까?</GoodbyeText>
           <GoodbyeText>*추후 계정 복구는 불가능합니다.</GoodbyeText>
-        </ConfirmModal>
+        </ModalPopup>
       )}
     </div>
   );
