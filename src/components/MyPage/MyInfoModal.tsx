@@ -11,7 +11,7 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
   const onClickSave = () => {
     alert('새로운 이름을 저장했습니다.');
     setName(name);
-    console.log(name);
+    console.log(`새 이름 ${name}`);
   };
 
   // 라운지 탈퇴
@@ -27,7 +27,7 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
       alert('라이언타운 계정을 삭제했습니다. 안녕히 가세요.');
     }
   };
-  console.log(name);
+
   return (
     <div>
       <ModalPopup size="large" title="내 정보" onClose={onClose} isCancel>
@@ -109,7 +109,6 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
 };
 
 // 내 정보 모달UI
-
 const InfoBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -119,7 +118,6 @@ const InfoBox = styled.div`
 `;
 
 // 이름 정보
-
 const NameBox = styled.div`
   width: 315px;
 `;
