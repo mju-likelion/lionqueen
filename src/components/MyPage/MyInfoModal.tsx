@@ -1,7 +1,6 @@
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import MyInfoModal from '~components/MyPage/NoConfirmModal';
 import { LoungeList } from '~components/MyPage/constant';
 import ModalPopup from '~components/ModalPopup';
 
@@ -31,12 +30,7 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
   console.log(name);
   return (
     <div>
-      <MyInfoModal
-        isSingle
-        size="large"
-        title={<MyInfoTitle>내 정보</MyInfoTitle>}
-        onClose={onClose}
-      >
+      <ModalPopup size="large" title="내 정보" onClose={onClose} isCancel>
         <InfoBox>
           <NameBox>
             <NameTitle>이름</NameTitle>
@@ -75,7 +69,7 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
             계정삭제
           </WithdrawalButton>
         </InfoBox>
-      </MyInfoModal>
+      </ModalPopup>
 
       {/* //소속 라운지 탈퇴 모달 */}
       {loungeOutModalShow && (
@@ -115,12 +109,6 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
 };
 
 // 내 정보 모달UI
-const MyInfoTitle = styled.p`
-  margin: 0;
-  line-height: 28px;
-  font-size: 35px;
-  user-select: none;
-`;
 
 const InfoBox = styled.div`
   display: flex;
