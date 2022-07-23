@@ -1,14 +1,18 @@
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import MyInfoModal from '~components/MyPage/NoConfirmModal';
 import { LoungeList } from '~components/MyPage/constant';
-import ConfirmModal from '~components/ConfirmModal';
+import ModalPopup from '~components/ModalPopup';
 
 const MyInfo = ({ onClose }: { onClose: () => void }) => {
+  const [name, setName] = useState('');
   const [loungeOutModalShow, setLoungeOutModalShow] = useState(false);
   const [withdrawalModalShow, setWithdrawalModalShow] = useState(false);
-  const onClickSave = () => alert('새로운 이름을 저장했습니다.');
+  const onClickSave = () => {
+    alert('새로운 이름을 저장했습니다.');
+    setName(name);
+    console.log(`새 이름 ${name}`);
+  };
 
   // 라운지 탈퇴
   const goodByeLounge = () => {
@@ -26,17 +30,17 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <div>
-      <MyInfoModal
-        isSingle
-        size="large"
-        title={<MyInfoTitle>내 정보</MyInfoTitle>}
-        onClose={onClose}
-      >
+      <ModalPopup size="large" title="내 정보" onClose={onClose} isCancel>
         <InfoBox>
           <NameBox>
             <NameTitle>이름</NameTitle>
             <NameInfo>
-              <NameText type="text" maxLength={4} />
+              <NameText
+                type="text"
+                maxLength={6}
+                value={name}
+                onChange={e => setName(e.target.value)}
+              />
               <NameSaveButton onClick={onClickSave}>저장</NameSaveButton>
             </NameInfo>
           </NameBox>
@@ -65,11 +69,11 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
             계정삭제
           </WithdrawalButton>
         </InfoBox>
-      </MyInfoModal>
+      </ModalPopup>
 
       {/* //소속 라운지 탈퇴 모달 */}
       {loungeOutModalShow && (
-        <ConfirmModal
+        <ModalPopup
           size="medium"
           title="소속 라운지 탈퇴"
           onClose={() => {
@@ -81,11 +85,11 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
           }}
         >
           정말 [라운지이름]을 탈퇴하시겠습니까?
-        </ConfirmModal>
+        </ModalPopup>
       )}
       {/* //소속 라운지 탈퇴 모달 */}
       {withdrawalModalShow && (
-        <ConfirmModal
+        <ModalPopup
           size="medium"
           title="계정 삭제"
           onClose={() => {
@@ -98,20 +102,13 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
         >
           <GoodbyeText>정말로 라이언타운과 작별 인사를 하시겠습니까?</GoodbyeText>
           <GoodbyeText>*추후 계정 복구는 불가능합니다.</GoodbyeText>
-        </ConfirmModal>
+        </ModalPopup>
       )}
     </div>
   );
 };
 
 // 내 정보 모달UI
-const MyInfoTitle = styled.p`
-  margin: 0;
-  line-height: 28px;
-  font-size: 35px;
-  user-select: none;
-`;
-
 const InfoBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -121,7 +118,6 @@ const InfoBox = styled.div`
 `;
 
 // 이름 정보
-
 const NameBox = styled.div`
   width: 315px;
 `;
