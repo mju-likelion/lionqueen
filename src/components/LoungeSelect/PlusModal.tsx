@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
 import Counter from './Counter';
-import Modal from '~components/MyPage/NoConfirmModal';
+import Modal from '~components/ModalPopup';
 
 const PlusModal = ({ onClose }: { onClose: () => void }) => {
   const [input, setInput] = useState('');
@@ -21,7 +21,7 @@ const PlusModal = ({ onClose }: { onClose: () => void }) => {
   };
 
   return (
-    <Modal isSingle size="large" title="라운지 생성" onClose={onClose}>
+    <Modal isCancel size="large" title="라운지 생성" onClose={onClose}>
       <InputContainer>
         <InputGroup label="그룹 이름" labelDist={10} contentWidth="283px">
           <InputText value={input} onChange={onChangeInput} />
