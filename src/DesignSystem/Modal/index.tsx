@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect } from 'react';
 import XIcon from '~components/icons/XIcon';
 import Portal from '~DesignSystem/Portal';
 import * as S from './styles';
-import useModalOutsideClick from '~/hooks/useModalOutsideClick';
+import useModalOutsideClick from '~hooks/useModalOutsideClick';
 
 type Props = {
   children?: React.ReactNode;
