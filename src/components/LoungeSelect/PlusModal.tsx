@@ -6,10 +6,6 @@ import InputGroup from '~DesignSystem/InputGroup';
 import Counter from './Counter';
 import Modal from '~components/ModalPopup';
 
-type Input = {
-  input: string;
-};
-
 const PlusModal = ({ onClose }: { onClose: () => void }) => {
   const [input, setInput] = useState<string>('');
   const [errorShow, setErrorShow] = useState(false);
