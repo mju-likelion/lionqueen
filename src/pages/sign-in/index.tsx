@@ -1,7 +1,5 @@
 import { useFormik } from 'formik';
-import { useCallback } from 'react';
 import styled from 'styled-components';
-
 import Router from 'next/router';
 import { FormContainer } from '~components/SignUp';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
@@ -19,7 +17,6 @@ type InitialValues = {
 
 const SignIn = () => {
   const dispatch = useAppDispatch();
-
   const handleSignIn = () => {
     dispatch(showNotice('로그인에 성공하였습니다.'));
   };
@@ -45,7 +42,6 @@ const SignIn = () => {
         );
         handleSignIn();
       } catch (err) {
-        console.log(err);
         formik.values.email = '';
         formik.values.password = '';
       }
@@ -54,15 +50,11 @@ const SignIn = () => {
   });
 
   const onClickSignUp = () => {
-    Router.push({
-      pathname: '/sign-up',
-    });
+    Router.push('/sign-up');
   };
 
   const onClickPasswordFind = () => {
-    Router.push({
-      pathname: '/password-find',
-    });
+    Router.push('/password-find');
   };
 
   return (
@@ -73,12 +65,12 @@ const SignIn = () => {
         <InputTotalDiv>
           <FormContainer
             labelName="아이디"
-            placeholder="아이디를 입력하세요"
+            placeholder="아이디(이메일)를 입력하세요"
             name="email"
             id="email"
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.email}
-            error={formError('email')}
           />
           <FormContainer
             labelName="비밀번호"
@@ -87,6 +79,7 @@ const SignIn = () => {
             id="password"
             type="password"
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.password}
             error={formError('password')}
           />
@@ -139,6 +132,10 @@ const InputTotalDiv = styled.div`
     height: 40px;
   }
 
+  div + div {
+    margin-top: -5px;
+  }
+
   div:first-child {
     margin-bottom: 10px;
     margin-left: 10px;
@@ -162,7 +159,6 @@ const TextDiv = styled(OverLap)`
   button {
     margin: 0 auto;
     font-size: 20px;
-    font-weight: 300;
   }
 `;
 
