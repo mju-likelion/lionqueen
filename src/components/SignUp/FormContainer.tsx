@@ -9,14 +9,14 @@ interface formContainerProps {
   name: string;
   id: string;
   btnTitle?: string | boolean;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-  onBlur: React.FocusEventHandler<HTMLInputElement>;
-  value: string;
-  type?: React.HTMLInputTypeAttribute;
-  error?: string[];
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  btnDisabled?: boolean;
-  inputDisabled?: boolean;
+  // onChange: React.ChangeEventHandler<HTMLInputElement>;
+  // onBlur: React.FocusEventHandler<HTMLInputElement>;
+  // value: string;
+  // type?: React.HTMLInputTypeAttribute;
+  // error?: string[];
+  // onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  // btnDisabled?: boolean;
+  // inputDisabled?: boolean;
 }
 
 const FormContainer: React.FC<formContainerProps> = ({
