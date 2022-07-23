@@ -33,20 +33,14 @@ const SignUp = () => {
   const handleSendMail = () => {
     dispatch(showNotice('이메일 전송이 완료되었습니다. 이메일을 확인해주세요.'));
   };
-  const handleSendMailFailure = () => {
-    dispatch(showNotice('이메일 전송에 실패했습니다. 재시도해주세요.'));
-  };
   const handleEmailVerify = () => {
     dispatch(showNotice('이메일 인증이 완료되었습니다.'));
-  };
-  const handleEmailVerifyFailure = () => {
-    dispatch(showNotice('인증번호가 올바르지 않습니다.'));
   };
   const handleSignUp = () => {
     dispatch(showNotice('회원가입에 성공하였습니다.'));
   };
-  const handleSignUpFailure = () => {
-    dispatch(showNotice('회원가입에 실패하였습니다. 다시 확인해주세요.'));
+  const handleFailure = (err: any) => {
+    dispatch(showNotice(err));
   };
   const formik = useFormik<InitialValues>({
     initialValues: {
@@ -68,8 +62,8 @@ const SignUp = () => {
         });
         handleSignUp();
         router.push('/sign-in');
-      } catch (err) {
-        handleSignUpFailure();
+      } catch (err: any) {
+        handleFailure(err.response.data.data?.error);
       }
     },
     validationSchema: SignUpValidationSchema,
@@ -85,8 +79,8 @@ const SignUp = () => {
           email: formik.values.email,
         });
         handleSendMail();
-      } catch (err) {
-        handleSendMailFailure();
+      } catch (err: any) {
+        handleFailure(err.response.data.data?.error);
       }
     }
   };
@@ -100,8 +94,8 @@ const SignUp = () => {
         handleEmailVerify();
         setIsInput(true);
         setIsBtn(false);
-      } catch (err) {
-        handleEmailVerifyFailure();
+      } catch (err: any) {
+        handleFailure(err.response.data.data.error);
       }
     }
   };
