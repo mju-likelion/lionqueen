@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { scrollTo } from 'seamless-scroll-polyfill';
 
 import Bubble from '~components/icons/Bubble';
-import Left from '~components/icons/LeftArrow';
-import Right from '~components/icons/RightArrow';
+import Arrow from '~components/icons/BubbleArrow';
 import group from './GroupList';
 
 const BubbleMoveButton = () => {
@@ -44,11 +43,11 @@ const BubbleMoveButton = () => {
   return (
     <Container>
       <ArrowWrapper onClick={onClickPrev}>
-        <Left />
+        <Arrow />
       </ArrowWrapper>
       <BubbleContainer ref={loungeRef}>{groupList}</BubbleContainer>
-      <ArrowWrapper onClick={onClickNext}>
-        <Right />
+      <ArrowWrapper onClick={onClickNext} left>
+        <Arrow />
       </ArrowWrapper>
     </Container>
   );
@@ -72,16 +71,21 @@ const BubbleContainer = styled.div`
 `;
 
 const BubbleWrapper = styled.button`
-  margin: 0 15px;
+  margin: 0 13px;
   cursor: pointer;
   width: 165px;
   height: 165px;
 `;
 
-const ArrowWrapper = styled.button`
+const ArrowWrapper = styled.button<{ left?: boolean }>`
   cursor: pointer;
   width: 55px;
   height: 55px;
+  ${props =>
+    props.left &&
+    css`
+      transform: rotate(0.5turn);
+    `}
 `;
 
 const GroupName = styled.span`
