@@ -63,7 +63,7 @@ const SignUp = () => {
         handleSignUp();
         router.push('/sign-in');
       } catch (err: any) {
-        handleFailure(err.response.data.data.error);
+        handleFailure(err.response.data.data?.error);
       }
     },
     validationSchema: SignUpValidationSchema,
@@ -80,7 +80,7 @@ const SignUp = () => {
         });
         handleSendMail();
       } catch (err: any) {
-        handleFailure(err.response.data.data.error);
+        handleFailure(err.response.data.data?.error);
       }
     }
   };
