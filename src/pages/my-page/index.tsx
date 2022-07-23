@@ -43,15 +43,15 @@ const MypageBg = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 50px;
   margin-top: 70px;
   margin-bottom: 23px;
+  font-size: 50px;
 `;
 
 const MyPageButton = styled.p`
-  margin-top: 28px;
   display: flex;
   flex-direction: column;
+  margin-top: 28px;
   margin-bottom: 28px;
 `;
 

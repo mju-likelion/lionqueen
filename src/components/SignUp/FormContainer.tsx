@@ -6,9 +6,17 @@ import InputGroup from '~DesignSystem/InputGroup';
 interface formContainerProps {
   labelName?: string;
   placeholder: string;
-  name?: string;
-  id?: string;
-  btnTitle?: string;
+  name: string;
+  id: string;
+  btnTitle?: string | boolean;
+  // onChange: React.ChangeEventHandler<HTMLInputElement>;
+  // onBlur: React.FocusEventHandler<HTMLInputElement>;
+  // value: string;
+  // type?: React.HTMLInputTypeAttribute;
+  // error?: string[];
+  // onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  // btnDisabled?: boolean;
+  // inputDisabled?: boolean;
 }
 
 const FormContainer: React.FC<formContainerProps> = ({
@@ -21,7 +29,7 @@ const FormContainer: React.FC<formContainerProps> = ({
   return (
     <FormWrapper>
       <InputGroup id={id} label={labelName} labelPos="left" labelDist={20} fullWidth>
-        <input placeholder={placeholder} name={name} id={id} />
+        <input placeholder={placeholder} name={name} />
       </InputGroup>
       <StyledButton>{btnTitle ? <Button size="small">{btnTitle}</Button> : ''}</StyledButton>
     </FormWrapper>

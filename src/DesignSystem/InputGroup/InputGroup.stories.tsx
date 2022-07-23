@@ -16,7 +16,7 @@ export default {
 const Template: ComponentStory<typeof InputGroup> = args => (
   <ThemeProvider theme={theme}>
     <InputGroup {...args}>
-      <input placeholder="asdasd" name="input" id="input" />
+      <input placeholder="asdasd" name="input" />
     </InputGroup>
   </ThemeProvider>
 );
@@ -42,7 +42,7 @@ leftError.args = {
   id: 'input',
   label: '라벨',
   labelPos: 'left',
-  error: '에러메시지',
+  error: ['에러메시지'],
 };
 
 export const upError = Template.bind({});
@@ -50,7 +50,7 @@ export const upError = Template.bind({});
 upError.args = {
   id: 'input',
   label: '라벨',
-  error: '에러메시지',
+  error: ['에러메시지'],
 };
 
 export const leftDist = Template.bind({});

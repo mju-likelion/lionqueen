@@ -33,3 +33,12 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# jetbrains ide
+.idea
+
+# lint
+.eslintcache
+
+# config
+.env

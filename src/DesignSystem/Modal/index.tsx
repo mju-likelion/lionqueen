@@ -1,7 +1,8 @@
 import React, { useEffect, useLayoutEffect } from 'react';
-import XIcon from '~/components/icons/XIcon';
+import XIcon from '~components/icons/XIcon';
 import Portal from '~DesignSystem/Portal';
-import * as S from './styles';
+import * as Style from './styles';
+import useModalOutsideClick from '~hooks/useModalOutsideClick';
 
 type Props = {
   children?: React.ReactNode;
@@ -22,25 +23,25 @@ const Modal = ({ children, title = '모달 타이틀', size = 'medium', onClose 
 
   return (
     <Portal>
-      <S.Container>
-        <S.Content size={size}>
-          <S.XIconWrapper onClick={onClose}>
+      <Style.Container {...useModalOutsideClick(onClose)}>
+        <Style.Content size={size}>
+          <Style.XIconWrapper onClick={onClose}>
             <XIcon />
-          </S.XIconWrapper>
-          <S.Title>{title}</S.Title>
+          </Style.XIconWrapper>
+          <Style.Title>{title}</Style.Title>
           {children}
-        </S.Content>
-      </S.Container>
+        </Style.Content>
+      </Style.Container>
     </Portal>
   );
 };
 
 const Body = ({ children }: { children: React.ReactNode }) => {
-  return <S.Body>{children}</S.Body>;
+  return <Style.Body>{children}</Style.Body>;
 };
 
 const Footer = ({ children }: { children: React.ReactNode }) => {
-  return <S.Footer>{children}</S.Footer>;
+  return <Style.Footer>{children}</Style.Footer>;
 };
 
 Modal.Body = Body;
