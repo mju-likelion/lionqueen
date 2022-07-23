@@ -1,17 +1,16 @@
 import { useFormik } from 'formik';
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import styled from 'styled-components';
 
 import Router from 'next/router';
 import { FormContainer } from '~components/SignUp';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
-import InputGroup from '~DesignSystem/InputGroup';
 import Button from '~DesignSystem/Button';
 
 import { SignInValidationSchema } from '~lib/validation';
 import Axios from '~lib/axios';
-import { useAppDispatch, useAppSelector } from '~/store';
-import * as noticeActions from '~store/modules/notice';
+import { useAppDispatch } from '~/store';
+import { showNotice } from '~store/modules/notice';
 
 type InitialValues = {
   email: string;
@@ -20,11 +19,10 @@ type InitialValues = {
 
 const SignIn = () => {
   const dispatch = useAppDispatch();
-  const message = useAppSelector(({ notice }) => notice.noticeMessage);
 
-  const handleSignIn = useCallback(() => {
-    dispatch(noticeActions.Message('로그인에 성공하였습니다.'));
-  }, [dispatch]);
+  const handleSignIn = () => {
+    dispatch(showNotice('로그인에 성공하였습니다.'));
+  };
 
   const formError = (field: keyof InitialValues) => {
     return !!formik.values[field] && formik.touched[field] ? formik.errors[field] : undefined;
