@@ -1,45 +1,47 @@
 import styled from 'styled-components';
 
 import TestDoor from '~components/lounge/LoungeDemoData';
+import FloorNumber from '~components/lounge/FloorDemoData';
 
 const LoungeDoor = () => {
   return (
     <LoungeFloor>
-      <DoorsContainer>
-        {TestDoor.map(item => (
-          <LoungeDoors key={item.userNum}>
-            <NameSpace>
-              <RoomName>{item.userName}</RoomName>
-            </NameSpace>
-            <Knob />
-          </LoungeDoors>
+      <Doors>
+        {TestDoor.slice(0)
+          .reverse()
+          .map(door => (
+            <LoungeDoors key={door.userNum}>
+              <NameSpace>
+                <RoomName>{door.userName}</RoomName>
+              </NameSpace>
+              <Knob />
+            </LoungeDoors>
+          ))}
+      </Doors>
+      <FloorWrap>
+        {FloorNumber.map(floor => (
+          <FloorNumContainer key={floor}>
+            <FloorNum>{floor}</FloorNum>
+            <FloorLine />
+          </FloorNumContainer>
         ))}
-      </DoorsContainer>
-      <FloorLine />
+      </FloorWrap>
     </LoungeFloor>
   );
 };
 
 const LoungeFloor = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-top: 90px;
-
-  @media screen and (max-height: 900px) {
-    padding-top: 73px;
-  }
+  position: relative;
+  bottom: -5px;
 `;
 
-const DoorsContainer = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  width: 1024px;
-`;
-
-const FloorLine = styled.div`
-  background-color: ${({ theme }) => theme.colors.primary.brown};
-  width: 1024px;
-  height: 20px;
+const Doors = styled.div`
+  display: grid;
+  row-gap: 100px;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
+  width: 950px;
 `;
 
 const LoungeDoors = styled.div`
@@ -49,35 +51,70 @@ const LoungeDoors = styled.div`
   box-shadow: 8px 0 5px #7f7f7fb3;
   background-color: ${({ theme }) => theme.colors.primary.yellow};
   cursor: pointer;
-  width: 15%;
-  height: 220px;
+  width: 150px;
+  height: 215px;
 `;
 
 const NameSpace = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 150px;
 `;
 
 const RoomName = styled.p`
-  margin: 0;
+  display: block;
+  margin: 10px;
   border-radius: 10px;
   background-color: #fff;
-  padding: 10px 0;
-  width: 80%;
-  height: 38%;
+  padding: 10px;
+  width: 122px;
+  height: 42px;
+  overflow: hidden;
   text-align: center;
-  font-size: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 19px;
   font-weight: 500;
 `;
 
 const Knob = styled.div`
-  margin-left: 10px;
+  margin-left: 15px;
   border-radius: 100%;
   box-shadow: 0 4px 5px #7f7f7f99;
   background-color: #7f7f7f;
   width: 18px;
   height: 18px;
+`;
+
+const FloorWrap = styled.div`
+  display: flex;
+  position: absolute;
+  bottom: -20px;
+  flex-direction: column;
+`;
+
+const FloorNumContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 245px;
+`;
+
+const FloorNum = styled.div`
+  padding: 10px 10px 5px 0;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-family: NanumBarunGothic;
+  font-size: 35px;
+  font-weight: 800;
+`;
+
+const FloorLine = styled.div`
+  background-color: ${({ theme }) => theme.colors.primary.brown};
+  width: 970px;
+  height: 20px;
 `;
 
 export default LoungeDoor;

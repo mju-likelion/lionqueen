@@ -24,7 +24,6 @@ export const SignUpValidationSchema = Yup.object({
     .max(6, '1글자 이상 6글자 이하로 입력해주세요')
     .required('닉네임을 입력해주세요.'),
   code: Yup.string().length(6, '코드의 길이가 다릅니다.').required('인증코드를 입력해주세요.'),
-  // privacyCheck: Yup.boolean().oneOf([true], '회원가입을 위해 약관에 동의해주세요.'),
 });
 
 export const SignInValidationSchema = Yup.object({

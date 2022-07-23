@@ -1,14 +1,18 @@
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import MyInfoModal from '~components/MyPage/NoConfirmModal';
 import { LoungeList } from '~components/MyPage/constant';
 import ModalPopup from '~components/ModalPopup';
 
 const MyInfo = ({ onClose }: { onClose: () => void }) => {
+  const [name, setName] = useState('');
   const [loungeOutModalShow, setLoungeOutModalShow] = useState(false);
   const [withdrawalModalShow, setWithdrawalModalShow] = useState(false);
-  const onClickSave = () => alert('새로운 이름을 저장했습니다.');
+  const onClickSave = () => {
+    alert('새로운 이름을 저장했습니다.');
+    setName(name);
+    console.log(`새 이름 ${name}`);
+  };
 
   // 라운지 탈퇴
   const goodByeLounge = () => {
@@ -26,17 +30,17 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <div>
-      <MyInfoModal
-        isSingle
-        size="large"
-        title={<MyInfoTitle>내 정보</MyInfoTitle>}
-        onClose={onClose}
-      >
+      <ModalPopup size="large" title="내 정보" onClose={onClose} isCancel>
         <InfoBox>
           <NameBox>
             <NameTitle>이름</NameTitle>
             <NameInfo>
-              <NameText type="text" maxLength={4} />
+              <NameText
+                type="text"
+                maxLength={6}
+                value={name}
+                onChange={e => setName(e.target.value)}
+              />
               <NameSaveButton onClick={onClickSave}>저장</NameSaveButton>
             </NameInfo>
           </NameBox>
@@ -65,7 +69,7 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
             계정삭제
           </WithdrawalButton>
         </InfoBox>
-      </MyInfoModal>
+      </ModalPopup>
 
       {/* //소속 라운지 탈퇴 모달 */}
       {loungeOutModalShow && (
@@ -105,13 +109,6 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
 };
 
 // 내 정보 모달UI
-const MyInfoTitle = styled.p`
-  margin: 0;
-  line-height: 28px;
-  font-size: 35px;
-  user-select: none;
-`;
-
 const InfoBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -121,7 +118,6 @@ const InfoBox = styled.div`
 `;
 
 // 이름 정보
-
 const NameBox = styled.div`
   width: 315px;
 `;
