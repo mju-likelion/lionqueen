@@ -32,6 +32,7 @@ const Container = styled.div<{ isShow: boolean }>`
   transition: opacity 0.5s linear;
   visibility: hidden;
   opacity: 0;
+  z-index: 20;
   width: 400px;
   text-align: center;
 
