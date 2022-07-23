@@ -1,87 +1,114 @@
-import { useState } from 'react';
+import { useFormik } from 'formik';
+import { useState, useCallback } from 'react';
 import styled from 'styled-components';
-import { theme } from '~/styles/theme';
+
+import Router from 'next/router';
+import { FormContainer } from '~components/SignUp';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import InputGroup from '~DesignSystem/InputGroup';
 import Button from '~DesignSystem/Button';
 
+import { SignInValidationSchema } from '~lib/validation';
+import Axios from '~lib/axios';
+import { useAppDispatch, useAppSelector } from '~/store';
+import * as noticeActions from '~store/modules/notice';
+
+type InitialValues = {
+  email: string;
+  password: string;
+};
+
 const SignIn = () => {
-  const [userId, setUserId] = useState('');
-  const [userPassword, setUserPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const dispatch = useAppDispatch();
+  const message = useAppSelector(({ notice }) => notice.noticeMessage);
 
-  const mockUpcheck = () => {
-    if (userId === 'lionid' && userPassword === 'lionpassword') {
-      setErrorMessage('');
-      setUserId('');
-      setUserPassword('');
-    } else {
-      setErrorMessage(
-        '아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.',
-      );
-    }
+  const handleSignIn = useCallback(() => {
+    dispatch(noticeActions.Message('로그인에 성공하였습니다.'));
+  }, [dispatch]);
+
+  const formError = (field: keyof InitialValues) => {
+    return !!formik.values[field] && formik.touched[field] ? formik.errors[field] : undefined;
   };
 
-  const onSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    mockUpcheck();
+  const formik = useFormik<InitialValues>({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    onSubmit: async values => {
+      try {
+        await Axios.post(
+          '/api/auth/sign-in',
+          {
+            email: values.email,
+            password: values.password,
+          },
+          { withCredentials: true },
+        );
+        handleSignIn();
+      } catch (err) {
+        console.log(err);
+        formik.values.email = '';
+        formik.values.password = '';
+      }
+    },
+    validationSchema: SignInValidationSchema,
+  });
+
+  const onClickSignUp = () => {
+    Router.push({
+      pathname: '/sign-up',
+    });
   };
 
-  const idChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserId(e.target.value);
-  };
-
-  const passwordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserPassword(e.target.value);
+  const onClickPasswordFind = () => {
+    Router.push({
+      pathname: '/password-find',
+    });
   };
 
   return (
     <BackgroundMain>
       <MainText>Lion Town</MainText>
       <CrossLine />
-      <form onSubmit={onSubmit}>
+      <form onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
         <InputTotalDiv>
-          <InputGroup id="id" label="아이디" labelPos="left" labelDist={20}>
-            <input
-              placeholder="아이디를 입력하세요"
-              name="input"
-              maxLength={25}
-              value={userId}
-              onChange={idChange}
-            />
-          </InputGroup>
-          <InputGroup
+          <FormContainer
+            labelName="아이디"
+            placeholder="아이디를 입력하세요"
+            name="email"
+            id="email"
+            onChange={formik.handleChange}
+            value={formik.values.email}
+            error={formError('email')}
+          />
+          <FormContainer
+            labelName="비밀번호"
+            placeholder="비밀번호를 입력하세요"
+            name="password"
             id="password"
-            label="비밀번호"
-            labelPos="left"
-            labelDist={20}
-            error={errorMessage}
-            fullWidth
-          >
-            <input
-              placeholder="비밀번호를 입력하세요"
-              name="input"
-              maxLength={25}
-              value={userPassword}
-              onChange={passwordChange}
-              type="password"
-            />
-          </InputGroup>
+            type="password"
+            onChange={formik.handleChange}
+            value={formik.values.password}
+            error={formError('password')}
+          />
         </InputTotalDiv>
         <ButtonDiv>
           <Button type="submit">로그인</Button>
         </ButtonDiv>
       </form>
       <TextDiv>
-        <button type="button">회원가입</button>
+        <button type="button" onClick={onClickSignUp}>
+          회원가입
+        </button>
         <p>|</p>
-        <button type="button">비밀번호 찾기</button>
+        <button type="button" onClick={onClickPasswordFind}>
+          비밀번호 찾기
+        </button>
       </TextDiv>
     </BackgroundMain>
   );
 };
-
-export default SignIn;
 
 const OverLap = styled.div`
   display: flex;
@@ -93,6 +120,7 @@ const MainText = styled(OverLap)`
   width: 264px;
   height: 78px;
   font-size: 55px;
+  font-weight: bold;
 `;
 
 const CrossLine = styled(OverLap)`
@@ -104,7 +132,7 @@ const CrossLine = styled(OverLap)`
 
 const InputTotalDiv = styled.div`
   margin-top: 60px;
-  margin-left: 247px;
+  margin-left: 150px;
   width: 374px;
   height: 102px;
 
@@ -120,8 +148,8 @@ const InputTotalDiv = styled.div`
 `;
 
 const ButtonDiv = styled.div`
-  margin-top: -104px;
-  margin-left: 644px;
+  margin-top: -102px;
+  margin-left: 624px;
 
   button {
     width: 115px;
@@ -134,8 +162,10 @@ const TextDiv = styled(OverLap)`
   width: 310px;
 
   button {
-    margin: auto 20px;
+    margin: 0 auto;
     font-size: 20px;
     font-weight: 300;
   }
 `;
+
+export default SignIn;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
 
-interface formContainerProps {
+type FormContainerProps = {
   labelName?: string;
   placeholder: string;
   name: string;
@@ -13,25 +13,49 @@ interface formContainerProps {
   onBlur: React.FocusEventHandler<HTMLInputElement>;
   value: string;
   type?: React.HTMLInputTypeAttribute;
-  error?: string[];
+  error?: string[] | string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   btnDisabled?: boolean;
   inputDisabled?: boolean;
-}
+};
 
-const FormContainer: React.FC<formContainerProps> = ({
+const FormContainer: React.FC<FormContainerProps> = ({
+  onChange,
+  onBlur,
+  value,
   labelName,
   placeholder,
   name,
   id,
   btnTitle,
+  type,
+  error,
+  onClick,
+  btnDisabled,
+  inputDisabled,
 }) => {
   return (
     <FormWrapper>
-      <InputGroup id={id} label={labelName} labelPos="left" labelDist={20} fullWidth>
-        <input placeholder={placeholder} name={name} />
+      <InputGroup id={id} label={labelName} labelPos="left" error={error} fullWidth>
+        <input
+          type={type}
+          onChange={onChange}
+          onBlur={onBlur}
+          value={value}
+          placeholder={placeholder}
+          name={name}
+          disabled={inputDisabled}
+        />
       </InputGroup>
-      <StyledButton>{btnTitle ? <Button size="small">{btnTitle}</Button> : ''}</StyledButton>
+      <ButtonBox>
+        {btnTitle ? (
+          <StyledButton size="small" onClick={onClick} disabled={btnDisabled}>
+            {btnTitle}
+          </StyledButton>
+        ) : (
+          ''
+        )}
+      </ButtonBox>
     </FormWrapper>
   );
 };
@@ -51,8 +75,12 @@ const FormWrapper = styled.div`
   }
 `;
 
-const StyledButton = styled.div`
+const ButtonBox = styled.div`
   width: 145px;
+`;
+
+const StyledButton = styled(Button)`
+  font-size: 16px;
 `;
 
 export default FormContainer;
