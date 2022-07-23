@@ -95,6 +95,7 @@ const SignUp = () => {
       try {
         await Axios.post('/api/auth/email-verify', {
           email: formik.values.email,
+          code: formik.values.code,
         });
         handleEmailVerify();
         setIsInput(true);
