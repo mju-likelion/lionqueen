@@ -61,7 +61,10 @@ const SignUp = () => {
     onSubmit: async values => {
       try {
         await Axios.post('/api/auth/sign-up', {
-          email: formik.values.email,
+          email: values.email,
+          password: values.password,
+          name: values.nickname,
+          phone: values.phone,
         });
         handleSignUp();
         router.push('/sign-in');
