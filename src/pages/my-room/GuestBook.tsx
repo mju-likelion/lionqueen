@@ -1,3 +1,4 @@
+/* eslint-disable no-unsafe-optional-chaining */
 import React, { useRef, useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { scrollTo } from 'seamless-scroll-polyfill';
@@ -19,7 +20,7 @@ type Props = {
 const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
   // 모달창 크기에 최대 메모장 10개 보임 => 즉, 10개당 1슬라이드를 의미 나머지 발생 시 + 1
   const slideRef = useRef<HTMLDivElement>(null);
-  const slideTotal = useRef<number>(Math.ceil(comments.length / 10) - 1);
+  const slideTotal = useRef<number>(Math.ceil(comments?.length / 10) - 1);
 
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
@@ -85,7 +86,7 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
           </MidBox>
 
           <CommentWrap ref={slideRef}>
-            {comments.map((memo: { id: number; title: string; nickname: string }) => (
+            {comments?.map((memo: { id: number; title: string; nickname: string }) => (
               <MemoBox key={memo.id}>
                 <Tape fill="#62fade" opacity="0.7" />
                 <button type="button" onClick={() => handleSecondModalClick(memo.id)}>
