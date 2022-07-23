@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 import { useState } from 'react';
 import Button from '~DesignSystem/Button';
@@ -10,6 +10,7 @@ const PlusModal = ({ onClose }: { onClose: () => void }) => {
   const [input, setInput] = useState<string>('');
   const [errorShow, setErrorShow] = useState(false);
   const regex = /^[a-zA-Z0-9ㄱ-ㅎ가-힣]{0,11}$/;
+  const [createClicked, setCreateClicked] = useState(false);
 
   const onChangeInput: React.ChangeEventHandler<HTMLInputElement> = e => {
     setInput(e.target.value);
@@ -18,6 +19,11 @@ const PlusModal = ({ onClose }: { onClose: () => void }) => {
     } else {
       setErrorShow(true);
     }
+  };
+
+  // 라운지 생성 post 요청 보내기 필요
+  const onClickCreate = () => {
+    setCreateClicked(true);
   };
 
   return (
@@ -32,7 +38,8 @@ const PlusModal = ({ onClose }: { onClose: () => void }) => {
         <NumPeople>인원수</NumPeople>
         <Counter />
       </PeopleContainer>
-      <Button onClick={onClose}>생성</Button>
+      <Button onClick={onClickCreate}>생성</Button>
+      {createClicked && <CautionText loading>로 딩 중 . . .</CautionText>}
     </Modal>
   );
 };
@@ -68,10 +75,33 @@ const NumPeople = styled.p`
 `;
 
 // 글자수 초과시 에러 메시지 출력
-const CautionText = styled.p`
+const CautionText = styled.p<{ loading?: boolean }>`
+  ${props =>
+    props.loading &&
+    css`
+      position: fixed;
+      margin: 20px 0 0 180px;
+      animation: ${TextFade} 2s 1s infinite linear alternate;
+      font-size: 16px;
+    `}
+
   margin: 10px 0 0 8px;
   color: ${({ theme }) => theme.colors.primary.error};
   font-size: 13px;
+`;
+
+const TextFade = keyframes`
+  0%{
+    opacity: 1;
+  }
+
+  50%{
+    opacity: 0;
+  }
+
+  100%{
+    opacity: 1;
+  }
 `;
 
 export default PlusModal;
