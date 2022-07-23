@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 import Axios from '~lib/axios';
 
 import BackgroundMain from '~DesignSystem/BackgroundMain';
@@ -27,6 +28,7 @@ const SignUp = () => {
   const [isInput, setIsInput] = useState(false);
   const [isBtn, setIsBtn] = useState(true);
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const handleSendMail = () => {
     dispatch(showNotice('이메일 전송이 완료되었습니다. 이메일을 확인해주세요.'));
@@ -62,6 +64,7 @@ const SignUp = () => {
           email: formik.values.email,
         });
         handleSignUp();
+        router.push('/sign-in');
       } catch (err) {
         handleSignUpFailure();
       }
@@ -71,35 +74,32 @@ const SignUp = () => {
   const formError = (field: keyof InitialValues) => {
     return !!formik.values[field] && formik.touched[field] ? formik.errors[field] : undefined;
   };
-  const sendMail = () => {
-    async () => {
-      if (formik.values.email) {
-        try {
-          await Axios.post('/api/auth/send-email', {
-            email: formik.values.email,
-          });
-          handleSendMail();
-        } catch (err) {
-          handleSendMailFailure();
-        }
+
+  const sendMail = async () => {
+    if (formik.values.email) {
+      try {
+        await Axios.post('/api/auth/send-email', {
+          email: formik.values.email,
+        });
+        handleSendMail();
+      } catch (err) {
+        handleSendMailFailure();
       }
-    };
+    }
   };
-  const emailVerify = () => {
-    async () => {
-      if (formik.values.code && formik.values.email) {
-        try {
-          await Axios.post('/api/auth/email-verify', {
-            email: formik.values.email,
-          });
-          handleEmailVerify();
-          setIsInput(true);
-          setIsBtn(false);
-        } catch (err) {
-          handleEmailVerifyFailure();
-        }
+  const emailVerify = async () => {
+    if (formik.values.code && formik.values.email) {
+      try {
+        await Axios.post('/api/auth/email-verify', {
+          email: formik.values.email,
+        });
+        handleEmailVerify();
+        setIsInput(true);
+        setIsBtn(false);
+      } catch (err) {
+        handleEmailVerifyFailure();
       }
-    };
+    }
   };
   const formDisabled =
     !!formik.errors.email ||
