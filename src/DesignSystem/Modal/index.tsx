@@ -2,6 +2,7 @@ import React, { useEffect, useLayoutEffect } from 'react';
 import XIcon from '~components/icons/XIcon';
 import Portal from '~DesignSystem/Portal';
 import * as S from './styles';
+import useModalOutsideClick from '~/hooks/useModalOutsideClick';
 
 type Props = {
   children?: React.ReactNode;
@@ -22,7 +23,7 @@ const Modal = ({ children, title = '모달 타이틀', size = 'medium', onClose 
 
   return (
     <Portal>
-      <S.Container>
+      <S.Container {...useModalOutsideClick(onClose)}>
         <S.Content size={size}>
           <S.XIconWrapper onClick={onClose}>
             <XIcon />
