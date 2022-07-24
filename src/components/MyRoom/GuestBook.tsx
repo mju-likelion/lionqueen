@@ -86,12 +86,12 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
           </MidBox>
 
           <CommentWrap ref={slideRef}>
-            {comments?.map((memo: { id: number; title: string; nickname: string }) => (
+            {comments?.map((memo: { id: number; title: string }) => (
               <MemoBox key={memo.id}>
                 <Tape fill="#62fade" opacity="0.7" />
                 <button type="button" onClick={() => handleSecondModalClick(memo.id)}>
                   <p>{memo.title}</p>
-                  <p>{memo.nickname}</p>
+                  {/* <p>{memo.nickname}</p> */}
                 </button>
               </MemoBox>
             ))}

@@ -29,7 +29,7 @@ const MemoModal = ({ onClose, comment }: Props) => {
     initialValues: {
       title: comment?.title || '',
       content: comment?.content || '',
-      nickname: comment?.nickname || '',
+      // nickname: comment?.nickname || '',
     },
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
@@ -76,7 +76,6 @@ const MemoModal = ({ onClose, comment }: Props) => {
           <XIconBox onClick={onClose}>
             <XIcon color="#ffbb17" width="28" height="30" />
           </XIconBox>
-          {/* formik으로 변경 필요 */}
           <FormContainer onSubmit={formik.handleSubmit}>
             <InputGroup id="title" fullWidth contentWidth="100%">
               <Title
@@ -124,7 +123,7 @@ const MemoModal = ({ onClose, comment }: Props) => {
             <Writer>
               <p>-</p>
               {/* 새로 생성 => 로그인한 유저 이름, 나머지는 방명록 작성자 이름으로 변경 필요 */}
-              <input id="nickname" value={comment?.nickname} readOnly />
+              <input id="nickname" value="글쓴이" readOnly />
               <p>-</p>
             </Writer>
           </FormContainer>

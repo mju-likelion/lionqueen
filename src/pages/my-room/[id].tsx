@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { GetServerSideProps } from 'next';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Avatar from '~components/MyRoom/Avatar';
@@ -7,16 +6,38 @@ import Board from '~components/MyRoom/Board';
 import GuestBook from '~components/MyRoom/GuestBook';
 import MemoModal from '~components/MyRoom/MemoModal';
 import { Comment } from '~/lib/commentType';
+import Axios from '~lib/axios';
 
-type Props = {
-  comments: Array<Comment>;
-};
-
-const MyRoom = ({ comments }: Props) => {
+const MyRoom = () => {
   const router = useRouter();
   const [isModalPopup, setIsModalPopup] = useState(false);
   const [isSecondModalPopup, setIsSecondModalPopup] = useState(false);
   const [clickedMemoProps, setClickedMemoProps] = useState<Comment | null>(null);
+  const [myRoomData, setMyRoomData] = useState<any>({
+    roomData: {
+      id: 2,
+      createAt: '2022-07-22T22:51:44.739Z',
+      updateAt: '2022-07-22T22:51:44.739Z',
+      user: {
+        id: 2,
+        phone: '01093202207',
+        name: '박재민',
+        email: 'pjm2207@naver.com',
+        createAt: '2022-07-22T22:45:51.374Z',
+        updateAt: '2022-07-22T22:45:51.374Z',
+        password1: null,
+      },
+    },
+    memos: [
+      {
+        id: 1,
+        title: '재민아',
+        content: '일좀해라',
+        createdAt: '2022-07-22T22:53:23.863Z',
+        updatedAt: '2022-07-22T22:53:37.218Z',
+      },
+    ],
+  });
 
   const handleRouteClick = () => {
     // 추후 라운지 내부로 가는 코드로 고치기
@@ -27,11 +48,31 @@ const MyRoom = ({ comments }: Props) => {
     setIsModalPopup(!isModalPopup);
   };
 
+  const fetchData = async (id: string | string[] | undefined) => {
+    try {
+      const data = await Axios.get(`/api/myroom/${id}`);
+      if (data !== null) {
+        setMyRoomData(data.data);
+      }
+    } catch {
+      console.log('데이터 패치 실패');
+    }
+  };
+
   // 메모장 모달을 띄워줌과 동시에 메모장 props 세팅
   const handleSecondModalClick = (id: number | null) => {
     setIsSecondModalPopup(!isSecondModalPopup);
-    setClickedMemoProps(comments.find(comment => comment.id === id) || null);
+    if (typeof myRoomData !== undefined) {
+      setClickedMemoProps(myRoomData.memos.find((item: Comment) => item.id === id) || null);
+    }
   };
+
+  useEffect(() => {
+    // 라우터가 준비 됐을 때 데이터 패치
+    if (!router.isReady) return;
+    const routerId = router.query.id;
+    fetchData(routerId);
+  }, [router.isReady]);
 
   return (
     <Wrap>
@@ -39,7 +80,7 @@ const MyRoom = ({ comments }: Props) => {
         <GuestBook
           onClose={() => setIsModalPopup(false)}
           handleSecondModalClick={handleSecondModalClick}
-          comments={comments}
+          comments={myRoomData.memos}
         />
       )}
       {isSecondModalPopup && (
@@ -50,7 +91,7 @@ const MyRoom = ({ comments }: Props) => {
         <RoomName>사용자이름의 방</RoomName>
         <RoomConent>
           <Board
-            comments={comments}
+            comments={myRoomData.memos}
             handleModalClick={handleModalClick}
             handleSecondModalClick={handleSecondModalClick}
           />
@@ -62,99 +103,6 @@ const MyRoom = ({ comments }: Props) => {
       </ContentContainer>
     </Wrap>
   );
-};
-
-// 더미데이터
-export const getServerSideProps: GetServerSideProps = async () => {
-  // api 구현 후 변경 필요
-  const comments = [
-    {
-      id: 0,
-      title: '제목0',
-      content: '대충 재밌는 내용0',
-      nickname: '닉네임0',
-    },
-    {
-      id: 1,
-      title: '제목1',
-      content: '대충 재밌는 내용1',
-      nickname: '닉네임1',
-    },
-    {
-      id: 2,
-      title: '제목2',
-      content: '대충 재밌는 내용2',
-      nickname: '닉네임2',
-    },
-    {
-      id: 3,
-      title: '제목3',
-      content: '대충 재밌는 내용3',
-      nickname: '닉네임3',
-    },
-    {
-      id: 4,
-      title: '제목4',
-      content: '대충 재밌는 내용4',
-      nickname: '닉네임4',
-    },
-    {
-      id: 5,
-      title: '제목5',
-      content: '대충 재밌는 내용5',
-      nickname: '닉네임5',
-    },
-    {
-      id: 6,
-      title: '제목6',
-      content: '대충 재밌는 내용6',
-      nickname: '닉네임6',
-    },
-    {
-      id: 7,
-      title: '제목7',
-      content: '대충 재밌는 내용7',
-      nickname: '닉네임7',
-    },
-    {
-      id: 8,
-      title: '제목8',
-      content: '대충 재밌는 내용8',
-      nickname: '닉네임8',
-    },
-    {
-      id: 9,
-      title: '제목9',
-      content: '대충 재밌는 내용9',
-      nickname: '닉네임9',
-    },
-    {
-      id: 10,
-      title: '제목10',
-      content: '대충 재밌는 내용10',
-      nickname: '닉네임10',
-    },
-    {
-      id: 11,
-      title: '제목11',
-      content: '대충 재밌는 내용11',
-      nickname: '닉네임11',
-    },
-    {
-      id: 12,
-      title: '제목12',
-      content: '대충 재밌는 내용12',
-      nickname: '닉네임12',
-    },
-    {
-      id: 13,
-      title: '제목13',
-      content: '대충 재밌는 내용13',
-      nickname: '닉네임13',
-    },
-  ];
-
-  return { props: { comments } };
 };
 
 const Wrap = styled.div`
