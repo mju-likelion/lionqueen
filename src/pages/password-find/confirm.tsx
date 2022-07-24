@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import styled from 'styled-components';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import Button from '~DesignSystem/Button';
@@ -6,6 +6,11 @@ import Button from '~DesignSystem/Button';
 const Confirm = () => {
   const router = useRouter();
   const infoText = router.query.backtoLogin;
+
+  const onClickSignin = () => {
+    Router.push('/sign-in');
+  };
+
   return (
     <BackgroundMain>
       <MainText>비밀번호 변경</MainText>
@@ -14,7 +19,9 @@ const Confirm = () => {
         <p>{infoText || '요청하신 페이지를 찾을 수 없습니다.'}</p>
       </InfoDiv>
       <ButtonDiv>
-        <Button size="large">로그인으로 돌아가기</Button>
+        <Button size="large" onClick={onClickSignin}>
+          로그인으로 돌아가기
+        </Button>
       </ButtonDiv>
     </BackgroundMain>
   );

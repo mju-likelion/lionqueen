@@ -1,43 +1,46 @@
-import React, { useState } from 'react';
+import { useFormik } from 'formik';
 import Router, { useRouter } from 'next/router';
 import styled from 'styled-components';
-import BackgroundMain from '~DesignSystem/BackgroundMain';
-import InputGroup from '~DesignSystem/InputGroup';
-import Button from '~DesignSystem/Button';
 
-const user = [
-  // 임의로 작성한 로그인 가능한 계정들
-  { name: '김멋사', email: 'lion1@likelion.org' },
-  { name: '이멋사', email: 'lion2@likelion.org' },
-  { name: '박멋사', email: 'lion3@likelion.org' },
-];
+import BackgroundMain from '~DesignSystem/BackgroundMain';
+import Button from '~DesignSystem/Button';
+import { PasswordValidationSchema } from '~lib/validation';
+import Axios from '~lib/axios';
+import { FormContainer } from '~components/SignUp';
+
+type InitialValues = {
+  name: string;
+  email: string;
+};
 
 const Find = () => {
-  const [userName, setUserName] = useState('');
-  const [userEmail, setUserEmail] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-
   const router = useRouter();
-  // 배열의 요소에서 name과 email이 userName과 userEmail과 일치한다면
-  // { name: element.name, email: element.email }을 반환합니다.
-  const findUser = (element: { name: string; email: string }) => {
-    if (element.name === userName && element.email === userEmail) {
-      return element;
-    }
-  };
 
-  const checkUser = () => {
-    // { ... } 안에 있는 속성을 사용하기 위해 isUser 변수를 사용했습니다.
-    const isUser = user.find(findUser);
-    // 배열의 조건에 만족하지 않는다면 undefined를 반환하기 떄문에 ? 를 사용했습니다.
-    if (isUser?.name === userName && isUser?.email === userEmail) {
-      setUserName('');
-      setUserEmail('');
-      setErrorMessage('');
-      routePage();
-    } else {
-      setErrorMessage(`이름 및 이메일을 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.`);
-    }
+  const formik = useFormik<InitialValues>({
+    initialValues: {
+      name: '',
+      email: '',
+    },
+    onSubmit: async values => {
+      console.log('click1');
+      try {
+        console.log('click2');
+        await Axios.post('/api/auth/reset-password', {
+          name: values.name,
+          email: values.email,
+        });
+        routePage();
+      } catch (err) {
+        console.log('click3');
+        formik.values.name = '';
+        formik.values.email = '';
+      }
+    },
+    validationSchema: PasswordValidationSchema,
+  });
+
+  const formError = (field: keyof InitialValues) => {
+    return !!formik.values[field] && formik.touched[field] ? formik.errors[field] : undefined;
   };
 
   const routePage = () => {
@@ -49,11 +52,6 @@ const Find = () => {
     }
   };
 
-  const onSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    checkUser();
-  };
-
   return (
     <BackgroundMain>
       <MainText>비밀번호 찾기</MainText>
@@ -62,31 +60,27 @@ const Find = () => {
         <p>본인확인 이메일로 인증</p>
         <p>본인확인 이메일 주소와 입력한 이메일 주소가 같아야 인증번호를 받을 수 있습니다.</p>
       </InfoDiv>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={formik.handleSubmit}>
         <InputTotalDiv>
-          <InputGroup id="id" label="이름" labelPos="left" labelDist={20}>
-            <input
-              placeholder="이름을 입력하세요"
-              name="input"
-              value={userName}
-              onChange={e => setUserName(e.target.value)}
-            />
-          </InputGroup>
-          <InputGroup
-            id="password"
-            label="이메일주소"
-            labelPos="left"
-            labelDist={20}
-            error={errorMessage}
-            fullWidth
-          >
-            <input
-              placeholder="이메일 주소를 입력하세요"
-              name="input"
-              value={userEmail}
-              onChange={e => setUserEmail(e.target.value)}
-            />
-          </InputGroup>
+          <FormContainer
+            labelName="이름"
+            placeholder="이름을 입력하세요"
+            name="name"
+            id="name"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.name}
+          />
+          <FormContainer
+            labelName="이메일 주소"
+            placeholder="이메일 주소를 입력하세요"
+            name="email"
+            id="email"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+            error={formError('email')}
+          />
         </InputTotalDiv>
         <ButtonDiv>
           <Button size="medium" type="submit">
@@ -143,27 +137,35 @@ const InputTotalDiv = styled(OverLap)`
   font-size: 20px;
 
   input {
+    margin-left: 48px;
     border-radius: 10px;
     width: 306px;
     height: 38px;
   }
 
-  div:first-child {
-    margin-bottom: 13px;
-    margin-left: 50px;
+  div + div {
+    margin-bottom: 8px;
+  }
 
-    label {
-      margin-left: -48px;
-      width: 93px;
-    }
+  label {
+    margin-left: -80px;
+    width: 168px;
+  }
+
+  > div:last-child > div > div > div:last-child {
+    margin-left: 52px;
+    width: 290px;
   }
 
   input::placeholder {
     font-size: 14px;
   }
 `;
+
 const ButtonDiv = styled(OverLap)`
-  margin-top: 48px;
+  position: absolute;
+  bottom: 130px;
+  left: 427px;
   width: 160px;
   height: 40px;
 `;
