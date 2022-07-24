@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import Avatar from './Avatar';
-import Board from './Board';
-import GuestBook from './GuestBook';
-import MemoModal from './MemoModal';
+import Avatar from '~components/MyRoom/Avatar';
+import Board from '~components/MyRoom/Board';
+import GuestBook from '~components/MyRoom/GuestBook';
+import MemoModal from '~components/MyRoom/MemoModal';
 import { Comment } from '~/lib/commentType';
 
 type Props = {
