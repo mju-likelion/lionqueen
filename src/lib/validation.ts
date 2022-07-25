@@ -40,7 +40,7 @@ export const SignInValidationSchema = Yup.object({
     .required('비밀번호를 입력해주세요.'),
 });
 
-export const PasswordValidationSchema = Yup.object({
+export const PasswordFindValidationSchema = Yup.object({
   email: Yup.string()
     .matches(
       /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
@@ -50,6 +50,9 @@ export const PasswordValidationSchema = Yup.object({
   name: Yup.string()
     .matches(/^[가-힣]{2,4}$/, undefined)
     .required('이름을 입력해주세요.'),
+});
+
+export const PasswordChangeValidationSchema = Yup.object({
   password: Yup.string()
     .matches(
       /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,10}$/,

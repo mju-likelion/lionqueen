@@ -4,9 +4,12 @@ import styled from 'styled-components';
 
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import Button from '~DesignSystem/Button';
-import { PasswordValidationSchema } from '~lib/validation';
+import { PasswordFindValidationSchema } from '~lib/validation';
 import Axios from '~lib/axios';
+import { useAppDispatch } from '~/store';
 import { FormContainer } from '~components/SignUp';
+import { showNotice } from '~store/modules/notice';
+import Notice from '~components/Notice/Notice';
 
 type InitialValues = {
   name: string;
@@ -15,6 +18,19 @@ type InitialValues = {
 
 const Find = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  const handleSendMail = () => {
+    dispatch(showNotice('이메일 전송에 성공하였습니다.'));
+  };
+
+  const handleSendMailFailure = () => {
+    dispatch(showNotice('이메일 전송에 실패하였습니다.'));
+  };
+
+  const formError = (field: keyof InitialValues) => {
+    return !!formik.values[field] && formik.touched[field] ? formik.errors[field] : undefined;
+  };
 
   const formik = useFormik<InitialValues>({
     initialValues: {
@@ -22,32 +38,28 @@ const Find = () => {
       email: '',
     },
     onSubmit: async values => {
-      console.log('click1');
       try {
-        console.log('click2');
-        await Axios.post('/api/auth/reset-password', {
-          name: values.name,
-          email: values.email,
-        });
+        await Axios.post(
+          '/api/auth/reset-password',
+          {
+            name: values.name,
+            email: values.email,
+          },
+          { withCredentials: true },
+        );
         routePage();
       } catch (err) {
-        console.log('click3');
-        formik.values.name = '';
-        formik.values.email = '';
+        handleSendMailFailure();
       }
     },
-    validationSchema: PasswordValidationSchema,
+    validationSchema: PasswordFindValidationSchema,
   });
-
-  const formError = (field: keyof InitialValues) => {
-    return !!formik.values[field] && formik.touched[field] ? formik.errors[field] : undefined;
-  };
 
   const routePage = () => {
     if (router.pathname === '/password-find') {
       Router.push({
         pathname: '/password-find/confirm',
-        query: { backtoLogin: '비밀번호가 성공적으로 변경되었습니다' },
+        query: { backtoLogin: '이메일 전송이 완료되었습니다.' },
       });
     }
   };
@@ -88,6 +100,7 @@ const Find = () => {
           </Button>
         </ButtonDiv>
       </form>
+      <Notice />
     </BackgroundMain>
   );
 };
