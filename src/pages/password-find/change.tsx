@@ -41,7 +41,7 @@ const Change = () => {
     if (router.pathname === '/password-find/change') {
       Router.push({
         pathname: '/password-find/confirm',
-        query: { backtoLogin: '비밀번호가 성공적으로 변경되었습니다' },
+        query: { backtoLogin: '비밀번호가 성공적으로 변경되었습니다.' },
       });
     }
   };

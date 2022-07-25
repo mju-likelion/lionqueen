@@ -45,6 +45,7 @@ const CrossLine = styled(OverLap)`
 `;
 
 const InfoDiv = styled(OverLap)`
+  justify-content: center;
   margin-top: 95px;
   width: 380px;
   height: 80px;
