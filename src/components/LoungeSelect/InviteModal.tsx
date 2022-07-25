@@ -3,23 +3,32 @@ import { useState } from 'react';
 
 import CopyToClipboard from 'react-copy-to-clipboard';
 import Modal from '~components/ModalPopup';
+import { useAppDispatch } from '~/store';
+import { showNotice } from '~store/modules/notice';
+import Notice from '~components/Notice/Notice';
 
 const InviteModal = ({ onClose }: { onClose: () => void }) => {
   const [inviteLink, setInviteLink] = useState('https://liontown.city/lounge/123?inviteCode=123');
   // 초대 링크 생성되면 저장하는 함수 필요
+  const dispatch = useAppDispatch();
+
+  const handleNotice = () => {
+    dispatch(showNotice('복사완료'));
+  };
 
   return (
     <Modal isCancel size="large" title="초대링크" onClose={onClose}>
       <InviteWrapper>
         <InviteLink>{inviteLink}</InviteLink>
         {/* alert 토스트메시지로 변경 필요 */}
-        <CopyToClipboard text={inviteLink} onCopy={() => alert('복사완료')}>
-          <CopyBtn>복사하기</CopyBtn>
+        <CopyToClipboard text={inviteLink}>
+          <CopyBtn onClick={handleNotice}>복사하기</CopyBtn>
         </CopyToClipboard>
       </InviteWrapper>
       <Comment>
         위 링크를 복사하고 친구에게 전해보세요! 링크를 통해 라운지 초대가 완료됩니다.
       </Comment>
+      <Notice />
     </Modal>
   );
 };
