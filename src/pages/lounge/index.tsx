@@ -27,8 +27,10 @@ const LoungeHome = () => {
 
   // 로그인 하지 않은 상태로 라운지 진입시
   useEffect(() => {
-    if (!getCookie('jwt')) Router.push('/sign-in');
-    returnMessage();
+    if (!getCookie('jwt')) {
+      Router.push('/sign-in');
+      returnMessage();
+    }
   }, []);
 
   const handleScrollUp = () => {
