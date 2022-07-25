@@ -20,10 +20,6 @@ const Find = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  const handleSendMail = () => {
-    dispatch(showNotice('이메일 전송에 성공하였습니다.'));
-  };
-
   const handleSendMailFailure = () => {
     dispatch(showNotice('이메일 전송에 실패하였습니다.'));
   };

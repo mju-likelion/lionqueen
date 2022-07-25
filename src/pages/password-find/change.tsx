@@ -1,43 +1,57 @@
-import React, { useState } from 'react';
+import { useFormik } from 'formik';
 import Router, { useRouter } from 'next/router';
 import styled from 'styled-components';
+
 import BackgroundMain from '~DesignSystem/BackgroundMain';
-import InputGroup from '~DesignSystem/InputGroup';
 import Button from '~DesignSystem/Button';
 
+import { PasswordChangeValidationSchema } from '~lib/validation';
+import Axios from '~lib/axios';
+import { useAppDispatch } from '~/store';
+import { FormContainer } from '~components/SignUp';
+import { showNotice } from '~store/modules/notice';
+import Notice from '~components/Notice/Notice';
+
+type InitialValues = {
+  password: string;
+  passwordConfirm: string;
+};
 const Change = () => {
-  const [changePassword, setChangePassword] = useState('');
-  const [checkPassword, setCheckPassword] = useState('');
-  const [changeError, setChangeError] = useState('');
-  const [checkError, setCheckError] = useState('');
-
   const router = useRouter();
-  const passwordRegex = /^[a-zA-Z0-9]{6,10}$/;
+  const dispatch = useAppDispatch();
 
-  const firstPasswordError = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (passwordRegex.test(e.target.value) === true) {
-      setChangeError('');
-    } else {
-      setChangeError('6~10자 내에서 영문, 숫자를 조합해서 입력하세요');
-    }
+  const handleChangePasswordFailure = () => {
+    dispatch(showNotice('비밀번호 변경에 실패하였습니다.'));
   };
 
-  const secondPasswordError = () => {
-    if (changeError === '' && changePassword === checkPassword) {
-      setCheckError('');
-    } else {
-      setCheckError('비밀번호가 일치하지 않습니다. 다시 시도해주세요');
-    }
+  const formError = (field: keyof InitialValues) => {
+    return !!formik.values[field] && formik.touched[field] ? formik.errors[field] : undefined;
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (changePassword === checkPassword && changeError === '' && checkError === '') {
-      routeToConfirm();
-    }
-  };
+  const formik = useFormik<InitialValues>({
+    initialValues: {
+      password: '',
+      passwordConfirm: '',
+    },
+    onSubmit: async values => {
+      try {
+        await Axios.post(
+          '/api/auth/reset-password',
+          {
+            password: values.name,
+            passwordConfirm: values.email,
+          },
+          { withCredentials: true },
+        );
+        routePage();
+      } catch (err) {
+        handleChangePasswordFailure();
+      }
+    },
+    validationSchema: PasswordChangeValidationSchema,
+  });
 
-  const routeToConfirm = () => {
+  const routePage = () => {
     if (router.pathname === '/password-find/change') {
       Router.push({
         pathname: '/password-find/confirm',
@@ -50,45 +64,29 @@ const Change = () => {
     <BackgroundMain>
       <MainText>비밀번호 변경</MainText>
       <CrossLine />
-      <form onSubmit={onSubmit}>
-        <InputDiv>
-          <InputGroup
-            id="id"
-            label="변경 패스워드"
-            labelPos="left"
-            labelDist={20}
-            error={changeError}
-            width="148px"
-          >
-            <input
-              name="input"
-              type="password"
-              value={changePassword}
-              placeholder="6~10자의 영문, 숫자를 조합해서 입력하세요"
-              onChange={e => setChangePassword(e.target.value)}
-              onBlur={firstPasswordError}
-            />
-          </InputGroup>
-        </InputDiv>
-        <InputDiv>
-          <InputGroup
+      <form onSubmit={formik.handleSubmit}>
+        <InputTotalDiv>
+          <FormContainer
+            labelName="변경 패스워드"
+            placeholder="6~10자의 영문, 숫자를 조합해서 입력하세요."
+            name="password"
             id="password"
-            label="변경 패스워드 확인"
-            labelPos="left"
-            labelDist={20}
-            error={checkError}
-            fullWidth
-          >
-            <input
-              name="input"
-              type="password"
-              value={checkPassword}
-              placeholder="비밀번호를 한 번 더 입력하세요"
-              onChange={e => setCheckPassword(e.target.value)}
-              onBlur={secondPasswordError}
-            />
-          </InputGroup>
-        </InputDiv>
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.password}
+            error={formError('password')}
+          />
+          <FormContainer
+            labelName="변경 패스워드 확인"
+            placeholder="비밀번호를 한 번 더 입력하세요."
+            name="passwordConfirm"
+            id="passwordConfirm"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.passwordConfirm}
+            error={formError('passwordConfirm')}
+          />
+        </InputTotalDiv>
         <ButtonDiv>
           <Button size="large" type="submit">
             비밀번호 변경
@@ -116,24 +114,31 @@ const CrossLine = styled(OverLap)`
   width: 600px;
 `;
 
-const InputDiv = styled(OverLap)`
+const InputTotalDiv = styled(OverLap)`
+  display: table;
   margin-top: 72px;
-  width: 546px;
-  height: 36px;
+  margin-left: 130px;
   font-size: 20px;
 
   input {
+    margin-left: 15px;
     border-radius: 10px;
     width: 352px;
     height: 38px;
   }
 
   label {
-    width: 206px;
+    width: 225px;
   }
 
-  & + & {
+  div + div {
     margin-top: 37px;
+  }
+
+  > div > div > div > div:last-child {
+    position: absolute;
+    margin-top: 8px;
+    margin-left: 20px;
   }
 `;
 const ButtonDiv = styled(OverLap)`
