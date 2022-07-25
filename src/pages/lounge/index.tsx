@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import Router from 'next/router';
 import { useState, useEffect, useRef } from 'react';
 import { scrollTo } from 'seamless-scroll-polyfill';
+import { getCookie } from '~lib/Cookie';
 
 import DoorBottom from '~components/icons/DoorBottom.svg';
 import NameBoard from '~components/lounge/NameBoard';
@@ -8,13 +10,27 @@ import FloorButton from '~components/lounge/FloorButton';
 import LoungeDoor from '~components/lounge/LoungeDoor';
 import NavBar from '~components/NavBar';
 
+import { useAppDispatch } from '~/store';
+import { showNotice } from '~store/modules/notice';
+import Notice from '~components/Notice/Notice';
+
 const LoungeHome = () => {
   const [currentFloor, setCurrentFloor] = useState<number>(0);
   const floorRef = useRef<HTMLDivElement>(null);
+  const dispatch = useAppDispatch();
   // 0: 9-10F / 1: 7-8F / 2: 5-6F / 3: 3-4F / 4: 1-2F
   const totalFloor = 4;
 
-  //
+  const returnMessage = () => {
+    dispatch(showNotice('로그인 혹은 회원가입을 진행해주세요!'));
+  };
+
+  // 로그인 하지 않은 상태로 라운지 진입시
+  useEffect(() => {
+    if (!getCookie('jwt')) Router.push('/sign-in');
+    returnMessage();
+  }, []);
+
   const handleScrollUp = () => {
     if (currentFloor === 0) {
       setCurrentFloor(totalFloor);
@@ -49,6 +65,7 @@ const LoungeHome = () => {
     <LoungeBg>
       <NameBoard />
       <ListBottomContainer>
+        <Notice />
         <Bottom>
           <FloorLine />
           <BottomContainer>
