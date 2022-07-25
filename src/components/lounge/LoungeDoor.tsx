@@ -37,11 +37,13 @@ const LoungeFloor = styled.div`
 
 const Doors = styled.div`
   display: grid;
-  row-gap: 100px;
+  position: relative;
   grid-template-rows: 1fr;
   grid-template-columns: repeat(4, 1fr);
-  place-items: center;
+  z-index: 3;
   width: 950px;
+  row-gap: 100px;
+  place-items: center;
 `;
 
 const LoungeDoors = styled.div`
@@ -92,6 +94,7 @@ const FloorWrap = styled.div`
   position: absolute;
   bottom: -20px;
   flex-direction: column;
+  z-index: 0;
 `;
 
 const FloorNumContainer = styled.div`
