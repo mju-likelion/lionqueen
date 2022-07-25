@@ -10,27 +10,19 @@ const InviteModal = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <Modal isCancel size="large" title="초대링크" onClose={onClose}>
-      <Container>
-        <InviteWrapper>
-          <InviteLink>{inviteLink}</InviteLink>
-          {/* alert 토스트메시지로 변경 필요 */}
-          <CopyToClipboard text={inviteLink} onCopy={() => alert('복사완료')}>
-            <CopyBtn>복사하기</CopyBtn>
-          </CopyToClipboard>
-        </InviteWrapper>
-        <Comment>
-          위 링크를 복사하고 친구에게 전해보세요! 링크를 통해 라운지 초대가 완료됩니다.
-        </Comment>
-      </Container>
+      <InviteWrapper>
+        <InviteLink>{inviteLink}</InviteLink>
+        {/* alert 토스트메시지로 변경 필요 */}
+        <CopyToClipboard text={inviteLink} onCopy={() => alert('복사완료')}>
+          <CopyBtn>복사하기</CopyBtn>
+        </CopyToClipboard>
+      </InviteWrapper>
+      <Comment>
+        위 링크를 복사하고 친구에게 전해보세요! 링크를 통해 라운지 초대가 완료됩니다.
+      </Comment>
     </Modal>
   );
 };
-
-const Container = styled.div`
-  display: block;
-  justify-content: column;
-  margin-top: -50px;
-`;
 
 const InviteWrapper = styled.div`
   margin: 0 auto;
