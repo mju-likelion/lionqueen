@@ -8,7 +8,9 @@ import { showNotice } from '~store/modules/notice';
 import Notice from '~components/Notice/Notice';
 
 const InviteModal = ({ onClose }: { onClose: () => void }) => {
-  const [inviteLink, setInviteLink] = useState('https://liontown.city/lounge/123?inviteCode=123');
+  const [inviteLink, setInviteLink] = useState(
+    'https://liontown.city/lounge/123?inviteCode=123123?123?inviteCode=123123?',
+  );
   // 초대 링크 생성되면 저장하는 함수 필요
   const dispatch = useAppDispatch();
 
@@ -43,14 +45,21 @@ const InviteWrapper = styled.div`
 `;
 
 const InviteLink = styled.p`
+  /* autoprefixer: ignore next */
+  display: flexbox;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  height: 45px;
+  overflow: hidden;
   text-align: left;
+  text-overflow: ellipsis;
   color: ${({ theme }) => theme.colors.primary.error};
   font-size: 16px;
 `;
 
 const CopyBtn = styled.button`
-  position: absolute;
-  margin-left: 70px;
+  position: fixed;
+  margin-left: 60px;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.primary.brown};
   font-size: 16px;
