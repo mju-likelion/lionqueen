@@ -142,7 +142,7 @@ const InputTotalDiv = styled.div`
 
   > div:last-child > div > div > div:last-child {
     margin-left: 5px;
-    width: 300px;
+    width: 290px;
   }
 `;
 
