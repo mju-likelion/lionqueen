@@ -130,7 +130,7 @@ const CrossLine = styled(OverLap)`
 
 const InputTotalDiv = styled.div`
   margin-top: 60px;
-  margin-left: 150px;
+  margin-left: 230px;
   width: 374px;
   height: 102px;
 
@@ -140,12 +140,16 @@ const InputTotalDiv = styled.div`
   }
 
   div + div {
-    margin-top: -5px;
+    margin-top: 13px;
   }
 
-  div:first-child {
-    margin-bottom: 10px;
-    margin-left: 10px;
+  label {
+    padding-left: 0;
+  }
+
+  > div:last-child > div > div > div:last-child {
+    margin-left: 5px;
+    width: 290px;
   }
 `;
 
