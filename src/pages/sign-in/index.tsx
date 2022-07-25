@@ -9,6 +9,7 @@ import { SignInValidationSchema } from '~lib/validation';
 import Axios from '~lib/axios';
 import { useAppDispatch } from '~/store';
 import { showNotice } from '~store/modules/notice';
+import Notice from '~components/Notice/Notice';
 
 type InitialValues = {
   email: string;
@@ -19,6 +20,9 @@ const SignIn = () => {
   const dispatch = useAppDispatch();
   const handleSignIn = () => {
     dispatch(showNotice('로그인에 성공하였습니다.'));
+  };
+  const handleSignInFailure = () => {
+    dispatch(showNotice('로그인에 실패하였습니다.'));
   };
 
   const formError = (field: keyof InitialValues) => {
@@ -41,7 +45,9 @@ const SignIn = () => {
           { withCredentials: true },
         );
         handleSignIn();
+        Router.push('/lounge-select');
       } catch (err) {
+        handleSignInFailure();
         formik.values.email = '';
         formik.values.password = '';
       }
@@ -97,6 +103,7 @@ const SignIn = () => {
           비밀번호 찾기
         </button>
       </TextDiv>
+      <Notice />
     </BackgroundMain>
   );
 };
