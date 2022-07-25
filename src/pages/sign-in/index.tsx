@@ -9,6 +9,7 @@ import { SignInValidationSchema } from '~lib/validation';
 import Axios from '~lib/axios';
 import { useAppDispatch } from '~/store';
 import { showNotice } from '~store/modules/notice';
+import Notice from '~components/Notice/Notice';
 
 type InitialValues = {
   email: string;
@@ -19,6 +20,9 @@ const SignIn = () => {
   const dispatch = useAppDispatch();
   const handleSignIn = () => {
     dispatch(showNotice('로그인에 성공하였습니다.'));
+  };
+  const handleSignInFailure = () => {
+    dispatch(showNotice('로그인에 실패하였습니다.'));
   };
 
   const formError = (field: keyof InitialValues) => {
@@ -41,7 +45,9 @@ const SignIn = () => {
           { withCredentials: true },
         );
         handleSignIn();
+        Router.push('/lounge-select');
       } catch (err) {
+        handleSignInFailure();
         formik.values.email = '';
         formik.values.password = '';
       }
@@ -97,6 +103,7 @@ const SignIn = () => {
           비밀번호 찾기
         </button>
       </TextDiv>
+      <Notice />
     </BackgroundMain>
   );
 };
@@ -123,7 +130,7 @@ const CrossLine = styled(OverLap)`
 
 const InputTotalDiv = styled.div`
   margin-top: 60px;
-  margin-left: 150px;
+  margin-left: 230px;
   width: 374px;
   height: 102px;
 
@@ -133,12 +140,16 @@ const InputTotalDiv = styled.div`
   }
 
   div + div {
-    margin-top: -5px;
+    margin-top: 13px;
   }
 
-  div:first-child {
-    margin-bottom: 10px;
-    margin-left: 10px;
+  label {
+    padding-left: 0;
+  }
+
+  > div:last-child > div > div > div:last-child {
+    margin-left: 5px;
+    width: 290px;
   }
 `;
 
