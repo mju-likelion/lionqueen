@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import styled from 'styled-components';
-import { useRotuer } from 'next/router';
+import { useRouter } from 'next/router';
 import { FormContainer } from '~components/SignUp';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import Button from '~DesignSystem/Button';
@@ -17,7 +17,7 @@ type InitialValues = {
 };
 
 const SignIn = () => {
-  const router = useRotuer();
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const handleSignIn = () => {
     dispatch(showNotice('로그인에 성공하였습니다.'));
