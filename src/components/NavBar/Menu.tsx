@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Link from 'next/link';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import { removeCookie } from '~lib/Cookie';
 import Button from '~DesignSystem/Button';
 import LionLogo from '~components/icons/LionLogo';
@@ -11,11 +11,12 @@ type Props = {
 };
 
 const Menu = ({ isOpenNavBar }: Props) => {
+  const router = useRouter();
   const [isShow, setIsShow] = useState(false);
   const [isSlideIn, setIsSlideIn] = useState(false);
   const onClickLogOut = () => {
     removeCookie('jwt');
-    Router.push('/sign-in');
+    router.push('/sign-in');
   };
 
   useEffect(() => {
