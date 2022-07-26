@@ -5,6 +5,7 @@ import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
 import Counter from './Counter';
 import Modal from '~components/ModalPopup';
+import InviteModal from './InviteModal';
 
 const PlusModal = ({ onClose }: { onClose: () => void }) => {
   const [input, setInput] = useState<string>('');
@@ -22,8 +23,11 @@ const PlusModal = ({ onClose }: { onClose: () => void }) => {
   };
 
   // 라운지 생성 post 요청 보내기 필요
+  // 라운지가 생성되었다는 응답을 받아서 초대 링크 모달을 보여줄 수 있도록 로직 필요
   const onClickCreate = () => {
     setCreateClicked(true);
+    // 응답을 받으면
+    // setCreateClicked(false) -> InviteModal
   };
 
   return (
@@ -40,6 +44,11 @@ const PlusModal = ({ onClose }: { onClose: () => void }) => {
       </PeopleContainer>
       <Button onClick={onClickCreate}>생성</Button>
       {createClicked && <CautionText loading>로 딩 중 . . .</CautionText>}
+      {/* {createClicked ? (
+        <CautionText loading>로 딩 중 . . .</CautionText>
+      ) : (
+        <InviteModal onClose={onClose} />
+      )} */}
     </Modal>
   );
 };
@@ -79,7 +88,6 @@ const CautionText = styled.p<{ loading?: boolean }>`
   ${props =>
     props.loading &&
     css`
-      position: fixed;
       margin: 20px 0 0 180px;
       animation: ${TextFade} 2s 1s infinite linear alternate;
       font-size: 16px;
