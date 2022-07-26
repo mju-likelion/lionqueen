@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import styled from 'styled-components';
-import Router from 'next/router';
+import { useRotuer } from 'next/router';
 import { FormContainer } from '~components/SignUp';
 import BackgroundMain from '~DesignSystem/BackgroundMain';
 import Button from '~DesignSystem/Button';
@@ -17,6 +17,7 @@ type InitialValues = {
 };
 
 const SignIn = () => {
+  const router = useRotuer();
   const dispatch = useAppDispatch();
   const handleSignIn = () => {
     dispatch(showNotice('로그인에 성공하였습니다.'));
@@ -45,7 +46,7 @@ const SignIn = () => {
           { withCredentials: true },
         );
         handleSignIn();
-        Router.push('/lounge-select');
+        router.push('/lounge-select');
       } catch (err) {
         handleSignInFailure();
         formik.values.email = '';
@@ -56,11 +57,11 @@ const SignIn = () => {
   });
 
   const onClickSignUp = () => {
-    Router.push('/sign-up');
+    router.push('/sign-up');
   };
 
   const onClickPasswordFind = () => {
-    Router.push('/password-find');
+    router.push('/password-find');
   };
 
   return (
