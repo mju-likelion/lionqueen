@@ -22,7 +22,6 @@ const InviteModal = ({ onClose }: { onClose: () => void }) => {
     <Modal isCancel size="large" title="초대링크" onClose={onClose}>
       <InviteWrapper>
         <InviteLink>{inviteLink}</InviteLink>
-        {/* alert 토스트메시지로 변경 필요 */}
         <CopyToClipboard text={inviteLink}>
           <CopyBtn onClick={handleNotice}>복사하기</CopyBtn>
         </CopyToClipboard>
@@ -45,7 +44,6 @@ const InviteWrapper = styled.div`
 `;
 
 const InviteLink = styled.p`
-  /* autoprefixer: ignore next */
   display: flexbox;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
