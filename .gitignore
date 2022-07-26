@@ -42,3 +42,6 @@ yarn-error.log*
 
 # config
 .env
+
+# cert config
+cert/
