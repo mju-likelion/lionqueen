@@ -45,3 +45,5 @@ yarn-error.log*
 
 # cert config
 cert/
+
+lionqueen.cnf
