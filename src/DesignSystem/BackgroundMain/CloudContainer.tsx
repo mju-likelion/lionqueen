@@ -70,19 +70,19 @@ const CloudBox = styled.div`
 
   img:nth-child(1) {
     top: 3%;
-    animation-duration: 12s;
+    animation-duration: 14s;
     animation-delay: 0;
   }
 
   img:nth-child(2) {
     top: 25%;
-    animation-duration: 17s;
+    animation-duration: 19s;
     animation-delay: -0.8s;
   }
 
   img:nth-child(3) {
     top: 45%;
-    animation-duration: 14s;
+    animation-duration: 16s;
     animation-delay: 1.5s;
   }
 `;
