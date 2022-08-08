@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Tree from '~components/icons/Tree';
+import CloudContainer from './CloudContainer';
 
 type BackgroundProps = {
   children: React.ReactNode;
@@ -12,6 +13,7 @@ function BackgroundMain(props: BackgroundProps) {
   return (
     <PageContainer>
       <BackgroundBox>
+        <CloudContainer />
         <Board>
           <LineContainer>
             <LineStyles />
@@ -43,7 +45,9 @@ const BackgroundBox = styled.div`
   justify-content: center;
   margin: 0 auto;
   box-shadow: none;
-  background-image: url('https://lionqueen.s3.amazonaws.com/background.png');
+
+  /* s3에 이미지 업로드 필요 */
+  background-image: url('image/backgoundNoCloud.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: 1440px 1024px;

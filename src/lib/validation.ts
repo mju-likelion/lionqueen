@@ -25,3 +25,17 @@ export const SignUpValidationSchema = Yup.object({
     .required('닉네임을 입력해주세요.'),
   code: Yup.string().length(6, '코드의 길이가 다릅니다.').required('인증코드를 입력해주세요.'),
 });
+
+export const SignInValidationSchema = Yup.object({
+  email: Yup.string()
+    .matches(/^[^@\s]+@[^@\s]+\.[^@\s]+$/, undefined)
+    .required('이메일을 입력해주세요.'),
+  password: Yup.string()
+    .matches(
+      /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,10}$/,
+      '아이디 또는 비밀번호를 잘못 입력했습니다.입력하신 내용을 다시 확인해주세요.',
+    )
+    .min(6, '6글자 이상 10글자 이하로 입력해주세요.')
+    .max(10, '6글자 이상 10글자 이하로 입력해주세요.')
+    .required('비밀번호를 입력해주세요.'),
+});
