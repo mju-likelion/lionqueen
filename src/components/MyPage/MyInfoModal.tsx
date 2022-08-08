@@ -1,13 +1,21 @@
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 import { LoungeList } from '~components/MyPage/constant';
 import ModalPopup from '~components/ModalPopup';
+import Axios from '~lib/axios';
+import { useAppDispatch } from '~/store';
+import { showNotice } from '~store/modules/notice';
+import Notice from '~components/Notice';
 
 const MyInfo = ({ onClose }: { onClose: () => void }) => {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
   const [name, setName] = useState('');
   const [loungeOutModalShow, setLoungeOutModalShow] = useState(false);
   const [withdrawalModalShow, setWithdrawalModalShow] = useState(false);
+
   const onClickSave = () => {
     alert('새로운 이름을 저장했습니다.');
     setName(name);
@@ -20,16 +28,26 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
       alert('소속 라운지를 탈퇴했습니다.');
     }
   };
-
   // 라이언타운 계정 삭제
-  const goodByeLionTown = () => {
-    if (withdrawalModalShow) {
-      alert('라이언타운 계정을 삭제했습니다. 안녕히 가세요.');
+  const goodByeLionTown = async () => {
+    try {
+      if (withdrawalModalShow) {
+        handleNotice();
+        await Axios.delete('/api/auth/sign-drop', { withCredentials: true });
+        router.push('/');
+      }
+    } catch (err) {
+      console.log('회원 탈퇴 실패! 절대 못 나가!');
     }
+  };
+
+  const handleNotice = () => {
+    dispatch(showNotice('라이언타운 계정을 삭제했습니다. 안녕히 가세요.'));
   };
 
   return (
     <div>
+      <Notice />
       <ModalPopup size="large" title="내 정보" onClose={onClose} isCancel>
         <InfoBox>
           <NameBox>
