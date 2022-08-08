@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
@@ -6,51 +6,33 @@ import Avatar from '~components/Rooms/Avatar';
 import Board from '~components/Rooms/Board';
 import GuestBook from '~components/Rooms/GuestBook';
 import MemoModal from '~components/Rooms/MemoModal';
-import { Comment } from '~/lib/commentType';
+import { Comment } from '~lib/commentType';
+import Axios from '~lib/axios';
 
 const MyRoom = () => {
   const router = useRouter();
   const [isModalPopup, setIsModalPopup] = useState(false);
   const [isSecondModalPopup, setIsSecondModalPopup] = useState(false);
   const [clickedMemoProps, setClickedMemoProps] = useState<Comment | null>(null);
+  const [routerId, setRouterId] = useState<any>('');
 
-  const { status, data, error, isFetching } = useQuery([`/api/rooms/${router.query.id}`]);
+  const fetchRoomById = async (id: string) => {
+    const res = await Axios.get(`/api/rooms/${id}`, { withCredentials: true });
+    return res.data;
+  };
 
-  // api 완성 전 임시 동작, api 완성 후 status(에러,로딩,완료)에 따른 동작 변경 필요
-  let roomData: any = data;
+  const { status, data } = useQuery([`/api/rooms/${routerId}`], () => fetchRoomById(routerId), {
+    // routerId가 들어오고 나서 리액트 쿼리 실행
+    enabled: !!routerId,
+  });
 
-  if (roomData === undefined) {
-    console.log('데이터가 없습니다. 임시 데이터를 적용합니다.');
-    roomData = {
-      roomData: {
-        id: 2,
-        createAt: '2022-07-22T22:51:44.739Z',
-        updateAt: '2022-07-22T22:51:44.739Z',
-        user: {
-          id: 2,
-          phone: '01093202207',
-          name: '에러유저',
-          email: 'error2022@naver.com',
-          createAt: '2022-07-22T22:45:51.374Z',
-          updateAt: '2022-07-22T22:45:51.374Z',
-          password1: null,
-        },
-      },
-      memos: [
-        {
-          id: 1,
-          title: 'RQ에러',
-          content: '해결해줘',
-          createdAt: '2022-07-22T22:53:23.863Z',
-          updatedAt: '2022-07-22T22:53:37.218Z',
-        },
-      ],
-    };
-  }
+  useEffect(() => {
+    if (!router.isReady) return;
+    setRouterId(router.query.id);
+  }, [router.isReady]);
 
   const handleRouteClick = () => {
-    // 추후 라운지 내부로 가는 코드로 고치기
-    router.push('/');
+    router.push('/lounge');
   };
 
   const handleModalClick = () => {
@@ -60,40 +42,46 @@ const MyRoom = () => {
   // 메모장 모달을 띄워줌과 동시에 메모장 props 세팅
   const handleSecondModalClick = (id: number | null) => {
     setIsSecondModalPopup(!isSecondModalPopup);
-    if (typeof roomData !== undefined) {
-      setClickedMemoProps(roomData.memos.find((item: Comment) => item.id === id) || null);
+    if (typeof data !== undefined) {
+      setClickedMemoProps(data.memos.find((item: Comment) => item.id === id) || null);
     }
   };
 
-  return (
-    <Wrap>
-      {isModalPopup && (
-        <GuestBook
-          onClose={() => setIsModalPopup(false)}
-          handleSecondModalClick={handleSecondModalClick}
-          comments={roomData.memos}
-        />
-      )}
-      {isSecondModalPopup && (
-        <MemoModal onClose={() => setIsSecondModalPopup(false)} comment={clickedMemoProps} />
-      )}
-      <ContentContainer>
-        {/* 여기에 사용자 이름 패치 필요 */}
-        <RoomName>{roomData.roomData.user.name}</RoomName>
-        <RoomConent>
-          <Board
-            comments={roomData.memos}
-            handleModalClick={handleModalClick}
+  if (status === 'loading') {
+    return <p>{status}</p>;
+  }
+
+  /* api가 빈 객체여도 정상적으로 리턴됨, 해결 후 서스펜스, 폴백 적용 팔요 */
+  if (status === 'success' && data && data.roomData) {
+    return (
+      <Wrap>
+        {isModalPopup && (
+          <GuestBook
+            onClose={() => setIsModalPopup(false)}
             handleSecondModalClick={handleSecondModalClick}
+            comments={data.memos}
           />
-          <Avatar roomOwner={roomData.roomData.user.name} />
-        </RoomConent>
-        <RoomBottom>
-          <Door onClick={handleRouteClick} />
-        </RoomBottom>
-      </ContentContainer>
-    </Wrap>
-  );
+        )}
+        {isSecondModalPopup && (
+          <MemoModal onClose={() => setIsSecondModalPopup(false)} comment={clickedMemoProps} />
+        )}
+        <ContentContainer>
+          <RoomName>{data.roomData.user.name}</RoomName>
+          <RoomConent>
+            <Board
+              comments={data.memos}
+              handleModalClick={handleModalClick}
+              handleSecondModalClick={handleSecondModalClick}
+            />
+            <Avatar roomOwner={data.roomData.user.name} />
+          </RoomConent>
+          <RoomBottom>
+            <Door onClick={handleRouteClick} />
+          </RoomBottom>
+        </ContentContainer>
+      </Wrap>
+    );
+  }
 };
 
 const Wrap = styled.div`
