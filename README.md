@@ -31,6 +31,12 @@ yarn dev
 
 <br/>
 
+## 🕸 How to set https?
+
+[노션](https://www.notion.so/https-6ade8a2e892f412ba9491438193de3f5)
+
+<br/>
+
 ## 🌞 Tech Stack
 
 ```
