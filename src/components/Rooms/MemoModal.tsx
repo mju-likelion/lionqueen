@@ -7,15 +7,17 @@ import Portal from '~DesignSystem/Portal';
 import XIcon from '~components/icons/XIcon';
 import { Comment } from '~/lib/commentType';
 import useModalOutsideClick from '~/hooks/useModalOutsideClick';
+import Axios from '~lib/axios';
 
 type Mode = 'create' | 'writer' | 'host' | 'general';
 
 type Props = {
   onClose: () => void;
   comment: Comment | null;
+  routerId: string;
 };
 
-const MemoModal = ({ onClose, comment }: Props) => {
+const MemoModal = ({ onClose, comment, routerId }: Props) => {
   const [mode, setMode] = useState<Mode>('create');
 
   // alert를 나중에 모달로 변경하기
@@ -24,6 +26,13 @@ const MemoModal = ({ onClose, comment }: Props) => {
     onClose();
   };
 
+  const registMemo = async (title: string, content: string) => {
+    try {
+      Axios.post(`/api/rooms/${routerId}/memos`, { title, content }, { withCredentials: true });
+    } catch (e) {
+      console.log('registMemo에서 에러 발생');
+    }
+  };
   // 방명록 추가, 수정
   const formik = useFormik({
     initialValues: {
@@ -32,7 +41,7 @@ const MemoModal = ({ onClose, comment }: Props) => {
       // nickname: comment?.nickname || '',
     },
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      registMemo(values.title, values.content);
       onClose();
     },
   });
