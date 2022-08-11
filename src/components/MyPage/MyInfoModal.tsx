@@ -1,12 +1,16 @@
 /* eslint-disable no-alert */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-import { LoungeList } from '~components/MyPage/constant';
 import ModalPopup from '~components/ModalPopup';
 import Axios from '~lib/axios';
 import { useAppDispatch } from '~/store';
 import { showNotice } from '~store/modules/notice';
+
+type Lounge = {
+  id: string;
+  name: string;
+};
 
 const MyInfo = ({ onClose }: { onClose: () => void }) => {
   const router = useRouter();
@@ -14,12 +18,31 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
   const [name, setName] = useState('');
   const [loungeOutModalShow, setLoungeOutModalShow] = useState(false);
   const [withdrawalModalShow, setWithdrawalModalShow] = useState(false);
+  const [lounges, setLounges] = useState<Lounge[]>([]); // 객체의 배열 타입
 
-  const onClickSave = () => {
-    alert('새로운 이름을 저장했습니다.');
-    setName(name);
-    console.log(`새 이름 ${name}`);
-  };
+  // 라운지 리스트와 이름 get
+  useEffect(() => {
+    const myInfoList = async () => {
+      try {
+        const loungeData = await Axios.get('/api/lounges/mypage', {
+          withCredentials: true,
+        });
+        const {
+          data: {
+            data: {
+              loungeNames,
+              userName: { name },
+            },
+          },
+        } = loungeData;
+        setLounges(loungeNames);
+        setName(name);
+      } catch (err) {
+        console.log('가져오기 실패! 바보!');
+      }
+    };
+    myInfoList();
+  }, []);
 
   // 라운지 탈퇴
   const goodByeLounge = async () => {
@@ -33,6 +56,7 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
       console.log('라운지 탈퇴 실패');
     }
   };
+
   // 라이언타운 계정 삭제
   const goodByeLionTown = async () => {
     try {
@@ -46,6 +70,13 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
     }
   };
 
+  // 다음 코드들은 mvp 이후에 작업하려고 코드 살려뒀습니다.
+  const onClickSave = () => {
+    handleNoticNameSave();
+    // setName(name);
+    // console.log(`새 이름 ${name}`);
+  };
+
   // 토스트 메시지
   const handleNotice = () => {
     dispatch(showNotice('라이언타운 계정을 삭제했습니다. 안녕히 가세요.'));
@@ -54,6 +85,11 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
   const handleNoticeLounge = () => {
     dispatch(showNotice('소속 라운지를 탈퇴했습니다.'));
   };
+
+  const handleNoticNameSave = () => {
+    dispatch(showNotice('이름을 새로 저장했습니다.'));
+  };
+
   return (
     <div>
       <ModalPopup size="large" title="내 정보" onClose={onClose} isCancel>
@@ -73,7 +109,7 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
           <LoungeBox>
             <LoungeTitle>소속 라운지</LoungeTitle>
             <LoungeInfo>
-              {LoungeList.map(lounge => (
+              {lounges.map(lounge => (
                 <LoungeRow key={lounge.id}>
                   <LoungeName>{lounge.name}</LoungeName>
                   <LoungeOutButton
@@ -113,6 +149,7 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
           정말 [라운지이름]을 탈퇴하시겠습니까?
         </ModalPopup>
       )}
+
       {/* //소속 라운지 탈퇴 모달 */}
       {withdrawalModalShow && (
         <ModalPopup
