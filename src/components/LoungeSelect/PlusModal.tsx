@@ -1,6 +1,7 @@
 import styled, { css, keyframes } from 'styled-components';
 
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { AxiosError } from 'axios';
 import Button from '~DesignSystem/Button';
 import Plus from '~components/icons/ModalPlusButton';
 import Minus from '~components/icons/Minus';
@@ -8,6 +9,9 @@ import InputGroup from '~DesignSystem/InputGroup';
 import Modal from '~components/ModalPopup';
 
 import Axios from '~lib/axios';
+import { useAppDispatch } from '~/store';
+import { showNotice } from '~store/modules/notice';
+import Notice from '~components/Notice/Notice';
 
 const PlusModal = ({ onClose }: { onClose: () => void }) => {
   const [input, setInput] = useState<string>('');
@@ -15,6 +19,18 @@ const PlusModal = ({ onClose }: { onClose: () => void }) => {
   const [errorShow, setErrorShow] = useState(false);
   const regex = /^[a-zA-Z0-9ㄱ-ㅎ가-힣]{0,11}$/;
   const [createClicked, setCreateClicked] = useState(false);
+  const [errorStatus, setErrorStatus] = useState<number>(0);
+  const [inviteLink, setInviteLink] = useState<string>('');
+
+  const dispatch = useAppDispatch();
+
+  const handleNotice = () => {
+    if (errorStatus === 409) {
+      dispatch(showNotice('이미 존재하는 라운지입니다.'));
+    } else {
+      dispatch(showNotice('알 수 없는 에러가 발생하였습니다. 잠시후 재시도해주세요.'));
+    }
+  };
 
   const incNum = () => {
     if (count >= 100) {
@@ -41,10 +57,35 @@ const PlusModal = ({ onClose }: { onClose: () => void }) => {
     }
   };
 
-  // 라운지 생성 post 요청 보내기 필요
   const onClickCreate = () => {
-    setCreateClicked(true);
+    onCreateSubmit();
   };
+
+  const onCreateSubmit = async () => {
+    try {
+      const response = await Axios.post(
+        `/api/lounges`,
+        { limit: count, name: input },
+        { withCredentials: true },
+      );
+      setInviteLink(response.data.data.loungeLink);
+      setCreateClicked(true);
+    } catch (e) {
+      if (e instanceof AxiosError) {
+        if (e.response?.status === 409) {
+          setErrorStatus(409);
+          handleNotice();
+        } else if (e.response?.status === 500 || e.response?.status === 510) {
+          setErrorStatus(500);
+          handleNotice();
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    console.log(inviteLink);
+  });
 
   return (
     <Modal isCancel size="large" title="라운지 생성" onClose={onClose}>
@@ -67,6 +108,8 @@ const PlusModal = ({ onClose }: { onClose: () => void }) => {
         </Container>
       </PeopleContainer>
       <Button onClick={onClickCreate}>생성</Button>
+      <Notice />
+      {/* <CautionText loading>로 딩 중 . . .</CautionText> */}
       {createClicked && <CautionText loading>로 딩 중 . . .</CautionText>}
     </Modal>
   );
@@ -108,7 +151,7 @@ const CautionText = styled.p<{ loading?: boolean }>`
     props.loading &&
     css`
       position: fixed;
-      margin: 20px 0 0 180px;
+      margin: 0 auto;
       animation: ${TextFade} 2s 1s infinite linear alternate;
       font-size: 16px;
     `}
