@@ -23,9 +23,15 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
   };
 
   // 라운지 탈퇴
-  const goodByeLounge = () => {
-    if (loungeOutModalShow) {
-      alert('소속 라운지를 탈퇴했습니다.');
+  const goodByeLounge = async () => {
+    try {
+      if (loungeOutModalShow) {
+        handleNoticeLounge();
+        await Axios.delete('/api/romms/{id}', { withCredentials: true });
+        router.push('/');
+      }
+    } catch (err) {
+      console.log('라운지 탈퇴 실패');
     }
   };
   // 라이언타운 계정 삭제
@@ -41,10 +47,14 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
     }
   };
 
+  // 토스트 메시지
   const handleNotice = () => {
     dispatch(showNotice('라이언타운 계정을 삭제했습니다. 안녕히 가세요.'));
   };
 
+  const handleNoticeLounge = () => {
+    dispatch(showNotice('소속 라운지를 탈퇴했습니다.'));
+  };
   return (
     <div>
       <Notice />
