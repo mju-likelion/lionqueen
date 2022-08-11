@@ -31,7 +31,7 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
           data: {
             data: {
               loungeNames,
-              userName: { name },
+              user: { name },
             },
           },
         } = loungeData;
