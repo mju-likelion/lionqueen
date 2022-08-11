@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import Router from 'next/router';
+import useRouter from 'next/router';
 import { useState, useEffect, useRef } from 'react';
 import { scrollTo } from 'seamless-scroll-polyfill';
+import Axios from 'axios';
 import { getCookie } from '~lib/Cookie';
 
 import DoorBottom from '~components/icons/DoorBottom.svg';
@@ -25,13 +26,45 @@ const LoungeHome = () => {
     dispatch(showNotice('로그인 혹은 회원가입을 진행해주세요!'));
   };
 
+  const returnLoungeSelect = async () => {
+    dispatch(showNotice('라운지 생성을 먼저 진행해주세요!'));
+  };
+
   // 로그인 하지 않은 상태로 라운지 진입시
   useEffect(() => {
-    if (!getCookie('jwt')) {
-      Router.push('/sign-in');
+    if (getCookie('jwt')) {
+      useRouter.push('/sign-in');
       returnMessage();
     }
+    statusVerify();
   }, []);
+
+  // 로그인 O 상태, 라운지 소속일 때 /라운지 소속이 아닐 때
+  const statusVerify = async () => {
+    try {
+      // 내가 소속된 라운지 리스트
+      const loungeList = await Axios.get(`https://api.liontown.city/api/lounges`, {
+        withCredentials: true,
+      });
+      // 선택한 라운지 정보 -> {id} 부분에 임시로 값 넣음
+      const selectLounge = await Axios.get(`https://api.liontown.city/api/lounges/sgIG8L`, {
+        withCredentials: true,
+      });
+      // console.log(selectLounge.data.data.roomData);
+      // 내가 소속된 라운지 리스트명과 선택한 라운지가 같지 않을 때
+      // 혹은 해당 라운지가 없는 경우 라운지 생성페이지로 보내기
+      if (
+        loungeList.data.data[0].name !== selectLounge.data.data.loungeName.name ||
+        selectLounge.status === 404
+      ) {
+        useRouter.push('/lounge-select');
+        setTimeout(() => returnLoungeSelect(), 2000);
+      }
+    } catch (err) {
+      // console.log 없앨 예정 ..
+      console.log('error');
+    }
+  };
 
   const handleScrollUp = () => {
     if (currentFloor === 0) {
