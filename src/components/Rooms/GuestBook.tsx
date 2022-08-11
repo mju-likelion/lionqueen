@@ -41,13 +41,6 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
     }
   };
 
-  // DOM 직접 제어 방식
-  // useEffect(() => {
-  //   if (slideRef.current !== null) {
-  //     slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
-  //   }
-  // }, [currentSlide]);
-
   useEffect(() => {
     if (slideRef.current !== null) {
       scrollTo(slideRef.current, { left: currentSlide * 920, behavior: 'smooth' });

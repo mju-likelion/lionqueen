@@ -26,7 +26,15 @@ const MyRoom = () => {
     dispatch(showNotice('이메일이 필요한 서비스입니다.'));
   };
 
-  //
+  const fetchAllMemos = async (id: string) => {
+    try {
+      const res = await Axios.get(`api/rooms/${id}/memos`, { withCredentials: true });
+      return res.data;
+    } catch (e: any) {
+      console.log('getAllMemos Error');
+    }
+  };
+
   const fetchRoomById = async (id: string) => {
     try {
       const res = await Axios.get(`/api/rooms/${id}`, { withCredentials: true });
@@ -41,6 +49,11 @@ const MyRoom = () => {
 
   const { status, data, error } = useQuery([routerId], () => fetchRoomById(routerId), {
     // routerId가 들어오고 나서 리액트 쿼리 실행
+    enabled: !!routerId,
+    retry: 1,
+  });
+
+  const { data: allMemo } = useQuery(['allMemo'], () => fetchAllMemos(routerId), {
     enabled: !!routerId,
     retry: 1,
   });
@@ -61,9 +74,9 @@ const MyRoom = () => {
   // 메모장 모달을 띄워줌과 동시에 메모장 props 세팅
   const handleSecondModalClick = (id: number | null) => {
     setIsSecondModalPopup(!isSecondModalPopup);
-    // if (typeof data !== null) {
-    //   setClickedMemoProps(data.memos.find((item: Comment) => item.id === id) || null);
-    // }
+    if (typeof data !== null) {
+      setClickedMemoProps(data.data.memoData.find((item: Comment) => item.id === id) || null);
+    }
   };
 
   if (error) {
@@ -82,7 +95,7 @@ const MyRoom = () => {
           <GuestBook
             onClose={() => setIsModalPopup(false)}
             handleSecondModalClick={handleSecondModalClick}
-            comments={data.data.memoData}
+            comments={allMemo.data}
           />
         )}
         {isSecondModalPopup && (

@@ -129,12 +129,11 @@ const MemoModal = ({ onClose, comment, routerId }: Props) => {
               onChange={formik.handleChange}
               readOnly={mode === 'host' || mode === 'general'}
             />
-            <Writer>
+            {/* <Writer>
               <p>-</p>
-              {/* 새로 생성 => 로그인한 유저 이름, 나머지는 방명록 작성자 이름으로 변경 필요 */}
               <input id="nickname" value="글쓴이" readOnly />
               <p>-</p>
-            </Writer>
+            </Writer> */}
           </FormContainer>
         </Content>
       </Container>
