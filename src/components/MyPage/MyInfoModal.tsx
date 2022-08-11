@@ -7,7 +7,6 @@ import ModalPopup from '~components/ModalPopup';
 import Axios from '~lib/axios';
 import { useAppDispatch } from '~/store';
 import { showNotice } from '~store/modules/notice';
-import Notice from '~components/Notice';
 
 const MyInfo = ({ onClose }: { onClose: () => void }) => {
   const router = useRouter();
@@ -57,7 +56,6 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
   };
   return (
     <div>
-      <Notice />
       <ModalPopup size="large" title="내 정보" onClose={onClose} isCancel>
         <InfoBox>
           <NameBox>
