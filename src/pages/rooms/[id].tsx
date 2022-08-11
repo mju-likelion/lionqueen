@@ -2,12 +2,18 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
+import { Comment } from '~lib/commentType';
+import Axios from '~lib/axios';
+
 import Avatar from '~components/Rooms/Avatar';
 import Board from '~components/Rooms/Board';
 import GuestBook from '~components/Rooms/GuestBook';
 import MemoModal from '~components/Rooms/MemoModal';
-import { Comment } from '~lib/commentType';
-import Axios from '~lib/axios';
+import Loading from '~DesignSystem/Loading';
+
+import { useAppDispatch } from '~/store';
+import { showNotice } from '~store/modules/notice';
+import Notice from '~components/Notice/Notice';
 
 const MyRoom = () => {
   const router = useRouter();
@@ -15,15 +21,28 @@ const MyRoom = () => {
   const [isSecondModalPopup, setIsSecondModalPopup] = useState(false);
   const [clickedMemoProps, setClickedMemoProps] = useState<Comment | null>(null);
   const [routerId, setRouterId] = useState<any>('');
+  const dispatch = useAppDispatch();
 
-  const fetchRoomById = async (id: string) => {
-    const res = await Axios.get(`/api/rooms/${id}`, { withCredentials: true });
-    return res.data;
+  const showLoginError = () => {
+    dispatch(showNotice('이메일이 필요한 서비스입니다.'));
   };
 
-  const { status, data } = useQuery([`/api/rooms/${routerId}`], () => fetchRoomById(routerId), {
+  const fetchRoomById = async (id: string) => {
+    try {
+      const res = await Axios.get(`/api/rooms/${id}`, { withCredentials: true });
+      return res.data;
+    } catch (e: any) {
+      if (e.response.status === 401) {
+        showLoginError();
+        router.push('/sign-in');
+      }
+    }
+  };
+
+  const { status, data, error } = useQuery([routerId], () => fetchRoomById(routerId), {
     // routerId가 들어오고 나서 리액트 쿼리 실행
     enabled: !!routerId,
+    retry: 1,
   });
 
   useEffect(() => {
@@ -47,8 +66,12 @@ const MyRoom = () => {
     }
   };
 
+  if (error) {
+    return <p>{error?.message}</p>;
+  }
+
   if (status === 'loading') {
-    return <p>{status}</p>;
+    return <Loading />;
   }
 
   /* api가 빈 객체여도 정상적으로 리턴됨, 해결 후 서스펜스, 폴백 적용 팔요 */
