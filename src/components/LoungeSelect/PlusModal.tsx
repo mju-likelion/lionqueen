@@ -2,15 +2,35 @@ import styled, { css, keyframes } from 'styled-components';
 
 import { useState } from 'react';
 import Button from '~DesignSystem/Button';
+import Plus from '~components/icons/ModalPlusButton';
+import Minus from '~components/icons/Minus';
 import InputGroup from '~DesignSystem/InputGroup';
-import Counter from './Counter';
 import Modal from '~components/ModalPopup';
+
+import Axios from '~lib/axios';
 
 const PlusModal = ({ onClose }: { onClose: () => void }) => {
   const [input, setInput] = useState<string>('');
+  const [count, setCount] = useState<number>(100);
   const [errorShow, setErrorShow] = useState(false);
   const regex = /^[a-zA-Z0-9ㄱ-ㅎ가-힣]{0,11}$/;
   const [createClicked, setCreateClicked] = useState(false);
+
+  const incNum = () => {
+    if (count >= 100) {
+      setCount(100);
+    } else {
+      setCount(count + 5);
+    }
+  };
+
+  const decNum = () => {
+    if (count <= 0) {
+      setCount(0);
+    } else {
+      setCount(count - 5);
+    }
+  };
 
   const onChangeInput: React.ChangeEventHandler<HTMLInputElement> = e => {
     setInput(e.target.value);
@@ -36,7 +56,15 @@ const PlusModal = ({ onClose }: { onClose: () => void }) => {
       </InputContainer>
       <PeopleContainer>
         <NumPeople>인원수</NumPeople>
-        <Counter />
+        <Container>
+          <ButtonWrapper onClick={decNum}>
+            <Minus />
+          </ButtonWrapper>
+          {count}
+          <ButtonWrapper onClick={incNum}>
+            <Plus />
+          </ButtonWrapper>
+        </Container>
       </PeopleContainer>
       <Button onClick={onClickCreate}>생성</Button>
       {createClicked && <CautionText loading>로 딩 중 . . .</CautionText>}
@@ -102,6 +130,20 @@ const TextFade = keyframes`
   100%{
     opacity: 1;
   }
+`;
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 40px;
+  width: 120px;
+  height: 30px;
+`;
+
+const ButtonWrapper = styled.button`
+  margin: 0 30px 10px 15px;
+  width: 30px;
+  height: 30px;
 `;
 
 export default PlusModal;
