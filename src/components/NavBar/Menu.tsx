@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { removeCookie } from '~lib/Cookie';
 import Button from '~DesignSystem/Button';
 import LionLogo from '~components/icons/LionLogo';
+import Axios from '~lib/axios';
 
 type Props = {
   isOpenNavBar: boolean;
@@ -14,9 +14,16 @@ const Menu = ({ isOpenNavBar }: Props) => {
   const router = useRouter();
   const [isShow, setIsShow] = useState(false);
   const [isSlideIn, setIsSlideIn] = useState(false);
-  const onClickLogOut = () => {
-    removeCookie('jwt');
-    router.push('/sign-in');
+
+  const onClickLogOut = async () => {
+    try {
+      await Axios.delete('/api/auth/sign-out', { withCredentials: true });
+      router.push('/sign-in');
+      console.log('로그아웃 성공');
+    } catch (err) {
+      console.log('로그아웃 안 됨 ㅎ');
+    }
+    // removeCookie('jwt');
   };
 
   useEffect(() => {
