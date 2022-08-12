@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import useRouter from 'next/router';
+import { useRouter } from 'next/router';
 import { useState, useEffect, useRef } from 'react';
 import { scrollTo } from 'seamless-scroll-polyfill';
 import Axios from 'axios';
@@ -16,6 +16,7 @@ import { showNotice } from '~store/modules/notice';
 import Notice from '~components/Notice/Notice';
 
 const LoungeHome = () => {
+  const router = useRouter();
   const [currentFloor, setCurrentFloor] = useState<number>(0);
   const floorRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
@@ -33,7 +34,7 @@ const LoungeHome = () => {
   // 로그인 하지 않은 상태로 라운지 진입시
   useEffect(() => {
     if (getCookie('jwt')) {
-      useRouter.push('/sign-in');
+      router.push('/sign-in');
       returnMessage();
     }
     statusVerify();
@@ -57,7 +58,7 @@ const LoungeHome = () => {
         loungeList.data.data[0].name !== selectLounge.data.data.loungeName.name ||
         selectLounge.status === 404
       ) {
-        useRouter.push('/lounge-select');
+        router.push('/lounge-select');
         setTimeout(() => returnLoungeSelect(), 2000);
       }
     } catch (err) {
