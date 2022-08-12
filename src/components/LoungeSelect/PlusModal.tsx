@@ -12,6 +12,7 @@ import Axios from '~lib/axios';
 import { useAppDispatch } from '~/store';
 import { showNotice } from '~store/modules/notice';
 import Notice from '~components/Notice/Notice';
+import InviteModal from './InviteModal';
 
 const PlusModal = ({ onClose }: { onClose: () => void }) => {
   const [input, setInput] = useState<string>('');
@@ -109,8 +110,8 @@ const PlusModal = ({ onClose }: { onClose: () => void }) => {
       </PeopleContainer>
       <Button onClick={onClickCreate}>생성</Button>
       <Notice />
-      {/* <CautionText loading>로 딩 중 . . .</CautionText> */}
       {createClicked && <CautionText loading>로 딩 중 . . .</CautionText>}
+      {inviteLink && <InviteModal inviteLink={inviteLink} onClose={onClose} />}
     </Modal>
   );
 };
@@ -150,7 +151,6 @@ const CautionText = styled.p<{ loading?: boolean }>`
   ${props =>
     props.loading &&
     css`
-      position: fixed;
       margin: 0 auto;
       animation: ${TextFade} 2s 1s infinite linear alternate;
       font-size: 16px;
