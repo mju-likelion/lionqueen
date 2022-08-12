@@ -84,10 +84,6 @@ const PlusModal = ({ onClose }: { onClose: () => void }) => {
     }
   };
 
-  useEffect(() => {
-    console.log(inviteLink);
-  });
-
   return (
     <Modal isCancel size="large" title="라운지 생성" onClose={onClose}>
       <InputContainer>
