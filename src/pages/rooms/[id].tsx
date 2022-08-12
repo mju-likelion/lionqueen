@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { useQuery } from '@tanstack/react-query';
 import { Comment } from '~lib/commentType';
-import Axios from '~lib/axios';
+import useGetAllMemos from '~/hooks/rooms/useGetAllMemos';
+import useGetRoom from '~/hooks/rooms/useGetRoom';
 
 import Avatar from '~components/Rooms/Avatar';
 import Board from '~components/Rooms/Board';
@@ -13,6 +13,7 @@ import Loading from '~DesignSystem/Loading';
 
 import { useAppDispatch } from '~/store';
 import { showNotice } from '~store/modules/notice';
+import Notice from '~components/Notice';
 
 const MyRoom = () => {
   const router = useRouter();
@@ -22,41 +23,17 @@ const MyRoom = () => {
   const [routerId, setRouterId] = useState<any>('');
   const dispatch = useAppDispatch();
 
+  const showAllMemoError = () => {
+    dispatch(showNotice('메모 정보를 가져오는데 실패했습니다.'));
+  };
+
   const showLoginError = () => {
     dispatch(showNotice('이메일이 필요한 서비스입니다.'));
   };
 
-  const fetchAllMemos = async (id: string) => {
-    try {
-      const res = await Axios.get(`api/rooms/${id}/memos`, { withCredentials: true });
-      return res.data;
-    } catch (e: any) {
-      console.log('getAllMemos Error');
-    }
-  };
-
-  const fetchRoomById = async (id: string) => {
-    try {
-      const res = await Axios.get(`/api/rooms/${id}`, { withCredentials: true });
-      return res.data;
-    } catch (e: any) {
-      if (e.response.status === 401) {
-        showLoginError();
-        router.push('/sign-in');
-      }
-    }
-  };
-
-  const { status, data, error } = useQuery([routerId], () => fetchRoomById(routerId), {
-    // routerId가 들어오고 나서 리액트 쿼리 실행
-    enabled: !!routerId,
-    retry: 1,
-  });
-
-  const { data: allMemo } = useQuery(['allMemo'], () => fetchAllMemos(routerId), {
-    enabled: !!routerId,
-    retry: 1,
-  });
+  // 리액트 쿼리 이용 상태 관리
+  const { data, error, isLoading } = useGetRoom(routerId, showLoginError, router);
+  const { data: allMemo } = useGetAllMemos(routerId, showAllMemoError);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -83,45 +60,46 @@ const MyRoom = () => {
     return <p>알 수 없는 에러가 발생했습니다.</p>;
   }
 
-  if (status === 'loading') {
+  if (isLoading) {
     return <Loading />;
   }
 
-  /* api가 빈 객체여도 정상적으로 리턴됨, 해결 후 서스펜스, 폴백 적용 팔요 */
-  if (status === 'success') {
-    return (
-      <Wrap>
-        {isModalPopup && (
-          <GuestBook
-            onClose={() => setIsModalPopup(false)}
+  return (
+    <Wrap>
+      {/* 모달 */}
+      {isModalPopup && (
+        <GuestBook
+          onClose={() => setIsModalPopup(false)}
+          handleSecondModalClick={handleSecondModalClick}
+          comments={allMemo.data}
+        />
+      )}
+      {isSecondModalPopup && (
+        <MemoModal
+          routerId={routerId}
+          onClose={() => setIsSecondModalPopup(false)}
+          comment={clickedMemoProps}
+        />
+      )}
+
+      {/* 컨텐츠 */}
+      <ContentContainer>
+        <RoomName>{data.data.userName.name}</RoomName>
+        <RoomConent>
+          <Board
+            comments={data.data.memoData}
+            handleModalClick={handleModalClick}
             handleSecondModalClick={handleSecondModalClick}
-            comments={allMemo.data}
           />
-        )}
-        {isSecondModalPopup && (
-          <MemoModal
-            routerId={routerId}
-            onClose={() => setIsSecondModalPopup(false)}
-            comment={clickedMemoProps}
-          />
-        )}
-        <ContentContainer>
-          <RoomName>{data.data.userName.name}</RoomName>
-          <RoomConent>
-            <Board
-              comments={data.data.memoData}
-              handleModalClick={handleModalClick}
-              handleSecondModalClick={handleSecondModalClick}
-            />
-            <Avatar roomOwner={data.data.userName.name} />
-          </RoomConent>
-          <RoomBottom>
-            <Door onClick={handleRouteClick} />
-          </RoomBottom>
-        </ContentContainer>
-      </Wrap>
-    );
-  }
+          <Avatar roomOwner={data.data.userName.name} />
+        </RoomConent>
+        <RoomBottom>
+          <Door onClick={handleRouteClick} />
+        </RoomBottom>
+      </ContentContainer>
+      <Notice />
+    </Wrap>
+  );
 };
 
 const Wrap = styled.div`

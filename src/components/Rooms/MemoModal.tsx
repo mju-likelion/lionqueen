@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
+import { registMemo } from '~/api/memo';
+import { Comment } from '~/lib/commentType';
+import useModalOutsideClick from '~/hooks/useModalOutsideClick';
+import { useAppDispatch } from '~/store';
+import { showNotice } from '~store/modules/notice';
+
 import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
 import Portal from '~DesignSystem/Portal';
 import XIcon from '~components/icons/XIcon';
-import { Comment } from '~/lib/commentType';
-import useModalOutsideClick from '~/hooks/useModalOutsideClick';
-import Axios from '~lib/axios';
 
 type Mode = 'create' | 'writer' | 'host' | 'general';
 
@@ -19,6 +22,11 @@ type Props = {
 
 const MemoModal = ({ onClose, comment, routerId }: Props) => {
   const [mode, setMode] = useState<Mode>('create');
+  const dispatch = useAppDispatch();
+
+  const showRegistNotice = () => {
+    dispatch(showNotice('방명록을 등록했습니다'));
+  };
 
   // alert를 나중에 모달로 변경하기
   const handleMemoDelete = () => {
@@ -26,13 +34,6 @@ const MemoModal = ({ onClose, comment, routerId }: Props) => {
     onClose();
   };
 
-  const registMemo = async (title: string, content: string) => {
-    try {
-      Axios.post(`/api/rooms/${routerId}/memos`, { title, content }, { withCredentials: true });
-    } catch (e) {
-      console.log('registMemo에서 에러 발생');
-    }
-  };
   // 방명록 추가, 수정
   const formik = useFormik({
     initialValues: {
@@ -41,7 +42,8 @@ const MemoModal = ({ onClose, comment, routerId }: Props) => {
       // nickname: comment?.nickname || '',
     },
     onSubmit: values => {
-      registMemo(values.title, values.content);
+      registMemo(routerId, values.title, values.content);
+      showRegistNotice();
       onClose();
     },
   });
@@ -199,29 +201,29 @@ const MemoBody = styled.textarea`
   }
 `;
 
-const Writer = styled.div`
-  display: flex;
-  gap: 8px;
-  justify-content: end;
-  margin: 4px 0;
-  font-size: 26px;
+// const Writer = styled.div`
+//   display: flex;
+//   gap: 8px;
+//   justify-content: end;
+//   margin: 4px 0;
+//   font-size: 26px;
 
-  p {
-    margin: 0;
-  }
+//   p {
+//     margin: 0;
+//   }
 
-  input {
-    border: 0;
-    background: none;
-    cursor: default;
-    width: 100px;
-    text-align: center;
-    font-size: 26px;
-  }
+//   input {
+//     border: 0;
+//     background: none;
+//     cursor: default;
+//     width: 100px;
+//     text-align: center;
+//     font-size: 26px;
+//   }
 
-  input:focus {
-    outline: none;
-  }
-`;
+//   input:focus {
+//     outline: none;
+//   }
+// `;
 
 export default MemoModal;
