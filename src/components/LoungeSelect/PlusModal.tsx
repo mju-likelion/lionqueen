@@ -1,18 +1,18 @@
 import styled, { css, keyframes } from 'styled-components';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { AxiosError } from 'axios';
 import Button from '~DesignSystem/Button';
 import Plus from '~components/icons/ModalPlusButton';
 import Minus from '~components/icons/Minus';
 import InputGroup from '~DesignSystem/InputGroup';
 import Modal from '~components/ModalPopup';
+import InviteModal from './InviteModal';
 
 import Axios from '~lib/axios';
 import { useAppDispatch } from '~/store';
 import { showNotice } from '~store/modules/notice';
 import Notice from '~components/Notice/Notice';
-import InviteModal from './InviteModal';
 
 const PlusModal = ({ onClose }: { onClose: () => void }) => {
   const [input, setInput] = useState<string>('');
@@ -142,7 +142,6 @@ const NumPeople = styled.p`
   font-size: 16px;
 `;
 
-// 글자수 초과시 에러 메시지 출력
 const CautionText = styled.p<{ loading?: boolean }>`
   ${props =>
     props.loading &&
