@@ -1,18 +1,53 @@
 import styled from 'styled-components';
+import { useState, useEffect } from 'react';
+import Axios from 'axios';
 
 import TestDoor from '~components/lounge/LoungeDemoData';
 import FloorNumber from '~components/lounge/FloorDemoData';
 
+type RoomInfo = {
+  id: string;
+  name: string;
+};
+
 const LoungeDoor = () => {
+  const [roomsList, setRoomsList] = useState<RoomInfo[]>();
+
+  const roomsLoading = async () => {
+    try {
+      const roomsRes = await Axios.get(`https://api.liontown.city/api/lounges/sgIG8L`, {
+        withCredentials: true,
+      });
+      setRoomsList(roomsRes.data.data.roomData);
+    } catch (err) {
+      console.log('test');
+    }
+  };
+
+  useEffect(() => {
+    roomsLoading();
+  }, []);
+
   return (
-    <LoungeFloor>
+    <LoungeFloor roomsLength={TestDoor?.length}>
       <Doors>
+        {/* {roomsList
+          .slice(0)
+          .reverse()
+          .map(room => (
+            <LoungeDoors key={room.roomId}>
+              <NameSpace>
+                <RoomName>{room.userName}</RoomName>
+              </NameSpace>
+              <Knob />
+            </LoungeDoors>
+          ))} */}
         {TestDoor.slice(0)
           .reverse()
-          .map(door => (
-            <LoungeDoors key={door.userNum}>
+          .map(room => (
+            <LoungeDoors key={room.userNum}>
               <NameSpace>
-                <RoomName>{door.userName}</RoomName>
+                <RoomName>{room.userName}</RoomName>
               </NameSpace>
               <Knob />
             </LoungeDoors>
@@ -32,7 +67,9 @@ const LoungeDoor = () => {
 
 const LoungeFloor = styled.div`
   position: relative;
-  bottom: -5px;
+
+  /* 라운지 개인 방이 4개 이하인 경우에 붕 뜸  현상 > margin-top 속성 필요.. */
+  margin-top: ${props => (props.roomsLength <= 4 ? '320px' : '0')};
 `;
 
 const Doors = styled.div`
