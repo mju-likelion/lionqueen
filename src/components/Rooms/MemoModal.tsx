@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { registMemo } from '~/api/memo';
+import usePostMemo from '~/hooks/rooms/usePostMemo';
 import { Comment } from '~/lib/commentType';
 import useModalOutsideClick from '~/hooks/useModalOutsideClick';
 import { useAppDispatch } from '~/store';
@@ -30,9 +30,11 @@ const MemoModal = ({ onClose, comment, routerId }: Props) => {
 
   // alert를 나중에 모달로 변경하기
   const handleMemoDelete = () => {
-    alert('메모가 삭제됐습니다');
+    alert('삭제');
     onClose();
   };
+
+  const postMemo = usePostMemo();
 
   // 방명록 추가, 수정
   const formik = useFormik({
@@ -42,7 +44,7 @@ const MemoModal = ({ onClose, comment, routerId }: Props) => {
       // nickname: comment?.nickname || '',
     },
     onSubmit: values => {
-      registMemo(routerId, values.title, values.content);
+      postMemo.mutate({ routerId, title: values.title, content: values.content });
       showRegistNotice();
       onClose();
     },

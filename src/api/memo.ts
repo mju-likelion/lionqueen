@@ -1,6 +1,12 @@
 import { NextRouter } from 'next/router';
 import Axios from '~lib/axios';
 
+type Form = {
+  routerId: string;
+  title: string;
+  content: string;
+};
+
 export const fetchAllMemos = async (id: string, showError: () => void) => {
   try {
     const res = await Axios.get(`api/rooms/${id}/memos`, { withCredentials: true });
@@ -24,10 +30,14 @@ export const fetchRoomById = async (id: string, showError: () => void, router: N
   }
 };
 
-export const registMemo = async (routerId: string, title: string, content: string) => {
+export const registMemo = async (form: Form) => {
   try {
-    Axios.post(`/api/rooms/${routerId}/memos`, { title, content }, { withCredentials: true });
-  } catch (e) {
-    throw new Error('fetchRoomById Error');
+    Axios.post(
+      `/api/rooms/${form.routerId}/memos`,
+      { title: form.title, content: form.content },
+      { withCredentials: true },
+    );
+  } catch (e: any) {
+    throw new Error('fetchRoomById Error', e);
   }
 };
