@@ -1,6 +1,25 @@
 import styled from 'styled-components';
+import { useState, useEffect } from 'react';
+import Axios from 'axios';
 
 const NameBoard = () => {
+  const [loungeName, setLoungeName] = useState<string>('');
+
+  const settingLoungeName = async () => {
+    try {
+      const res = await Axios.get(`https://api.liontown.city/api/lounges/sgIG8L`, {
+        withCredentials: true,
+      });
+      setLoungeName(res.data.data.loungeName.name);
+    } catch (err) {
+      console.log('error');
+    }
+  };
+
+  useEffect(() => {
+    settingLoungeName();
+  }, []);
+
   return (
     <BoardContainer>
       <StickContainer>
@@ -8,7 +27,7 @@ const NameBoard = () => {
         <BoardStick />
       </StickContainer>
       <GroupBoard>
-        <GroupName>멋쟁이사자처럼 명지대</GroupName>
+        <GroupName>{loungeName}</GroupName>
       </GroupBoard>
     </BoardContainer>
   );
