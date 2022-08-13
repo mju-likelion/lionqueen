@@ -2,23 +2,23 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
 
-import TestDoor from '~components/lounge/LoungeDemoData';
 import FloorNumber from '~components/lounge/FloorDemoData';
 
 type RoomInfo = {
-  id: string;
-  name: string;
+  userId: string;
+  userName: string;
 };
 
 const LoungeDoor = () => {
-  const [roomsList, setRoomsList] = useState<RoomInfo[]>();
+  const [roomsList, setRoomsList] = useState<RoomInfo[]>([]);
 
   const roomsLoading = async () => {
     try {
-      const roomsRes = await Axios.get(`https://api.liontown.city/api/lounges/sgIG8L`, {
+      const roomRes = await Axios.get(`https://api.liontown.city/api/lounges/sgIG8L`, {
         withCredentials: true,
       });
-      setRoomsList(roomsRes.data.data.roomData);
+      setRoomsList(roomRes.data.data.roomData);
+      return roomsList;
     } catch (err) {
       console.log('test');
     }
@@ -29,23 +29,13 @@ const LoungeDoor = () => {
   }, []);
 
   return (
-    <LoungeFloor roomsLength={TestDoor?.length}>
+    <LoungeFloor roomsLength={roomsList?.length}>
       <Doors>
-        {/* {roomsList
+        {roomsList
           .slice(0)
           .reverse()
           .map(room => (
-            <LoungeDoors key={room.roomId}>
-              <NameSpace>
-                <RoomName>{room.userName}</RoomName>
-              </NameSpace>
-              <Knob />
-            </LoungeDoors>
-          ))} */}
-        {TestDoor.slice(0)
-          .reverse()
-          .map(room => (
-            <LoungeDoors key={room.userNum}>
+            <LoungeDoors key={room.userName}>
               <NameSpace>
                 <RoomName>{room.userName}</RoomName>
               </NameSpace>
@@ -68,7 +58,7 @@ const LoungeDoor = () => {
 const LoungeFloor = styled.div`
   position: relative;
 
-  /* 라운지 개인 방이 4개 이하인 경우에 붕 뜸  현상 > margin-top 속성 필요.. */
+  /* 라운지 개인 방이 4개 이하인 경우에 붕 뜸 현상 > margin-top 속성 필요.. */
   margin-top: ${props => (props.roomsLength <= 4 ? '320px' : '0')};
 `;
 

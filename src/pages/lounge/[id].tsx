@@ -19,7 +19,6 @@ import Notice from '~components/Notice/Notice';
 const LoungeHome = () => {
   const router = useRouter();
   const [currentFloor, setCurrentFloor] = useState<number>(0);
-  // const [loungeId, setLoungeId] = useState<string>('');
   const floorRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
   // 0: 9-10F / 1: 7-8F / 2: 5-6F / 3: 3-4F / 4: 1-2F
@@ -37,24 +36,16 @@ const LoungeHome = () => {
   // 로그인 O 상태, 라운지 소속일 때 / 라운지 소속이 아닐 때
   const statusVerify = async () => {
     try {
-      // 내가 소속된 라운지 리스트
-      const loungeList = await Axios.get(`https://api.liontown.city/api/lounges`, {
-        withCredentials: true,
-      });
-      // 선택한 라운지 정보 -> {id} 부분에 임시로 값 넣음
+      // 선택한 라운지 정보 -> {id} 부분에 임시로 값 넣음 : sgIG8L로 테스트 가능
       const selectLounge = await Axios.get(`https://api.liontown.city/api/lounges/sgIG8L`, {
         withCredentials: true,
       });
 
-      // 내가 소속된 라운지 리스트명과 선택한 라운지가 같지 않을 때
-      // 혹은 해당 라운지가 없는 경우 라운지 생성페이지로 보내기
-      if (
-        loungeList.data.data[0].name !== selectLounge.data.data.loungeName.name ||
-        selectLounge.status === 404
-      ) {
+      // 해당 라운지가 없는 경우 라운지 생성페이지로 보내기
+      if (selectLounge.status === 404) {
         router.push('/lounge-select');
         returnLoungeSelect();
-        // setTimeout(() => returnLoungeSelect(), 2000);
+        setTimeout(() => returnLoungeSelect(), 2000);
       }
     } catch (err) {
       // console.log 없앨 예정 ..
