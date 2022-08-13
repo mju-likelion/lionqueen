@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import Axios from 'axios';
+import Axios from '~lib/axios';
 
 import FloorNumber from '~components/lounge/FloorDemoData';
 
@@ -14,7 +14,7 @@ const LoungeDoor = () => {
 
   const roomsLoading = async () => {
     try {
-      const roomRes = await Axios.get(`https://api.liontown.city/api/lounges/sgIG8L`, {
+      const roomRes = await Axios.get(`/api/lounges/sgIG8L`, {
         withCredentials: true,
       });
       setRoomsList(roomRes.data.data.roomData);

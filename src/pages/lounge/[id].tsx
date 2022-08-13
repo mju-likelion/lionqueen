@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useQuery } from '@tanstack/react-query';
 import { useState, useEffect, useRef } from 'react';
 import { scrollTo } from 'seamless-scroll-polyfill';
-import Axios from 'axios';
+import Axios from '~lib/axios';
 import { getCookie } from '~lib/Cookie';
 
 import DoorBottom from '~components/icons/DoorBottom.svg';
@@ -37,7 +37,7 @@ const LoungeHome = () => {
   const statusVerify = async () => {
     try {
       // 선택한 라운지 정보 -> {id} 부분에 임시로 값 넣음 : sgIG8L로 테스트 가능
-      const selectLounge = await Axios.get(`https://api.liontown.city/api/lounges/sgIG8L`, {
+      const selectLounge = await Axios.get(`/api/lounges/sgIG8L`, {
         withCredentials: true,
       });
 
