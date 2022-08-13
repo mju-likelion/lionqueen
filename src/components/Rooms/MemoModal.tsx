@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
+import { useQueryClient } from '@tanstack/react-query';
 import usePostMemo from '~/hooks/rooms/usePostMemo';
 import { Comment } from '~/lib/commentType';
 import useModalOutsideClick from '~/hooks/useModalOutsideClick';
@@ -35,7 +36,7 @@ const MemoModal = ({ onClose, comment, routerId }: Props) => {
   };
 
   const postMemo = usePostMemo();
-
+  const queryClient = useQueryClient();
   // 방명록 추가, 수정
   const formik = useFormik({
     initialValues: {
@@ -44,9 +45,16 @@ const MemoModal = ({ onClose, comment, routerId }: Props) => {
       // nickname: comment?.nickname || '',
     },
     onSubmit: values => {
-      postMemo.mutate({ routerId, title: values.title, content: values.content });
       showRegistNotice();
-      onClose();
+      postMemo.mutate(
+        { routerId, title: values.title, content: values.content },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries();
+            onClose();
+          },
+        },
+      );
     },
   });
 

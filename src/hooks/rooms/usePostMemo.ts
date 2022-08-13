@@ -5,7 +5,7 @@ const usePostMemo = () => {
   const queryClient = useQueryClient();
   return useMutation(registMemo, {
     onSuccess: () => {
-      queryClient.invalidateQueries(['allMemo']);
+      return queryClient.invalidateQueries();
     },
   });
 };

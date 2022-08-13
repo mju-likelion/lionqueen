@@ -25,7 +25,7 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
   // prev 클릭 시 현재 슬라이드를 -1, next 클릭은 +1, 각각 처음 혹은 끝이면 반대 방향으로 이동
-  const onClickPrev = () => {
+  const onClickNext = () => {
     if (currentSlide === 0) {
       setCurrentSlide(slideTotal.current);
     } else {
@@ -33,7 +33,7 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
     }
   };
 
-  const onClickNext = () => {
+  const onClickPrev = () => {
     if (currentSlide >= slideTotal.current) {
       setCurrentSlide(0);
     } else {
@@ -43,7 +43,8 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
 
   useEffect(() => {
     if (slideRef.current !== null) {
-      scrollTo(slideRef.current, { left: currentSlide * 920, behavior: 'smooth' });
+      // wrap-reverse로 인해 스크롤 반전
+      scrollTo(slideRef.current, { left: currentSlide * -960, behavior: 'smooth' });
     }
   }, [currentSlide]);
 
@@ -166,7 +167,7 @@ const MemoButtonWrap = styled.div`
 
 const CommentWrap = styled.div`
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column wrap-reverse;
   gap: 30px 50px;
   justify-content: center;
   transition: 0.3s ease-out;
