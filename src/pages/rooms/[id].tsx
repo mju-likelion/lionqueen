@@ -32,13 +32,8 @@ const MyRoom = () => {
   };
 
   // 리액트 쿼리 이용 상태 관리
-  const { data, error, isLoading } = useGetRoom(routerId, showLoginError, router);
   const { data: allMemo } = useGetAllMemos(routerId, showAllMemoError);
-
-  useEffect(() => {
-    if (!router.isReady) return;
-    setRouterId(router.query.id);
-  }, [router.isReady]);
+  const { data: room, error, isLoading } = useGetRoom(routerId, showLoginError, router);
 
   const handleExitClick = () => {
     router.push('/lounge');
@@ -51,10 +46,15 @@ const MyRoom = () => {
   // 메모장 모달을 띄워줌과 동시에 메모장 props 세팅
   const handleMemoModalClick = (id: number | null) => {
     setIsMemoModalPopup(!isMemoModalPopup);
-    if (typeof data !== null) {
+    if (typeof allMemo !== null) {
       setClickedMemoProps(allMemo.data.find((item: Comment) => item.id === id) || null);
     }
   };
+
+  useEffect(() => {
+    if (!router.isReady) return;
+    setRouterId(router.query.id);
+  }, [router.isReady]);
 
   if (error) {
     return <p>알 수 없는 에러가 발생했습니다.</p>;
@@ -84,14 +84,14 @@ const MyRoom = () => {
 
       {/* 컨텐츠 */}
       <ContentContainer>
-        <RoomName>{data.data.userName.name}</RoomName>
+        <RoomName>{room.data.userName.name}</RoomName>
         <RoomConent>
           <Board
-            comments={data.data.memoData}
+            comments={room.data.memoData}
             handleModalClick={handleModalClick}
             handleMemoModalClick={handleMemoModalClick}
           />
-          <Avatar roomOwner={data.data.userName.name} />
+          <Avatar roomOwner={room.data.userName.name} />
         </RoomConent>
         <RoomBottom>
           <Door onClick={handleExitClick} />
