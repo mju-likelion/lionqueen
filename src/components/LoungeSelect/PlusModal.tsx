@@ -12,7 +12,7 @@ import InviteModal from './InviteModal';
 import Axios from '~lib/axios';
 import { useAppDispatch } from '~/store';
 import { showNotice } from '~store/modules/notice';
-import Notice from '~components/Notice/Notice';
+import Notice from '~components/Notice';
 
 const PlusModal = ({ onClose }: { onClose: () => void }) => {
   const [input, setInput] = useState<string>('');
