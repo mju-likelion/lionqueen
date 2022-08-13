@@ -13,11 +13,11 @@ import useModalOutsideClick from '~/hooks/useModalOutsideClick';
 
 type Props = {
   onClose: () => void;
-  handleSecondModalClick: (id: number | null) => void;
+  handleMemoModalClick: (id: number | null) => void;
   comments: Array<Comment>;
 };
 
-const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
+const GuestBook = ({ onClose, handleMemoModalClick, comments }: Props) => {
   // 모달창 크기에 최대 메모장 10개 보임 => 즉, 10개당 1슬라이드를 의미 나머지 발생 시 + 1
   const slideRef = useRef<HTMLDivElement>(null);
   const slideTotal = useRef<number>(Math.ceil(comments?.length / 10) - 1);
@@ -73,7 +73,7 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
             </InputGroup>
             <MemoButtonWrap>
               <Button size="small">삭제</Button>
-              <Button size="small" onClick={() => handleSecondModalClick(null)}>
+              <Button size="small" onClick={() => handleMemoModalClick(null)}>
                 +추가
               </Button>
             </MemoButtonWrap>
@@ -83,7 +83,7 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
             {comments?.map((memo: { id: number; title: string }) => (
               <MemoBox key={memo.id}>
                 <Tape fill="#62fade" opacity="0.7" />
-                <button type="button" onClick={() => handleSecondModalClick(memo.id)}>
+                <button type="button" onClick={() => handleMemoModalClick(memo.id)}>
                   <p>{memo.title}</p>
                   {/* <p>{memo.nickname}</p> */}
                 </button>

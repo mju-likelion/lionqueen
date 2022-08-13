@@ -45,12 +45,12 @@ const MemoModal = ({ onClose, comment, routerId }: Props) => {
       // nickname: comment?.nickname || '',
     },
     onSubmit: values => {
-      showRegistNotice();
       postMemo.mutate(
         { routerId, title: values.title, content: values.content },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries();
+            queryClient.invalidateQueries(['allMemo']);
+            showRegistNotice();
             onClose();
           },
         },

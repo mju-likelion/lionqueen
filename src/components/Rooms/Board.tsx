@@ -9,12 +9,12 @@ type PostShape = 'circle' | 'rectangle';
 
 type Props = {
   handleModalClick: () => void;
-  handleSecondModalClick: (id: number) => void;
+  handleMemoModalClick: (id: number) => void;
   comments: Array<Comment>;
 };
 
 // comments는 최신 5개? 처음 5개? 만약 5개 미만이면?
-const Board = ({ handleModalClick, handleSecondModalClick, comments }: Props) => {
+const Board = ({ handleModalClick, handleMemoModalClick, comments }: Props) => {
   return (
     <BoardContainer>
       <BoardRack />
@@ -25,7 +25,7 @@ const Board = ({ handleModalClick, handleSecondModalClick, comments }: Props) =>
           </MoreButton>
           {comments[0] && (
             <Post top="10%" left="8%">
-              <PostBody shape="circle" onClick={() => handleSecondModalClick(comments[0].id)}>
+              <PostBody shape="circle" onClick={() => handleMemoModalClick(comments[0].id)}>
                 <p>{comments && comments[0].title}</p>
               </PostBody>
               <Tape position="center" />
@@ -33,7 +33,7 @@ const Board = ({ handleModalClick, handleSecondModalClick, comments }: Props) =>
           )}
           {comments[1] && (
             <Post top="10%" left="65%" rotate="right">
-              <PostBody shape="rectangle" onClick={() => handleSecondModalClick(comments[1].id)}>
+              <PostBody shape="rectangle" onClick={() => handleMemoModalClick(comments[1].id)}>
                 <p>{comments && comments[1].title}</p>
               </PostBody>
               <Tape fill="#3efff3" opacity="0.52" position="leftTop" />
@@ -42,7 +42,7 @@ const Board = ({ handleModalClick, handleSecondModalClick, comments }: Props) =>
           )}
           {comments[2] && (
             <Post top="30%" left="35%" rotate="left">
-              <PostBody shape="rectangle" onClick={() => handleSecondModalClick(comments[2].id)}>
+              <PostBody shape="rectangle" onClick={() => handleMemoModalClick(comments[2].id)}>
                 <p>{comments && comments[2].title}</p>
               </PostBody>
               <Tape fill="#fff844" opacity="0.63" position="leftTop" />
@@ -53,7 +53,7 @@ const Board = ({ handleModalClick, handleSecondModalClick, comments }: Props) =>
           )}
           {comments[3] && (
             <Post top="50%" left="10%" rotate="right">
-              <PostBody shape="rectangle" onClick={() => handleSecondModalClick(comments[3].id)}>
+              <PostBody shape="rectangle" onClick={() => handleMemoModalClick(comments[3].id)}>
                 <p>{comments && comments[3].title}</p>
               </PostBody>
               <Tape fill="#caa5E8" opacity="0.52" position="leftTop" />
@@ -62,7 +62,7 @@ const Board = ({ handleModalClick, handleSecondModalClick, comments }: Props) =>
           )}
           {comments[4] && (
             <Post top="55%" left="65%">
-              <PostBody shape="circle" onClick={() => handleSecondModalClick(comments[4].id)}>
+              <PostBody shape="circle" onClick={() => handleMemoModalClick(comments[4].id)}>
                 <p>{comments && comments[4].title}</p>
               </PostBody>
               <Tape fill="#b3ec9f" opacity="0.59" position="center" />

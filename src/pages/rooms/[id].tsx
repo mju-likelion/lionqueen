@@ -17,8 +17,8 @@ import Notice from '~components/Notice';
 
 const MyRoom = () => {
   const router = useRouter();
-  const [isModalPopup, setIsModalPopup] = useState(false);
-  const [isSecondModalPopup, setIsSecondModalPopup] = useState(false);
+  const [isGuestBookPopup, setIsGuestBookPopup] = useState(false);
+  const [isMemoModalPopup, setIsMemoModalPopup] = useState(false);
   const [clickedMemoProps, setClickedMemoProps] = useState<Comment | null>(null);
   const [routerId, setRouterId] = useState<any>('');
   const dispatch = useAppDispatch();
@@ -40,17 +40,17 @@ const MyRoom = () => {
     setRouterId(router.query.id);
   }, [router.isReady]);
 
-  const handleRouteClick = () => {
+  const handleExitClick = () => {
     router.push('/lounge');
   };
 
   const handleModalClick = () => {
-    setIsModalPopup(!isModalPopup);
+    setIsGuestBookPopup(!isGuestBookPopup);
   };
 
   // 메모장 모달을 띄워줌과 동시에 메모장 props 세팅
-  const handleSecondModalClick = (id: number | null) => {
-    setIsSecondModalPopup(!isSecondModalPopup);
+  const handleMemoModalClick = (id: number | null) => {
+    setIsMemoModalPopup(!isMemoModalPopup);
     if (typeof data !== null) {
       setClickedMemoProps(data.data.memoData.find((item: Comment) => item.id === id) || null);
     }
@@ -67,17 +67,17 @@ const MyRoom = () => {
   return (
     <Wrap>
       {/* 모달 */}
-      {isModalPopup && (
+      {isGuestBookPopup && (
         <GuestBook
-          onClose={() => setIsModalPopup(false)}
-          handleSecondModalClick={handleSecondModalClick}
+          onClose={() => setIsGuestBookPopup(false)}
+          handleMemoModalClick={handleMemoModalClick}
           comments={allMemo.data}
         />
       )}
-      {isSecondModalPopup && (
+      {isMemoModalPopup && (
         <MemoModal
           routerId={routerId}
-          onClose={() => setIsSecondModalPopup(false)}
+          onClose={() => setIsMemoModalPopup(false)}
           comment={clickedMemoProps}
         />
       )}
@@ -89,12 +89,12 @@ const MyRoom = () => {
           <Board
             comments={data.data.memoData}
             handleModalClick={handleModalClick}
-            handleSecondModalClick={handleSecondModalClick}
+            handleMemoModalClick={handleMemoModalClick}
           />
           <Avatar roomOwner={data.data.userName.name} />
         </RoomConent>
         <RoomBottom>
-          <Door onClick={handleRouteClick} />
+          <Door onClick={handleExitClick} />
         </RoomBottom>
       </ContentContainer>
       <Notice />
