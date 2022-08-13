@@ -52,7 +52,7 @@ const MyRoom = () => {
   const handleMemoModalClick = (id: number | null) => {
     setIsMemoModalPopup(!isMemoModalPopup);
     if (typeof data !== null) {
-      setClickedMemoProps(data.data.memoData.find((item: Comment) => item.id === id) || null);
+      setClickedMemoProps(allMemo.data.find((item: Comment) => item.id === id) || null);
     }
   };
 

@@ -49,7 +49,7 @@ const MemoModal = ({ onClose, comment, routerId }: Props) => {
         { routerId, title: values.title, content: values.content },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries(['allMemo']);
+            queryClient.invalidateQueries();
             showRegistNotice();
             onClose();
           },
