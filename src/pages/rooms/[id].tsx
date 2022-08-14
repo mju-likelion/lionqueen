@@ -9,11 +9,8 @@ import Avatar from '~components/Rooms/Avatar';
 import Board from '~components/Rooms/Board';
 import GuestBook from '~components/Rooms/GuestBook';
 import MemoModal from '~components/Rooms/MemoModal';
-import Loading from '~DesignSystem/Loading';
-
-import { useAppDispatch } from '~/store';
-import { showNotice } from '~store/modules/notice';
 import Notice from '~components/Notice';
+import Loading from '~DesignSystem/Loading';
 
 const MyRoom = () => {
   const router = useRouter();
@@ -21,19 +18,10 @@ const MyRoom = () => {
   const [isMemoModalPopup, setIsMemoModalPopup] = useState(false);
   const [clickedMemoProps, setClickedMemoProps] = useState<Comment | null>(null);
   const [routerId, setRouterId] = useState<any>('');
-  const dispatch = useAppDispatch();
-
-  const showAllMemoError = () => {
-    dispatch(showNotice('메모 정보를 가져오는데 실패했습니다.'));
-  };
-
-  const showLoginError = () => {
-    dispatch(showNotice('이메일이 필요한 서비스입니다.'));
-  };
 
   // 리액트 쿼리 이용 상태 관리
-  const { data: allMemo } = useGetAllMemos(routerId, showAllMemoError);
-  const { data: room, error, isLoading } = useGetRoom(routerId, showLoginError, router);
+  const { data: allMemo } = useGetAllMemos(routerId);
+  const { data: room, error, isLoading } = useGetRoom(routerId, router);
 
   const handleExitClick = () => {
     router.push('/lounge');
