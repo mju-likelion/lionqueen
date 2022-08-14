@@ -3,7 +3,8 @@ import { NextRouter } from 'next/router';
 import Axios from '~lib/axios';
 
 type Form = {
-  routerId: string;
+  routerId?: string;
+  id?: number;
   title: string;
   content: string;
 };
@@ -47,6 +48,20 @@ export const registMemo = async (form: Form) => {
   } catch (e) {
     if (e instanceof Error) {
       throw new Error('registMemo Error', e);
+    }
+  }
+};
+
+export const updateMemo = async (form: Form) => {
+  try {
+    await Axios.put(
+      `/api/memos/${form.id}`,
+      { title: form.title, content: form.content },
+      { withCredentials: true },
+    );
+  } catch (e) {
+    if (e instanceof Error) {
+      throw new Error('updateMemo Error', e);
     }
   }
 };

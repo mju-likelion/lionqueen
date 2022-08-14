@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import usePostMemo from '~/hooks/rooms/usePostMemo';
+import useUpdateMemo from '~/hooks/rooms/useUpdateMemo';
 import { Comment } from '~/lib/commentType';
 import useModalOutsideClick from '~/hooks/useModalOutsideClick';
 import { useAppDispatch } from '~/store';
@@ -24,8 +25,8 @@ const MemoModal = ({ onClose, comment, routerId }: Props) => {
   const [mode, setMode] = useState<Mode>('create');
   const dispatch = useAppDispatch();
 
-  const showRegistNotice = () => {
-    dispatch(showNotice('방명록을 등록했습니다'));
+  const showToastMessage = (message: string) => {
+    dispatch(showNotice(message));
   };
 
   // alert를 나중에 모달로 변경하기
@@ -35,6 +36,26 @@ const MemoModal = ({ onClose, comment, routerId }: Props) => {
   };
 
   const postMemo = usePostMemo();
+  const updateMemo = useUpdateMemo();
+
+  const handleUpdateMemo = () => {
+    if (formik.values && comment) {
+      updateMemo.mutate(
+        {
+          id: comment.id,
+          title: formik.values.title,
+          content: formik.values.content,
+        },
+        {
+          onSuccess: () => {
+            showToastMessage('메모를 수정했습니다.');
+            onClose();
+          },
+        },
+      );
+    }
+  };
+
   // 방명록 추가, 수정
   const formik = useFormik({
     initialValues: {
@@ -47,7 +68,7 @@ const MemoModal = ({ onClose, comment, routerId }: Props) => {
         { routerId, title: values.title, content: values.content },
         {
           onSuccess: () => {
-            showRegistNotice();
+            showToastMessage('방명록을 등록했습니다');
             onClose();
           },
         },
@@ -120,7 +141,7 @@ const MemoModal = ({ onClose, comment, routerId }: Props) => {
                 </Button>
               )}
               {mode === 'writer' && (
-                <Button type="submit" size="small">
+                <Button type="button" size="small" onClick={handleUpdateMemo}>
                   수정
                 </Button>
               )}
