@@ -3,6 +3,7 @@ import { AxiosError } from 'axios';
 import styled, { css } from 'styled-components';
 import { scrollTo } from 'seamless-scroll-polyfill';
 
+import { useRouter } from 'next/router';
 import Bubble from '~components/icons/Bubble';
 import Arrow from '~components/icons/BubbleArrow';
 import group from './GroupList';
@@ -22,6 +23,7 @@ const BubbleMoveButton = () => {
   const loungeTotal = useRef<number>(Math.ceil(group.length / 3) - 1);
   const [currentLounge, setCurrentLounge] = useState<number>(0);
   const [lounges, setLounges] = useState<Lounge[]>([]);
+  const router = useRouter();
 
   const dispatch = useAppDispatch();
 
@@ -67,8 +69,12 @@ const BubbleMoveButton = () => {
     }
   }, [currentLounge]);
 
+  const onClickLounge = (id: string) => {
+    router.push(`/lounge/${id}}`);
+  };
+
   const groupList = lounges.map(lounges => (
-    <BubbleWrapper key={lounges.id}>
+    <BubbleWrapper key={lounges.id} onClick={() => onClickLounge(lounges.id)}>
       <Bubble />
       <GroupName>{lounges.name}</GroupName>
     </BubbleWrapper>
