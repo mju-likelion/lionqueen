@@ -56,6 +56,13 @@ const MemoModal = ({ onClose, comment, routerId }: Props) => {
     }
   };
 
+  const isTextEmpty = (title: string, content: string) => {
+    if (title !== '' && content !== '') {
+      return false;
+    }
+    return true;
+  };
+
   // 방명록 추가, 수정
   const formik = useFormik({
     initialValues: {
@@ -64,15 +71,19 @@ const MemoModal = ({ onClose, comment, routerId }: Props) => {
       // nickname: comment?.nickname || '',
     },
     onSubmit: values => {
-      postMemo.mutate(
-        { routerId, title: values.title, content: values.content },
-        {
-          onSuccess: () => {
-            showToastMessage('방명록을 등록했습니다');
-            onClose();
+      if (!isTextEmpty(values.title, values.content)) {
+        postMemo.mutate(
+          { routerId, title: values.title, content: values.content },
+          {
+            onSuccess: () => {
+              showToastMessage('방명록을 등록했습니다');
+              onClose();
+            },
           },
-        },
-      );
+        );
+      } else {
+        showToastMessage('제목 혹은 내용이 비어있습니다.');
+      }
     },
   });
 
