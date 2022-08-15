@@ -5,6 +5,8 @@ import { useRouter } from 'next/router';
 import Button from '~DesignSystem/Button';
 import LionLogo from '~components/icons/LionLogo';
 import Axios from '~lib/axios';
+import { useAppDispatch } from '~/store';
+import { showNotice } from '~store/modules/notice';
 
 type Props = {
   isOpenNavBar: boolean;
@@ -12,6 +14,7 @@ type Props = {
 
 const Menu = ({ isOpenNavBar }: Props) => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const [isShow, setIsShow] = useState(false);
   const [isSlideIn, setIsSlideIn] = useState(false);
 
@@ -19,11 +22,10 @@ const Menu = ({ isOpenNavBar }: Props) => {
     try {
       await Axios.delete('/api/auth/sign-out', { withCredentials: true });
       router.push('/sign-in');
-      console.log('로그아웃 성공');
+      handleNoticeLogout();
     } catch (err) {
-      console.log('로그아웃 안 됨 ㅎ');
+      handleNoticeError();
     }
-    // removeCookie('jwt');
   };
 
   useEffect(() => {
@@ -39,6 +41,15 @@ const Menu = ({ isOpenNavBar }: Props) => {
   }, [isOpenNavBar]);
 
   if (!isShow) return null;
+
+  // Notice
+  const handleNoticeLogout = () => {
+    dispatch(showNotice('로그아웃에 성공했습니다. 또 만나요!'));
+  };
+
+  const handleNoticeError = () => {
+    dispatch(showNotice('로그아웃에 실패했습니다.'));
+  };
 
   return (
     <NavBarWrapper isSlideIn={isSlideIn}>
