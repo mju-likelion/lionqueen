@@ -1,5 +1,5 @@
 /* eslint-disable no-alert */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import ModalPopup from '~components/ModalPopup';
@@ -7,6 +7,7 @@ import Axios from '~lib/axios';
 import { useAppDispatch } from '~/store';
 import { showNotice } from '~store/modules/notice';
 import useGetLoungeList from '~/hooks/myPage/useGetLoungeList';
+import Notice from '~/components/Notice';
 
 type lounge = {
   id: string;
@@ -26,61 +27,54 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
   const goodByeLounge = async (id: string) => {
     try {
       if (loungeOutModalShow) {
-        handleNoticeLounge();
+        handleNotice('라운지를 탈퇴했습니다.');
         await Axios.delete(`/api/rooms/${id}`, { withCredentials: true });
         router.push('/');
       }
     } catch (err) {
-      console.log('라운지 탈퇴 실패');
+      handleNotice('라운지 탈퇴에 실패했습니다.');
     }
   };
 
-  useEffect(() => {
-    console.log(loungeOutId);
-  }, [loungeOutId]);
+  // useEffect(() => {
+  //   console.log(loungeOutId);
+  // }, [loungeOutId]);
 
   // 라이언타운 계정 삭제
   const goodByeLionTown = async () => {
     try {
       if (withdrawalModalShow) {
-        handleNotice();
+        handleNotice('안녕히 가세요.');
         await Axios.delete('/api/auth/sign-drop', { withCredentials: true });
         router.push('/');
       }
     } catch (err) {
-      console.log('회원 탈퇴 실패! 절대 못 나가!');
+      handleNotice('회원 탈퇴에 실패했습니다.');
     }
   };
 
   // 다음 코드들은 mvp 이후에 작업하려고 코드 살려뒀습니다.
   const onClickSave = () => {
-    handleNoticNameSave();
+    handleNotice('저장되었습니다.');
   };
 
   // 토스트 메시지
-  const handleNotice = () => {
-    dispatch(showNotice('라이언타운 계정을 삭제했습니다. 안녕히 가세요.'));
-  };
-
-  const handleNoticeLounge = () => {
-    dispatch(showNotice('소속 라운지를 탈퇴했습니다.'));
-  };
-
-  const handleNoticNameSave = () => {
-    dispatch(showNotice('이름을 새로 저장했습니다.'));
+  const handleNotice = (message: string) => {
+    dispatch(showNotice(message));
   };
 
   // 상태에 따른 렌더링
   if (error) {
-    return <p>알 수 없는 에러가 발생했습니다.</p>;
+    return handleNotice('알 수 없는 에러가 발생했습니다.');
   }
 
   if (isLoading) {
-    return <p>로딩 중입니다.</p>;
+    return null;
   }
 
   return (
     <div>
+      <Notice />
       <ModalPopup size="large" title="내 정보" onClose={onClose} isCancel>
         <InfoBox>
           <NameBox>

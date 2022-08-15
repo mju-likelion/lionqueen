@@ -9,7 +9,7 @@ const myInfoList = async () => {
     });
     return loungeData.data.data;
   } catch (err) {
-    console.log('가져오기 실패! 바보!');
+    throw new Error('리스트를 불러올 수 없습니다.');
   }
 };
 
