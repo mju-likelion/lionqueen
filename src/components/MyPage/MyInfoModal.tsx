@@ -21,26 +21,26 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
   const [lounges, setLounges] = useState<Lounge[]>([]); // 객체의 배열 타입
 
   // 라운지 리스트와 이름 get
-  useEffect(() => {
-    const myInfoList = async () => {
-      try {
-        const loungeData = await Axios.get('/api/lounges/mypage', {
-          withCredentials: true,
-        });
-        const {
+  const myInfoList = async () => {
+    try {
+      const loungeData = await Axios.get('/api/lounges/mypage', {
+        withCredentials: true,
+      });
+      const {
+        data: {
           data: {
-            data: {
-              loungeNames,
-              user: { name },
-            },
+            loungeNames,
+            user: { name },
           },
-        } = loungeData;
-        setLounges(loungeNames);
-        setName(name);
-      } catch (err) {
-        console.log('가져오기 실패! 바보!');
-      }
-    };
+        },
+      } = loungeData;
+      setLounges(loungeNames);
+      setName(name);
+    } catch (err) {
+      console.log('가져오기 실패! 바보!');
+    }
+  };
+  useEffect(() => {
     myInfoList();
   }, []);
 
