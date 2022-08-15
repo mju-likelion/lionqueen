@@ -6,8 +6,9 @@ import ModalPopup from '~components/ModalPopup';
 import Axios from '~lib/axios';
 import { useAppDispatch } from '~/store';
 import { showNotice } from '~store/modules/notice';
+import useGetLoungeList from '~/hooks/myPage/useGetLoungeList';
 
-type Lounge = {
+type lounge = {
   id: string;
   name: string;
 };
@@ -15,47 +16,28 @@ type Lounge = {
 const MyInfo = ({ onClose }: { onClose: () => void }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const [name, setName] = useState('');
   const [loungeOutModalShow, setLoungeOutModalShow] = useState(false);
   const [withdrawalModalShow, setWithdrawalModalShow] = useState(false);
-  const [lounges, setLounges] = useState<Lounge[]>([]); // 객체의 배열 타입
-
+  const [loungeOutId, setLoungeOutId] = useState('');
   // 라운지 리스트와 이름 get
-  const myInfoList = async () => {
-    try {
-      const loungeData = await Axios.get('/api/lounges/mypage', {
-        withCredentials: true,
-      });
-      const {
-        data: {
-          data: {
-            loungeNames,
-            user: { name },
-          },
-        },
-      } = loungeData;
-      setLounges(loungeNames);
-      setName(name);
-    } catch (err) {
-      console.log('가져오기 실패! 바보!');
-    }
-  };
-  useEffect(() => {
-    myInfoList();
-  }, []);
+  const { data: loungeNames, error, isLoading } = useGetLoungeList();
 
   // 라운지 탈퇴
-  const goodByeLounge = async () => {
+  const goodByeLounge = async (id: string) => {
     try {
       if (loungeOutModalShow) {
         handleNoticeLounge();
-        await Axios.delete('/api/romms/{id}', { withCredentials: true });
+        await Axios.delete(`/api/rooms/${id}`, { withCredentials: true });
         router.push('/');
       }
     } catch (err) {
       console.log('라운지 탈퇴 실패');
     }
   };
+
+  useEffect(() => {
+    console.log(loungeOutId);
+  }, [loungeOutId]);
 
   // 라이언타운 계정 삭제
   const goodByeLionTown = async () => {
@@ -73,8 +55,6 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
   // 다음 코드들은 mvp 이후에 작업하려고 코드 살려뒀습니다.
   const onClickSave = () => {
     handleNoticNameSave();
-    // setName(name);
-    // console.log(`새 이름 ${name}`);
   };
 
   // 토스트 메시지
@@ -90,6 +70,15 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
     dispatch(showNotice('이름을 새로 저장했습니다.'));
   };
 
+  // 상태에 따른 렌더링
+  if (error) {
+    return <p>알 수 없는 에러가 발생했습니다.</p>;
+  }
+
+  if (isLoading) {
+    return <p>로딩 중입니다.</p>;
+  }
+
   return (
     <div>
       <ModalPopup size="large" title="내 정보" onClose={onClose} isCancel>
@@ -97,24 +86,20 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
           <NameBox>
             <NameTitle>이름</NameTitle>
             <NameInfo>
-              <NameText
-                type="text"
-                maxLength={6}
-                value={name}
-                onChange={e => setName(e.target.value)}
-              />
+              <NameText type="text" maxLength={6} value={loungeNames.user.name} readOnly />
               <NameSaveButton onClick={onClickSave}>저장</NameSaveButton>
             </NameInfo>
           </NameBox>
           <LoungeBox>
             <LoungeTitle>소속 라운지</LoungeTitle>
             <LoungeInfo>
-              {lounges.map(lounge => (
+              {loungeNames.loungeNames.map((lounge: lounge) => (
                 <LoungeRow key={lounge.id}>
                   <LoungeName>{lounge.name}</LoungeName>
                   <LoungeOutButton
                     onClick={() => {
                       setLoungeOutModalShow(true);
+                      setLoungeOutId(lounge.id);
                     }}
                   >
                     탈퇴
@@ -143,7 +128,7 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
           }}
           onConfirm={() => {
             setLoungeOutModalShow(false);
-            goodByeLounge();
+            goodByeLounge(loungeOutId);
           }}
         >
           정말 [라운지이름]을 탈퇴하시겠습니까?
