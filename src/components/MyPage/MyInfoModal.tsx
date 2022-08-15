@@ -20,6 +20,7 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
   const [loungeOutModalShow, setLoungeOutModalShow] = useState(false);
   const [withdrawalModalShow, setWithdrawalModalShow] = useState(false);
   const [loungeOutId, setLoungeOutId] = useState('');
+
   // 라운지 리스트와 이름 get
   const { data: loungeNames, error, isLoading } = useGetLoungeList();
 
@@ -36,10 +37,6 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
     }
   };
 
-  // useEffect(() => {
-  //   console.log(loungeOutId);
-  // }, [loungeOutId]);
-
   // 라이언타운 계정 삭제
   const goodByeLionTown = async () => {
     try {
@@ -53,7 +50,7 @@ const MyInfo = ({ onClose }: { onClose: () => void }) => {
     }
   };
 
-  // 다음 코드들은 mvp 이후에 작업하려고 코드 살려뒀습니다.
+  // 다음 코드는 mvp 이후에 작업하려고 코드 살려뒀습니다.
   const onClickSave = () => {
     handleNotice('저장되었습니다.');
   };

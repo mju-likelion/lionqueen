@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import { showNotice } from '~store/modules/notice';
 import Axios from '~lib/axios';
 
 const myInfoList = async () => {
