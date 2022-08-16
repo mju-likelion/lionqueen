@@ -45,9 +45,7 @@ const BackgroundBox = styled.div`
   justify-content: center;
   margin: 0 auto;
   box-shadow: none;
-
-  /* s3에 이미지 업로드 필요 */
-  background-image: url('image/backgoundNoCloud.png');
+  background-image: url('../../image/backgoundNoCloud.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: 1440px 1024px;
