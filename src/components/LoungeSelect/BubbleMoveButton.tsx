@@ -53,8 +53,9 @@ const BubbleMoveButton = () => {
       setLounges(response.data.data);
     } catch (e) {
       if (e instanceof AxiosError)
-        if (e.response) {
+        if (e.response?.status === 401) {
           handleNotice();
+          router.push('/sign-in');
         }
     }
   };
