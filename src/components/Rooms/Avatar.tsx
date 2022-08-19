@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 
-const Avatar = () => {
+type Props = {
+  roomOwner: string;
+};
+
+const Avatar = ({ roomOwner }: Props) => {
   return (
     <AvatarBox>
       {/* 사용자 이름 패치 필요 */}
-      <p>사용자이름</p>
+      <p>{roomOwner}</p>
       <Image src="/image/human.png" alt="아바타" width="312" height="398" />
     </AvatarBox>
   );

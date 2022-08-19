@@ -13,11 +13,11 @@ import useModalOutsideClick from '~/hooks/useModalOutsideClick';
 
 type Props = {
   onClose: () => void;
-  handleSecondModalClick: (id: number | null) => void;
+  handleMemoModalClick: (id: number | null) => void;
   comments: Array<Comment>;
 };
 
-const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
+const GuestBook = ({ onClose, handleMemoModalClick, comments }: Props) => {
   // 모달창 크기에 최대 메모장 10개 보임 => 즉, 10개당 1슬라이드를 의미 나머지 발생 시 + 1
   const slideRef = useRef<HTMLDivElement>(null);
   const slideTotal = useRef<number>(Math.ceil(comments?.length / 10) - 1);
@@ -25,7 +25,7 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
   // prev 클릭 시 현재 슬라이드를 -1, next 클릭은 +1, 각각 처음 혹은 끝이면 반대 방향으로 이동
-  const onClickPrev = () => {
+  const onClickNext = () => {
     if (currentSlide === 0) {
       setCurrentSlide(slideTotal.current);
     } else {
@@ -33,7 +33,7 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
     }
   };
 
-  const onClickNext = () => {
+  const onClickPrev = () => {
     if (currentSlide >= slideTotal.current) {
       setCurrentSlide(0);
     } else {
@@ -41,16 +41,10 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
     }
   };
 
-  // DOM 직접 제어 방식
-  // useEffect(() => {
-  //   if (slideRef.current !== null) {
-  //     slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
-  //   }
-  // }, [currentSlide]);
-
   useEffect(() => {
     if (slideRef.current !== null) {
-      scrollTo(slideRef.current, { left: currentSlide * 920, behavior: 'smooth' });
+      // wrap-reverse로 인해 스크롤 반전
+      scrollTo(slideRef.current, { left: currentSlide * -960, behavior: 'smooth' });
     }
   }, [currentSlide]);
 
@@ -79,19 +73,19 @@ const GuestBook = ({ onClose, handleSecondModalClick, comments }: Props) => {
             </InputGroup>
             <MemoButtonWrap>
               <Button size="small">삭제</Button>
-              <Button size="small" onClick={() => handleSecondModalClick(null)}>
+              <Button size="small" onClick={() => handleMemoModalClick(null)}>
                 +추가
               </Button>
             </MemoButtonWrap>
           </MidBox>
 
           <CommentWrap ref={slideRef}>
-            {comments?.map((memo: { id: number; title: string; nickname: string }) => (
+            {comments?.map((memo: { id: number; title: string }) => (
               <MemoBox key={memo.id}>
                 <Tape fill="#62fade" opacity="0.7" />
-                <button type="button" onClick={() => handleSecondModalClick(memo.id)}>
+                <button type="button" onClick={() => handleMemoModalClick(memo.id)}>
                   <p>{memo.title}</p>
-                  <p>{memo.nickname}</p>
+                  {/* <p>{memo.nickname}</p> */}
                 </button>
               </MemoBox>
             ))}
@@ -173,7 +167,7 @@ const MemoButtonWrap = styled.div`
 
 const CommentWrap = styled.div`
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column wrap-reverse;
   gap: 30px 50px;
   justify-content: center;
   transition: 0.3s ease-out;

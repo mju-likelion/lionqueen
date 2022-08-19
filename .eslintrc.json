@@ -45,6 +45,7 @@
     "no-shadow": 0,
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "react/function-component-definition": 0,
-    "@typescript-eslint/no-non-null-assertion": 0
+    "@typescript-eslint/no-non-null-assertion": 0,
+    "require-await": "error"
   }
 }

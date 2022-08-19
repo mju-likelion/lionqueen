@@ -1,27 +1,66 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
+import usePostMemo from '~/hooks/rooms/usePostMemo';
+import useUpdateMemo from '~/hooks/rooms/useUpdateMemo';
+import { Comment } from '~/lib/commentType';
+import useModalOutsideClick from '~/hooks/useModalOutsideClick';
+import { useAppDispatch } from '~/store';
+import { showNotice } from '~store/modules/notice';
+
 import Button from '~DesignSystem/Button';
 import InputGroup from '~DesignSystem/InputGroup';
 import Portal from '~DesignSystem/Portal';
 import XIcon from '~components/icons/XIcon';
-import { Comment } from '~/lib/commentType';
-import useModalOutsideClick from '~/hooks/useModalOutsideClick';
 
 type Mode = 'create' | 'writer' | 'host' | 'general';
 
 type Props = {
   onClose: () => void;
   comment: Comment | null;
+  routerId: string;
 };
 
-const MemoModal = ({ onClose, comment }: Props) => {
+const MemoModal = ({ onClose, comment, routerId }: Props) => {
   const [mode, setMode] = useState<Mode>('create');
+  const dispatch = useAppDispatch();
+
+  const showToastMessage = (message: string) => {
+    dispatch(showNotice(message));
+  };
 
   // alert를 나중에 모달로 변경하기
   const handleMemoDelete = () => {
-    alert('메모가 삭제됐습니다');
+    alert('삭제');
     onClose();
+  };
+
+  const postMemo = usePostMemo();
+  const updateMemo = useUpdateMemo();
+
+  const handleUpdateMemo = () => {
+    if (formik.values && comment) {
+      updateMemo.mutate(
+        {
+          id: comment.id,
+          title: formik.values.title,
+          content: formik.values.content,
+        },
+        {
+          onSuccess: () => {
+            showToastMessage('메모를 수정했습니다.');
+            onClose();
+          },
+        },
+      );
+    }
+  };
+
+  const isTextEmpty = (title: string, content: string) => {
+    if (title !== '' && content !== '') {
+      return false;
+    }
+    return true;
   };
 
   // 방명록 추가, 수정
@@ -29,11 +68,22 @@ const MemoModal = ({ onClose, comment }: Props) => {
     initialValues: {
       title: comment?.title || '',
       content: comment?.content || '',
-      nickname: comment?.nickname || '',
+      // nickname: comment?.nickname || '',
     },
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
-      onClose();
+      if (!isTextEmpty(values.title, values.content)) {
+        postMemo.mutate(
+          { routerId, title: values.title, content: values.content },
+          {
+            onSuccess: () => {
+              showToastMessage('방명록을 등록했습니다');
+              onClose();
+            },
+          },
+        );
+      } else {
+        showToastMessage('제목 혹은 내용이 비어있습니다.');
+      }
     },
   });
 
@@ -76,7 +126,6 @@ const MemoModal = ({ onClose, comment }: Props) => {
           <XIconBox onClick={onClose}>
             <XIcon color="#ffbb17" width="28" height="30" />
           </XIconBox>
-          {/* formik으로 변경 필요 */}
           <FormContainer onSubmit={formik.handleSubmit}>
             <InputGroup id="title" fullWidth contentWidth="100%">
               <Title
@@ -103,7 +152,7 @@ const MemoModal = ({ onClose, comment }: Props) => {
                 </Button>
               )}
               {mode === 'writer' && (
-                <Button type="submit" size="small">
+                <Button type="button" size="small" onClick={handleUpdateMemo}>
                   수정
                 </Button>
               )}
@@ -121,12 +170,11 @@ const MemoModal = ({ onClose, comment }: Props) => {
               onChange={formik.handleChange}
               readOnly={mode === 'host' || mode === 'general'}
             />
-            <Writer>
+            {/* <Writer>
               <p>-</p>
-              {/* 새로 생성 => 로그인한 유저 이름, 나머지는 방명록 작성자 이름으로 변경 필요 */}
-              <input id="nickname" value={comment?.nickname} readOnly />
+              <input id="nickname" value="글쓴이" readOnly />
               <p>-</p>
-            </Writer>
+            </Writer> */}
           </FormContainer>
         </Content>
       </Container>
@@ -192,29 +240,29 @@ const MemoBody = styled.textarea`
   }
 `;
 
-const Writer = styled.div`
-  display: flex;
-  gap: 8px;
-  justify-content: end;
-  margin: 4px 0;
-  font-size: 26px;
+// const Writer = styled.div`
+//   display: flex;
+//   gap: 8px;
+//   justify-content: end;
+//   margin: 4px 0;
+//   font-size: 26px;
 
-  p {
-    margin: 0;
-  }
+//   p {
+//     margin: 0;
+//   }
 
-  input {
-    border: 0;
-    background: none;
-    cursor: default;
-    width: 100px;
-    text-align: center;
-    font-size: 26px;
-  }
+//   input {
+//     border: 0;
+//     background: none;
+//     cursor: default;
+//     width: 100px;
+//     text-align: center;
+//     font-size: 26px;
+//   }
 
-  input:focus {
-    outline: none;
-  }
-`;
+//   input:focus {
+//     outline: none;
+//   }
+// `;
 
 export default MemoModal;

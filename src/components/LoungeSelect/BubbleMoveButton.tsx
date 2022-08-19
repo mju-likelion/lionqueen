@@ -1,15 +1,35 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { AxiosError } from 'axios';
 import styled, { css } from 'styled-components';
 import { scrollTo } from 'seamless-scroll-polyfill';
 
+import { useRouter } from 'next/router';
 import Bubble from '~components/icons/Bubble';
 import Arrow from '~components/icons/BubbleArrow';
 import group from './GroupList';
+
+import Axios from '~lib/axios';
+import { useAppDispatch } from '~/store';
+import { showNotice } from '~store/modules/notice';
+import Notice from '~components/Notice';
+
+type Lounge = {
+  id: string;
+  name: string;
+};
 
 const BubbleMoveButton = () => {
   const loungeRef = useRef<HTMLDivElement>(null);
   const loungeTotal = useRef<number>(Math.ceil(group.length / 3) - 1);
   const [currentLounge, setCurrentLounge] = useState<number>(0);
+  const [lounges, setLounges] = useState<Lounge[]>([]);
+  const router = useRouter();
+
+  const dispatch = useAppDispatch();
+
+  const handleNotice = () => {
+    dispatch(showNotice('알 수 없는 에러가 발생하였습니다. 잠시후 재시도 해주세요.'));
+  };
 
   const onClickPrev = () => {
     if (currentLounge === 0) {
@@ -27,16 +47,37 @@ const BubbleMoveButton = () => {
     }
   };
 
+  const fetchLounges = async () => {
+    try {
+      const response = await Axios.get(`api/lounges`, { withCredentials: true });
+      setLounges(response.data.data);
+    } catch (e) {
+      if (e instanceof AxiosError)
+        if (e.response?.status === 401) {
+          handleNotice();
+          router.push('/sign-in');
+        }
+    }
+  };
+
+  useEffect(() => {
+    fetchLounges();
+  });
+
   useEffect(() => {
     if (loungeRef.current !== null) {
       scrollTo(loungeRef.current, { left: currentLounge * 580, behavior: 'smooth' });
     }
   }, [currentLounge]);
 
-  const groupList = group.map(n => (
-    <BubbleWrapper key={n.id}>
+  const onClickLounge = (id: string) => {
+    router.push(`/lounge/${id}}`);
+  };
+
+  const groupList = lounges.map(lounges => (
+    <BubbleWrapper key={lounges.id} onClick={() => onClickLounge(lounges.id)}>
       <Bubble />
-      <GroupName>{n.name}</GroupName>
+      <GroupName>{lounges.name}</GroupName>
     </BubbleWrapper>
   ));
 
@@ -49,6 +90,7 @@ const BubbleMoveButton = () => {
       <ArrowWrapper onClick={onClickNext} left>
         <Arrow />
       </ArrowWrapper>
+      <Notice />
     </Container>
   );
 };
