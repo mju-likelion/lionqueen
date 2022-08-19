@@ -7,22 +7,25 @@ import { useAppDispatch } from '~/store';
 import { showNotice } from '~store/modules/notice';
 import Notice from '~components/Notice/Notice';
 
-const InviteModal = ({ onClose }: { onClose: () => void }) => {
-  const [inviteLink, setInviteLink] = useState(
-    'https://liontown.city/lounge/123?inviteCode=123123?123?inviteCode=123123?',
-  );
-  // 초대 링크 생성되면 저장하는 함수 필요
+type Props = {
+  onClose: () => void;
+  inviteLink: string;
+};
+
+const InviteModal = ({ onClose, inviteLink }: Props) => {
+  const [link, setLink] = useState(inviteLink);
+
   const dispatch = useAppDispatch();
 
   const handleNotice = () => {
-    dispatch(showNotice('복사완료'));
+    dispatch(showNotice('초대링크가 복사되었습니다.'));
   };
 
   return (
     <Modal isCancel size="large" title="초대링크" onClose={onClose}>
       <InviteWrapper>
-        <InviteLink>{inviteLink}</InviteLink>
-        <CopyToClipboard text={inviteLink}>
+        <InviteLink>{link}</InviteLink>
+        <CopyToClipboard text={link}>
           <CopyBtn onClick={handleNotice}>복사하기</CopyBtn>
         </CopyToClipboard>
       </InviteWrapper>
@@ -44,13 +47,11 @@ const InviteWrapper = styled.div`
 `;
 
 const InviteLink = styled.p`
-  display: flexbox;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
   height: 45px;
   overflow: hidden;
   text-align: left;
   text-overflow: ellipsis;
+  white-space: nowrap;
   color: ${({ theme }) => theme.colors.primary.error};
   font-size: 16px;
 `;
