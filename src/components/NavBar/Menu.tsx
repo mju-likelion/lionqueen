@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { removeCookie } from '~lib/Cookie';
 import Button from '~DesignSystem/Button';
 import LionLogo from '~components/icons/LionLogo';
+import Axios from '~lib/axios';
+import { useAppDispatch } from '~/store';
+import { showNotice } from '~store/modules/notice';
 
 type Props = {
   isOpenNavBar: boolean;
@@ -12,11 +14,18 @@ type Props = {
 
 const Menu = ({ isOpenNavBar }: Props) => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const [isShow, setIsShow] = useState(false);
   const [isSlideIn, setIsSlideIn] = useState(false);
-  const onClickLogOut = () => {
-    removeCookie('jwt');
-    router.push('/sign-in');
+
+  const onClickLogOut = async () => {
+    try {
+      await Axios.delete('/api/auth/sign-out', { withCredentials: true });
+      router.push('/sign-in');
+      handleNoticeLogout();
+    } catch (err) {
+      handleNoticeError();
+    }
   };
 
   useEffect(() => {
@@ -32,6 +41,15 @@ const Menu = ({ isOpenNavBar }: Props) => {
   }, [isOpenNavBar]);
 
   if (!isShow) return null;
+
+  // Notice
+  const handleNoticeLogout = () => {
+    dispatch(showNotice('로그아웃에 성공했습니다. 또 만나요!'));
+  };
+
+  const handleNoticeError = () => {
+    dispatch(showNotice('로그아웃에 실패했습니다.'));
+  };
 
   return (
     <NavBarWrapper isSlideIn={isSlideIn}>
